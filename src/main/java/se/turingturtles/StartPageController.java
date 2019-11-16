@@ -7,6 +7,6 @@ public class StartPageController {
 
     @FXML
     private void switchToSecondary() throws IOException {
-        Main.setRoot("secondary");
+        Main.setRoot("/////");
     }
 }

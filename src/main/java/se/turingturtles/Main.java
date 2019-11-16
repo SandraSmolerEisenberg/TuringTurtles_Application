@@ -14,7 +14,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("homePage"), 640, 480);
+        scene = new Scene(loadFXML("startpage"), 640, 480);
         stage.setScene(scene);
         stage.setTitle("The Turing Turtles");
         stage.show();
