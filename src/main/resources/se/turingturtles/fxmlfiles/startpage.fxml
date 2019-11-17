@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="se.turingturtles.controllers.StartPageController">
+   <children>
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="132.0" layoutY="110.0" prefHeight="231.0" prefWidth="338.0" text="Sandra&#10;Liv&#10;Eemil&#10;Chris&#10;Samuel&#10;Krasen" textAlignment="CENTER" textFill="#1010e3" textOverrun="CENTER_ELLIPSIS" underline="true">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="172.0" layoutY="20.0" prefHeight="48.0" prefWidth="267.0" text="The Turing Turtles" textAlignment="CENTER" textFill="#197ed1">
+         <font>
+            <Font name="System Bold Italic" size="30.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
