@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -18,7 +19,9 @@ public class Main extends Application {
     public void start(Stage window) throws IOException {
         scene = new Scene(setFXML("startpage"));
         window.setScene(scene);
-        window.setTitle("The Turing Turtles");
+        window.setTitle("Turing Turtles");
+        Image image = new Image("se/turingturtles/images/turtle.png");
+        window.getIcons().add(image);
         window.show();
     }
 

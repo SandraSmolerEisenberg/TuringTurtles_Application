@@ -12,7 +12,7 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" layoutX="172.0" layoutY="20.0" prefHeight="48.0" prefWidth="267.0" text="The Turing Turtles" textAlignment="CENTER" textFill="#197ed1">
+      <Label alignment="CENTER" layoutX="172.0" layoutY="20.0" prefHeight="48.0" prefWidth="267.0" text="Turing Turtles" textAlignment="CENTER" textFill="#197ed1">
          <font>
             <Font name="System Bold Italic" size="30.0" />
          </font>
