@@ -1,5 +1,7 @@
 package se.turingturtles;
 
+import java.util.Calendar;
+
 public class MainFactory {
 
     private TeamMember teamMember;
@@ -14,7 +16,7 @@ public class MainFactory {
         return new Task();
     }
 
-    public Project createProject(String name, double budget){
-        return new Project(name, budget);
+    public Project createProject(String name, double budget, Calendar startDate){
+        return new Project(name, budget, startDate);
     }
 }
