@@ -1,4 +1,7 @@
-package se.turingturtles;
+package se.turingturtles.implementations;
+
+import se.turingturtles.entities.TeamMember;
+import se.turingturtles.entities.Project;
 
 import java.util.List;
 

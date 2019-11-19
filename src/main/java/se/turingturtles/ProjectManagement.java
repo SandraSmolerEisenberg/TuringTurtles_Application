@@ -1,11 +1,13 @@
 package se.turingturtles;
 
-import java.util.Calendar;
+import se.turingturtles.entities.TeamMember;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public interface ProjectManagement {
 
-    void createProject(String name, double budget, Calendar startDate);
+    void createProject(String name, double budget, int duration);
     void createTask();
     void removeTask(Task task);
     void createMember();
@@ -13,6 +15,7 @@ public interface ProjectManagement {
     TeamMember findTeamMember(int id);
     List<TeamMember> retrieveTeamMembers();
     double timeSpentByTeamMember(TeamMember member);
+    ArrayList<Task> retrieveMemberTasks(TeamMember member);
     void addMemberToTask(TeamMember member, Task task);
     void addTaskToMember(Task task, TeamMember member);
     Task findTask(int id);

@@ -1,15 +1,13 @@
 package se.turingturtles;
 
+import se.turingturtles.implementations.MainFactory;
+
 public interface Calculations {
+
     double calculateEv();
     double calculateSv();
     double calculateCv();
-    double calculateCompleteWorkPercentage();
-    double calculateCompletionBudget();
-    double calculateBCWP();
-    double calculateBCWS();
     double calculateTotalSalaries();
-
 
 
 }

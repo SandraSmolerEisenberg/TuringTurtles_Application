@@ -1,12 +1,14 @@
-package se.turingturtles;
+package se.turingturtles.implementations;
 
-import java.util.Calendar;
+import se.turingturtles.ProjectManagement;
+import se.turingturtles.entities.TeamMember;
+
 import java.util.List;
 
-public class ManagementImplementation implements ProjectManagement{
+public class ManagementImplementation implements ProjectManagement {
 
     @Override
-    public void createProject(String name, double budget, Calendar startDate) {
+    public void createProject(String name, double budget, int duration) {
 
     }
 
