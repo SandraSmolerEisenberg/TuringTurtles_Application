@@ -21,8 +21,6 @@ public interface ProjectManagement {
     Task findTask(int id);
     List<Task> retrieveTasks();
     void completeTask(Task task);
-    void increaseBudget(double amount);
-    void decreaseBudget(double amount);
     double timeSpentOnProject();
 
 

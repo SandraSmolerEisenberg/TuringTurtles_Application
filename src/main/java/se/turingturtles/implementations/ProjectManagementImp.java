@@ -3,9 +3,10 @@ package se.turingturtles.implementations;
 import se.turingturtles.ProjectManagement;
 import se.turingturtles.entities.TeamMember;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class ManagementImplementation implements ProjectManagement {
+public class ProjectManagementImp implements ProjectManagement {
 
     @Override
     public void createProject(String name, double budget, int duration) {
@@ -48,6 +49,11 @@ public class ManagementImplementation implements ProjectManagement {
     }
 
     @Override
+    public ArrayList<Task> retrieveMemberTasks(TeamMember member) {
+        return null;
+    }
+
+    @Override
     public void addMemberToTask(TeamMember member, Task task) {
 
     }
@@ -69,16 +75,6 @@ public class ManagementImplementation implements ProjectManagement {
 
     @Override
     public void completeTask(Task task) {
-
-    }
-
-    @Override
-    public void increaseBudget(double amount) {
-
-    }
-
-    @Override
-    public void decreaseBudget(double amount) {
 
     }
 
