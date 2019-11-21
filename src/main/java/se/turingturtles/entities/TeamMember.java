@@ -46,7 +46,6 @@ public class TeamMember {
 
     @Override
     public String toString() {
-        return "TeamMember: " + getName() + ", ID: " + getId() +
-                ", Hourly wage: " + getHourlyWage() + ", Tasks: " + getTasks();
+        return this.getName() + "(ID: " + this.getId() + ")";
     }
 }
