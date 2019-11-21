@@ -1,16 +1,14 @@
 package se.turingturtles.implementations;
 
+import se.turingturtles.ProjectCalculations;
 import se.turingturtles.entities.Task;
 import se.turingturtles.entities.TeamMember;
 import se.turingturtles.entities.Project;
 
 import java.util.List;
 
-public class BudgetCalculations {
+public class ProjectCalculationsImp implements ProjectCalculations {
 
-    private static final int UPDATE_INTERVAL = 14;
-    private Project project;
-    private Task task;
 
 
     public double calculateEv(){
@@ -20,22 +18,22 @@ public class BudgetCalculations {
     }
 
 
-    public double calculateSV() {
+    public double calculateSv() {
         //We calculate the Schedule Variance based on calculateBCWP & calculateBCWS
 
         return calculateBCWP()-calculateBCWS();
     }
 
-    public double calculateCV(){
+    public double calculateCv(){
         //We assume that actual cost of work is entirely based on the total salaries
 
-        return project.getBudget() - calculateTotalSalaries();
+        return ProjectManagementImp.project.getBudget() - calculateTotalSalaries();
     }
 
 
 
     public double calculateCompletedWorkPercentage(){
-        List<Task> tasks = project.getTasks();
+        List<Task> tasks = ProjectManagementImp.project.getTasks();
         int completedTasks = 0;
 
         if (tasks.size() == 0){
@@ -43,7 +41,7 @@ public class BudgetCalculations {
         }
 
         for (int i=0; i<tasks.size(); i++){
-            if (tasks.getStatus()) {
+            if (tasks.get(i).getCompletion()) {
                 completedTasks++;
             }
         }
@@ -53,34 +51,37 @@ public class BudgetCalculations {
 
     public double calculateCompletionBudget(){
         //We can't assume how to calculate the Completion Budget yet.
+        return 0;
     }
 
     public double calculateBCWP(){
         //Calculate Budget Cost of Work Performed
 
-        return (project.getBudget()/calculateCompletedWorkPercentage());
+        return (ProjectManagementImp.project.getBudget()/calculateCompletedWorkPercentage());
     }
 
     public double calculateBCWS(){
         //Calculate Budgeted Cost of Work Scheduled
         //We are using calculateBCWP to get the remaining amount of the budget
 
-        return project.getBudget()-calculateBCWP();
+        return ProjectManagementImp.project.getBudget()-calculateBCWP();
     }
 
 
     public double calculateTotalSalaries(){
-        List<TeamMember> members = project.getTeamMembers();
+        List<TeamMember> members = ProjectManagementImp.project.getTeamMembers();
         double totalSalary = 0;
 
         if (members.size() == 0) {
             return 0;
         }
 
-        for (i=0; i<members.size(); i++){
-            totalSalary += members.get(i).getSalary();
+        for (int i=0; i<members.size(); i++){
+            totalSalary += members.get(i).getHourlyWage();
         }
 
         return totalSalary;
     }
+    public void increaseBudget(double amount){}
+    public void decreaseBudget(double amount){}
 }
