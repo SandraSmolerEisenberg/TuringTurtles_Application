@@ -1,6 +1,8 @@
 package se.turingturtles.implementations;
 
 import se.turingturtles.ProjectManagement;
+import se.turingturtles.entities.Project;
+import se.turingturtles.entities.Task;
 import se.turingturtles.entities.TeamMember;
 
 import java.util.ArrayList;
@@ -8,13 +10,18 @@ import java.util.List;
 
 public class ProjectManagementImp implements ProjectManagement {
 
+    public static Project project;
+
+    MainFactory factory = new MainFactory();
+
     @Override
     public void createProject(String name, double budget, int duration) {
-
+        factory.createProject(name, budget,duration);
     }
 
     @Override
     public void createTask() {
+        factory.createTask();
 
     }
 

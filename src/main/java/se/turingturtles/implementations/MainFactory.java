@@ -5,11 +5,14 @@ import javafx.scene.Parent;
 import javafx.scene.image.Image;
 import se.turingturtles.Main;
 import se.turingturtles.entities.Project;
+import se.turingturtles.entities.Risk;
+import se.turingturtles.entities.Task;
 import se.turingturtles.entities.TeamMember;
 
 import java.io.IOException;
 
 public class MainFactory {
+
 
     public Parent setFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("fxmlfiles/" + fxml + ".fxml"));
@@ -24,12 +27,12 @@ public class MainFactory {
         return new Risk();
     }
 
-    public TeamMember createTeamMember(){
-        return new TeamMember();
+    public TeamMember createTeamMember(String name, int id, double hourlyWage){
+        return new TeamMember(name, id, hourlyWage);
     }
 
-    public Task createTask(){
-        return new Task();
+    public Task createTask(String name, int duration){
+        return new Task(name, duration);
     }
 
     public Project createProject(String name, double budget, int duration){
@@ -37,6 +40,6 @@ public class MainFactory {
     }
 
     public Project createProject(){
-        return new Project();
+        return ProjectManagementImp.project;
     }
 }

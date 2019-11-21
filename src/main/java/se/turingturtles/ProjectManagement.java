@@ -1,5 +1,6 @@
 package se.turingturtles;
 
+import se.turingturtles.entities.Task;
 import se.turingturtles.entities.TeamMember;
 
 import java.util.ArrayList;
