@@ -19,8 +19,8 @@ public class TeamMember {
     public String getName(){
         return this.name;
     }
-    public void setName(String name){
-        this.name = name;
+    public void setName(String newName){
+        this.name = newName;
     }
     public int getId(){
         return this.id;
@@ -28,8 +28,8 @@ public class TeamMember {
     public double getHourlyWage(){
         return this.hourlyWage;
     }
-    public void setHourlyWage(double hourlyWage){
-        this.hourlyWage = hourlyWage;
+    public void setHourlyWage(double newHourlyWage){
+        this.hourlyWage = newHourlyWage;
     }
     public ArrayList<Task> getTasks(){
             return tasks;
@@ -38,7 +38,7 @@ public class TeamMember {
         tasks.add(task);
     }
     public void removeTask(Task task){
-        tasks.remove();
+        tasks.remove(task);
     }
     public int totalTasks(){
         return tasks.size();
