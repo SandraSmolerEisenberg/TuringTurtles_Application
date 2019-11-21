@@ -7,11 +7,13 @@ public class Task {
     private String name;
     private int duration; //number of weeks
     private ArrayList<TeamMember> teamMembers;
+    private boolean completion;
 
     public Task(String name, int duration){
         this.name = name;
         this.duration = duration;
         this.teamMembers = new ArrayList<TeamMember>();
+        this.completion = false;
     }
 
     public String getName(){
@@ -27,7 +29,7 @@ public class Task {
         this.duration = newDuration;
     }
     public ArrayList<TeamMember> getTeamMembers(){
-        return teamMembers;
+        return this.teamMembers;
     }
     public void addTeamMember(TeamMember teamMember){
         this.teamMembers.add(teamMember);
@@ -36,7 +38,13 @@ public class Task {
         this.teamMembers.remove(teamMember);
     }
     public int totalTeamMembers(){
-        return teamMembers.size();
+        return this.teamMembers.size();
+    }
+    public boolean getCompletion(){
+        return this.completion;
+    }
+    public void setCompletion(boolean status){
+        this.completion = status;
     }
 
     @Override
