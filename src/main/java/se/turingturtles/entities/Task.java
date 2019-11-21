@@ -5,12 +5,14 @@ import java.util.ArrayList;
 public class Task {
 
     private String name;
+    private int startWeek;
     private int duration; //number of weeks
     private ArrayList<TeamMember> teamMembers;
     private boolean completion;
 
-    public Task(String name, int duration){
+    public Task(String name, int startWeek, int duration){
         this.name = name;
+        this.startWeek = startWeek;
         this.duration = duration;
         this.teamMembers = new ArrayList<TeamMember>();
         this.completion = false;
@@ -45,6 +47,9 @@ public class Task {
     }
     public void setCompletion(boolean status){
         this.completion = status;
+    }
+    public int getStartWeek(){
+        return this.startWeek;
     }
 
     @Override
