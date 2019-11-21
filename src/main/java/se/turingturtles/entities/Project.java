@@ -32,9 +32,7 @@ public class Project {
         calendar.setFirstDayOfWeek(Calendar.MONDAY);
         return calendar.get(Calendar.YEAR);    }
 
-
-
-    private int assignStartWeek() {
+    public int assignStartWeek() {
         Calendar calendar = Calendar.getInstance(Locale.GERMANY);
         calendar.setFirstDayOfWeek(Calendar.MONDAY);
         return calendar.get(Calendar.WEEK_OF_YEAR);
