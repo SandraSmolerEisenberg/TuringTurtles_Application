@@ -8,7 +8,6 @@ public class TeamMember {
     private int id;
     private double hourlyWage;
     private ArrayList<Task> tasks;
-    private int numberOfTasks;
 
     public TeamMember(String name, int id, double hourlyWage){
         this.name = name;
