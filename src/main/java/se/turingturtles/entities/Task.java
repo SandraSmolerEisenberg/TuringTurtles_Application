@@ -35,7 +35,13 @@ public class Task {
     public void removeTeamMember(TeamMember teamMember){
         this.teamMembers.remove(teamMember);
     }
-    public int TotalTeamMembers(){
+    public int totalTeamMembers(){
         return teamMembers.size();
+    }
+
+    @Override
+    public String toString() {
+        return "Task: " + this.getName() + ", Duration: " + this.getDuration() +
+                ", Members working on task: " + this.getTeamMembers();
     }
 }
