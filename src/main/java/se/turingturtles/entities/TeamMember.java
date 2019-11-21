@@ -1,5 +1,7 @@
 package se.turingturtles.entities;
 
+import se.turingturtles.implementations.ProjectManagementImp;
+
 import java.util.ArrayList;
 
 public class TeamMember {
@@ -43,6 +45,15 @@ public class TeamMember {
     public int totalTasks(){
         return tasks.size();
     }
+    public int getWeeksSpent(){
+        int currentWeek = ProjectManagementImp.project.assignStartWeek();
+        int weeksSpent = 0;
+        for(Task obj : tasks){
+            weeksSpent += (currentWeek - obj.getStartWeek());
+        }
+        return weeksSpent;
+    }
+
 
     @Override
     public String toString() {
