@@ -46,7 +46,7 @@ public class TeamMember {
         return tasks.size();
     }
     public int getWeeksSpent(){
-        int currentWeek = ProjectManagementImp.project.assignStartWeek();
+        int currentWeek = ProjectManagementImp.getProject().assignStartWeek();
         int weeksSpent = 0;
         for(Task obj : tasks){
             weeksSpent += (currentWeek - obj.getStartWeek());
@@ -54,9 +54,9 @@ public class TeamMember {
         return weeksSpent;
     }
 
-
     @Override
     public String toString() {
         return this.getName() + "(ID: " + this.getId() + ")";
     }
+
 }

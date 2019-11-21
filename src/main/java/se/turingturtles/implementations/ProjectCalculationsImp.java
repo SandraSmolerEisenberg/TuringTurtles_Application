@@ -27,13 +27,13 @@ public class ProjectCalculationsImp implements ProjectCalculations {
     public double calculateCv(){
         //We assume that actual cost of work is entirely based on the total salaries
 
-        return ProjectManagementImp.project.getBudget() - calculateTotalSalaries();
+        return ProjectManagementImp.getProject().getBudget() - calculateTotalSalaries();
     }
 
 
 
     public double calculateCompletedWorkPercentage(){
-        List<Task> tasks = ProjectManagementImp.project.getTasks();
+        List<Task> tasks = ProjectManagementImp.getProject().getTasks();
         int completedTasks = 0;
 
         if (tasks.size() == 0){
@@ -57,19 +57,19 @@ public class ProjectCalculationsImp implements ProjectCalculations {
     public double calculateBCWP(){
         //Calculate Budget Cost of Work Performed
 
-        return (ProjectManagementImp.project.getBudget()/calculateCompletedWorkPercentage());
+        return (ProjectManagementImp.getProject().getBudget()/calculateCompletedWorkPercentage());
     }
 
     public double calculateBCWS(){
         //Calculate Budgeted Cost of Work Scheduled
         //We are using calculateBCWP to get the remaining amount of the budget
 
-        return ProjectManagementImp.project.getBudget()-calculateBCWP();
+        return ProjectManagementImp.getProject().getBudget()-calculateBCWP();
     }
 
 
     public double calculateTotalSalaries(){
-        List<TeamMember> members = ProjectManagementImp.project.getTeamMembers();
+        List<TeamMember> members = ProjectManagementImp.getProject().getTeamMembers();
         double totalSalary = 0;
 
         if (members.size() == 0) {

@@ -36,7 +36,6 @@ public class Project {
         Calendar calendar = Calendar.getInstance(Locale.GERMANY);
         calendar.setFirstDayOfWeek(Calendar.MONDAY);
         return calendar.get(Calendar.WEEK_OF_YEAR);
-
     }
 
     public int getStartWeek() {

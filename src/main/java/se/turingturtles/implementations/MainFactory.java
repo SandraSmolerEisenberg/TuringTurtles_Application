@@ -19,6 +19,14 @@ public class MainFactory {
         return fxmlLoader.load();
     }
 
+    public ProjectManagementImp createProjectManagement(){
+        return new ProjectManagementImp();
+    }
+    public ProjectCalculationsImp createProjectCalculation(){
+        return new ProjectCalculationsImp();
+    }
+
+
     public Image loadImage(String image){
         return new Image("se/turingturtles/images/" + image + ".png");
     }
@@ -31,8 +39,8 @@ public class MainFactory {
         return new TeamMember(name, id, hourlyWage);
     }
 
-    public Task createTask(String name, int duration){
-        return new Task(name, duration);
+    public Task createTask(String name,int startWeek, int duration){
+        return new Task(name,startWeek, duration);
     }
 
     public Project createProject(String name, double budget, int duration){
@@ -40,6 +48,6 @@ public class MainFactory {
     }
 
     public Project createProject(){
-        return ProjectManagementImp.project;
+        return ProjectManagementImp.getProject();
     }
 }

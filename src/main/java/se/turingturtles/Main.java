@@ -1,12 +1,11 @@
 package se.turingturtles;
 
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import se.turingturtles.implementations.MainFactory;
+import se.turingturtles.implementations.ProjectManagementImp;
 
 import java.io.IOException;
 
@@ -30,8 +29,13 @@ public class Main extends Application {
 //        scene.setRoot(setFXML(fxml));
 //    }
 
-    public static void main(String[] args) {
+    public static void main(String[] args)
+    {
+
         launch();
     }
+
+
+
 
 }
