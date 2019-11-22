@@ -6,6 +6,7 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import se.turingturtles.implementations.MainFactory;
 import se.turingturtles.implementations.ProjectManagementImp;
+import se.turingturtles.streamIO.StreamJSON;
 
 import java.io.*;
 
@@ -32,6 +33,15 @@ public class Main extends Application {
     public static void main(String[] args) throws IOException {
         Main main = new Main();
         main.test();
+
+//        Test the import and export JSON functionality
+
+        StreamJSON testStream = new StreamJSON();
+//        testStream.exportToJSON();
+
+        testStream.importFromJSON();
+
+
         launch();
     }
 

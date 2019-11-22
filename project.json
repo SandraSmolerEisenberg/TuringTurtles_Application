@@ -1,0 +1,1 @@
+{"name":"TestProject","budget":10000.0,"duration":23.0,"startWeek":47,"startYear":2019,"teamMembers":[{"name":"TeamMember1","id":1,"hourlyWage":1000.0,"tasks":[],"weeksSpent":0}],"tasks":[{"name":"Task2","startWeek":47,"duration":20,"teamMembers":[],"completion":false}],"risk":[{"name":"Risk1","impact":10,"probability":10},{"name":"Risk2","impact":20,"probability":20}]}
