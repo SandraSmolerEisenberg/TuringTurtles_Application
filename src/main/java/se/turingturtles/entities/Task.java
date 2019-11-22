@@ -17,13 +17,17 @@ public class Task {
         this.teamMembers = new ArrayList<TeamMember>();
         this.completion = false;
     }
-
+    //--------------------Getters & Setters--------------------
     public String getName(){
         return this.name;
     }
     public void setName(String newName){
         this.name = newName;
     }
+    public int getStartWeek(){
+        return this.startWeek;
+    }
+    public void setStartWeek(int newStartWeek){ this.startWeek = newStartWeek; }
     public int getDuration(){
         return this.duration;
     }
@@ -33,6 +37,13 @@ public class Task {
     public ArrayList<TeamMember> getTeamMembers(){
         return this.teamMembers;
     }
+    public boolean getCompletion(){
+        return this.completion;
+    }
+    public void setCompletion(boolean status){
+        this.completion = status;
+    }
+    //--------------------Methods--------------------
     public void addTeamMember(TeamMember teamMember){
         this.teamMembers.add(teamMember);
     }
@@ -41,15 +52,6 @@ public class Task {
     }
     public int totalTeamMembers(){
         return this.teamMembers.size();
-    }
-    public boolean getCompletion(){
-        return this.completion;
-    }
-    public void setCompletion(boolean status){
-        this.completion = status;
-    }
-    public int getStartWeek(){
-        return this.startWeek;
     }
 
     @Override
