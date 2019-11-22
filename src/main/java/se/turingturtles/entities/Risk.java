@@ -11,6 +11,9 @@ public class Risk {
         this.impact = impact;
         this.probability = probability;
     }
+
+    public Risk(){}
+
     //--------------------Getters & Setters--------------------
     public String getName(){
         return this.name;

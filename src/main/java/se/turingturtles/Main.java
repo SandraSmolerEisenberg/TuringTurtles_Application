@@ -34,13 +34,13 @@ public class Main extends Application {
         Main main = new Main();
         main.test();
 
-//        Test the import and export JSON functionality
+/*      Test the import and export JSON functionality using the following commented code below:
 
         StreamJSON testStream = new StreamJSON();
-//        testStream.exportToJSON();
+        testStream.exportToJSON();
 
         testStream.importFromJSON();
-
+*/
 
         launch();
     }

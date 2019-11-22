@@ -17,6 +17,9 @@ public class Task {
         this.teamMembers = new ArrayList<TeamMember>();
         this.completion = false;
     }
+
+    public Task(){}
+
     //--------------------Getters & Setters--------------------
     public String getName(){
         return this.name;

@@ -18,6 +18,8 @@ public class TeamMember {
         this.tasks = new ArrayList<Task>();
     }
 
+    public TeamMember(){}
+
     public String getName(){
         return this.name;
     }
