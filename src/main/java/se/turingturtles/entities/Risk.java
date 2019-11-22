@@ -34,4 +34,13 @@ public class Risk {
     public double calculateRisk(){
         return (this.impact * this.probability);
     }
+
+    @Override
+    public String toString() {
+        return "Risk{" +
+                "name='" + name + '\'' +
+                ", impact=" + impact +
+                ", probability=" + probability +
+                '}';
+    }
 }

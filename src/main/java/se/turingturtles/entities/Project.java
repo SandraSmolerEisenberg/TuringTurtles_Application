@@ -11,7 +11,7 @@ public class Project {
     private int startYear;
     private List<TeamMember> teamMembers;
     private List<Task> tasks;
-    private Risk risk;
+    private List<Risk> risk;
 
 
     public Project(String name, double budget, int duration){
@@ -20,7 +20,7 @@ public class Project {
         this.budget = budget;
         this.teamMembers = new ArrayList<>();
         this.tasks = new ArrayList<>();
-        this.risk = new Risk();
+        this.risk = new ArrayList<>();
         this.startWeek = assignStartWeek();
         this.startYear = assignStartYear();
     }
@@ -92,6 +92,14 @@ public class Project {
 
     public void setDuration(double duration) {
         this.duration = duration;
+    }
+
+    public List<Risk> getRisk() {
+        return risk;
+    }
+
+    public void setRisk(List<Risk> risk) {
+        this.risk = risk;
     }
 
     @Override

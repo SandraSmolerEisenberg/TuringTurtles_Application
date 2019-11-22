@@ -1,5 +1,6 @@
 package se.turingturtles;
 
+import se.turingturtles.entities.Risk;
 import se.turingturtles.entities.Task;
 import se.turingturtles.entities.TeamMember;
 
@@ -17,12 +18,13 @@ public interface ProjectManagement {
     List<TeamMember> retrieveTeamMembers();
     int timeSpentByTeamMember(TeamMember member);
     ArrayList<Task> retrieveMemberTasks(TeamMember member);
-    void addMemberToTask(TeamMember member, Task task);
-    void addTaskToMember(Task task, TeamMember member);
+    void assignTask(TeamMember member, Task task);
     Task findTask(String name);
     List<Task> retrieveTasks();
     void completeTask(Task task);
-    double timeSpentOnProject();
+    int timeSpentOnProject();
+    void createRisk(String name, int impact, int probability);
+    List<Risk> retrieveRisk();
 
 
 }

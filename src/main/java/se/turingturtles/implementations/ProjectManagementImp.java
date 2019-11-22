@@ -2,9 +2,9 @@ package se.turingturtles.implementations;
 
 import se.turingturtles.ProjectManagement;
 import se.turingturtles.entities.Project;
+import se.turingturtles.entities.Risk;
 import se.turingturtles.entities.Task;
 import se.turingturtles.entities.TeamMember;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,9 +14,11 @@ public class ProjectManagementImp implements ProjectManagement {
 
     private MainFactory factory = new MainFactory();
 
+
+
     @Override
     public void createProject(String name, double budget, int duration) {
-       project = factory.createProject(name, budget,duration);
+       project = factory.createProject(name, budget, duration);
     }
 
     @Override
@@ -26,7 +28,16 @@ public class ProjectManagementImp implements ProjectManagement {
 
     @Override
     public void removeTask(Task task) {
+
         project.getTasks().remove(task);
+        List<TeamMember> teamMembers = project.getTeamMembers();
+        for (int i = 0; i < teamMembers.size() ; i++) {
+          for (int j = 0; j < teamMembers.get(i).getTasks().size(); j++){
+              if (teamMembers.get(i).getTasks().get(j).equals(task)){
+                  teamMembers.get(i).getTasks().remove(j);
+              }
+          }
+        }
     }
 
     @Override
@@ -37,6 +48,15 @@ public class ProjectManagementImp implements ProjectManagement {
     @Override
     public void removeMember(TeamMember member) {
         project.getTeamMembers().remove(member);
+        List<Task> tasks = project.getTasks();
+
+        for (int i = 0; i < tasks.size() ; i++) {
+            for (int j = 0; j < tasks.get(i).getTeamMembers().size(); j++){
+                if (tasks.get(i).getTeamMembers().get(j).equals(member)){
+                    tasks.get(i).getTeamMembers().remove(j);
+                }
+            }
+        }
     }
 
     @Override
@@ -67,12 +87,8 @@ public class ProjectManagementImp implements ProjectManagement {
     }
 
     @Override
-    public void addMemberToTask(TeamMember member, Task task) {
+    public void assignTask(TeamMember member, Task task) {
         task.getTeamMembers().add(member);
-    }
-
-    @Override
-    public void addTaskToMember(Task task, TeamMember member) {
         member.getTasks().add(task);
     }
 
@@ -98,7 +114,7 @@ public class ProjectManagementImp implements ProjectManagement {
     }
 
     @Override
-    public double timeSpentOnProject() {
+    public int timeSpentOnProject() {
         List<TeamMember> teamMembers = project.getTeamMembers();
         int totalTimeSpent = 0;
         for (int i = 0; i < teamMembers.size() ; i++) {
@@ -107,7 +123,21 @@ public class ProjectManagementImp implements ProjectManagement {
         return totalTimeSpent;
     }
 
+    @Override
+    public void createRisk(String name, int impact, int probability) {
+        project.getRisk().add(factory.createRisk(name, impact, probability));
+    }
+
+    @Override
+    public List<Risk> retrieveRisk() {
+        return project.getRisk();
+    }
+
+    public static void setProject(Project project) {
+        ProjectManagementImp.project = project;
+    }
     public static Project getProject() {
         return project;
     }
+
 }

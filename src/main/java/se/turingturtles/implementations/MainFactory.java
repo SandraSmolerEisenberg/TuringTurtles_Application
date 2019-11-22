@@ -31,8 +31,8 @@ public class MainFactory {
         return new Image("se/turingturtles/images/" + image + ".png");
     }
 
-    public Risk createRisk(){
-        return new Risk();
+    public Risk createRisk(String name, int impact, int probability){
+        return new Risk(name, impact, probability);
     }
 
     public TeamMember createTeamMember(String name, int id, double hourlyWage){
