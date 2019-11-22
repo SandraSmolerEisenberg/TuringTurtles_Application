@@ -11,28 +11,13 @@ public class ProjectCalculationsImp implements ProjectCalculations {
 
 
 
-    public double calculateEv(){
+    public double calculateEarnedValue(){
         //Cannot calculate yet, because it is dependant on calculateCompletionBudget
 
         return calculateCompletedWorkPercentage()/calculateCompletionBudget();
     }
 
-
-    public double calculateSv() {
-        //We calculate the Schedule Variance based on calculateBCWP & calculateBCWS
-
-        return calculateBCWP()-calculateBCWS();
-    }
-
-    public double calculateCv(){
-        //We assume that actual cost of work is entirely based on the total salaries
-
-        return ProjectManagementImp.getProject().getBudget() - calculateTotalSalaries();
-    }
-
-
-
-    public double calculateCompletedWorkPercentage(){
+    private double calculateCompletedWorkPercentage(){
         List<Task> tasks = ProjectManagementImp.getProject().getTasks();
         int completedTasks = 0;
 
@@ -49,22 +34,36 @@ public class ProjectCalculationsImp implements ProjectCalculations {
         return ((double)completedTasks/tasks.size());
     }
 
-    public double calculateCompletionBudget(){
+    private double calculateCompletionBudget(){
         //We can't assume how to calculate the Completion Budget yet.
         return 0;
     }
 
-    public double calculateBCWP(){
+
+    public double calculateScheduleVariance() {
+        //We calculate the Schedule Variance based on calculateBCWP & calculateBCWS
+
+        return calculateBCWP()-calculateBCWS();
+    }
+
+    private double calculateBCWP(){
         //Calculate Budget Cost of Work Performed
 
         return (ProjectManagementImp.getProject().getBudget()/calculateCompletedWorkPercentage());
     }
 
-    public double calculateBCWS(){
+    private double calculateBCWS(){
         //Calculate Budgeted Cost of Work Scheduled
         //We are using calculateBCWP to get the remaining amount of the budget
 
         return ProjectManagementImp.getProject().getBudget()-calculateBCWP();
+    }
+
+
+    public double calculateCostVariance(){
+        //We assume that actual cost of work is entirely based on the total salaries
+
+        return ProjectManagementImp.getProject().getBudget() - calculateTotalSalaries();
     }
 
 

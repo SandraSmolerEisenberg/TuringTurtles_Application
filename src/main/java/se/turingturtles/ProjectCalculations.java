@@ -4,9 +4,9 @@ import se.turingturtles.implementations.MainFactory;
 
 public interface ProjectCalculations {
 
-    double calculateEv();
-    double calculateSv();
-    double calculateCv();
+    double calculateEarnedValue();
+    double calculateScheduleVariance();
+    double calculateCostVariance();
     double calculateTotalSalaries();
     void increaseBudget(double amount);
     void decreaseBudget(double amount);
