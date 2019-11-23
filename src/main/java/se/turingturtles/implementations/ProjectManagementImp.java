@@ -12,9 +12,11 @@ public class ProjectManagementImp implements ProjectManagement {
 
     private static Project project;
 
-    private MainFactory factory = new MainFactory();
+    private ProjectFactory factory;
 
-
+    public ProjectManagementImp() {
+        this.factory =  new ProjectFactory();
+    }
 
     @Override
     public void createProject(String name, double budget, int duration) {
@@ -31,12 +33,12 @@ public class ProjectManagementImp implements ProjectManagement {
 
         project.getTasks().remove(task);
         List<TeamMember> teamMembers = project.getTeamMembers();
-        for (int i = 0; i < teamMembers.size() ; i++) {
-          for (int j = 0; j < teamMembers.get(i).getTasks().size(); j++){
-              if (teamMembers.get(i).getTasks().get(j).equals(task)){
-                  teamMembers.get(i).getTasks().remove(j);
-              }
-          }
+        for (TeamMember teamMember : teamMembers) {
+            for (int j = 0; j < teamMember.getTasks().size(); j++) {
+                if (teamMember.getTasks().get(j).equals(task)) {
+                    teamMember.getTasks().remove(j);
+                }
+            }
         }
     }
 
@@ -50,10 +52,10 @@ public class ProjectManagementImp implements ProjectManagement {
         project.getTeamMembers().remove(member);
         List<Task> tasks = project.getTasks();
 
-        for (int i = 0; i < tasks.size() ; i++) {
-            for (int j = 0; j < tasks.get(i).getTeamMembers().size(); j++){
-                if (tasks.get(i).getTeamMembers().get(j).equals(member)){
-                    tasks.get(i).getTeamMembers().remove(j);
+        for (Task task : tasks) {
+            for (int j = 0; j < task.getTeamMembers().size(); j++) {
+                if (task.getTeamMembers().get(j).equals(member)) {
+                    task.getTeamMembers().remove(j);
                 }
             }
         }
@@ -63,9 +65,9 @@ public class ProjectManagementImp implements ProjectManagement {
     public TeamMember findTeamMember(int id)
     {
         List<TeamMember> teamMembers = project.getTeamMembers();
-        for (int i = 0; i < teamMembers.size() ; i++) {
-            if (teamMembers.get(i).getId() == id){
-                return teamMembers.get(i);
+        for (TeamMember teamMember : teamMembers) {
+            if (teamMember.getId() == id) {
+                return teamMember;
             }
         }
         return null;
@@ -95,9 +97,9 @@ public class ProjectManagementImp implements ProjectManagement {
     @Override
     public Task findTask(String name) {
         List<Task> tasks = project.getTasks();
-        for (int i = 0; i < tasks.size() ; i++) {
-            if (tasks.get(i).getName().equals(name)){
-                return tasks.get(i);
+        for (Task task : tasks) {
+            if (task.getName().equals(name)) {
+                return task;
             }
         }
         return null;
@@ -117,8 +119,8 @@ public class ProjectManagementImp implements ProjectManagement {
     public int timeSpentOnProject() {
         List<TeamMember> teamMembers = project.getTeamMembers();
         int totalTimeSpent = 0;
-        for (int i = 0; i < teamMembers.size() ; i++) {
-            totalTimeSpent = totalTimeSpent + teamMembers.get(i).getWeeksSpent();
+        for (TeamMember teamMember : teamMembers) {
+            totalTimeSpent = totalTimeSpent + teamMember.getWeeksSpent();
         }
         return totalTimeSpent;
     }
@@ -136,6 +138,7 @@ public class ProjectManagementImp implements ProjectManagement {
     public static void setProject(Project project) {
         ProjectManagementImp.project = project;
     }
+
     public static Project getProject() {
         return project;
     }

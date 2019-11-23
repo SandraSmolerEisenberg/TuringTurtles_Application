@@ -1,5 +1,6 @@
 package se.turingturtles.implementations;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.image.Image;
@@ -8,10 +9,11 @@ import se.turingturtles.entities.Project;
 import se.turingturtles.entities.Risk;
 import se.turingturtles.entities.Task;
 import se.turingturtles.entities.TeamMember;
+import se.turingturtles.streamIO.StreamJSON;
 
 import java.io.IOException;
 
-public class MainFactory {
+public class ProjectFactory {
 
 
     public Parent setFXML(String fxml) throws IOException {
@@ -39,12 +41,20 @@ public class MainFactory {
         return new TeamMember(name, id, hourlyWage);
     }
 
+    public ObjectMapper makeObjectMapper(){
+        return new ObjectMapper();
+    }
+
     public Task createTask(String name,int startWeek, int duration){
         return new Task(name,startWeek, duration);
     }
 
     public Project createProject(String name, double budget, int duration){
         return new Project(name, budget, duration);
+    }
+
+    public StreamJSON makeStream(){
+        return new StreamJSON();
     }
 
     public Project createProject(){

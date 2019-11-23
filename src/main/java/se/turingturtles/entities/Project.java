@@ -6,7 +6,7 @@ public class Project {
 
     private String name;
     private double budget;
-    private double duration;
+    private double duration;    //In weeks
     private int startWeek;
     private int startYear;
     private List<TeamMember> teamMembers;
@@ -27,12 +27,13 @@ public class Project {
 
     public Project(){}
 
-    private int assignStartYear() {
+    // Assign the project start week and Year
+    int assignStartYear() {
         Calendar calendar = Calendar.getInstance(Locale.GERMANY);
         calendar.setFirstDayOfWeek(Calendar.MONDAY);
         return calendar.get(Calendar.YEAR);    }
 
-    public int assignStartWeek() {
+    int assignStartWeek() {
         Calendar calendar = Calendar.getInstance(Locale.GERMANY);
         calendar.setFirstDayOfWeek(Calendar.MONDAY);
         return calendar.get(Calendar.WEEK_OF_YEAR);

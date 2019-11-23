@@ -3,6 +3,7 @@ package se.turingturtles.streamIO;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import se.turingturtles.entities.Project;
+import se.turingturtles.implementations.ProjectFactory;
 import se.turingturtles.implementations.ProjectManagementImp;
 
 import java.io.File;
@@ -10,26 +11,25 @@ import java.io.IOException;
 
 public class StreamJSON {
 
-    public void exportToJSON() throws IOException {
+    private ProjectFactory factory;
+    private ObjectMapper mapper;
 
+    public StreamJSON(){
+        factory = new ProjectFactory();
+        mapper = factory.makeObjectMapper();
+    }
 
-
-        ObjectMapper mapper = new ObjectMapper();
+    public void exportToJSON(String filePath) throws IOException {
 
         // We need to catch the exception as well!
-        mapper.writeValue(new File("project.json"), ProjectManagementImp.getProject());
-
+        mapper.writeValue(new File(filePath), ProjectManagementImp.getProject());
 
     }
 
-
-    public void importFromJSON() throws IOException{
-
-        ObjectMapper mapper = new ObjectMapper();
-
+    public void importFromJSON(String filePath) throws IOException{
+        // We need to catch the exception as well!
         mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-
-        ProjectManagementImp.setProject(mapper.readValue(new File("project.json"), Project.class));
+        ProjectManagementImp.setProject(mapper.readValue(new File(filePath), Project.class));
 
     }
 

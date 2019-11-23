@@ -4,7 +4,7 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import se.turingturtles.implementations.MainFactory;
+import se.turingturtles.implementations.ProjectFactory;
 import se.turingturtles.implementations.ProjectManagementImp;
 import se.turingturtles.streamIO.StreamJSON;
 
@@ -12,13 +12,17 @@ import java.io.*;
 
 public class Main extends Application {
 
+    private static ProjectFactory factory = new ProjectFactory();
+    private static Main main;
+    private ProjectManagement projectManagement;
+
     @Override
     public void start(Stage window) throws IOException {
-        MainFactory mainFactory= new MainFactory();
-        Scene scene = new Scene(mainFactory.setFXML("startpage"));
+        ProjectFactory projectFactory = new ProjectFactory();
+        Scene scene = new Scene(projectFactory.setFXML("startpage"));
         window.setScene(scene);
         window.setTitle("Turing Turtles");
-        Image image = mainFactory.loadImage("turtle");
+        Image image = projectFactory.loadImage("turtle");
         window.getIcons().add(image);
         window.show();
     }
@@ -31,27 +35,16 @@ public class Main extends Application {
 //    }
 
     public static void main(String[] args) throws IOException {
-        Main main = new Main();
+        main = new Main();
         main.test();
-
-/*      Test the import and export JSON functionality using the following commented code below:
-
-        StreamJSON testStream = new StreamJSON();
-        testStream.exportToJSON();
-
-        testStream.importFromJSON();
-*/
-
+        StreamJSON testStream = factory.makeStream();
+        testStream.exportToJSON("project.json");
+        testStream.importFromJSON("project.json");
         launch();
     }
 
-
-
     private void test() {
-
-        MainFactory mainFactory = new MainFactory();
-        ProjectManagement projectManagement = mainFactory.createProjectManagement();
-
+        projectManagement = factory.createProjectManagement();
         System.out.println("-----Testing-----");
         System.out.println("Testing method Create Project: ");
         projectManagement.createProject("TestProject", 10000, 23);

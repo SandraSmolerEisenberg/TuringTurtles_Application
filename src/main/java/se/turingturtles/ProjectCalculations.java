@@ -1,7 +1,5 @@
 package se.turingturtles;
 
-import se.turingturtles.implementations.MainFactory;
-
 public interface ProjectCalculations {
 
     double calculateEarnedValue();
