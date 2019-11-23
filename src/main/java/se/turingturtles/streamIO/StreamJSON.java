@@ -11,11 +11,10 @@ import java.io.IOException;
 
 public class StreamJSON {
 
-    private ProjectFactory factory;
     private ObjectMapper mapper;
 
     public StreamJSON(){
-        factory = new ProjectFactory();
+        ProjectFactory factory = new ProjectFactory();
         mapper = factory.makeObjectMapper();
     }
 
