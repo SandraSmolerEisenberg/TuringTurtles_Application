@@ -24,6 +24,8 @@ public class Main extends Application {
 
     @Override
     public void start(Stage window) throws IOException {
+        window.setFullScreen(true);
+        window.setResizable(true);
         ProjectFactory projectFactory = new ProjectFactory();
         Scene scene = new Scene(projectFactory.setFXML("startpage"));
         window.setScene(scene);
