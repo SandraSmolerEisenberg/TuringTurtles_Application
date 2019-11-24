@@ -6,18 +6,21 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import se.turingturtles.Main;
+import se.turingturtles.ProjectCalculations;
+import se.turingturtles.ProjectManagement;
+import se.turingturtles.Validator;
 import se.turingturtles.entities.Project;
 import se.turingturtles.entities.Risk;
 import se.turingturtles.entities.Task;
 import se.turingturtles.entities.TeamMember;
 import se.turingturtles.streamIO.StreamJSON;
 
+import java.awt.*;
 import java.io.IOException;
 
 public class ProjectFactory {
 
     public void changeScene(Scene scene, String fxml) throws IOException {
-
         scene.setRoot(setFXML(fxml));
     }
 
@@ -27,10 +30,14 @@ public class ProjectFactory {
         return fxmlLoader.load();
     }
 
-    public ProjectManagementImp createProjectManagement(){
+    public ProjectManagement createProjectManagement(){
         return new ProjectManagementImp();
     }
-    public ProjectCalculationsImp createProjectCalculation(){
+    public Validator makeValidator(){
+        return new ValidatorImp();
+    }
+
+    public ProjectCalculations createProjectCalculation(){
         return new ProjectCalculationsImp();
     }
 

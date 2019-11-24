@@ -6,7 +6,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="se.turingturtles.controllers.StartPageController">
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/" fx:controller="se.turingturtles.controllers.StartPageController">
 <children>
    <Pane layoutX="238.0" layoutY="176.0" minHeight="-Infinity" minWidth="-Infinity" AnchorPane.bottomAnchor="377.0" AnchorPane.leftAnchor="238.0" AnchorPane.rightAnchor="238.0" AnchorPane.topAnchor="176.0">
       <children>

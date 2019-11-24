@@ -33,7 +33,6 @@ public class Main extends Application {
         window.setResizable(true);
         ProjectFactory projectFactory = new ProjectFactory();
         Scene scene = new Scene(projectFactory.setFXML("startpage"), width, height);
-        //scene.getStylesheets().add(getClass().getResource("/se/turingturtles/css/styles.css").toExternalForm());
         window.setScene(scene);
         window.setTitle("Turing Turtles");
         Image image = projectFactory.loadImage("turtle");
@@ -42,16 +41,7 @@ public class Main extends Application {
     }
 
 
-//    //Default method to change scenes(pages)
-//    public static void changeScene(Scene scene, String fxml) throws IOException {
-//
-//        scene.setRoot(setFXML(fxml));
-//    }
-
     public static void main(String[] args) throws IOException {
-        main = new Main();
-        //main.test();
-        //StreamJSON testStream = factory.makeStream();
         launch();
     }
 
