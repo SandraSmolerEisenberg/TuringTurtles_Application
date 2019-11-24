@@ -3,6 +3,7 @@ package se.turingturtles.implementations;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import se.turingturtles.Main;
 import se.turingturtles.entities.Project;
@@ -14,6 +15,11 @@ import se.turingturtles.streamIO.StreamJSON;
 import java.io.IOException;
 
 public class ProjectFactory {
+
+    public void changeScene(Scene scene, String fxml) throws IOException {
+
+        scene.setRoot(setFXML(fxml));
+    }
 
 
     public Parent setFXML(String fxml) throws IOException {

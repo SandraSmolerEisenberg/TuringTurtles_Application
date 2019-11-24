@@ -15,6 +15,7 @@ import se.turingturtles.implementations.ProjectFactory;
 import se.turingturtles.implementations.ProjectManagementImp;
 import se.turingturtles.streamIO.StreamJSON;
 
+import java.awt.*;
 import java.io.*;
 import java.util.Calendar;
 
@@ -26,10 +27,12 @@ public class Main extends Application {
 
     @Override
     public void start(Stage window) throws IOException {
-        window.setFullScreen(true);
+        Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+        double width = screenSize.getWidth() * 0.9;
+        double height = screenSize.getHeight() * 0.8;
         window.setResizable(true);
         ProjectFactory projectFactory = new ProjectFactory();
-        Scene scene = new Scene(projectFactory.setFXML("startpage"));
+        Scene scene = new Scene(projectFactory.setFXML("createproject"), width, height);
         window.setScene(scene);
         window.setTitle("Turing Turtles");
         Image image = projectFactory.loadImage("turtle");

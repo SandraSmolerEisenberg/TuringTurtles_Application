@@ -1,14 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="se.turingturtles.fxmlfiles.Createproject"
-            prefHeight="400.0" prefWidth="600.0">
-
-</AnchorPane>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="se.turingturtles.controllers.CreateProjectController">
+   <center>
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" BorderPane.alignment="CENTER">
+         <children>
+            <Text cache="true" cacheHint="SCALE" layoutX="248.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Create New Project">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Text>
+            <Label cache="true" cacheHint="SCALE" layoutX="161.0" layoutY="267.0" text="Project Duration" />
+            <Label cache="true" cacheHint="SCALE" layoutX="161.0" layoutY="149.0" text="Project Name" />
+            <Label cache="true" cacheHint="SCALE" layoutX="161.0" layoutY="210.0" text="Project Budget" />
+            <TextField fx:id="projectName" cache="true" cacheHint="SCALE" layoutX="341.0" layoutY="145.0" promptText="name" />
+            <TextField fx:id="projectDuration" cache="true" cacheHint="SCALE" layoutX="341.0" layoutY="263.0" promptText="duration in weeks" />
+            <TextField fx:id="projectBudget" cache="true" cacheHint="SCALE" layoutX="341.0" layoutY="206.0" promptText="budget" />
+            <Button fx:id="createNewProjectButton" cache="true" cacheHint="SCALE" layoutX="161.0" layoutY="335.0" mnemonicParsing="false" onAction="#createNewProject" prefHeight="25.0" prefWidth="329.0" text="Create new Project" />
+            <Button fx:id="startPageButton" alignment="CENTER" cache="true" cacheHint="SCALE" layoutX="542.0" layoutY="1.0" mnemonicParsing="false" onAction="#backToStartPage" prefHeight="35.0" prefWidth="85.0" text="Start Page" AnchorPane.bottomAnchor="338.0" AnchorPane.leftAnchor="542.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>
