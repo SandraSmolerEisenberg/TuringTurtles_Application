@@ -1,12 +1,10 @@
 package se.turingturtles.controllers;
 
-import java.awt.event.ActionListener;
 import java.io.IOException;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.text.Text;
 import se.turingturtles.Main;
 import se.turingturtles.implementations.ProjectFactory;
@@ -18,14 +16,13 @@ public class StartPageController {
     @FXML
     private Button createProjectButton;
     @FXML
-    private Label disclaimerText;
-    @FXML
     private Button loadProjectButton;
     @FXML
     private Text startPageText;
 
-    public void createNewProject(ActionListener event) {
-        event.actionPerformed(createProjectButton.hoverProperty().);
+
+    public void createNewProject(ActionEvent event) {
+
     }
 
     public void loadProject(ActionEvent event) {
