@@ -44,8 +44,7 @@ public class Main extends Application {
         main = new Main();
         main.test();
         StreamJSON testStream = factory.makeStream();
-        testStream.exportToJSON("project.json");
-        testStream.importFromJSON("project.json");
+
         launch();
     }
 
