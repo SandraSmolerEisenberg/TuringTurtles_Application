@@ -6,7 +6,7 @@ public class Project {
 
     private String name;
     private double budget;
-    private double duration;    //In weeks
+    private int duration;    //In weeks
     private int startWeek;
     private int startYear;
     private List<TeamMember> teamMembers;
@@ -87,11 +87,11 @@ public class Project {
         this.tasks = tasks;
     }
 
-    public double getDuration() {
+    public int getDuration() {
         return duration;
     }
 
-    public void setDuration(double duration) {
+    public void setDuration(int duration) {
         this.duration = duration;
     }
 

@@ -3,18 +3,17 @@ package se.turingturtles.implementations;
 import se.turingturtles.ProjectCalculations;
 import se.turingturtles.entities.Task;
 import se.turingturtles.entities.TeamMember;
-import se.turingturtles.entities.Project;
 
+import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 
 public class ProjectCalculationsImp implements ProjectCalculations {
 
 
 
     public double calculateEarnedValue(){
-        //Cannot calculate yet, because it is dependant on calculateCompletionBudget
-
-        return calculateCompletedWorkPercentage()/calculateCompletionBudget();
+        return calculateCompletedWorkPercentage()*ProjectManagementImp.getProject().getBudget();
     }
 
     private double calculateCompletedWorkPercentage(){
@@ -34,36 +33,27 @@ public class ProjectCalculationsImp implements ProjectCalculations {
         return ((double)completedTasks/tasks.size());
     }
 
-    private double calculateCompletionBudget(){
-        //We can't assume how to calculate the Completion Budget yet.
-        return 0;
-    }
-
-
     public double calculateScheduleVariance() {
-        //We calculate the Schedule Variance based on calculateBCWP & calculateBCWS
+        //We calculate the Schedule Variance based on calculateEV & calculateBCWS
+        //EV = BCWP
 
-        return calculateBCWP()-calculateBCWS();
+        return calculateEarnedValue()-calculatePlannedValue();
     }
 
-    private double calculateBCWP(){
-        //Calculate Budget Cost of Work Performed
-
-        return (ProjectManagementImp.getProject().getBudget()/calculateCompletedWorkPercentage());
-    }
-
-    private double calculateBCWS(){
-        //Calculate Budgeted Cost of Work Scheduled
-        //We are using calculateBCWP to get the remaining amount of the budget
-
-        return ProjectManagementImp.getProject().getBudget()-calculateBCWP();
+    public double calculatePlannedValue(){
+        //PlannedValue = BCWS
+        Calendar calcCalendar = Calendar.getInstance(Locale.GERMANY);
+        int currentWeek = calcCalendar.get(Calendar.WEEK_OF_YEAR);
+        //Calculating the Planned Value by getting the current week-startweek to get a runtime duration for the project so far
+        //and then we divide that with total duration to get a "percentage" which we then use to multiply with total budget to get PV
+        return ((currentWeek-ProjectManagementImp.getProject().getStartWeek())/ProjectManagementImp.getProject().getDuration())*(ProjectManagementImp.getProject().getBudget());
     }
 
 
     public double calculateCostVariance(){
         //We assume that actual cost of work is entirely based on the total salaries
 
-        return ProjectManagementImp.getProject().getBudget() - calculateTotalSalaries();
+        return calculateEarnedValue() - calculateTotalSalaries();
     }
 
 

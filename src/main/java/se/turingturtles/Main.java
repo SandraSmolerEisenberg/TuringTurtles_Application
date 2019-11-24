@@ -10,11 +10,13 @@ import javafx.scene.image.Image;
 //import javafx.scene.control.Button;
 //import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import se.turingturtles.implementations.ProjectCalculationsImp;
 import se.turingturtles.implementations.ProjectFactory;
 import se.turingturtles.implementations.ProjectManagementImp;
 import se.turingturtles.streamIO.StreamJSON;
 
 import java.io.*;
+import java.util.Calendar;
 
 public class Main extends Application {
 
@@ -46,7 +48,6 @@ public class Main extends Application {
         main = new Main();
         main.test();
         StreamJSON testStream = factory.makeStream();
-
         launch();
     }
 
