@@ -32,7 +32,7 @@ public class Main extends Application {
         double height = screenSize.getHeight() * 0.8;
         window.setResizable(true);
         ProjectFactory projectFactory = new ProjectFactory();
-        Scene scene = new Scene(projectFactory.setFXML("startpage"), width, height);
+        Scene scene = new Scene(projectFactory.setFXML("createproject"), width, height);
         window.setScene(scene);
         window.setTitle("Turing Turtles");
         Image image = projectFactory.loadImage("turtle");
