@@ -1,8 +1,14 @@
 package se.turingturtles;
 
+//Commented out imports are for the GUI later on. /Liv
+
 import javafx.application.Application;
+//import javafx.event.ActionEvent;
+//import javafx.eventEventHandler;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+//import javafx.scene.control.Button;
+//import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import se.turingturtles.implementations.ProjectFactory;
 import se.turingturtles.implementations.ProjectManagementImp;
