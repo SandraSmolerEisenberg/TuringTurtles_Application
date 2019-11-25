@@ -9,11 +9,11 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/" fx:controller="se.turingturtles.controllers.TeamPageController">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="se.turingturtles.controllers.TeamPageController">
    <children>
       <TabPane prefHeight="600.0" prefWidth="800.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <tabs>
-          <Tab text="Team">
+          <Tab onSelectionChanged="#loadTeamList" text="Team">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -22,13 +22,13 @@
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                                  <children>
                                     <ListView fx:id="teamList" layoutX="6.0" layoutY="13.0" prefHeight="389.0" prefWidth="209.0" />
-                                    <Button layoutX="22.0" layoutY="457.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="178.0" text="Add new member" />
+                                    <Button fx:id="addNewMember" layoutX="22.0" layoutY="457.0" mnemonicParsing="false" onAction="#createNewMember" prefHeight="43.0" prefWidth="178.0" text="Add new member" />
                                  </children>
                               </AnchorPane>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                                  <children>
                                     <TextField fx:id="searchBar" layoutX="15.0" layoutY="14.0" prefHeight="18.0" prefWidth="538.0" promptText="Search by ID" />
-                                    <AnchorPane fx:id="newMemberPage" layoutX="15.0" layoutY="47.0" prefHeight="448.0" prefWidth="539.0">
+                                    <AnchorPane fx:id="newMemberPage" disable="false" layoutX="15.0" layoutY="47.0" prefHeight="448.0" prefWidth="539.0" visible="false">
                                        <children>
                                           <TextField fx:id="enterName" layoutX="229.0" layoutY="80.0" promptText="Enter name" />
                                           <TextField fx:id="enterID" layoutX="229.0" layoutY="139.0" promptText="Enter ID" />
@@ -37,7 +37,7 @@
                                           <Label layoutX="150.0" layoutY="144.0" text="ID" />
                                           <Label layoutX="148.0" layoutY="203.0" text="Hourly wage" />
                                           <Button fx:id="createMemberButton" layoutX="217.0" layoutY="267.0" mnemonicParsing="false" onAction="#createNewMember" prefHeight="27.0" prefWidth="105.0" text="Create member" />
-                                          <Button fx:id="refresh" layoutX="255.0" layoutY="358.0" mnemonicParsing="false" onAction="#loadTeamList" text="Button" />
+                                          <Button fx:id="returnTeamPage" layoutX="191.0" layoutY="398.0" mnemonicParsing="false" onAction="#returnToTeamPage" text="Return to Team Page" />
                                        </children>
                                     </AnchorPane>
                                  </children>
