@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/" fx:controller="se.turingturtles.controllers.StartPageController">
+<children>
+   <Pane layoutX="238.0" layoutY="176.0" minHeight="-Infinity" minWidth="-Infinity" AnchorPane.bottomAnchor="377.0" AnchorPane.leftAnchor="238.0" AnchorPane.rightAnchor="238.0" AnchorPane.topAnchor="176.0">
+      <children>
+         <Text layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Turing Turtle">
+            <font>
+               <Font size="56.0" />
+            </font>
+         </Text>
+         <Text layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Project Management">
+            <font>
+               <Font size="35.0" />
+            </font>
+         </Text>
+         <Text fx:id="startPageText" layoutY="153.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." wrappingWidth="527.6826171875" />
+      </children>
+   </Pane>
+      <Button fx:id="createProjectButton" layoutX="243.0" layoutY="484.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#createNewProject" prefHeight="83.0" text="Create new project" AnchorPane.leftAnchor="243.0" AnchorPane.rightAnchor="528.0">
+         <font>
+            <Font size="12.0" />
+         </font>
+      </Button>
+      <Button fx:id="loadProjectButton" layoutX="528.0" layoutY="484.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#loadProject" prefHeight="83.0" text="Launch current project" AnchorPane.leftAnchor="528.0" AnchorPane.rightAnchor="243.0">
+         <font>
+            <Font size="12.0" />
+         </font>
+      </Button>
+</children></AnchorPane>
