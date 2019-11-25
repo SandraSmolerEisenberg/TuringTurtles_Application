@@ -18,7 +18,7 @@ public class TeamMember {
         this.tasks = new ArrayList<Task>();
     }
 
-    public TeamMember(){}
+    public TeamMember(){} //Needed for JSON-file to work
 
     //--------------------Getters & Setters--------------------
     public String getName(){

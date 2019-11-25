@@ -18,7 +18,7 @@ public class Task {
         this.completion = false;
     }
 
-    public Task(){}
+    public Task(){} //Needed for JSON-file to work
 
     //--------------------Getters & Setters--------------------
     public String getName(){

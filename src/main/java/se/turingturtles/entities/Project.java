@@ -25,7 +25,7 @@ public class Project {
         this.startYear = assignStartYear();
     }
 
-    public Project(){}
+    public Project(){} //Needed for JSON-file to work
 
     // Assign the project start week and Year
     int assignStartYear() {
