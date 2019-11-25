@@ -1,14 +1,14 @@
 package se.turingturtles.controllers;
 
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.chart.*;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import se.turingturtles.entities.Risk;
+import se.turingturtles.entities.TeamMember;
 import se.turingturtles.implementations.ProjectManagementImp;
 
 import java.util.ArrayList;
@@ -27,14 +27,10 @@ public class RiskPageController {
     private TableColumn<Risk, Integer> riskProbability;
 
     @FXML
-    private TableColumn<Risk, Integer> riskCalculated;
-    @FXML
     private BarChart<String, Integer> riskMatrix;
 
     @FXML
     private CategoryAxis riskType;
-
-
 
     @FXML
     private TableView<Risk> riskDetails;
@@ -44,18 +40,19 @@ public class RiskPageController {
 
     @FXML
     private Button riskDetailsButton;
+    @FXML
+    private TableColumn<Risk,String> riskCalculated;
 
     public void initialize(){
-        riskName.setCellValueFactory(new PropertyValueFactory<>("Name"));
-        riskImpact.setCellValueFactory(new PropertyValueFactory<>("Impact"));
-        riskProbability.setCellValueFactory(new PropertyValueFactory<>("Probability"));
+        riskName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        riskImpact.setCellValueFactory(new PropertyValueFactory<>("impact"));
+        riskProbability.setCellValueFactory(new PropertyValueFactory<>("probability"));
+        riskCalculated.setCellValueFactory(new PropertyValueFactory<>("riskCalculated"));
         riskIndex.setAutoRanging(false);
         riskIndex.setUpperBound(sortRisk());
-        List<Risk> riskList = ProjectManagementImp.getProject().getRisk();
-        ObservableList<Risk> risks = FXCollections.observableArrayList();
-        risks.addAll(riskList);
+        ObservableList<Risk> risk = FXCollections.observableArrayList(ProjectManagementImp.getProject().getRisk());
         riskMatrix.getData().add(loadRiskMatrix());
-        riskDetails.setItems(risks);
+        riskDetails.setItems(risk);
         riskDetails.setVisible(false);
     }
 

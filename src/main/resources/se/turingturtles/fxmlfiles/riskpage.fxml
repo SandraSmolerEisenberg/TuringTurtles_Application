@@ -31,12 +31,16 @@
                             <NumberAxis fx:id="riskIndex" cache="true" label="Risk" side="LEFT" />
                           </yAxis>
                         </BarChart>
-                        <TableView fx:id="riskDetails" layoutX="89.0" layoutY="-7.0" prefHeight="262.6666666666667" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <TableView fx:id="riskDetails" editable="true" layoutX="89.0" layoutY="-7.0" prefHeight="262.6666666666667" prefWidth="600.0" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                           <columns>
-                            <TableColumn fx:id="riskName" prefWidth="179.33333837985992" text="Name" />
-                            <TableColumn fx:id="riskImpact" prefWidth="226.6666717529297" text="Impact" />
-                              <TableColumn fx:id="riskProbability" prefWidth="193.33328247070312" text="Probability" />
+                            <TableColumn fx:id="riskName" prefWidth="106.00000250339508" text="Name" />
+                            <TableColumn fx:id="riskImpact" prefWidth="159.3333511352539" text="Impact" />
+                              <TableColumn fx:id="riskProbability" prefWidth="195.33331298828125" text="Probability" />
+                              <TableColumn fx:id="riskCalculated" prefWidth="218.66665649414062" text="Risk" />
                           </columns>
+                           <columnResizePolicy>
+                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                           </columnResizePolicy>
                         </TableView>
                      </children>
                   </AnchorPane>

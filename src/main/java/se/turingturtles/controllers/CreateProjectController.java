@@ -44,6 +44,7 @@ public class CreateProjectController {
     private RadioButton disclaimerButton;
 
 
+
     public void initialize(){
         createNewProjectButton.setDisable(true);
     }
@@ -76,17 +77,20 @@ public class CreateProjectController {
            if (!validator.validateNumericInput(budget)){
                projectBudget.clear();
                projectBudget.setPromptText("Invalid Budget!");
+               //Color to be changed
                projectBudget.setBackground(new Background(new BackgroundFill(Color.BEIGE, CornerRadii.EMPTY, Insets.EMPTY)));
 
            }
            if (!validator.validateNumericInput(duration)){
                projectDuration.clear();
                projectDuration.setPromptText("Invalid Duration!");
+               //Color to be changed
                projectDuration.setBackground(new Background(new BackgroundFill(Color.BEIGE, CornerRadii.EMPTY, Insets.EMPTY)));
 
            } if (!validator.validateTextInput(name)){
                projectName.clear();
                projectName.setPromptText("Invalid Name!");
+               //Color to be changed
                projectName.setBackground(new Background(new BackgroundFill(Color.BEIGE, CornerRadii.EMPTY, Insets.EMPTY)));
 
            }

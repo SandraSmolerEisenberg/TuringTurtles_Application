@@ -7,16 +7,26 @@ public class Risk {
     private String name;
     private int impact;
     private int probability;
+    private int riskCalculated;
+
 
     public Risk(String name, int impact, int probability){
         this.name = name;
         this.impact = impact;
         this.probability = probability;
+        this.riskCalculated = calculateRisk();
     }
 
     public Risk(){} //Needed for JSON-file to work
 
     //--------------------Getters & Setters--------------------
+    public int getRiskCalculated() {
+        return riskCalculated;
+    }
+
+    public void setRiskCalculated(int riskCalculated) {
+        this.riskCalculated = riskCalculated;
+    }
     public String getName(){
         return this.name;
     }
