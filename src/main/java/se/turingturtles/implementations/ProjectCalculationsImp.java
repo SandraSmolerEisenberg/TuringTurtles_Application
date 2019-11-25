@@ -52,7 +52,6 @@ public class ProjectCalculationsImp implements ProjectCalculations {
 
     public double calculateCostVariance(){
         //We assume that actual cost of work is entirely based on the total salaries
-
         return calculateEarnedValue() - calculateTotalSalaries();
     }
 
