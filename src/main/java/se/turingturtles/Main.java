@@ -29,7 +29,7 @@ public class Main extends Application {
         double width = screenSize.getWidth() * 0.9;
         double height = screenSize.getHeight() * 0.8;
         window.setResizable(true);
-        Scene scene = new Scene(factory.setFXML("riskpage"), width, height);
+        Scene scene = new Scene(factory.setFXML("startpage"), width, height);
         window.setScene(scene);
         window.setTitle("Turing Turtles");
         Image image = factory.loadImage("turtle");
