@@ -29,7 +29,7 @@ public class Main extends Application {
         double width = screenSize.getWidth() * 0.9;
         double height = screenSize.getHeight() * 0.8;
         window.setResizable(true);
-        Scene scene = new Scene(factory.setFXML("startpage"), width, height);
+        Scene scene = new Scene(factory.setFXML("riskpage"), width, height);
         window.setScene(scene);
         window.setTitle("Turing Turtles");
         Image image = factory.loadImage("turtle");
@@ -52,8 +52,14 @@ public class Main extends Application {
             projectManagement.createTask("Task2", 47,20);
             projectManagement.createMember("TeamMember1", 1, 1000);
             projectManagement.createMember("TeamMember2", 2, 2000);
-            projectManagement.createRisk("Risk1", 10,10);
-            projectManagement.createRisk("Risk2", 20,20);
+            projectManagement.createRisk("Risk1", 1,4);
+            projectManagement.createRisk("Risk2", 2,2);
+            projectManagement.createRisk("Risk3", 6,2);
+            projectManagement.createRisk("Risk4", 0,5);
+            projectManagement.createRisk("Risk5", 3,3);
+            projectManagement.createRisk("Risk6", 4,2);
+            projectManagement.createRisk("Risk7", 5,10);
+            projectManagement.createRisk("Risk8", 1,7);
 
         }
     }

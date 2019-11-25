@@ -1,5 +1,7 @@
 package se.turingturtles.entities;
 
+import java.util.Comparator;
+
 public class Risk {
 
     private String name;
@@ -34,7 +36,7 @@ public class Risk {
         this.probability = newProbability;
     }
     //--------------------Methods--------------------
-    public double calculateRisk(){
+    public int calculateRisk(){
         return (this.impact * this.probability);
     }
 
@@ -46,4 +48,6 @@ public class Risk {
                 ", probability=" + probability +
                 '}';
     }
+
+
 }

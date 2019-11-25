@@ -54,7 +54,7 @@ public class MainTest {
         System.out.println("Testing method time spent by team member: ");
         System.out.println("Result: " + projectManagement.timeSpentByTeamMember(ProjectManagementImp.getProject().getTeamMembers().get(0)));
         System.out.println("Testing create Risk Method: ");
-        projectManagement.createRisk("Risk1", 10,10);
+        projectManagement.createRisk("Risk1", 10,1);
         System.out.println("Result: " + ProjectManagementImp.getProject().getRisk().get(0) );
         projectManagement.createRisk("Risk2", 20,20);
         System.out.println("Testing retrieve all Risk: ");
