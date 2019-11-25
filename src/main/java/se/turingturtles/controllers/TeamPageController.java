@@ -37,10 +37,10 @@ public class TeamPageController {
     }
     public void createNewMember(ActionEvent event){
         ProjectFactory factory = new ProjectFactory();
-        factory.createTeamMember(enterName.getText(), Integer.parseInt(enterID.getText()),Double.parseDouble(enterWage.getText()));
+        ProjectManagement projectManagement = factory.createProjectManagement();
+        projectManagement.createMember(enterName.getText(), Integer.parseInt(enterID.getText()),Double.parseDouble(enterWage.getText()));
         enterName.clear();
         enterWage.clear();
         enterID.clear();
     }
-
 }
