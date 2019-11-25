@@ -6,13 +6,36 @@ import se.turingturtles.entities.Risk;
 import se.turingturtles.entities.Task;
 import se.turingturtles.entities.TeamMember;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class ProjectManagementImp implements ProjectManagement {
 
+    private final static int DAYS_OF_UPD_INTERVAL = 14;
+    private final static long MILLI_SEC_PER_DAY = 86400000L;
+
     private static Project project;
 
     private ProjectFactory factory;
+
+    public void triggerCalculations(){
+        Date today = new Date();
+        long todayMilli = today.getTime();
+        long nextUpdateMilli = Project.getNextUpdateMilli();
+
+        if(nextUpdateMilli == 0){
+            nextUpdateMilli = today.getTime();
+        }
+        if(todayMilli >= nextUpdateMilli) {
+
+            //Add calculations here
+
+            //calculate and set the next update day in milliseconds
+            nextUpdateMilli = todayMilli + (MILLI_SEC_PER_DAY * DAYS_OF_UPD_INTERVAL);
+            Project.setNextUpdateMilli(nextUpdateMilli);
+        }
+
+    }
 
     public ProjectManagementImp() {
         this.factory =  new ProjectFactory();
