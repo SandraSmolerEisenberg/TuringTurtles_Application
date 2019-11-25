@@ -4,37 +4,47 @@
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Text?>
+<?import javafx.scene.layout.BorderPane?>
 
 <TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="se.turingturtles.controllers.RiskPageController">
   <tabs>
     <Tab text="Risk">
       <content>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-               <children>
-                  <Text layoutX="56.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Risk Overview" wrappingWidth="141.47005462646484" />
-                  <BarChart fx:id="riskMatrix" layoutX="42.0" layoutY="44.0" prefHeight="252.0" prefWidth="500.0" title="Risk Matrix">
-                    <xAxis>
-                      <CategoryAxis fx:id="riskType" label="Type of Risk" side="BOTTOM" />
-                    </xAxis>
-                    <yAxis>
-                      <NumberAxis fx:id="riskIndex" cache="true" label="Risk" side="LEFT" />
-                    </yAxis>
-                  </BarChart>
-                  <Button fx:id="riskDetailsButton" layoutX="254.0" layoutY="314.0" mnemonicParsing="false" onAction="#showDetails" text="Risk Details" />
-                  <TableView fx:id="riskDetails" layoutX="42.0" layoutY="44.0" prefHeight="252.0" prefWidth="500.0">
-                    <columns>
-                      <TableColumn fx:id="riskName" prefWidth="152.66668319702148" text="Name" />
-                      <TableColumn fx:id="riskImpact" prefWidth="184.00001525878906" text="Impact" />
-                        <TableColumn fx:id="riskProbability" prefWidth="164.66665649414062" text="Probability" />
-                    </columns>
-                  </TableView>
-               </children></AnchorPane>
+            <BorderPane fx:id="riskPane">
+               <bottom>
+                  <Button fx:id="riskDetailsButton" mnemonicParsing="false" onAction="#showDetails" prefHeight="63.0" prefWidth="137.0" text="Risk Details" BorderPane.alignment="CENTER" />
+               </bottom>
+               <center>
+                  <AnchorPane BorderPane.alignment="CENTER">
+                     <children>
+                        <BarChart fx:id="riskMatrix" prefHeight="328.6666666666667" prefWidth="600.0" title="Risk Matrix" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <xAxis>
+                            <CategoryAxis fx:id="riskType" label="Type of Risk" side="BOTTOM" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis fx:id="riskIndex" cache="true" label="Risk" side="LEFT" />
+                          </yAxis>
+                        </BarChart>
+                        <TableView fx:id="riskDetails" layoutX="89.0" layoutY="-7.0" prefHeight="262.6666666666667" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <columns>
+                            <TableColumn fx:id="riskName" prefWidth="179.33333837985992" text="Name" />
+                            <TableColumn fx:id="riskImpact" prefWidth="226.6666717529297" text="Impact" />
+                              <TableColumn fx:id="riskProbability" prefWidth="193.33328247070312" text="Probability" />
+                          </columns>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+               </center>
+               <top>
+                  <Label alignment="CENTER" prefHeight="45.0" prefWidth="144.0" text="Risk Overview" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS" BorderPane.alignment="CENTER" />
+               </top>
+            </BorderPane>
       </content>
     </Tab>
   </tabs>

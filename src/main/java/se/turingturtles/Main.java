@@ -21,6 +21,7 @@ import java.util.Calendar;
 
 public class Main extends Application {
 
+
     private static ProjectFactory factory = new ProjectFactory();
 
     @Override
@@ -29,7 +30,7 @@ public class Main extends Application {
         double width = screenSize.getWidth() * 0.9;
         double height = screenSize.getHeight() * 0.8;
         window.setResizable(true);
-        Scene scene = new Scene(factory.setFXML("teampage"), width, height);
+        Scene scene = new Scene(factory.setFXML("riskpage"), width, height);
         window.setScene(scene);
         window.setTitle("Turing Turtles");
         Image image = factory.loadImage("turtle");
