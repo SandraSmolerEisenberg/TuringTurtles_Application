@@ -12,7 +12,7 @@ public class ValidatorImp implements Validator {
 
     @Override
     public boolean validateTextInput(String input) {
-        return input.matches("[A-ZÅÄÖa-zåöä]+[ ]*");
+        return input.matches("[A-ZÅÄÖa-zåöä]+[ A-ZÅÄÖa-zåöä0-9]*");
     }
 
 
