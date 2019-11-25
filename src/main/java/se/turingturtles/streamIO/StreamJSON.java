@@ -19,17 +19,14 @@ public class StreamJSON {
     }
 
     public void exportToJSON(String filePath) throws IOException {
-
-        // We need to catch the exception as well!
+        // Doing error handling in controller
         mapper.writeValue(new File(filePath), ProjectManagementImp.getProject());
-
     }
 
     public void importFromJSON(String filePath) throws IOException{
-        // We need to catch the exception as well!
+        //  DOing error handling in controller
         mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         ProjectManagementImp.setProject(mapper.readValue(new File(filePath), Project.class));
-
     }
 
 }

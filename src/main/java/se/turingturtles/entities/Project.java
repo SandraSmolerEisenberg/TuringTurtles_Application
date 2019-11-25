@@ -13,6 +13,8 @@ public class Project {
     private List<Task> tasks;
     private List<Risk> risk;
 
+    private static long nextUpdateMilli;
+
 
     public Project(String name, double budget, int duration){
         this.name = name;
@@ -23,9 +25,10 @@ public class Project {
         this.risk = new ArrayList<>();
         this.startWeek = assignStartWeek();
         this.startYear = assignStartYear();
+        this.nextUpdateMilli = 0;
     }
 
-    public Project(){}
+    public Project(){} //Needed for JSON-file to work
 
     // Assign the project start week and Year
     int assignStartYear() {
@@ -38,6 +41,7 @@ public class Project {
         calendar.setFirstDayOfWeek(Calendar.MONDAY);
         return calendar.get(Calendar.WEEK_OF_YEAR);
     }
+
 
     public int getStartWeek() {
         return startWeek;
@@ -89,6 +93,13 @@ public class Project {
 
     public int getDuration() {
         return duration;
+    }
+    public static long getNextUpdateMilli() {
+        return nextUpdateMilli;
+    }
+
+    public static void setNextUpdateMilli(long nextUpdateMilli) {
+        Project.nextUpdateMilli = nextUpdateMilli;
     }
 
     public void setDuration(int duration) {

@@ -14,7 +14,7 @@ public class Risk {
         this.probability = probability;
     }
 
-    public Risk(){}
+    public Risk(){} //Needed for JSON-file to work
 
     //--------------------Getters & Setters--------------------
     public String getName(){
