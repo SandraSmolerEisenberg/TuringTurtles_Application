@@ -20,6 +20,7 @@ public class TeamMember {
 
     public TeamMember(){}
 
+    //--------------------Getters & Setters--------------------
     public String getName(){
         return this.name;
     }
@@ -38,6 +39,7 @@ public class TeamMember {
     public ArrayList<Task> getTasks(){
             return tasks;
     }
+    //--------------------Methods--------------------
     public void addTask(Task task){
         tasks.add(task);
     }
