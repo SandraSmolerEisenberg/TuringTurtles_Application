@@ -1,5 +1,6 @@
 package se.turingturtles.implementations;
 
+import se.turingturtles.ProjectCalculations;
 import se.turingturtles.ProjectManagement;
 import se.turingturtles.entities.Project;
 import se.turingturtles.entities.Risk;
@@ -21,18 +22,21 @@ public class ProjectManagementImp implements ProjectManagement {
     public void triggerCalculations(){
         Date today = new Date();
         long todayMilli = today.getTime();
-        long nextUpdateMilli = Project.getNextUpdateMilli();
+        long nextUpdateMilli = project.getNextUpdateMilli();
 
         if(nextUpdateMilli == 0){
-            nextUpdateMilli = today.getTime();
+            project.setNextUpdateMilli(todayMilli + (MILLI_SEC_PER_DAY * DAYS_OF_UPD_INTERVAL));
         }
         if(todayMilli >= nextUpdateMilli) {
 
-            //Add calculations here
+            ProjectCalculations calculations = factory.createProjectCalculation();
+            calculations.calculateCostVariance();
+            calculations.calculateEarnedValue();
+            calculations.calculateScheduleVariance();
 
             //calculate and set the next update day in milliseconds
             nextUpdateMilli = todayMilli + (MILLI_SEC_PER_DAY * DAYS_OF_UPD_INTERVAL);
-            Project.setNextUpdateMilli(nextUpdateMilli);
+            project.setNextUpdateMilli(nextUpdateMilli);
         }
 
     }
