@@ -65,7 +65,7 @@ public class ProjectCalculationsImp implements ProjectCalculations {
         }
 
         for (int i=0; i<members.size(); i++){
-            totalSalary += (members.get(i).getHourlyWage())*(members.get(i).getTimeSpent());
+            totalSalary += ((members.get(i).getHourlyWage())*(members.get(i).getTimeSpent()));
         }
 
         return totalSalary;
