@@ -57,6 +57,10 @@ public class TeamMember {
         }
         return weeksSpent;
     }
+    public int getTimeSpent(){
+        int hoursPerWeek = 40;
+        return (getWeeksSpent() * hoursPerWeek);
+    }
 
     @Override
     public String toString() {
