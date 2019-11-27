@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane fx:id="overviewTab" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Text fx:id="projectName" layoutX="264.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Project Name" />
+      <Text fx:id="numberOfTasks" layoutX="25.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total number of task: 35" />
+      <Text fx:id="numberOfmembers" layoutX="209.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total number of members: 99" wrappingWidth="181.31951904296875" />
+      <Text fx:id="projectDuration" layoutX="436.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Project duration: 99w" />
+   </children>
+</AnchorPane>
