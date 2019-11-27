@@ -10,6 +10,7 @@ import javafx.scene.image.Image;
 //import javafx.scene.control.Button;
 //import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import se.turingturtles.entities.Task;
 import se.turingturtles.implementations.ProjectCalculationsImp;
 import se.turingturtles.implementations.ProjectFactory;
 import se.turingturtles.implementations.ProjectManagementImp;
@@ -42,6 +43,7 @@ public class Main extends Application {
     public static void main(String[] args) throws IOException {
         testData();
         launch();
+        System.out.println(ProjectManagementImp.getProject().getTeamMembers().get(0).getTasks());
     }
 
     private static void testData() {
@@ -61,6 +63,8 @@ public class Main extends Application {
             projectManagement.createRisk("Risk6", 4,2);
             projectManagement.createRisk("Risk7", 5,10);
             projectManagement.createRisk("Risk8", 1,7);
+            ProjectManagementImp.getProject().getTeamMembers().get(0).addTask(ProjectManagementImp.getProject().getTasks().get(0));
+            ProjectManagementImp.getProject().getTasks().get(0).addTeamMember(ProjectManagementImp.getProject().getTeamMembers().get(0));
 
         }
     }

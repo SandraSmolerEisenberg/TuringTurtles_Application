@@ -139,4 +139,5 @@ public class Project {
                 ", duration=" + duration +
                 '}';
     }
+
 }
