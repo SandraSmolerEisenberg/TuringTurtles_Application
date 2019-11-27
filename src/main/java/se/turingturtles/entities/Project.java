@@ -12,7 +12,6 @@ public class Project {
     private List<TeamMember> teamMembers;
     private List<Task> tasks;
     private List<Risk> risk;
-    final int DAYS_OF_UPD_INTERVAL = 14;
     private long nextUpdateMilli;
 
 
@@ -41,24 +40,6 @@ public class Project {
         calendar.setFirstDayOfWeek(Calendar.MONDAY);
         return calendar.get(Calendar.WEEK_OF_YEAR);
     }
-    public void triggerCalculations(){
-        Date today = new Date();
-
-        long todayMilli = today.getTime();
-        if(nextUpdateMilli == 0){
-            nextUpdateMilli = today.getTime();
-        }
-        if(todayMilli >= nextUpdateMilli) {
-
-            //Calculation method calls goes here
-
-            //set the next update day in millisec
-            long millisecPerDay = 86400000L;
-            nextUpdateMilli = todayMilli + (millisecPerDay * DAYS_OF_UPD_INTERVAL);
-        }
-
-    }
-
 
     public int getStartWeek() {
         return startWeek;
