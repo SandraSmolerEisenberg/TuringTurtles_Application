@@ -43,7 +43,6 @@ public class Main extends Application {
     public static void main(String[] args) throws IOException {
         testData();
         launch();
-        System.out.println(ProjectManagementImp.getProject().getTeamMembers().get(0).getTasks());
     }
 
     private static void testData() {

@@ -6,15 +6,13 @@ import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import se.turingturtles.ProjectManagement;
 import se.turingturtles.Validator;
 import se.turingturtles.entities.Task;
@@ -40,11 +38,18 @@ public class TeamPageController {
     @FXML
     private AnchorPane newMemberPage;
     @FXML
-    protected Button returnTeamPage;
-    @FXML
     private TextField searchBar;
     @FXML
     private ListView taskList;
+    @FXML
+    private Text nameText;
+    @FXML
+    private Text idText;
+    @FXML
+    private Text wageText;
+    @FXML
+    private AnchorPane memberInfoPage;
+
 
     public void loadTeamList() {
 
@@ -52,12 +57,20 @@ public class TeamPageController {
         teamList.setItems(members);
 
     }
-    public void selectFromTeamList(Event mouseEvent){
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("New team member creation was successful!");
-        alert.setHeaderText(null);
-        alert.setContentText(teamList.getSelectionModel().getSelectedItem().toString());
-        alert.showAndWait();
+    public void deleteAlert(Event event){
+        int temp = teamList.getSelectionModel().getSelectedIndex();
+        Alert deleteAlert = new Alert(Alert.AlertType.CONFIRMATION);
+        deleteAlert.setTitle("Warning: Deleting member");
+        deleteAlert.setHeaderText("WARNING!");
+        deleteAlert.setContentText("You have selected to delete the following member: \nName: " + ProjectManagementImp.getProject().getTeamMembers().get(temp).getName() + "\nID: " + ProjectManagementImp.getProject().getTeamMembers().get(temp).getId() + "\n\nPlease click OK, in order to proceed!");
+        deleteAlert.showAndWait();
+        if(deleteAlert.getResult() == ButtonType.OK){
+            ProjectFactory factory = new ProjectFactory();
+            ProjectManagement projectManagement = factory.createProjectManagement();
+            projectManagement.removeMember(ProjectManagementImp.getProject().getTeamMembers().get(temp));
+            loadTeamList();
+            memberInfoPage.setVisible(false);
+        }
     }
 
     public void showNewMemberCreation(ActionEvent e) {
@@ -110,10 +123,14 @@ public class TeamPageController {
             }
         }
     }
-    public void showTaskList(Event e){
+    public void loadMemberInfoPage(Event e){
+        memberInfoPage.setVisible(true);
         int temp = teamList.getSelectionModel().getSelectedIndex();
         ObservableList<Task> tasks = FXCollections.observableArrayList(ProjectManagementImp.getProject().getTeamMembers().get(temp).getTasks());
         taskList.setItems(tasks);
+        nameText.setText(ProjectManagementImp.getProject().getTeamMembers().get(temp).getName());
+        idText.setText(String.valueOf(ProjectManagementImp.getProject().getTeamMembers().get(temp).getId()));
+        wageText.setText(String.valueOf(ProjectManagementImp.getProject().getTeamMembers().get(temp).getHourlyWage()));
     }
     /*public void searchTeamMember(){
         int idSearch = Integer.parseInt(searchBar.getText());
@@ -128,6 +145,7 @@ public class TeamPageController {
 
     }*/
     public void returnToTeamPage() {
+        memberInfoPage.setVisible(false);
         newMemberPage.setVisible(false);
 
         //We clear the fields in case of incorrect values entered the last time, so that the previous values will not appear again.
