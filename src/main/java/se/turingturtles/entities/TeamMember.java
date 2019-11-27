@@ -3,6 +3,7 @@ package se.turingturtles.entities;
 import se.turingturtles.implementations.ProjectManagementImp;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class TeamMember {
 

@@ -3,6 +3,7 @@ package se.turingturtles.controllers;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.control.Alert;
@@ -16,11 +17,13 @@ import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Color;
 import se.turingturtles.ProjectManagement;
 import se.turingturtles.Validator;
+import se.turingturtles.entities.Task;
 import se.turingturtles.entities.TeamMember;
 import se.turingturtles.implementations.ProjectFactory;
 import se.turingturtles.implementations.ProjectManagementImp;
 
 import java.awt.event.MouseEvent;
+import java.util.List;
 
 public class TeamPageController {
 
@@ -38,12 +41,23 @@ public class TeamPageController {
     private AnchorPane newMemberPage;
     @FXML
     protected Button returnTeamPage;
+    @FXML
+    private TextField searchBar;
+    @FXML
+    private ListView taskList;
 
     public void loadTeamList() {
 
         ObservableList<TeamMember> members = FXCollections.observableArrayList(ProjectManagementImp.getProject().getTeamMembers());
         teamList.setItems(members);
 
+    }
+    public void selectFromTeamList(Event mouseEvent){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("New team member creation was successful!");
+        alert.setHeaderText(null);
+        alert.setContentText(teamList.getSelectionModel().getSelectedItem().toString());
+        alert.showAndWait();
     }
 
     public void showNewMemberCreation(ActionEvent e) {
@@ -96,7 +110,23 @@ public class TeamPageController {
             }
         }
     }
+    public void showTaskList(Event e){
+        int temp = teamList.getSelectionModel().getSelectedIndex();
+        ObservableList<Task> tasks = FXCollections.observableArrayList(ProjectManagementImp.getProject().getTeamMembers().get(temp).getTasks());
+        taskList.setItems(tasks);
+    }
+    /*public void searchTeamMember(){
+        int idSearch = Integer.parseInt(searchBar.getText());
 
+        for(int i = 0; i<ProjectManagementImp.getProject().getTeamMembers().size(); i++){
+            int idCheck = ProjectManagementImp.getProject().getTeamMembers().get(i).getId();
+            if(idCheck == idSearch){
+
+            }
+        }
+
+
+    }*/
     public void returnToTeamPage() {
         newMemberPage.setVisible(false);
 

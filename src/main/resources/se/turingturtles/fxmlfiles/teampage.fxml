@@ -21,13 +21,13 @@
                           <items>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                                  <children>
-                                    <ListView fx:id="teamList" layoutX="6.0" layoutY="13.0" prefHeight="389.0" prefWidth="209.0" />
+                                    <ListView fx:id="teamList" layoutX="6.0" layoutY="13.0" onMouseClicked="#showTaskList" prefHeight="389.0" prefWidth="209.0" />
                                     <Button fx:id="addNewMember" layoutX="22.0" layoutY="457.0" mnemonicParsing="false" onAction="#showNewMemberCreation" prefHeight="43.0" prefWidth="178.0" text="Add new member" />
                                  </children>
                               </AnchorPane>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                                  <children>
-                                    <TextField fx:id="searchBar" layoutX="15.0" layoutY="14.0" prefHeight="18.0" prefWidth="538.0" promptText="Search by ID" />
+                                    <TextField fx:id="searchBar" layoutX="15.0" layoutY="14.0" prefHeight="27.0" prefWidth="525.0" promptText="Search by ID" />
                                     <AnchorPane fx:id="newMemberPage" disable="false" layoutX="15.0" layoutY="47.0" prefHeight="448.0" prefWidth="539.0" visible="false">
                                        <children>
                                           <TextField fx:id="enterName" layoutX="229.0" layoutY="80.0" promptText="Enter name" />
@@ -38,6 +38,15 @@
                                           <Label layoutX="148.0" layoutY="203.0" text="Hourly wage" />
                                           <Button fx:id="createMemberButton" layoutX="217.0" layoutY="267.0" mnemonicParsing="false" onAction="#createNewMember" prefHeight="27.0" prefWidth="105.0" text="Create member" />
                                           <Button fx:id="returnTeamPage" layoutX="191.0" layoutY="398.0" mnemonicParsing="false" onAction="#returnToTeamPage" text="Return to Team Page" />
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane fx:id="memberInfoPage" disable="false" layoutX="14.0" layoutY="47.0" prefHeight="448.0" prefWidth="539.0">
+                                       <children>
+                                          <Button layoutX="297.0" layoutY="399.0" mnemonicParsing="false" text="Delete teammember" />
+                                          <Button layoutX="443.0" layoutY="399.0" mnemonicParsing="false" text="Assign task" />
+                                          <Button layoutX="150.0" layoutY="399.0" mnemonicParsing="false" text="Return to teampage" />
+                                          <Button layoutX="14.0" layoutY="399.0" mnemonicParsing="false" text="Edit teammember" />
+                                          <ListView fx:id="taskList" layoutX="15.0" layoutY="265.0" prefHeight="124.0" prefWidth="510.0" />
                                        </children>
                                     </AnchorPane>
                                  </children>
