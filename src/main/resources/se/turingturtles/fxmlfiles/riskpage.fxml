@@ -12,11 +12,8 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="se.turingturtles.controllers.RiskPageController">
-  <tabs>
-    <Tab text="Risk">
-      <content>
-            <BorderPane fx:id="riskPane">
+
+            <BorderPane fx:id="riskpage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="se.turingturtles.controllers.RiskPageController">
                <bottom>
                   <Button fx:id="riskDetailsButton" mnemonicParsing="false" onAction="#showDetails" prefHeight="63.0" prefWidth="137.0" text="Risk Details" BorderPane.alignment="CENTER" />
                </bottom>
@@ -49,7 +46,4 @@
                   <Label alignment="CENTER" prefHeight="45.0" prefWidth="144.0" text="Risk Overview" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS" BorderPane.alignment="CENTER" />
                </top>
             </BorderPane>
-      </content>
-    </Tab>
-  </tabs>
-</TabPane>
+

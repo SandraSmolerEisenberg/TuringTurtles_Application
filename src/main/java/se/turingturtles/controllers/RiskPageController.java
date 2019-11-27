@@ -19,25 +19,18 @@ public class RiskPageController {
 
     @FXML
     private TableColumn<Risk, String> riskName;
-
     @FXML
     private TableColumn<Risk, Integer> riskImpact;
-
     @FXML
     private TableColumn<Risk, Integer> riskProbability;
-
     @FXML
     private BarChart<String, Integer> riskMatrix;
-
     @FXML
     private CategoryAxis riskType;
-
     @FXML
     private TableView<Risk> riskDetails;
-
     @FXML
     private NumberAxis riskIndex;
-
     @FXML
     private Button riskDetailsButton;
     @FXML
@@ -56,7 +49,7 @@ public class RiskPageController {
         riskDetails.setVisible(false);
     }
 
-    public int sortRisk(){
+    private int sortRisk(){
         int highestRisk = 0;
         ArrayList<Integer> risks = new ArrayList<>();
         for (int i = 0; i < ProjectManagementImp.getProject().getRisk().size(); i++){
@@ -65,11 +58,11 @@ public class RiskPageController {
         highestRisk = Collections.max(risks);
         return highestRisk;
     }
-    public XYChart.Series<String, Integer> loadRiskMatrix(){
+    private XYChart.Series<String, Integer> loadRiskMatrix(){
         List<Risk> risks = ProjectManagementImp.getProject().getRisk();
         XYChart.Series<String,Integer> series = new XYChart.Series<String, Integer>();
-        for (int i = 0; i < risks.size(); i++) {
-            series.getData().add(new XYChart.Data<String, Integer>(risks.get(i).getName(), risks.get(i).calculateRisk()));
+        for (Risk risk : risks) {
+            series.getData().add(new XYChart.Data<String, Integer>(risk.getName(), risk.calculateRisk()));
         }
         series.setName("Risks");
         return series;
