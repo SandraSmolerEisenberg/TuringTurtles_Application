@@ -15,29 +15,29 @@ import se.turingturtles.entities.Task;
 import se.turingturtles.entities.TeamMember;
 import se.turingturtles.streamIO.StreamJSON;
 
-import java.awt.*;
 import java.io.IOException;
 
 public class ProjectFactory {
 
     public void changeScene(Scene scene, String fxml) throws IOException {
-        scene.setRoot(setFXML(fxml));
+        scene.setRoot(loadFXML(fxml));
     }
 
 
-    public Parent setFXML(String fxml) throws IOException {
+    public Parent loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("fxmlfiles/" + fxml + ".fxml"));
         return fxmlLoader.load();
     }
 
-    public ProjectManagement createProjectManagement(){
+    public ProjectManagement makeProjectManagement(){
         return new ProjectManagementImp();
     }
+
     public Validator makeValidator(){
         return new ValidatorImp();
     }
 
-    public ProjectCalculations createProjectCalculation(){
+    public ProjectCalculations makeProjectCalculations(){
         return new ProjectCalculationsImp();
     }
 
@@ -46,11 +46,11 @@ public class ProjectFactory {
         return new Image("se/turingturtles/images/" + image + ".png");
     }
 
-    public Risk createRisk(String name, int impact, int probability){
+    public Risk makeRisk(String name, int impact, int probability){
         return new Risk(name, impact, probability);
     }
 
-    public TeamMember createTeamMember(String name, int id, double hourlyWage){
+    public TeamMember makeTeamMember(String name, int id, double hourlyWage){
         return new TeamMember(name, id, hourlyWage);
     }
 
@@ -58,11 +58,11 @@ public class ProjectFactory {
         return new ObjectMapper();
     }
 
-    public Task createTask(String name,int startWeek, int duration){
+    public Task makeTask(String name, int startWeek, int duration){
         return new Task(name,startWeek, duration);
     }
 
-    public Project createProject(String name, double budget, int duration){
+    public Project makeProject(String name, double budget, int duration){
         return new Project(name, budget, duration);
     }
 
@@ -70,7 +70,7 @@ public class ProjectFactory {
         return new StreamJSON();
     }
 
-    public Project createProject(){
+    public Project makeProject(){
         return ProjectManagementImp.getProject();
     }
 }

@@ -10,15 +10,11 @@ import javafx.scene.image.Image;
 //import javafx.scene.control.Button;
 //import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-import se.turingturtles.entities.Task;
-import se.turingturtles.implementations.ProjectCalculationsImp;
 import se.turingturtles.implementations.ProjectFactory;
 import se.turingturtles.implementations.ProjectManagementImp;
-import se.turingturtles.streamIO.StreamJSON;
 
 import java.awt.*;
 import java.io.*;
-import java.util.Calendar;
 
 public class Main extends Application {
 
@@ -31,7 +27,7 @@ public class Main extends Application {
         double width = screenSize.getWidth() * 0.9;
         double height = screenSize.getHeight() * 0.8;
         window.setResizable(true);
-        Scene scene = new Scene(factory.setFXML("projectoverview"), width, height);
+        Scene scene = new Scene(factory.loadFXML("projectoverview"), width, height);
         window.setScene(scene);
         window.setTitle("Turing Turtles");
         Image image = factory.loadImage("turtle");
@@ -48,7 +44,7 @@ public class Main extends Application {
     private static void testData() {
             ProjectFactory factory = new ProjectFactory();
             ProjectManagement projectManagement;
-            projectManagement = factory.createProjectManagement();
+            projectManagement = factory.makeProjectManagement();
             projectManagement.createProject("TestProject", 10000, 23);
             projectManagement.createTask("Task1", 48,10);
             projectManagement.createTask("Task2", 49,20);

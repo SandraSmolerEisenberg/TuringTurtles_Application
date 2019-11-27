@@ -1,6 +1,7 @@
 package se.turingturtles;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import se.turingturtles.entities.Project;
 import se.turingturtles.entities.Risk;
 import se.turingturtles.entities.Task;
 import se.turingturtles.entities.TeamMember;
@@ -16,7 +17,7 @@ public interface ProjectManagement {
     void createMember(String name, int id, double hourlyWage);
     void removeMember(TeamMember member);
     TeamMember findTeamMember(int id);
-    List<TeamMember> retrieveTeamMembers();
+    List<TeamMember> getTeamMembers();
     int timeSpentByTeamMember(TeamMember member);
     ArrayList<Task> retrieveMemberTasks(TeamMember member);
     void assignTask(TeamMember member, Task task);
@@ -25,7 +26,8 @@ public interface ProjectManagement {
     void completeTask(Task task);
     int timeSpentOnProject();
     void createRisk(String name, int impact, int probability);
-    List<Risk> retrieveRisk();
+    List<Risk> getProjectRisks();
+
 
 
 }

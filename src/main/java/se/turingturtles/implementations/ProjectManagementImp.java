@@ -14,9 +14,8 @@ public class ProjectManagementImp implements ProjectManagement {
 
     private final static int DAYS_OF_UPD_INTERVAL = 14;
     private final static long MILLI_SEC_PER_DAY = 86400000L;
-
+    //Using static entity for project information to avoid database building
     private static Project project;
-
     private ProjectFactory factory;
 
     public void triggerCalculations(){
@@ -29,7 +28,7 @@ public class ProjectManagementImp implements ProjectManagement {
         }
         if(todayMilli >= nextUpdateMilli) {
 
-            ProjectCalculations calculations = factory.createProjectCalculation();
+            ProjectCalculations calculations = factory.makeProjectCalculations();
             calculations.calculateCostVariance();
             calculations.calculateEarnedValue();
             calculations.calculateScheduleVariance();
@@ -47,14 +46,15 @@ public class ProjectManagementImp implements ProjectManagement {
 
     @Override
     public void createProject(String name, double budget, int duration) {
-       project = factory.createProject(name, budget, duration);
+       project = factory.makeProject(name, budget, duration);
     }
 
     @Override
     public void createTask(String name,int startWeek, int duration) {
-        project.getTasks().add(factory.createTask(name,startWeek, duration));
+        project.getTasks().add(factory.makeTask(name,startWeek, duration));
     }
 
+    // Deletes task from project and team member
     @Override
     public void removeTask(Task task) {
 
@@ -71,9 +71,10 @@ public class ProjectManagementImp implements ProjectManagement {
 
     @Override
     public void createMember(String name, int id, double hourlyWage) {
-        project.getTeamMembers().add(factory.createTeamMember(name, id, hourlyWage));
+        project.getTeamMembers().add(factory.makeTeamMember(name, id, hourlyWage));
     }
 
+    //Deletes team member from project and task
     @Override
     public void removeMember(TeamMember member) {
         project.getTeamMembers().remove(member);
@@ -101,7 +102,7 @@ public class ProjectManagementImp implements ProjectManagement {
     }
 
     @Override
-    public List<TeamMember> retrieveTeamMembers() {
+    public List<TeamMember> getTeamMembers() {
         return project.getTeamMembers();
     }
 
@@ -142,6 +143,7 @@ public class ProjectManagementImp implements ProjectManagement {
             task.setCompletion(true);
     }
 
+    //Returns time spent on the project for all team members
     @Override
     public int timeSpentOnProject() {
         List<TeamMember> teamMembers = project.getTeamMembers();
@@ -154,11 +156,11 @@ public class ProjectManagementImp implements ProjectManagement {
 
     @Override
     public void createRisk(String name, int impact, int probability) {
-        project.getRisk().add(factory.createRisk(name, impact, probability));
+        project.getRisk().add(factory.makeRisk(name, impact, probability));
     }
 
     @Override
-    public List<Risk> retrieveRisk() {
+    public List<Risk> getProjectRisks() {
         return project.getRisk();
     }
 

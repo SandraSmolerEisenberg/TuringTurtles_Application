@@ -1,15 +1,14 @@
 package se.turingturtles.controllers;
 
-import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.chart.*;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import se.turingturtles.ProjectManagement;
 import se.turingturtles.entities.Risk;
-import se.turingturtles.entities.TeamMember;
-import se.turingturtles.implementations.ProjectManagementImp;
+import se.turingturtles.implementations.ProjectFactory;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -35,7 +34,11 @@ public class RiskPageController {
     private Button riskDetailsButton;
     @FXML
     private TableColumn<Risk,String> riskCalculated;
+    private ProjectFactory projectFactory = new ProjectFactory();
+    private ProjectManagement projectManagement = projectFactory.makeProjectManagement();
 
+
+    //Load data into matrix and initialize table and set it to not visible by default
     @FXML public void initialize(){
 
         riskName.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -43,24 +46,27 @@ public class RiskPageController {
         riskProbability.setCellValueFactory(new PropertyValueFactory<>("probability"));
         riskCalculated.setCellValueFactory(new PropertyValueFactory<>("riskCalculated"));
         riskIndex.setAutoRanging(false);
-        riskIndex.setUpperBound(sortRisk());
-        ObservableList<Risk> risk = FXCollections.observableArrayList(ProjectManagementImp.getProject().getRisk());
+        riskIndex.setUpperBound(getHighestRisk());
+        ObservableList<Risk> risk = FXCollections.observableArrayList(projectManagement.getProjectRisks());
         riskMatrix.getData().add(loadRiskMatrix());
         riskDetails.setItems(risk);
         riskDetails.setVisible(false);
     }
 
-    private int sortRisk(){
+    // Return the highest risk value and use it for the matrix
+    private int getHighestRisk(){
         int highestRisk = 0;
-        ArrayList<Integer> risks = new ArrayList<>();
-        for (int i = 0; i < ProjectManagementImp.getProject().getRisk().size(); i++){
-            risks.add(ProjectManagementImp.getProject().getRisk().get(i).calculateRisk());
+        List<Risk> risks = projectManagement.getProjectRisks();
+        ArrayList<Integer> risksValues = new ArrayList<>();
+        for (int i = 0; i < risks.size(); i++){
+            risksValues.add(risks.get(i).calculateRisk());
         }
-        highestRisk = Collections.max(risks);
+        highestRisk = Collections.max(risksValues);
         return highestRisk;
     }
+    //Read, load and return the data for the matrix
     private XYChart.Series<String, Integer> loadRiskMatrix(){
-        List<Risk> risks = ProjectManagementImp.getProject().getRisk();
+        List<Risk> risks = projectManagement.getProjectRisks();
         XYChart.Series<String,Integer> series = new XYChart.Series<String, Integer>();
         for (Risk risk : risks) {
             series.getData().add(new XYChart.Data<String, Integer>(risk.getName(), risk.calculateRisk()));
@@ -70,6 +76,7 @@ public class RiskPageController {
     }
 
 
+    // Switch between matrix and table
     public void showDetails(javafx.event.ActionEvent event) {
         if (riskMatrix.isVisible()){
             riskMatrix.setVisible(false);

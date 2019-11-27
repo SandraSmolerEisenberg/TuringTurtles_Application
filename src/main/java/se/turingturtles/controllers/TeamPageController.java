@@ -20,9 +20,6 @@ import se.turingturtles.entities.TeamMember;
 import se.turingturtles.implementations.ProjectFactory;
 import se.turingturtles.implementations.ProjectManagementImp;
 
-import java.awt.event.MouseEvent;
-import java.util.List;
-
 public class TeamPageController {
 
     @FXML
@@ -52,7 +49,6 @@ public class TeamPageController {
 
 
     public void loadTeamList() {
-
         ObservableList<TeamMember> members = FXCollections.observableArrayList(ProjectManagementImp.getProject().getTeamMembers());
         teamList.setItems(members);
 
@@ -66,7 +62,7 @@ public class TeamPageController {
         deleteAlert.showAndWait();
         if(deleteAlert.getResult() == ButtonType.OK){
             ProjectFactory factory = new ProjectFactory();
-            ProjectManagement projectManagement = factory.createProjectManagement();
+            ProjectManagement projectManagement = factory.makeProjectManagement();
             projectManagement.removeMember(ProjectManagementImp.getProject().getTeamMembers().get(temp));
             loadTeamList();
             memberInfoPage.setVisible(false);
@@ -86,7 +82,7 @@ public class TeamPageController {
 
 
         if (validator.validateTextInput(name) && validator.validateNumericInput(id) && validator.validateNumericInput(hourlyWage)) {
-            ProjectManagement projectManagement = factory.createProjectManagement();
+            ProjectManagement projectManagement = factory.makeProjectManagement();
             projectManagement.createMember(name, Integer.parseInt(id),Double.parseDouble(hourlyWage));
             enterName.clear();
             enterWage.clear();

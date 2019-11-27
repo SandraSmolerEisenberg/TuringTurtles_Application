@@ -1,32 +1,18 @@
 package se.turingturtles.controllers;
 
-import javafx.beans.Observable;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
-import javafx.scene.Cursor;
 import javafx.scene.control.*;
-import javafx.scene.effect.ColorAdjust;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.input.TouchEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Color;
 import se.turingturtles.ProjectManagement;
 import se.turingturtles.Validator;
-import se.turingturtles.entities.Project;
 import se.turingturtles.implementations.ProjectFactory;
-import se.turingturtles.implementations.ProjectManagementImp;
 
-import javax.imageio.plugins.tiff.TIFFField;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseListener;
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
 public class CreateProjectController {
 
@@ -49,8 +35,8 @@ public class CreateProjectController {
     }
 
 
-    ProjectFactory factory = new ProjectFactory();
-
+    private ProjectFactory factory = new ProjectFactory();
+    //Create project button set to disable by default
     public void activateCreateProjectButton(ActionEvent event){
         createNewProjectButton.setDisable(false);
     }
@@ -59,14 +45,14 @@ public class CreateProjectController {
 
         factory.changeScene(startPageButton.getScene(),"startPage");
     }
-
+    //Validation of user input and creation a project
     public void createNewProject(ActionEvent event) {
        String budget = projectBudget.getText();
        String duration = projectDuration.getText();
        String name = projectName.getText();
        Validator validator = factory.makeValidator();
        if (validator.validateNumericInput(budget) && validator.validateNumericInput(duration) && validator.validateTextInput(name) ){
-           ProjectManagement projectManagement= factory.createProjectManagement();
+           ProjectManagement projectManagement= factory.makeProjectManagement();
            projectManagement.createProject(name , Double.parseDouble(budget) , Integer.parseInt(duration));
            projectBudget.clear();
            projectDuration.clear();

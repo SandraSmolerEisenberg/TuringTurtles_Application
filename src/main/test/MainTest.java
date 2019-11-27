@@ -7,7 +7,7 @@ public class MainTest {
     private void testProjectManagement() {
         ProjectFactory factory = new ProjectFactory();
         ProjectManagement projectManagement;
-        projectManagement = factory.createProjectManagement();
+        projectManagement = factory.makeProjectManagement();
         System.out.println("-----Testing-----");
         System.out.println("Testing method Create Project: ");
         projectManagement.createProject("TestProject", 10000, 23);
@@ -58,7 +58,7 @@ public class MainTest {
         System.out.println("Result: " + ProjectManagementImp.getProject().getRisk().get(0) );
         projectManagement.createRisk("Risk2", 20,20);
         System.out.println("Testing retrieve all Risk: ");
-        System.out.println("Result: " + projectManagement.retrieveRisk());
+        System.out.println("Result: " + projectManagement.getProjectRisks());
 
 
     }
