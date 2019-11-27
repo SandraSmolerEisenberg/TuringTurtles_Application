@@ -8,6 +8,7 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="se.turingturtles.controllers.TeamPageController">
    <children>
@@ -21,7 +22,7 @@
                           <items>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                                  <children>
-                                    <ListView fx:id="teamList" layoutX="6.0" layoutY="13.0" onMouseClicked="#showTaskList" prefHeight="389.0" prefWidth="209.0" />
+                                    <ListView fx:id="teamList" layoutX="6.0" layoutY="13.0" onMouseClicked="#loadMemberInfoPage" prefHeight="389.0" prefWidth="209.0" />
                                     <Button fx:id="addNewMember" layoutX="22.0" layoutY="457.0" mnemonicParsing="false" onAction="#showNewMemberCreation" prefHeight="43.0" prefWidth="178.0" text="Add new member" />
                                  </children>
                               </AnchorPane>
@@ -40,13 +41,19 @@
                                           <Button fx:id="returnTeamPage" layoutX="191.0" layoutY="398.0" mnemonicParsing="false" onAction="#returnToTeamPage" text="Return to Team Page" />
                                        </children>
                                     </AnchorPane>
-                                    <AnchorPane fx:id="memberInfoPage" disable="false" layoutX="14.0" layoutY="47.0" prefHeight="448.0" prefWidth="539.0">
+                                    <AnchorPane fx:id="memberInfoPage" disable="false" layoutX="14.0" layoutY="47.0" prefHeight="448.0" prefWidth="539.0" visible="false">
                                        <children>
-                                          <Button layoutX="297.0" layoutY="399.0" mnemonicParsing="false" text="Delete teammember" />
+                                          <Button fx:id="deleteTeamMember" layoutX="297.0" layoutY="399.0" mnemonicParsing="false" onAction="#deleteAlert" text="Delete teammember" />
                                           <Button layoutX="443.0" layoutY="399.0" mnemonicParsing="false" text="Assign task" />
-                                          <Button layoutX="150.0" layoutY="399.0" mnemonicParsing="false" text="Return to teampage" />
+                                          <Button fx:id="returnHome" layoutX="150.0" layoutY="399.0" mnemonicParsing="false" onAction="#returnToTeamPage" text="Return to teampage" />
                                           <Button layoutX="14.0" layoutY="399.0" mnemonicParsing="false" text="Edit teammember" />
                                           <ListView fx:id="taskList" layoutX="15.0" layoutY="265.0" prefHeight="124.0" prefWidth="510.0" />
+                                          <Label layoutX="63.0" layoutY="45.0" text="Name" />
+                                          <Label layoutX="65.0" layoutY="104.0" text="ID" />
+                                          <Label layoutX="63.0" layoutY="163.0" text="Hourly wage" />
+                                          <Text fx:id="nameText" layoutX="144.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="180.0" />
+                                          <Text fx:id="idText" layoutX="144.0" layoutY="117.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="180.0" />
+                                          <Text fx:id="wageText" layoutX="144.0" layoutY="176.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="180.0" />
                                        </children>
                                     </AnchorPane>
                                  </children>
