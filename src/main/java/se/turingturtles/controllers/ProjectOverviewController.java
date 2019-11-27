@@ -15,6 +15,7 @@ import se.turingturtles.implementations.ProjectManagementImp;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.List;
 
 public class ProjectOverviewController {
@@ -48,27 +49,24 @@ public class ProjectOverviewController {
         numberOfTasks.setText("Total number of tasks: " + ProjectManagementImp.getProject().getTasks().size());
         numberOfMembers.setText("Total number of members: " + ProjectManagementImp.getProject().getTeamMembers().size());
         projectDuration.setText("Project duration: " + ProjectManagementImp.getProject().getDuration() + "w");
-
-        projectSchedule.getData().add(loadTaskData());
+        loadTaskData();
 
 
     }
 
-    private XYChart.Series<Integer, String> loadTaskData() {
+    private void loadTaskData() {
         List<Task> tasks = ProjectManagementImp.getProject().getTasks();
-        XYChart.Series<Integer, String> series = new XYChart.Series<Integer, String>();
+        XYChart.Series<Integer, String> series1 = new XYChart.Series<Integer, String>();
+        XYChart.Series<Integer, String> series2 = new XYChart.Series<Integer, String>();
         weeksAxis.setAutoRanging(false);
+        //weeksAxis.setLowerBound(ProjectManagementImp.getProject().getStartWeek());
         weeksAxis.setLowerBound(ProjectManagementImp.getProject().getStartWeek());
-
+        weeksAxis.setLabel("Weeks");
         for (int i = 0; i < tasks.size(); i++) {
-           // weeksAxis.setLowerBound(tasks.get(i).getStartWeek());
-
-            series.getData().add(tasks.get(i).getStartWeek(), new XYChart.Data<Integer, String>(tasks.get(i).getStartWeek() + tasks.get(i).getDuration(), tasks.get(i).getName()));
-
+            int weekOfTask = tasks.get(i).getStartWeek() + tasks.get(i).getDuration();
+            series1.getData().add( new XYChart.Data<Integer, String>(tasks.get(i).getStartWeek(), tasks.get(i).getName()));
+            series2.getData().add( new XYChart.Data<Integer, String>(tasks.get(i).getDuration(), tasks.get(i).getName()));
         }
-        series.setName("Tasks");
-        System.out.println(weeksAxis.getLowerBound());
-        System.out.println(weeksAxis.getLowerBound());
-        return series;
+        projectSchedule.getData().addAll(series1,series2);
     }
 }

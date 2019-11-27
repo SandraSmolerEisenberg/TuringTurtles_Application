@@ -30,12 +30,12 @@ public class Project {
     public Project(){} //Needed for JSON-file to work
 
     // Assign the project start week and Year
-    int assignStartYear() {
+    public int assignStartYear() {
         Calendar calendar = Calendar.getInstance(Locale.GERMANY);
         calendar.setFirstDayOfWeek(Calendar.MONDAY);
         return calendar.get(Calendar.YEAR);    }
 
-    int assignStartWeek() {
+    public int assignStartWeek() {
         Calendar calendar = Calendar.getInstance(Locale.GERMANY);
         calendar.setFirstDayOfWeek(Calendar.MONDAY);
         return calendar.get(Calendar.WEEK_OF_YEAR);

@@ -43,8 +43,7 @@ public class CreateProjectController {
     @FXML
     private RadioButton disclaimerButton;
 
-
-
+    @FXML
     public void initialize(){
         createNewProjectButton.setDisable(true);
     }

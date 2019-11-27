@@ -50,15 +50,13 @@ public class Main extends Application {
             ProjectManagement projectManagement;
             projectManagement = factory.createProjectManagement();
             projectManagement.createProject("TestProject", 10000, 23);
-            ProjectManagementImp.getProject().setStartWeek(20);
-            projectManagement.createTask("Task1", 24,10);
-            projectManagement.createTask("Task2", 27,20);
-            projectManagement.createTask("Task3", 38,10);
-            projectManagement.createTask("Task4", 49,10);
-            projectManagement.createTask("Task6", 51,10);
-            projectManagement.createTask("Task7", 40,10);
-
-        projectManagement.createMember("TeamMember1", 1, 1000);
+            projectManagement.createTask("Task1", 48,10);
+            projectManagement.createTask("Task2", 49,20);
+            projectManagement.createTask("Task3", 52,14);
+            projectManagement.createTask("Task4", 48,17);
+            projectManagement.createTask("Task6", 50,15);
+            projectManagement.createTask("Task7", 49,13);
+            projectManagement.createMember("TeamMember1", 1, 1000);
             projectManagement.createMember("TeamMember2", 2, 2000);
             projectManagement.createRisk("Risk1", 1,4);
             projectManagement.createRisk("Risk2", 2,2);

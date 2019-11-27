@@ -36,7 +36,8 @@ public class RiskPageController {
     @FXML
     private TableColumn<Risk,String> riskCalculated;
 
-    public void initialize(){
+    @FXML public void initialize(){
+
         riskName.setCellValueFactory(new PropertyValueFactory<>("name"));
         riskImpact.setCellValueFactory(new PropertyValueFactory<>("impact"));
         riskProbability.setCellValueFactory(new PropertyValueFactory<>("probability"));
