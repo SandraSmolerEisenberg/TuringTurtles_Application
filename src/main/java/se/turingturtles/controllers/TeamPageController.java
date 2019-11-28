@@ -48,8 +48,11 @@ public class TeamPageController {
     private AnchorPane memberInfoPage;
 
 
+    ProjectFactory factory = new ProjectFactory();
+    ProjectManagement projectManagement = factory.makeProjectManagement();
+
     public void loadTeamList() {
-        ObservableList<TeamMember> members = FXCollections.observableArrayList(ProjectManagementImp.getProject().getTeamMembers());
+        ObservableList<TeamMember> members = FXCollections.observableArrayList(projectManagement.getTeamMembers());
         teamList.setItems(members);
 
     }
@@ -58,12 +61,10 @@ public class TeamPageController {
         Alert deleteAlert = new Alert(Alert.AlertType.CONFIRMATION);
         deleteAlert.setTitle("Warning: Deleting member");
         deleteAlert.setHeaderText("WARNING!");
-        deleteAlert.setContentText("You have selected to delete the following member: \nName: " + ProjectManagementImp.getProject().getTeamMembers().get(temp).getName() + "\nID: " + ProjectManagementImp.getProject().getTeamMembers().get(temp).getId() + "\n\nPlease click OK, in order to proceed!");
+        deleteAlert.setContentText("You have selected to delete the following member: \nName: " + projectManagement.findTeamMember(temp).getName() + "\nID: " + projectManagement.findTeamMember(temp).getId() + "\n\nPlease click OK, in order to proceed!");
         deleteAlert.showAndWait();
         if(deleteAlert.getResult() == ButtonType.OK){
-            ProjectFactory factory = new ProjectFactory();
-            ProjectManagement projectManagement = factory.makeProjectManagement();
-            projectManagement.removeMember(ProjectManagementImp.getProject().getTeamMembers().get(temp));
+            projectManagement.removeMember(projectManagement.findTeamMember(temp));
             loadTeamList();
             memberInfoPage.setVisible(false);
         }
@@ -77,12 +78,10 @@ public class TeamPageController {
         String name = enterName.getText();
         String id = enterID.getText();
         String hourlyWage = enterWage.getText();
-        ProjectFactory factory = new ProjectFactory();
         Validator validator = factory.makeValidator();
 
 
         if (validator.validateTextInput(name) && validator.validateNumericInput(id) && validator.validateNumericInput(hourlyWage)) {
-            ProjectManagement projectManagement = factory.makeProjectManagement();
             projectManagement.createMember(name, Integer.parseInt(id),Double.parseDouble(hourlyWage));
             enterName.clear();
             enterWage.clear();
@@ -122,11 +121,11 @@ public class TeamPageController {
     public void loadMemberInfoPage(Event e){
         memberInfoPage.setVisible(true);
         int temp = teamList.getSelectionModel().getSelectedIndex();
-        ObservableList<Task> tasks = FXCollections.observableArrayList(ProjectManagementImp.getProject().getTeamMembers().get(temp).getTasks());
+        ObservableList<Task> tasks = FXCollections.observableArrayList(projectManagement.retrieveMemberTasks(projectManagement.findTeamMember(temp)));
         taskList.setItems(tasks);
-        nameText.setText(ProjectManagementImp.getProject().getTeamMembers().get(temp).getName());
-        idText.setText(String.valueOf(ProjectManagementImp.getProject().getTeamMembers().get(temp).getId()));
-        wageText.setText(String.valueOf(ProjectManagementImp.getProject().getTeamMembers().get(temp).getHourlyWage()));
+        nameText.setText(projectManagement.findTeamMember(temp).getName());
+        idText.setText(String.valueOf(projectManagement.findTeamMember(temp).getId()));
+        wageText.setText(String.valueOf(projectManagement.findTeamMember(temp).getHourlyWage()));
     }
     /*public void searchTeamMember(){
         int idSearch = Integer.parseInt(searchBar.getText());
