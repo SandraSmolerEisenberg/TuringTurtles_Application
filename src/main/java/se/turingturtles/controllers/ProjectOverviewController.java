@@ -24,29 +24,23 @@ import java.util.List;
 public class ProjectOverviewController {
     @FXML
     private AnchorPane overviewTab;
-
     @FXML
     private Text projectName;
-
     @FXML
     private Text numberOfTasks;
-
     @FXML
     private Text numberOfMembers;
-
     @FXML
     private Text projectDuration;
-
     @FXML
     private StackedBarChart projectSchedule;
-
     @FXML
     private NumberAxis weeksAxis;
-
     @FXML
     private CategoryAxis taskAxis;
     private ProjectFactory projectFactory = new ProjectFactory();
     private ProjectManagement projectManagement = projectFactory.makeProjectManagement();
+    private static final int WEEKS_PER_YEAR = 52;
 
     // Default project information loaded into the page
     @FXML
@@ -66,6 +60,7 @@ public class ProjectOverviewController {
         XYChart.Series<Integer, String> series2 = new XYChart.Series<Integer, String>();
         weeksAxis.setAutoRanging(false);
         weeksAxis.setLowerBound(ProjectManagementImp.getProject().getStartWeek());
+        weeksAxis.setUpperBound(ProjectManagementImp.getProject().getStartWeek() + ProjectManagementImp.getProject().getDuration());
         weeksAxis.setLabel("Weeks");
         taskAxis.setLabel("Tasks");
         for (Task task : tasks) {
@@ -76,8 +71,8 @@ public class ProjectOverviewController {
             @Override
             public String toString(Number object) {
                 int week = (int) object.doubleValue();
-                if (week > 52) {
-                    week = week -52 ;
+                if (week > WEEKS_PER_YEAR) {
+                    week = week -WEEKS_PER_YEAR;
                 }
                 return "" + week;
             }

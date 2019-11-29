@@ -49,10 +49,10 @@ public class Main extends Application {
             ProjectManagement projectManagement;
             projectManagement = factory.makeProjectManagement();
             projectManagement.createProject("TestProject", 10000, 23);
-            projectManagement.createTask("Task1", 48,10);
+            projectManagement.createTask("Task1", 51,10);
             projectManagement.createTask("Task2", 49,20);
             projectManagement.createTask("Task3", 52,14);
-            projectManagement.createTask("Task4", 48,17);
+            projectManagement.createTask("Task4", 53,17);
             projectManagement.createTask("Task6", 50,15);
             projectManagement.createTask("Task7", 49,13);
             projectManagement.createMember("TeamMember1", 1, 1000);
