@@ -101,7 +101,7 @@ public class TeamPageController {
     public void showEditMemberPage(ActionEvent e) {
         memberEditPage.setVisible(true);
         memberInfoPage.setVisible(false);
-        editMemberInfoText.setText("You are editing: " + projectManagement.findTeamMember(findSelectedID()).getName() + " with ID: " + findSelectedID());
+        editMemberInfoText.setText("You are editing: " + projectManagement.findTeamMember(lastViewedID).getName() + " with ID: " + lastViewedID);
     }
 
     public void editMember(ActionEvent event) {
@@ -109,8 +109,8 @@ public class TeamPageController {
         String wage = editWage.getText();
 
         if (validator.validateTextInput(name) && validator.validateNumericInput(wage)) {
-            projectManagement.findTeamMember(findSelectedID()).setName(name);
-            projectManagement.findTeamMember(findSelectedID()).setHourlyWage(Double.parseDouble(wage));
+            projectManagement.findTeamMember(lastViewedID).setName(name);
+            projectManagement.findTeamMember(lastViewedID).setHourlyWage(Double.parseDouble(wage));
             Alert confirmationAlert = new Alert(Alert.AlertType.INFORMATION);
             confirmationAlert.setTitle("Success!");
             confirmationAlert.setHeaderText("Successfully edited team-member with ID: " + lastViewedID + ".");
@@ -198,28 +198,30 @@ public class TeamPageController {
             successAlert.showAndWait();
         }
     }
-    public void loadMemberInfoPage(int id) {
+    public void loadMemberInfoPage() {
         newMemberPage.setVisible(false);
         memberInfoPage.setVisible(true);
         memberEditPage.setVisible(false);
-        ObservableList<Task> tasks = FXCollections.observableArrayList(projectManagement.retrieveMemberTasks(projectManagement.findTeamMember(id)));
+        ObservableList<Task> tasks = FXCollections.observableArrayList(projectManagement.retrieveMemberTasks(projectManagement.findTeamMember(lastViewedID)));
         taskList.setItems(tasks);
-        nameText.setText(projectManagement.findTeamMember(id).getName());
-        idText.setText(String.valueOf(projectManagement.findTeamMember(id).getId()));
-        wageText.setText(String.valueOf(projectManagement.findTeamMember(id).getHourlyWage()));
-        lastViewedID = id;
+        nameText.setText(projectManagement.findTeamMember(lastViewedID).getName());
+        idText.setText(String.valueOf(projectManagement.findTeamMember(lastViewedID).getId()));
+        wageText.setText(String.valueOf(projectManagement.findTeamMember(lastViewedID).getHourlyWage()));
+
 
     }
 
     public void selectTeamMember(Event e) {
         int selectedID = findSelectedID();
-        loadMemberInfoPage(selectedID);
+        lastViewedID = selectedID;
+        loadMemberInfoPage();
 
     }
 
     public void searchTeamMember(Event e) {
         int idSearch = Integer.parseInt(searchBar.getText());
-        loadMemberInfoPage(idSearch);
+        lastViewedID = idSearch;
+        loadMemberInfoPage();
         searchBar.clear();
         searchBar.setPromptText("Search by ID");
     }
