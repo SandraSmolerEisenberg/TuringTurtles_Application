@@ -9,6 +9,7 @@ public class Task {
     private int duration; //number of weeks
     private ArrayList<TeamMember> teamMembers;
     private boolean completion;
+    private int totalTeamMembers;
 
     public Task(String name, int startWeek, int duration){
         this.name = name;
@@ -16,6 +17,7 @@ public class Task {
         this.duration = duration;
         this.teamMembers = new ArrayList<TeamMember>();
         this.completion = false;
+        this.totalTeamMembers = totalTeamMembers();
     }
 
     public Task(){} //Needed for JSON-file to work
@@ -46,15 +48,22 @@ public class Task {
     public void setCompletion(boolean status){
         this.completion = status;
     }
+    public int getTotalTeamMembers(){
+        return totalTeamMembers;
+    }
     //--------------------Methods--------------------
     public void addTeamMember(TeamMember teamMember){
         this.teamMembers.add(teamMember);
+        setTotalTeamMembers();
     }
     public void removeTeamMember(TeamMember teamMember){
         this.teamMembers.remove(teamMember);
     }
     public int totalTeamMembers(){
         return this.teamMembers.size();
+    }
+    public void setTotalTeamMembers(){
+        totalTeamMembers = totalTeamMembers();
     }
 
     @Override

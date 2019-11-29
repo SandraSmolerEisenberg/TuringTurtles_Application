@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="se.turingturtles.controllers.TaskPageController">
+   <children>
+      <TableView fx:id="taskTableView" layoutX="104.0" layoutY="380.0" prefHeight="334.0" prefWidth="481.0">
+        <columns>
+          <TableColumn fx:id="taskName" prefWidth="75.0" text="Task Name" />
+            <TableColumn fx:id="taskStartWeek" prefWidth="75.0" text="Start Week" />
+            <TableColumn fx:id="taskDuration" prefWidth="75.0" text="Duration" />
+          <TableColumn fx:id="taskTeamMembersAmount" prefWidth="126.6666259765625" text="Team Members" />
+            <TableColumn fx:id="taskStatus" prefWidth="124.66665649414062" text="Status" />
+        </columns>
+      </TableView>
+      <Button fx:id="taskCreateTaskButton" layoutX="14.0" layoutY="46.0" mnemonicParsing="false" onAction="#createNewTask" text="Create Task" />
+      <Text fx:id="taskHeaderText" layoutX="289.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tasks" />
+      <AnchorPane fx:id="createTaskAnchorPane" layoutX="104.0" layoutY="46.0" prefHeight="334.0" prefWidth="481.0">
+         <children>
+            <TextField fx:id="newTaskName" layoutX="166.0" layoutY="67.0" promptText="Enter Task Name" />
+            <TextField fx:id="newTaskStartWeek" layoutX="166.0" layoutY="116.0" promptText="Enter Start Week" />
+            <Label layoutX="82.0" layoutY="71.0" text="Task Name:" />
+            <TextField fx:id="newTaskDuration" layoutX="166.0" layoutY="167.0" promptText="Enter Duration (weeks)" />
+            <Label layoutX="93.0" layoutY="171.0" text="Duration:" />
+            <Label layoutX="82.0" layoutY="120.0" text="Start Week:" />
+            <Button fx:id="newTaskCreateButton" layoutX="215.0" layoutY="222.0" mnemonicParsing="false" onAction="#applyNewTask" text="Create" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
