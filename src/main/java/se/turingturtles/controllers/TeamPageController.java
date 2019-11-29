@@ -120,12 +120,15 @@ public class TeamPageController {
     }
     public void loadMemberInfoPage(Event e){
         memberInfoPage.setVisible(true);
-        int temp = teamList.getSelectionModel().getSelectedIndex();
-        ObservableList<Task> tasks = FXCollections.observableArrayList(projectManagement.retrieveMemberTasks(projectManagement.findTeamMember(temp)));
-        taskList.setItems(tasks);
-        nameText.setText(projectManagement.findTeamMember(temp).getName());
-        idText.setText(String.valueOf(projectManagement.findTeamMember(temp).getId()));
-        wageText.setText(String.valueOf(projectManagement.findTeamMember(temp).getHourlyWage()));
+        Object selectedMember = teamList.getSelectionModel().getSelectedItem();
+        if(selectedMember instanceof TeamMember){
+            int foundID = ((TeamMember) selectedMember).getId();
+            ObservableList<Task> tasks = FXCollections.observableArrayList(projectManagement.retrieveMemberTasks(projectManagement.findTeamMember(foundID)));
+            taskList.setItems(tasks);
+            nameText.setText(projectManagement.findTeamMember(foundID).getName());
+            idText.setText(String.valueOf(projectManagement.findTeamMember(foundID).getId()));
+            wageText.setText(String.valueOf(projectManagement.findTeamMember(foundID).getHourlyWage()));
+        }
     }
     /*public void searchTeamMember(){
         int idSearch = Integer.parseInt(searchBar.getText());
