@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="overviewTab" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" stylesheets="@../css/projectoverview.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="se.turingturtles.controllers.ProjectOverviewController">
+<AnchorPane fx:id="overviewTab" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="se.turingturtles.controllers.ProjectOverviewController">
    <children>
       <Text fx:id="projectName" layoutX="231.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Project Name" />
       <Text fx:id="numberOfTasks" layoutX="25.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total number of task: 35" />
@@ -15,7 +15,7 @@
       <Text fx:id="projectDuration" layoutX="422.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Project duration: 99w" />
       <StackedBarChart fx:id="projectSchedule" layoutX="17.0" layoutY="78.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" title="Schedule">
         <yAxis>
-          <CategoryAxis fx:id="taskAxis" label="Task" side="TOP" />
+          <CategoryAxis fx:id="taskAxis" label="Task" />
         </yAxis>
         <xAxis>
           <NumberAxis fx:id="weeksAxis" label="Weeks" />

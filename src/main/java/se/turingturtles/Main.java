@@ -28,7 +28,10 @@ public class Main extends Application {
         double height = screenSize.getHeight() * 0.8;
         window.setResizable(true);
         Scene scene = new Scene(factory.loadFXML("projectoverview"), width, height);
+        scene.getStylesheets().addAll();
         window.setScene(scene);
+        scene.getStylesheets().add(getClass().getResource("/se/turingturtles/css/projectoverview.css").toExternalForm());
+
         window.setTitle("Turing Turtles");
         Image image = factory.loadImage("turtle");
         window.getIcons().add(image);

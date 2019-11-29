@@ -9,6 +9,7 @@ import javafx.scene.chart.StackedBarChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
+import javafx.util.StringConverter;
 import se.turingturtles.ProjectManagement;
 import se.turingturtles.entities.Task;
 import se.turingturtles.implementations.ProjectCalculationsImp;
@@ -55,11 +56,10 @@ public class ProjectOverviewController {
         numberOfMembers.setText("Total number of members: " + projectManagement.getTeamMembers().size());
         projectDuration.setText("Project duration: " + ProjectManagementImp.getProject().getDuration() + "w");
         loadTaskData();
-
-
     }
 
-    // loading the schedule into the Gannt Graph
+    // loading the schedule into the Gannt Graph setting the lower and upper bound of the X axis
+
     private void loadTaskData() {
         List<Task> tasks = projectManagement.retrieveTasks();
         XYChart.Series<Integer, String> series1 = new XYChart.Series<Integer, String>();
@@ -67,11 +67,26 @@ public class ProjectOverviewController {
         weeksAxis.setAutoRanging(false);
         weeksAxis.setLowerBound(ProjectManagementImp.getProject().getStartWeek());
         weeksAxis.setLabel("Weeks");
+        taskAxis.setLabel("Tasks");
         for (Task task : tasks) {
-            int weekOfTask = task.getStartWeek() + task.getDuration();
-            series1.getData().add(new XYChart.Data<Integer, String>(task.getStartWeek(), task.getName()));
-            series2.getData().add(new XYChart.Data<Integer, String>(task.getDuration(), task.getName()));
+                series1.getData().add(new XYChart.Data<Integer, String>(task.getStartWeek(), task.getName()));
+                series2.getData().add(new XYChart.Data<Integer, String>(task.getDuration(), task.getName()));
         }
+        weeksAxis.setTickLabelFormatter(new StringConverter<Number>() {
+            @Override
+            public String toString(Number object) {
+                int week = (int) object.doubleValue();
+                if (week > 52) {
+                    week = week -52 ;
+                }
+                return "" + week;
+            }
+            @Override
+            public Number fromString(String s) {
+                return null;
+            }
+        });
+        weeksAxis.setTickUnit(1.0);
         projectSchedule.getData().addAll(series1,series2);
     }
 }
