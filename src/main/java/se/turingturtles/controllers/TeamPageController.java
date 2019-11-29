@@ -196,6 +196,11 @@ public class TeamPageController {
             successAlert.setHeaderText("Successful assignment!");
             successAlert.setContentText("You have added " + projectManagement.findTeamMember(lastViewedID).getName() + " to " + ((Task) assignTaskList.getSelectionModel().getSelectedItem()).getName() + ".");
             successAlert.showAndWait();
+        }else{
+            Alert assignmentError = new Alert(Alert.AlertType.ERROR);
+            assignmentError.setTitle("Error!");
+            assignmentError.setHeaderText("Assignment to task failed!");
+            assignmentError.showAndWait();
         }
     }
     public void loadMemberInfoPage() {
