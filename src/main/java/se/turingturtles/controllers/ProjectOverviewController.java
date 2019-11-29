@@ -58,6 +58,7 @@ public class ProjectOverviewController {
         List<Task> tasks = projectManagement.retrieveTasks();
         XYChart.Series<Integer, String> series1 = new XYChart.Series<Integer, String>();
         XYChart.Series<Integer, String> series2 = new XYChart.Series<Integer, String>();
+
         weeksAxis.setAutoRanging(false);
         weeksAxis.setLowerBound(ProjectManagementImp.getProject().getStartWeek());
         weeksAxis.setUpperBound(ProjectManagementImp.getProject().getStartWeek() + ProjectManagementImp.getProject().getDuration());

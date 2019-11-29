@@ -46,7 +46,7 @@
                                           <Button fx:id="deleteTeamMember" layoutX="297.0" layoutY="399.0" mnemonicParsing="false" onAction="#deleteAlert" text="Delete teammember" />
                                           <Button layoutX="443.0" layoutY="399.0" mnemonicParsing="false" text="Assign task" />
                                           <Button fx:id="returnHome" layoutX="150.0" layoutY="399.0" mnemonicParsing="false" onAction="#returnToTeamPage" text="Return to teampage" />
-                                          <Button layoutX="14.0" layoutY="399.0" mnemonicParsing="false" text="Edit teammember" />
+                                          <Button layoutX="14.0" layoutY="399.0" mnemonicParsing="false" onAction="#showEditMemberPage" text="Edit teammember" />
                                           <ListView fx:id="taskList" layoutX="15.0" layoutY="265.0" prefHeight="124.0" prefWidth="510.0" />
                                           <Label layoutX="63.0" layoutY="45.0" text="Name" />
                                           <Label layoutX="65.0" layoutY="104.0" text="ID" />
@@ -54,6 +54,17 @@
                                           <Text fx:id="nameText" layoutX="144.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="180.0" />
                                           <Text fx:id="idText" layoutX="144.0" layoutY="117.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="180.0" />
                                           <Text fx:id="wageText" layoutX="144.0" layoutY="176.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="180.0" />
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane fx:id="memberEditPage" disable="false" layoutX="8.0" layoutY="59.0" prefHeight="448.0" prefWidth="539.0" visible="false">
+                                       <children>
+                                          <TextField fx:id="editName" layoutX="189.0" layoutY="105.0" promptText="Enter name" />
+                                          <TextField fx:id="editWage" layoutX="189.0" layoutY="168.0" promptText="Enter wage" />
+                                          <Label layoutX="61.0" layoutY="110.0" prefHeight="17.0" prefWidth="121.0" text="New name" />
+                                          <Label layoutX="61.0" layoutY="173.0" prefHeight="17.0" prefWidth="121.0" text="New wage" />
+                                          <Button layoutX="409.0" layoutY="334.0" mnemonicParsing="false" onAction="#editMember" text="Save" />
+                                          <Button layoutX="83.0" layoutY="334.0" mnemonicParsing="false" onAction="#returnToTeamPage" text="Cancel" />
+                                          <Text fx:id="editMemberInfoText" layoutX="83.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="372.22900390625" />
                                        </children>
                                     </AnchorPane>
                                  </children>
