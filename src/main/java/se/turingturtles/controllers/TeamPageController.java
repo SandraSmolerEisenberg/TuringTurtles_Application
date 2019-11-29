@@ -46,25 +46,39 @@ public class TeamPageController {
     private Text wageText;
     @FXML
     private AnchorPane memberInfoPage;
+    @FXML
+    private AnchorPane memberEditPage;
+    @FXML
+    private TextField editName;
+    @FXML
+    private TextField editWage;
+    @FXML
+    private Text editMemberInfoText;
 
 
     ProjectFactory factory = new ProjectFactory();
     ProjectManagement projectManagement = factory.makeProjectManagement();
+    Validator validator = factory.makeValidator();
+
 
     public void loadTeamList() {
         ObservableList<TeamMember> members = FXCollections.observableArrayList(projectManagement.getTeamMembers());
         teamList.setItems(members);
 
     }
+    public int findSelectedID(){
+        Object selectedMember = teamList.getSelectionModel().getSelectedItem();
+        int foundID = ((TeamMember) selectedMember).getId();
+        return foundID;
+    }
     public void deleteAlert(Event event){
-        int temp = teamList.getSelectionModel().getSelectedIndex();
         Alert deleteAlert = new Alert(Alert.AlertType.CONFIRMATION);
         deleteAlert.setTitle("Warning: Deleting member");
         deleteAlert.setHeaderText("WARNING!");
-        deleteAlert.setContentText("You have selected to delete the following member: \nName: " + projectManagement.findTeamMember(temp).getName() + "\nID: " + projectManagement.findTeamMember(temp).getId() + "\n\nPlease click OK, in order to proceed!");
+        deleteAlert.setContentText("You have selected to delete the following member: \nName: " + projectManagement.findTeamMember(findSelectedID()).getName() + "\nID: " + projectManagement.findTeamMember(findSelectedID()).getId() + "\n\nPlease click OK, in order to proceed!");
         deleteAlert.showAndWait();
         if(deleteAlert.getResult() == ButtonType.OK){
-            projectManagement.removeMember(projectManagement.findTeamMember(temp));
+            projectManagement.removeMember(projectManagement.findTeamMember(findSelectedID()));
             loadTeamList();
             memberInfoPage.setVisible(false);
         }
@@ -72,14 +86,48 @@ public class TeamPageController {
 
     public void showNewMemberCreation(ActionEvent e) {
         newMemberPage.setVisible(true);
+        memberInfoPage.setVisible(false);
+    }
+
+    public void showEditMemberPage(ActionEvent e){
+        memberEditPage.setVisible(true);
+        memberInfoPage.setVisible(false);
+        editMemberInfoText.setText("You are editing: " + projectManagement.findTeamMember(findSelectedID()).getName() + " with ID: " + findSelectedID());
+    }
+    public void editMember(ActionEvent event){
+        String name = editName.getText();
+        String wage = editWage.getText();
+
+        if(validator.validateTextInput(name) && validator.validateNumericInput(wage)){
+            projectManagement.findTeamMember(findSelectedID()).setName(name);
+            projectManagement.findTeamMember(findSelectedID()).setHourlyWage(Double.parseDouble(wage));
+            editName.clear();
+            editWage.clear();
+            returnToTeamPage();
+            loadTeamList();
+        }else{
+            if (!(name.equals("") &&  wage.equals(""))) {
+                if (!validator.validateTextInput(name)) {
+                    editName.clear();
+                    editName.setPromptText("Invalid Name!");
+                    //Color to be changed
+                    editName.setBackground(new Background(new BackgroundFill(Color.BEIGE, CornerRadii.EMPTY, Insets.EMPTY)));
+                }
+
+                if (!validator.validateNumericInput(wage)) {
+                    editWage.clear();
+                    editWage.setPromptText("Invalid Wage!");
+                    //Color to be changed
+                    editWage.setBackground(new Background(new BackgroundFill(Color.BEIGE, CornerRadii.EMPTY, Insets.EMPTY)));
+                }
+            }
+        }
     }
 
     public void createNewMember(ActionEvent event){
         String name = enterName.getText();
         String id = enterID.getText();
         String hourlyWage = enterWage.getText();
-        Validator validator = factory.makeValidator();
-
 
         if (validator.validateTextInput(name) && validator.validateNumericInput(id) && validator.validateNumericInput(hourlyWage)) {
             projectManagement.createMember(name, Integer.parseInt(id),Double.parseDouble(hourlyWage));
@@ -119,16 +167,13 @@ public class TeamPageController {
         }
     }
     public void loadMemberInfoPage(Event e){
+        newMemberPage.setVisible(false);
         memberInfoPage.setVisible(true);
-        Object selectedMember = teamList.getSelectionModel().getSelectedItem();
-        if(selectedMember instanceof TeamMember){
-            int foundID = ((TeamMember) selectedMember).getId();
-            ObservableList<Task> tasks = FXCollections.observableArrayList(projectManagement.retrieveMemberTasks(projectManagement.findTeamMember(foundID)));
-            taskList.setItems(tasks);
-            nameText.setText(projectManagement.findTeamMember(foundID).getName());
-            idText.setText(String.valueOf(projectManagement.findTeamMember(foundID).getId()));
-            wageText.setText(String.valueOf(projectManagement.findTeamMember(foundID).getHourlyWage()));
-        }
+        ObservableList<Task> tasks = FXCollections.observableArrayList(projectManagement.retrieveMemberTasks(projectManagement.findTeamMember(findSelectedID())));
+        taskList.setItems(tasks);
+        nameText.setText(projectManagement.findTeamMember(findSelectedID()).getName());
+        idText.setText(String.valueOf(projectManagement.findTeamMember(findSelectedID()).getId()));
+        wageText.setText(String.valueOf(projectManagement.findTeamMember(findSelectedID()).getHourlyWage()));
     }
     /*public void searchTeamMember(){
         int idSearch = Integer.parseInt(searchBar.getText());
@@ -145,6 +190,7 @@ public class TeamPageController {
     public void returnToTeamPage() {
         memberInfoPage.setVisible(false);
         newMemberPage.setVisible(false);
+        memberEditPage.setVisible(false);
 
         //We clear the fields in case of incorrect values entered the last time, so that the previous values will not appear again.
         enterName.clear();
@@ -153,6 +199,11 @@ public class TeamPageController {
 
         /*We set the name and the background color of the fields to the default ones, in case of invalid user input data, so they will not
         appear the next time again. */
+        editName.setPromptText("Enter name");
+        editName.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
+        editWage.setPromptText("Enter hourly wage");
+        editWage.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
+
         enterName.setPromptText("Enter name");
         enterName.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
         enterID.setPromptText("Enter ID");
