@@ -95,6 +95,7 @@ public class TeamPageController {
         newMemberPage.setVisible(true);
         memberInfoPage.setVisible(false);
         memberEditPage.setVisible(false);
+        memberAssignTaskPage.setVisible(false);
     }
 
     public void showEditMemberPage(ActionEvent e) {
@@ -110,6 +111,11 @@ public class TeamPageController {
         if (validator.validateTextInput(name) && validator.validateNumericInput(wage)) {
             projectManagement.findTeamMember(findSelectedID()).setName(name);
             projectManagement.findTeamMember(findSelectedID()).setHourlyWage(Double.parseDouble(wage));
+            Alert confirmationAlert = new Alert(Alert.AlertType.INFORMATION);
+            confirmationAlert.setTitle("Success!");
+            confirmationAlert.setHeaderText("Successfully edited team-member with ID: " + lastViewedID + ".");
+            confirmationAlert.setContentText("The following information was edited: " + "\n" + "Name: " +  editName.getText() + "\n" + "Hourly wage: " + editWage.getText() + " SEK.");
+            confirmationAlert.showAndWait();
             editName.clear();
             editWage.clear();
             returnToTeamPage();
@@ -185,6 +191,11 @@ public class TeamPageController {
         if(!projectManagement.findTeamMember(lastViewedID).getTasks().contains(assignTaskList.getSelectionModel().getSelectedItem())) {
             projectManagement.assignTask(projectManagement.findTeamMember(lastViewedID), (Task) assignTaskList.getSelectionModel().getSelectedItem());
             loadAssignTaskList();
+            Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
+            successAlert.setTitle("Success!");
+            successAlert.setHeaderText("Successful assignment!");
+            successAlert.setContentText("You have added " + projectManagement.findTeamMember(lastViewedID).getName() + " to " + ((Task) assignTaskList.getSelectionModel().getSelectedItem()).getName() + ".");
+            successAlert.showAndWait();
         }
     }
     public void loadMemberInfoPage(int id) {
