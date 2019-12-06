@@ -6,6 +6,8 @@ import se.turingturtles.entities.Project;
 import se.turingturtles.entities.Risk;
 import se.turingturtles.entities.Task;
 import se.turingturtles.entities.TeamMember;
+
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -45,13 +47,13 @@ public class ProjectManagementImp implements ProjectManagement {
     }
 
     @Override
-    public void createProject(String name, double budget, int duration) {
-       project = factory.makeProject(name, budget, duration);
+    public void createProject(String name, double budget, LocalDate projectStart, LocalDate projectEnd) {
+       project = factory.makeProject(name, budget, projectStart, projectEnd);
     }
 
     @Override
-    public void createTask(String name,int startWeek, int duration) {
-        project.getTasks().add(factory.makeTask(name,startWeek, duration));
+    public void createTask(String name, LocalDate startDate, LocalDate endDate) {
+        project.getTasks().add(factory.makeTask(name,startDate, endDate));
     }
 
     // Deletes task from project and team member

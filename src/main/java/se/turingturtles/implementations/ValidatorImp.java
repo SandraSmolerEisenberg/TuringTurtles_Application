@@ -2,6 +2,8 @@ package se.turingturtles.implementations;
 
 import se.turingturtles.Validator;
 
+import java.time.LocalDate;
+
 public class ValidatorImp implements Validator {
 
     //Valid only number input and using , for decimals
@@ -13,6 +15,17 @@ public class ValidatorImp implements Validator {
     @Override
     public boolean validateTextInput(String input) {
         return input.matches("[A-ZÅÄÖa-zåöä]+[ A-ZÅÄÖa-zåöä0-9,.]*");
+    }
+
+    @Override
+    public boolean validateDate(LocalDate projectStartDate, LocalDate projectEndDate) {
+
+        if (projectStartDate != null && projectEndDate != null && projectStartDate.compareTo(projectEndDate) < 0){
+            return true;
+        }
+        else
+            return false;
+
     }
 
 

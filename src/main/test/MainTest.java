@@ -3,6 +3,7 @@ import se.turingturtles.implementations.ProjectFactory;
 import se.turingturtles.implementations.ProjectManagementImp;
 
 public class MainTest {
+/*
 
     private void testProjectManagement() {
         ProjectFactory factory = new ProjectFactory();
@@ -10,7 +11,6 @@ public class MainTest {
         projectManagement = factory.makeProjectManagement();
         System.out.println("-----Testing-----");
         System.out.println("Testing method Create Project: ");
-        projectManagement.createProject("TestProject", 10000, 23);
         System.out.println("Result: "+ ProjectManagementImp.getProject().toString());
         System.out.println("Testing method Create Task: ");
         projectManagement.createTask("Task1", 47,10);
@@ -62,5 +62,6 @@ public class MainTest {
 
 
     }
+*/
 
 }

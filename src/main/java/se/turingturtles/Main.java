@@ -27,7 +27,7 @@ public class Main extends Application {
         double width = screenSize.getWidth() * 0.9;
         double height = screenSize.getHeight() * 0.8;
         window.setResizable(true);
-        Scene scene = new Scene(factory.loadFXML("teampage"), width, height);
+        Scene scene = new Scene(factory.loadFXML("createproject"), width, height);
         scene.getStylesheets().addAll();
         window.setScene(scene);
         scene.getStylesheets().add(getClass().getResource("/se/turingturtles/css/projectoverview.css").toExternalForm());
@@ -40,7 +40,7 @@ public class Main extends Application {
 
 
     public static void main(String[] args) throws IOException {
-        testData();
+      //  testData();
         launch();
     }
 
@@ -48,13 +48,12 @@ public class Main extends Application {
             ProjectFactory factory = new ProjectFactory();
             ProjectManagement projectManagement;
             projectManagement = factory.makeProjectManagement();
-            projectManagement.createProject("TestProject", 10000, 23);
-            projectManagement.createTask("Task1", 51,10);
+            /*projectManagement.createTask("Task1", 51,10);
             projectManagement.createTask("Task2", 49,20);
             projectManagement.createTask("Task3", 52,14);
             projectManagement.createTask("Task4", 53,17);
             projectManagement.createTask("Task6", 50,15);
-            projectManagement.createTask("Task7", 49,13);
+            projectManagement.createTask("Task7", 49,13);*/
             projectManagement.createMember("TeamMember1", 1, 1000);
             projectManagement.createMember("TeamMember2", 2, 2000);
             projectManagement.createRisk("Risk1", 1,4);

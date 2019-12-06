@@ -1,6 +1,7 @@
 package se.turingturtles.implementations;
 
 import se.turingturtles.ProjectCalculations;
+import se.turingturtles.ProjectManagement;
 import se.turingturtles.entities.Task;
 import se.turingturtles.entities.TeamMember;
 
@@ -17,7 +18,9 @@ public class ProjectCalculationsImp implements ProjectCalculations {
     }
 
     private double calculateCompletedWorkPercentage(){
-        List<Task> tasks = ProjectManagementImp.getProject().getTasks();
+        ProjectFactory projectFactory = new ProjectFactory();
+        ProjectManagement projectManagement = projectFactory.makeProjectManagement();
+        List<Task> tasks = projectManagement.retrieveTasks();
         int completedTasks = 0;
 
         if (tasks.size() == 0){
@@ -25,7 +28,8 @@ public class ProjectCalculationsImp implements ProjectCalculations {
         }
 
         for (int i=0; i<tasks.size(); i++){
-            if (tasks.get(i).getCompletion()) {
+
+            if (tasks.get(i).getCompletion().equals("Completed")){
                 completedTasks++;
             }
         }

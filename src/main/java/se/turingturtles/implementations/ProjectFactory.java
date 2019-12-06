@@ -16,6 +16,7 @@ import se.turingturtles.entities.TeamMember;
 import se.turingturtles.streamIO.StreamJSON;
 
 import java.io.IOException;
+import java.time.LocalDate;
 
 public class ProjectFactory {
 
@@ -58,12 +59,12 @@ public class ProjectFactory {
         return new ObjectMapper();
     }
 
-    public Task makeTask(String name, int startWeek, int duration){
-        return new Task(name,startWeek, duration);
+    public Task makeTask(String name, LocalDate startDate, LocalDate endDate){
+        return new Task(name, startDate, endDate);
     }
 
-    public Project makeProject(String name, double budget, int duration){
-        return new Project(name, budget, duration);
+    public Project makeProject(String name, double budget, LocalDate projectStart, LocalDate projectEnd){
+        return new Project(name, budget, projectStart, projectEnd);
     }
 
     public StreamJSON makeStream(){

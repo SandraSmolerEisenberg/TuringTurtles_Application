@@ -2,17 +2,13 @@ package se.turingturtles.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.geometry.Insets;
 import javafx.scene.control.*;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
-import javafx.scene.paint.Color;
 import se.turingturtles.ProjectManagement;
 import se.turingturtles.Validator;
 import se.turingturtles.implementations.ProjectFactory;
 
 import java.io.IOException;
+import java.time.LocalDate;
 
 public class CreateProjectController {
 
@@ -23,11 +19,14 @@ public class CreateProjectController {
     @FXML
     private TextField projectName;
     @FXML
-    private TextField projectDuration;
+    private DatePicker projectStart;
+    @FXML
+    private DatePicker projectEnd;
     @FXML
     private TextField projectBudget;
     @FXML
     private RadioButton disclaimerButton;
+
 
     @FXML
     public void initialize(){
@@ -46,41 +45,42 @@ public class CreateProjectController {
         factory.changeScene(startPageButton.getScene(),"startPage");
     }
     //Validation of user input and creation a project
-    public void createNewProject(ActionEvent event) {
+    public void createNewProject(ActionEvent event) throws IOException {
        String budget = projectBudget.getText();
-       String duration = projectDuration.getText();
+       LocalDate projectStartDate = projectStart.getValue();
+       LocalDate projectEndDate = projectEnd.getValue();
        String name = projectName.getText();
        Validator validator = factory.makeValidator();
-       if (validator.validateNumericInput(budget) && validator.validateNumericInput(duration) && validator.validateTextInput(name) ){
+       if (validator.validateNumericInput(budget) && validator.validateDate(projectStartDate, projectEndDate) && validator.validateTextInput(name) ){
            ProjectManagement projectManagement= factory.makeProjectManagement();
-           projectManagement.createProject(name , Double.parseDouble(budget) , Integer.parseInt(duration));
+           projectManagement.createProject(name , Double.parseDouble(budget) , projectStartDate, projectEndDate);
            projectBudget.clear();
-           projectDuration.clear();
            projectName.clear();
+           factory.changeScene(startPageButton.getScene(),"taskpage");
        }
        else {
            if (!validator.validateNumericInput(budget)){
                projectBudget.clear();
                projectBudget.setPromptText("Invalid Budget!");
-               //Color to be changed
-               projectBudget.setBackground(new Background(new BackgroundFill(Color.BEIGE, CornerRadii.EMPTY, Insets.EMPTY)));
+
 
            }
-           if (!validator.validateNumericInput(duration)){
-               projectDuration.clear();
-               projectDuration.setPromptText("Invalid Duration!");
-               //Color to be changed
-               projectDuration.setBackground(new Background(new BackgroundFill(Color.BEIGE, CornerRadii.EMPTY, Insets.EMPTY)));
 
            } if (!validator.validateTextInput(name)){
                projectName.clear();
                projectName.setPromptText("Invalid Name!");
-               //Color to be changed
-               projectName.setBackground(new Background(new BackgroundFill(Color.BEIGE, CornerRadii.EMPTY, Insets.EMPTY)));
+
 
            }
+             if(!validator.validateDate(projectStartDate, projectEndDate)){
+                 projectStart.getEditor().clear();
+                 projectEnd.getEditor().clear();
+                 projectStart.setPromptText("Set Valid Date!");
+                 projectEnd.setPromptText("Set Valid Date!");
+
+        }
        }
 
     }
 
-}
+

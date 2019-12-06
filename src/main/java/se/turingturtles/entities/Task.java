@@ -1,6 +1,10 @@
 package se.turingturtles.entities;
 
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+import java.time.temporal.WeekFields;
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class Task {
 
@@ -10,14 +14,18 @@ public class Task {
     private ArrayList<TeamMember> teamMembers;
     private boolean completion;
     private int totalTeamMembers;
+    private LocalDate startDate;
+    private LocalDate endDate;
 
-    public Task(String name, int startWeek, int duration){
+    public Task(String name, LocalDate startDate, LocalDate endDate){
         this.name = name;
-        this.startWeek = startWeek;
-        this.duration = duration;
         this.teamMembers = new ArrayList<TeamMember>();
         this.completion = false;
         this.totalTeamMembers = totalTeamMembers();
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.startWeek = calculateStartWeek();
+        this.duration = calculateDuration();
     }
 
     public Task(){} //Needed for JSON-file to work
@@ -42,8 +50,12 @@ public class Task {
     public ArrayList<TeamMember> getTeamMembers(){
         return this.teamMembers;
     }
-    public boolean getCompletion(){
-        return this.completion;
+    public String getCompletion(){
+        if (completion){
+            return "Completed";
+        }
+        else return "Not Completed";
+        //return this.completion;
     }
     public void setCompletion(boolean status){
         this.completion = status;
@@ -64,6 +76,16 @@ public class Task {
     }
     public void setTotalTeamMembers(){
         totalTeamMembers = totalTeamMembers();
+    }
+
+    private int calculateStartWeek(){
+        WeekFields weekFields = WeekFields.of(Locale.getDefault());
+        return startDate.get(weekFields.weekOfWeekBasedYear());
+    }
+
+    private int calculateDuration(){
+        long weeks = ChronoUnit.WEEKS.between(startDate,endDate);
+        return (int) weeks;
     }
 
     @Override

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
@@ -9,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/" fx:controller="se.turingturtles.controllers.CreateProjectController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="se.turingturtles.controllers.CreateProjectController">
    <center>
       <AnchorPane id="anchorpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="439.0" prefWidth="627.0" BorderPane.alignment="CENTER">
          <children>
@@ -18,16 +19,18 @@
                   <Font size="14.0" />
                </font>
             </Text>
-            <Label cache="true" cacheHint="SCALE" layoutX="154.0" layoutY="218.0" text="Project Duration" />
-            <Label cache="true" cacheHint="SCALE" layoutX="161.0" layoutY="114.0" text="Project Name" />
-            <Label cache="true" cacheHint="SCALE" layoutX="158.0" layoutY="170.0" text="Project Budget" />
-            <TextField fx:id="projectName" cache="true" cacheHint="SCALE" layoutX="341.0" layoutY="110.0" promptText="name" />
-            <TextField fx:id="projectDuration" cache="true" cacheHint="SCALE" layoutX="341.0" layoutY="214.0" promptText="duration in weeks" />
-            <TextField fx:id="projectBudget" cache="true" cacheHint="SCALE" layoutX="341.0" layoutY="166.0" promptText="budget" />
-            <Button fx:id="createNewProjectButton" cache="true" cacheHint="SCALE" layoutX="158.0" layoutY="338.0" mnemonicParsing="false" onAction="#createNewProject" prefHeight="25.0" prefWidth="329.0" text="Create new Project" />
+            <Label cache="true" cacheHint="SCALE" layoutX="161.0" layoutY="183.0" text="Project Start" />
+            <Label cache="true" cacheHint="SCALE" layoutX="161.0" layoutY="92.0" text="Project Name" />
+            <Label cache="true" cacheHint="SCALE" layoutX="158.0" layoutY="135.0" text="Project Budget" />
+            <TextField fx:id="projectName" cache="true" cacheHint="SCALE" layoutX="341.0" layoutY="88.0" promptText="name" />
+            <TextField fx:id="projectBudget" cache="true" cacheHint="SCALE" layoutX="341.0" layoutY="131.0" promptText="budget" />
+            <Button fx:id="createNewProjectButton" cache="true" cacheHint="SCALE" layoutX="158.0" layoutY="350.0" mnemonicParsing="false" onAction="#createNewProject" prefHeight="25.0" prefWidth="329.0" text="Create new Project" />
             <Button fx:id="startPageButton" alignment="CENTER" cache="true" cacheHint="SCALE" layoutX="537.0" mnemonicParsing="false" onAction="#backToStartPage" prefHeight="47.0" prefWidth="90.0" text="Start Page" AnchorPane.bottomAnchor="392.0" AnchorPane.leftAnchor="537.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-            <RadioButton fx:id="disclaimerButton" layoutX="285.0" layoutY="296.0" mnemonicParsing="false" onAction="#activateCreateProjectButton" text="Accept" />
-            <Label layoutX="234.0" layoutY="262.0" prefHeight="17.0" prefWidth="190.0" text="Disclaimer Text to be entared...." />
+            <RadioButton fx:id="disclaimerButton" layoutX="285.0" layoutY="309.0" mnemonicParsing="false" onAction="#activateCreateProjectButton" text="Accept" />
+            <Label layoutX="234.0" layoutY="280.0" prefHeight="17.0" prefWidth="190.0" text="Disclaimer Text to be entared..." />
+            <Label cache="true" cacheHint="SCALE" layoutX="164.0" layoutY="226.0" text="Project End" />
+            <DatePicker fx:id="projectStart" layoutX="329.0" layoutY="179.0" promptText="Choose date:" />
+            <DatePicker fx:id="projectEnd" layoutX="329.0" layoutY="222.0" promptText="Choose date:" />
          </children>
       </AnchorPane>
    </center>

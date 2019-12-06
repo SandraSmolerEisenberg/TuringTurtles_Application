@@ -1,5 +1,8 @@
 package se.turingturtles.entities;
 
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+import java.time.temporal.WeekFields;
 import java.util.*;
 
 public class Project {
@@ -8,6 +11,8 @@ public class Project {
     private double budget;
     private int duration;    //In weeks
     private int startWeek;
+    private LocalDate projectStartDate;
+    private LocalDate projectEndDate;
     private int endWeek;
     private int startYear;
     private List<TeamMember> teamMembers;
@@ -16,40 +21,48 @@ public class Project {
     private long nextUpdateMilli;
 
 
-    public Project(String name, double budget, int duration){
+
+
+
+    public Project(String name, double budget, LocalDate projectStart, LocalDate projectEnd){
         this.name = name;
-        this.duration = duration;
         this.budget = budget;
         this.teamMembers = new ArrayList<>();
         this.tasks = new ArrayList<>();
         this.risk = new ArrayList<>();
-        this.startWeek = assignStartWeek();
-        this.startYear = assignStartYear();
+        this.startWeek = assignStartWeek(projectStart);
+        this.startYear = assignStartYear(projectStart);
         this.nextUpdateMilli = 0;
+        this.projectStartDate = projectStart;
+        this.projectEndDate = projectEnd;
+        this.duration = calculateDuration();
         this.endWeek = calculateEndWeek();
-    }
 
-    private int calculateEndWeek() {
-        if(startWeek + duration > NUMBER_OF_WEEKS_IN_A_YEAR){
-            return (startWeek + duration) - NUMBER_OF_WEEKS_IN_A_YEAR;
-        }
-        else
-            return (startWeek + duration);
     }
-
     public Project(){} //Needed for JSON-file to work
 
-    // Assign the project start week and Year
-    public int assignStartYear() {
-        Calendar calendar = Calendar.getInstance(Locale.GERMANY);
-        calendar.setFirstDayOfWeek(Calendar.MONDAY);
-        return calendar.get(Calendar.YEAR);    }
-
-    public int assignStartWeek() {
-        Calendar calendar = Calendar.getInstance(Locale.GERMANY);
-        calendar.setFirstDayOfWeek(Calendar.MONDAY);
-        return calendar.get(Calendar.WEEK_OF_YEAR);
+    private int calculateEndWeek() {
+        WeekFields weekFields = WeekFields.of(Locale.getDefault());
+        return projectEndDate.get(weekFields.weekOfWeekBasedYear());
     }
+
+    private int calculateDuration(){
+    long weeks = ChronoUnit.WEEKS.between(projectStartDate,projectEndDate);
+    return (int) weeks;
+    }
+    // Assign the project start week and Year
+    private int assignStartYear(LocalDate projectStart) {
+        return projectStart.getYear();    }
+
+    private int assignStartWeek(LocalDate projectStart) {
+        WeekFields weekFields = WeekFields.of(Locale.getDefault());
+        return projectStart.get(weekFields.weekOfWeekBasedYear());
+    }
+
+    public static int getNumberOfWeeksInAYear() {
+        return NUMBER_OF_WEEKS_IN_A_YEAR;
+    }
+
     public int getEndWeek() {
         return endWeek;
     }
@@ -58,6 +71,21 @@ public class Project {
         this.endWeek = endWeek;
     }
 
+    public LocalDate getProjectStartDate() {
+        return projectStartDate;
+    }
+
+    public void setProjectStartDate(LocalDate projectStartDate) {
+        this.projectStartDate = projectStartDate;
+    }
+
+    public LocalDate getProjectEndDate() {
+        return projectEndDate;
+    }
+
+    public void setProjectEndDate(LocalDate projectEndDate) {
+        this.projectEndDate = projectEndDate;
+    }
 
     public int getStartWeek() {
         return startWeek;

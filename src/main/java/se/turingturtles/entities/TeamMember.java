@@ -3,6 +3,8 @@ package se.turingturtles.entities;
 import se.turingturtles.implementations.ProjectManagementImp;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Locale;
 import java.util.Objects;
 
 public class TeamMember {
@@ -51,12 +53,18 @@ public class TeamMember {
         return tasks.size();
     }
     public int getWeeksSpent(){
-        int currentWeek = ProjectManagementImp.getProject().assignStartWeek();
+        int currentWeek = assignStartWeek();
         int weeksSpent = 0;
         for(Task obj : tasks){
             weeksSpent += (currentWeek - obj.getStartWeek());
         }
         return weeksSpent;
+    }
+
+    private int assignStartWeek(){
+        Calendar calendar = Calendar.getInstance(Locale.GERMANY);
+        calendar.setFirstDayOfWeek(Calendar.MONDAY);
+        return calendar.get(Calendar.WEEK_OF_YEAR);
     }
     public int getTimeSpent(){
         int hoursPerWeek = 40;

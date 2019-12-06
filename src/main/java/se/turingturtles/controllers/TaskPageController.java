@@ -5,10 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
@@ -21,6 +18,10 @@ import se.turingturtles.Validator;
 import se.turingturtles.entities.Task;
 import se.turingturtles.implementations.ProjectFactory;
 import se.turingturtles.implementations.ProjectManagementImp;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Date;
 
 public class TaskPageController {
 
@@ -49,19 +50,21 @@ public class TaskPageController {
     private Text taskHeaderText;
 
     @FXML
+    private DatePicker taskStartDate;
+
+    @FXML
+    private DatePicker taskEndDate;
+
+    @FXML
     private AnchorPane createTaskAnchorPane;
 
     @FXML
     private TextField newTaskName;
 
     @FXML
-    private TextField newTaskStartWeek;
-
-    @FXML
-    private TextField newTaskDuration;
-
-    @FXML
     private Button newTaskCreateButton;
+    @FXML
+    private AnchorPane tableAnchorPane;
 
     private ProjectFactory projectFactory = new ProjectFactory();
     private ProjectManagement projectManagement = projectFactory.makeProjectManagement();
@@ -74,75 +77,72 @@ public class TaskPageController {
         taskStatus.setCellValueFactory(new PropertyValueFactory<>("completion"));
         ObservableList<Task> tasks = FXCollections.observableArrayList(projectManagement.retrieveTasks());
         taskTableView.setItems(tasks);
-
+        setDatePicker(taskStartDate);
+        setDatePicker(taskEndDate);
         createTaskAnchorPane.setVisible(false);
+        tableAnchorPane.setVisible(true);
+    }
+
+    private void updateTable(){
+        ObservableList<Task> tasks = FXCollections.observableArrayList(projectManagement.retrieveTasks());
+        taskTableView.setItems(tasks);
+    }
+    private void setDatePicker(DatePicker datePicker){
+        datePicker.setStyle(String.valueOf(ProjectManagementImp.getProject().getProjectStartDate()));
+        datePicker.setDayCellFactory(picker -> new DateCell() {
+            public void updateItem(LocalDate date, boolean empty) {
+                super.updateItem(date, empty);
+                LocalDate projectStartDay = ProjectManagementImp.getProject().getProjectStartDate();
+                LocalDate projectFinalDay = ProjectManagementImp.getProject().getProjectEndDate();
+                setDisable(date.isAfter(projectFinalDay) || date.isBefore(projectStartDay));
+            }
+        });
+        datePicker.setPromptText("Choose date:");
     }
 
     @FXML public void createNewTask(ActionEvent event){
-        if (taskTableView.isVisible()){
-            taskTableView.setVisible(false);
+        if (tableAnchorPane.isVisible()){
+
+            tableAnchorPane.setVisible(false);
             createTaskAnchorPane.setVisible(true);
             taskCreateTaskButton.setText("View Tasks");
         }
         else {
             createTaskAnchorPane.setVisible(false);
-            taskTableView.setVisible(true);
+            tableAnchorPane.setVisible(true);
             taskCreateTaskButton.setText("Create Task");
         }
 
     }
     @FXML public void applyNewTask(ActionEvent event){
         String name = newTaskName.getText();
-        String duration = newTaskDuration.getText();
-        String startWeek = newTaskStartWeek.getText();
+        LocalDate taskStart = taskStartDate.getValue();
+        LocalDate taskEnd = taskEndDate.getValue();
         Validator validator = projectFactory.makeValidator();
-        if (validator.validateNumericInput(duration) && validator.validateNumericInput(startWeek) && validator.validateTextInput(name) ){
-            int newStartWeek = Integer.parseInt(startWeek);
-            int newDuration = Integer.parseInt(duration);
-            if (newStartWeek < ProjectManagementImp.getProject().getStartWeek()){
-                newTaskStartWeek.clear();
-                newTaskStartWeek.setPromptText("Start Week Can NOT be outside of the project duration!");
-                //Color to be changed
-                newTaskStartWeek.setBackground(new Background(new BackgroundFill(Color.BEIGE, CornerRadii.EMPTY, Insets.EMPTY)));
-
-            }
-            else if (newDuration > ProjectManagementImp.getProject().getDuration()){
-                newTaskDuration.clear();
-                newTaskDuration.setPromptText("Duration Can NOT be outside of the project duration!!");
-                //Color to be changed
-                newTaskDuration.setBackground(new Background(new BackgroundFill(Color.BEIGE, CornerRadii.EMPTY, Insets.EMPTY)));
-            }
-            else {
-                ProjectManagement projectManagement = projectFactory.makeProjectManagement();
-                projectManagement.createTask(name, newStartWeek, newDuration);
+        if (validator.validateTextInput(name) && validator.validateDate(taskStart, taskEnd)) {
+                projectManagement.createTask(name, taskStart, taskEnd);
+                updateTable();
+                resetCreateTaskFields();
                 newTaskName.clear();
-                newTaskStartWeek.clear();
-                newTaskDuration.clear();
-            }
+
         }
-        else {
-            if (!validator.validateNumericInput(startWeek)){
-                newTaskStartWeek.clear();
-                newTaskStartWeek.setPromptText("Invalid Start Week!");
-                //Color to be changed
-                newTaskStartWeek.setBackground(new Background(new BackgroundFill(Color.BEIGE, CornerRadii.EMPTY, Insets.EMPTY)));
+        else if (!validator.validateTextInput(name)) {
+            newTaskName.clear();
+            newTaskName.setPromptText("Invalid Name!");
+        }
+        else if(!validator.validateDate(taskStart, taskEnd)){
+            resetCreateTaskFields();
+            taskStartDate.setPromptText("Set Valid Date!");
+            taskEndDate.setPromptText("Set Valid Date!");
 
-            }
-            if (!validator.validateNumericInput(duration)){
-                newTaskDuration.clear();
-                newTaskDuration.setPromptText("Invalid Duration!");
-                //Color to be changed
-                newTaskDuration.setBackground(new Background(new BackgroundFill(Color.BEIGE, CornerRadii.EMPTY, Insets.EMPTY)));
-
-            } if (!validator.validateTextInput(name)){
-                newTaskName.clear();
-                newTaskName.setPromptText("Invalid Name!");
-                //Color to be changed
-                newTaskName.setBackground(new Background(new BackgroundFill(Color.BEIGE, CornerRadii.EMPTY, Insets.EMPTY)));
-
-            }
         }
 
+    }
+
+    private void resetCreateTaskFields(){
+        taskStartDate.getEditor().clear();
+        taskEndDate.getEditor().clear();
+        newTaskName.setPromptText("Enter name:");
     }
 
 }
