@@ -2,6 +2,7 @@ package se.turingturtles.entities;
 
 import se.turingturtles.implementations.ProjectManagementImp;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
@@ -55,8 +56,13 @@ public class TeamMember {
     public int getWeeksSpent(){
         int currentWeek = assignStartWeek();
         int weeksSpent = 0;
+        LocalDate currentDate = LocalDate.now();
         for(Task obj : tasks){
-            weeksSpent += (currentWeek - obj.getStartWeek());
+            if(currentDate.isBefore(obj.getEndDate()) && currentDate.isAfter(obj.getStartDate())) {
+                weeksSpent += (currentWeek - obj.getStartWeek());
+            }else if(currentDate.isAfter(obj.getEndDate())){
+                weeksSpent += obj.getDuration();
+            }
         }
         return weeksSpent;
     }

@@ -37,6 +37,23 @@ public class Task {
     public void setName(String newName){
         this.name = newName;
     }
+
+    public LocalDate getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
+    }
+
+    public LocalDate getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(LocalDate endDate) {
+        this.endDate = endDate;
+    }
+
     public int getStartWeek(){
         return this.startWeek;
     }

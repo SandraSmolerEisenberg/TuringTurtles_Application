@@ -20,6 +20,11 @@ public class ProjectManagementImp implements ProjectManagement {
     private static Project project;
     private ProjectFactory factory;
 
+
+    public ProjectManagementImp() {
+        this.factory =  new ProjectFactory();
+    }
+
     public void triggerCalculations(){
         Date today = new Date();
         long todayMilli = today.getTime();
@@ -31,19 +36,15 @@ public class ProjectManagementImp implements ProjectManagement {
         if(todayMilli >= nextUpdateMilli) {
 
             ProjectCalculations calculations = factory.makeProjectCalculations();
-            calculations.calculateCostVariance();
-            calculations.calculateEarnedValue();
-            calculations.calculateScheduleVariance();
+            project.setCostVariance(calculations.calculateCostVariance());
+            project.setEarnedValue(calculations.calculateEarnedValue());
+            project.setScheduleVariance(calculations.calculateScheduleVariance());
 
             //calculate and set the next update day in milliseconds
             nextUpdateMilli = todayMilli + (MILLI_SEC_PER_DAY * DAYS_OF_UPD_INTERVAL);
             project.setNextUpdateMilli(nextUpdateMilli);
         }
 
-    }
-
-    public ProjectManagementImp() {
-        this.factory =  new ProjectFactory();
     }
 
     @Override
@@ -173,5 +174,7 @@ public class ProjectManagementImp implements ProjectManagement {
     public static Project getProject() {
         return project;
     }
+
+
 
 }

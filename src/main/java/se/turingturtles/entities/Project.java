@@ -19,6 +19,9 @@ public class Project {
     private List<Task> tasks;
     private List<Risk> risk;
     private long nextUpdateMilli;
+    private double costVariance;
+    private double earnedValue;
+    private double scheduleVariance;
 
 
 
@@ -37,8 +40,12 @@ public class Project {
         this.projectEndDate = projectEnd;
         this.duration = calculateDuration();
         this.endWeek = calculateEndWeek();
-
+        this.costVariance = 0;
+        this.earnedValue = 0;
+        this.scheduleVariance = 0;
     }
+
+
     public Project(){} //Needed for JSON-file to work
 
     private int calculateEndWeek() {
@@ -156,6 +163,30 @@ public class Project {
 
     public void setRisk(List<Risk> risk) {
         this.risk = risk;
+    }
+
+    public double getCostVariance() {
+        return costVariance;
+    }
+
+    public void setCostVariance(double costVariance) {
+        this.costVariance = costVariance;
+    }
+
+    public double getEarnedValue() {
+        return earnedValue;
+    }
+
+    public void setEarnedValue(double earnedValue) {
+        this.earnedValue = earnedValue;
+    }
+
+    public double getScheduleVariance() {
+        return scheduleVariance;
+    }
+
+    public void setScheduleVariance(double scheduleVariance) {
+        this.scheduleVariance = scheduleVariance;
     }
 
     @Override
