@@ -5,7 +5,7 @@
 @import "05-teamtab.css";
 @import "06-risktab.css";
 @import "07-calctab.css";
-.root {
+.root AnchorPane {
   -fx-color: #373A43;
   -fx-background: linear-gradient(to top right, #f0f0f0 0%, white 100%);
 }

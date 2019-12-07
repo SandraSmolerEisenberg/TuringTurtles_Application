@@ -20,13 +20,13 @@ public class StartPageController {
     @FXML
     private Text startPageText;
 
+    ProjectFactory factory = new ProjectFactory();
 
-    public void createNewProject(ActionEvent event) {
-
+    public void createNewProject(ActionEvent event) throws IOException {
+        factory.changeScene(loadProjectButton.getScene(),"projectoverview");
     }
 
     public void loadProject(ActionEvent event) {
-        ProjectFactory factory = new ProjectFactory();
         StreamJSON testStream = factory.makeStream();
         try {
             testStream.importFromJSON("project.json");

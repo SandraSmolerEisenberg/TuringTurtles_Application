@@ -35,10 +35,10 @@ public class Main extends Application {
         window.setResizable(true);
 
         //Scene creation.
-        Scene scene = new Scene(factory.loadFXML("projectmanagement"), width, height);
+        Scene scene = new Scene(factory.loadFXML("startpage"), width, height);
         scene.getStylesheets().addAll();
         window.setScene(scene);
-        scene.getStylesheets().add(getClass().getResource("/se/turingturtles/css/projectoverview.css").toExternalForm());
+        scene.getStylesheets().add(getClass().getResource("/se/turingturtles/css/00-default.css").toExternalForm());
 
         //Application window title.
         window.setTitle("Turing Turtles");
@@ -47,7 +47,7 @@ public class Main extends Application {
         window.show();
 
         //Application fonts.
-        Font.loadFont(getStylesheets().add(getClass().getResource("https://fonts.googleapis.com/css?family=Lobster|Open+Sans+Condensed:300,300i,700|Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&display=swap&subset=latin-ext")));
+        //Font.loadFont(getStylesheets().add(getClass().getResource("https://fonts.googleapis.com/css?family=Lobster|Open+Sans+Condensed:300,300i,700|Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&display=swap&subset=latin-ext")));
     }
 
 
