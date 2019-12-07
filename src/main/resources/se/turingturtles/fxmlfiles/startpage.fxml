@@ -36,7 +36,7 @@
 </children></AnchorPane>
 -->
 
-<AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="se.turingturtles.controllers.StartPageController">
+<AnchorPane stylesheets="@../css/00-default.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="se.turingturtles.controllers.StartPageController">
    <children>
       <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Turing Turtle" />
@@ -46,4 +46,3 @@
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Disclaimer: Current projects are overwritten whenever a new project is created." />
    </children>
 </AnchorPane>
-

@@ -1,4 +1,12 @@
+@import "01-startpage.css";
+@import "02-createproject.css";
+@import "03-projectoverview.css";
+@import "04-tasktab.css";
+@import "05-teamtab.css";
+@import "06-risktab.css";
+@import "07-calctab.css";
 .root {
+  -fx-color: #373A43;
   -fx-background: linear-gradient(to top right, #f0f0f0 0%, white 100%);
 }
 
