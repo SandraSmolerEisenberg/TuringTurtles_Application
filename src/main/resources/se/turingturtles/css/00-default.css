@@ -1,5 +1,5 @@
 .root {
-  -fx-background: linear-gradient(to top right, white 0%, white 100%);
+  -fx-background: linear-gradient(to top right, #f0f0f0 0%, white 100%);
 }
 
 /*# sourceMappingURL=00-default.css.map */
