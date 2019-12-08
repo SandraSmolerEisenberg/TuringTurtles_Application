@@ -80,8 +80,6 @@ public class Main extends Application {
             projectManagement.createRisk("Risk7", 5,10);
             projectManagement.createRisk("Risk8", 1,7);
             projectManagement.completeTask(ProjectManagementImp.getProject().getTasks().get(0)); //Complete a task
-            projectManagement.assignTask(projectManagement.findTeamMember(1), (projectManagement.findTask("Task1")));
-
         }
     }
 

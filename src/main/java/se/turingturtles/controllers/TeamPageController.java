@@ -7,6 +7,7 @@
     import javafx.fxml.FXML;
     import javafx.geometry.Insets;
     import javafx.scene.control.*;
+    import javafx.scene.control.cell.PropertyValueFactory;
     import javafx.scene.layout.AnchorPane;
     import javafx.scene.layout.Background;
     import javafx.scene.layout.BackgroundFill;
@@ -60,7 +61,17 @@
         @FXML
         private Text memberAssignTaskInfoText;
         @FXML
-        private ListView assignTaskList;
+        private TableView assignTaskTable;
+        @FXML
+        private TableColumn taskName;
+        @FXML
+        private TableColumn taskStartWeek;
+        @FXML
+        private TableColumn taskDuration;
+        @FXML
+        private TableColumn taskTeamMembersAmount;
+        @FXML
+        private TableColumn taskStatus;
 
         ProjectFactory factory = new ProjectFactory();
         ProjectManagement projectManagement = factory.makeProjectManagement();
@@ -185,9 +196,15 @@
                 }
             }
         }
+
         public void loadAssignTaskList(){
+            taskName.setCellValueFactory(new PropertyValueFactory<>("name"));
+            taskStartWeek.setCellValueFactory(new PropertyValueFactory<>("startWeek"));
+            taskDuration.setCellValueFactory(new PropertyValueFactory<>("duration"));
+            taskTeamMembersAmount.setCellValueFactory(new PropertyValueFactory<>("totalTeamMembers"));
+            taskStatus.setCellValueFactory(new PropertyValueFactory<>("completion"));
             ObservableList<Task> tasks = FXCollections.observableArrayList(projectManagement.retrieveTasks());
-            assignTaskList.setItems(tasks);
+            assignTaskTable.setItems(tasks);
         }
         public void showMemberAssignTaskPage(Event event){
             memberInfoPage.setVisible(false);
@@ -196,26 +213,26 @@
             loadAssignTaskList();
         }
         public void assignTaskToMember(Event event){
-            if(assignTaskList.getSelectionModel().getSelectedItem() == null){
+            if(assignTaskTable.getSelectionModel().getSelectedItem() == null){
                 Alert selectionError = new Alert(Alert.AlertType.ERROR);
                 selectionError.setTitle("Error!");
                 selectionError.setHeaderText("No task selected!");
                 selectionError.setContentText("Please select a task from the task list below.");
                 selectionError.showAndWait();
             }else {
-                if (!projectManagement.findTeamMember(lastViewedID).getTasks().contains(assignTaskList.getSelectionModel().getSelectedItem())) {
-                    projectManagement.assignTask(projectManagement.findTeamMember(lastViewedID), (Task) assignTaskList.getSelectionModel().getSelectedItem());
+                if (!projectManagement.findTeamMember(lastViewedID).getTasks().contains(assignTaskTable.getSelectionModel().getSelectedItem())) {
+                    projectManagement.assignTask(projectManagement.findTeamMember(lastViewedID), (Task) assignTaskTable.getSelectionModel().getSelectedItem());
                     loadAssignTaskList();
                     Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
                     successAlert.setTitle("Success!");
                     successAlert.setHeaderText("Successful assignment!");
-                    successAlert.setContentText("You have added " + projectManagement.findTeamMember(lastViewedID).getName() + " to " + ((Task) assignTaskList.getSelectionModel().getSelectedItem()).getName() + ".");
+                    successAlert.setContentText("You have added " + projectManagement.findTeamMember(lastViewedID).getName() + " to " + ((Task) assignTaskTable.getSelectionModel().getSelectedItem()).getName() + ".");
                     successAlert.showAndWait();
                 } else {
                     Alert assignmentError = new Alert(Alert.AlertType.ERROR);
                     assignmentError.setTitle("Error!");
                     assignmentError.setHeaderText("Assignment to task failed!");
-                    assignmentError.setContentText(projectManagement.findTeamMember(lastViewedID).getName() + " is already assigned to " + ((Task) assignTaskList.getSelectionModel().getSelectedItem()).getName() + ".");
+                    assignmentError.setContentText(projectManagement.findTeamMember(lastViewedID).getName() + " is already assigned to " + ((Task) assignTaskTable.getSelectionModel().getSelectedItem()).getName() + ".");
                     assignmentError.showAndWait();
                 }
             }

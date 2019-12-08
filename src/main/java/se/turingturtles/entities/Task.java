@@ -78,7 +78,7 @@ public class Task {
         this.completion = status;
     }
     public int getTotalTeamMembers(){
-        return totalTeamMembers;
+        return teamMembers.size();
     }
     //--------------------Methods--------------------
     public void addTeamMember(TeamMember teamMember){
