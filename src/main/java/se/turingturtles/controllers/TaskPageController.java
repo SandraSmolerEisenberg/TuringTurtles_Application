@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
@@ -18,6 +19,7 @@ import javafx.util.StringConverter;
 import se.turingturtles.ProjectManagement;
 import se.turingturtles.Validator;
 import se.turingturtles.entities.Task;
+import se.turingturtles.entities.TeamMember;
 import se.turingturtles.implementations.ProjectFactory;
 import se.turingturtles.implementations.ProjectManagementImp;
 
@@ -30,10 +32,16 @@ import java.util.Date;
 public class TaskPageController {
     @FXML
     public AnchorPane taskPage;
+
     @FXML
     public TableColumn taskEndWeek;
+
+    @FXML
     public Button viewTaskButton;
+
+    @FXML
     public Label viewTaskErrorMsg;
+
     @FXML
     private TableView taskTableView;
 
@@ -72,13 +80,41 @@ public class TaskPageController {
 
     @FXML
     private Button newTaskCreateButton;
+
     @FXML
     private AnchorPane tableAnchorPane;
+
+    //-----Detailed View Attributes Start-----
+    @FXML
+    private AnchorPane taskDetailsAnchorPane;
+    @FXML
+    private Text taskDetailsViewHeaderText;
+    @FXML
+    private Text taskDetailsStartWeekText;
+    @FXML
+    private Text taskDetailsEndWeekText;
+    @FXML
+    private Text taskDetailsDurationText;
+    @FXML
+    private Text taskDetailsTeamMembersText;
+    @FXML
+    private Text taskDetailsStatusText;
+    @FXML
+    private ListView taskDetailsTeamMemberList;
+    @FXML
+    private Button taskDetailsEditTaskButton;
+    @FXML
+    private Button taskDetailsDeleteTaskButton;
+    @FXML
+    private Button taskDetailsAssignButton;
+
+    //-----Detailed View Attributes End-----
 
     private ProjectFactory projectFactory = new ProjectFactory();
     private ProjectManagement projectManagement = projectFactory.makeProjectManagement();
 
     @FXML private void initialize(){
+        tableAnchorPane.setVisible(true);
         taskName.setCellValueFactory(new PropertyValueFactory<>("name"));
         taskStartWeek.setCellValueFactory(new PropertyValueFactory<>("startWeek"));
         taskDuration.setCellValueFactory(new PropertyValueFactory<>("duration"));
@@ -89,14 +125,12 @@ public class TaskPageController {
         taskTableView.setItems(tasks);
         taskTableView.setEditable(true);
         taskTableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-
         setDatePicker(taskStartDate, "StartDate");
         setDatePicker(taskEndDate, "EndDate");
         createTaskAnchorPane.setVisible(false);
+        taskDetailsAnchorPane.setVisible(false);
         tableAnchorPane.setVisible(true);
     }
-
-
 
     private void updateTable(){
         ObservableList<Task> tasks = FXCollections.observableArrayList(projectManagement.retrieveTasks());
@@ -126,15 +160,17 @@ public class TaskPageController {
         if (tableAnchorPane.isVisible()){
             tableAnchorPane.setVisible(false);
             createTaskAnchorPane.setVisible(true);
-            taskCreateTaskButton.setText("View Tasks");
+            taskCreateTaskButton.setText("Back");
+            viewTaskButton.setDisable(true);
         }
         else {
             createTaskAnchorPane.setVisible(false);
             tableAnchorPane.setVisible(true);
             taskCreateTaskButton.setText("Create Task");
+            viewTaskButton.setDisable(false);
         }
-
     }
+
     @FXML public void makeNewTask(ActionEvent event){
         String name = newTaskName.getText();
         LocalDate taskStart = taskStartDate.getValue();
@@ -160,9 +196,6 @@ public class TaskPageController {
                 resetCreateTaskFields();
                 newTaskName.clear();
             }
-
-
-
         }
         else if (!validator.validateTextInput(name)) {
             newTaskName.clear();
@@ -172,10 +205,7 @@ public class TaskPageController {
             resetCreateTaskFields();
             taskStartDate.setPromptText("Set Valid Date!");
             taskEndDate.setPromptText("Set Valid Date!");
-
         }
-
-
     }
 
     private void resetCreateTaskFields(){
@@ -199,6 +229,29 @@ public class TaskPageController {
     }
 
     private void loadViewTaskAnchorPane(){
+        if (taskTableView.isVisible()){
+            taskTableView.setVisible(false);
+            taskDetailsAnchorPane.setVisible(true);
+            viewTaskButton.setText("Back");
+            taskCreateTaskButton.setDisable(true);
+        }
+        else {
+            taskDetailsAnchorPane.setVisible(false);
+            taskTableView.setVisible(true);
+            viewTaskButton.setText("View Task");
+            taskCreateTaskButton.setDisable(false);
+        }
+
+        Task task = (Task) taskTableView.getSelectionModel().getSelectedItem();
+        taskDetailsViewHeaderText.setText(task.getName());
+        taskDetailsStartWeekText.setText("" + task.getStartWeek());
+        taskDetailsEndWeekText.setText("" + task.getEndWeek());
+        taskDetailsDurationText.setText("" + task.getDuration());
+        taskDetailsTeamMembersText.setText("" + task.getTotalTeamMembers());
+        taskDetailsStatusText.setText(task.getCompletion());
+        ObservableList<TeamMember> teamMembers = FXCollections.observableArrayList(task.getTeamMembers());
+        taskDetailsTeamMemberList.setItems(teamMembers);
+
 
     }
 }
