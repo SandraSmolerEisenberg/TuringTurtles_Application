@@ -131,10 +131,27 @@ public class TaskPageController {
         taskEnd = taskEnd.plusDays(1);
         Validator validator = projectFactory.makeValidator();
         if (validator.validateTextInput(name) && validator.validateDate(taskStart, taskEnd)) {
+            boolean sameName = false;
+            ArrayList<Task> tasks = (ArrayList<Task>) projectManagement.retrieveTasks();
+            System.out.println(tasks);
+            for (int i = 0; i < tasks.size(); i++ ){
+                if (tasks.get(i).getName().equals(name)) {
+                    sameName = true;
+                    break;
+                }
+            }
+            if (sameName){
+                newTaskName.clear();
+                newTaskName.setPromptText("Invalid Name!");
+            }
+            else {
                 projectManagement.createTask(name, taskStart, taskEnd);
                 updateTable();
                 resetCreateTaskFields();
                 newTaskName.clear();
+            }
+
+
 
         }
         else if (!validator.validateTextInput(name)) {
@@ -147,6 +164,7 @@ public class TaskPageController {
             taskEndDate.setPromptText("Set Valid Date!");
 
         }
+
 
     }
 
