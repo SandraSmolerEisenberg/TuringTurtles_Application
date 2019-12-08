@@ -3,6 +3,7 @@ package se.turingturtles.controllers;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
@@ -20,14 +21,19 @@ import se.turingturtles.entities.Task;
 import se.turingturtles.implementations.ProjectFactory;
 import se.turingturtles.implementations.ProjectManagementImp;
 
+import java.awt.event.MouseEvent;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
 public class TaskPageController {
-
+    @FXML
     public AnchorPane taskPage;
+    @FXML
+    public TableColumn taskEndWeek;
+    public Button viewTaskButton;
+    public Label viewTaskErrorMsg;
     @FXML
     private TableView taskTableView;
 
@@ -78,13 +84,19 @@ public class TaskPageController {
         taskDuration.setCellValueFactory(new PropertyValueFactory<>("duration"));
         taskTeamMembersAmount.setCellValueFactory(new PropertyValueFactory<>("totalTeamMembers"));
         taskStatus.setCellValueFactory(new PropertyValueFactory<>("completion"));
+        taskEndWeek.setCellValueFactory(new PropertyValueFactory<>("endWeek"));
         ObservableList<Task> tasks = FXCollections.observableArrayList(projectManagement.retrieveTasks());
         taskTableView.setItems(tasks);
+        taskTableView.setEditable(true);
+        taskTableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+
         setDatePicker(taskStartDate, "StartDate");
         setDatePicker(taskEndDate, "EndDate");
         createTaskAnchorPane.setVisible(false);
         tableAnchorPane.setVisible(true);
     }
+
+
 
     private void updateTable(){
         ObservableList<Task> tasks = FXCollections.observableArrayList(projectManagement.retrieveTasks());
@@ -112,7 +124,6 @@ public class TaskPageController {
 
     @FXML public void createNewTask(ActionEvent event){
         if (tableAnchorPane.isVisible()){
-
             tableAnchorPane.setVisible(false);
             createTaskAnchorPane.setVisible(true);
             taskCreateTaskButton.setText("View Tasks");
@@ -133,7 +144,6 @@ public class TaskPageController {
         if (validator.validateTextInput(name) && validator.validateDate(taskStart, taskEnd)) {
             boolean sameName = false;
             ArrayList<Task> tasks = (ArrayList<Task>) projectManagement.retrieveTasks();
-            System.out.println(tasks);
             for (int i = 0; i < tasks.size(); i++ ){
                 if (tasks.get(i).getName().equals(name)) {
                     sameName = true;
@@ -174,4 +184,21 @@ public class TaskPageController {
         newTaskName.setPromptText("Enter name:");
     }
 
+
+    public void selectTaskRow(ActionEvent event){
+        Task task = (Task) taskTableView.getSelectionModel().getSelectedItem();
+        if(task == null ){
+            viewTaskErrorMsg.setText("Select Task First");
+            viewTaskErrorMsg.setStyle("-fx-text-fill: red;");
+        }
+        else{
+            viewTaskErrorMsg.setVisible(false);
+            loadViewTaskAnchorPane();
+        }
+
+    }
+
+    private void loadViewTaskAnchorPane(){
+
+    }
 }

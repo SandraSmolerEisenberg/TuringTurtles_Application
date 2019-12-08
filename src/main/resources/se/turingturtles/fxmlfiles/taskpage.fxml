@@ -30,6 +30,7 @@
               <columns>
                 <TableColumn fx:id="taskName" prefWidth="75.0" text="Task Name" />
                   <TableColumn fx:id="taskStartWeek" prefWidth="75.0" text="Start Week" />
+                  <TableColumn fx:id="taskEndWeek" prefWidth="75.0" text="End Week" />
                   <TableColumn fx:id="taskDuration" prefWidth="75.0" text="Duration" />
                   <TableColumn fx:id="taskTeamMembersAmount" prefWidth="126.6666259765625" text="Team Members" />
                   <TableColumn fx:id="taskStatus" prefWidth="124.66665649414062" text="Status" />
@@ -37,5 +38,7 @@
             </TableView>
          </children>
       </AnchorPane>
+      <Button fx:id="viewTaskButton" layoutX="11.0" layoutY="90.0" mnemonicParsing="false" onAction="#selectTaskRow" prefHeight="25.0" prefWidth="84.0" text="View Task" />
+      <Label fx:id="viewTaskErrorMsg" layoutX="39.0" layoutY="142.0" />
    </children>
 </AnchorPane>

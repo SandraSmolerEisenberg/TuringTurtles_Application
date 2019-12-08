@@ -121,8 +121,8 @@ public class ProjectManagementImp implements ProjectManagement {
 
     @Override
     public void assignTask(TeamMember member, Task task) {
-        task.getTeamMembers().add(member);
-        member.getTasks().add(task);
+        task.addTeamMember(member);
+        member.addTask(task);
     }
 
     @Override

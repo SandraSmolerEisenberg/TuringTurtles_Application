@@ -10,6 +10,7 @@ public class Task {
 
     private String name;
     private int startWeek;
+    private int endWeek;
     private int duration; //number of weeks
     private ArrayList<TeamMember> teamMembers;
     private boolean completion;
@@ -26,6 +27,7 @@ public class Task {
         this.endDate = endDate;
         this.startWeek = calculateStartWeek();
         this.duration = calculateDuration();
+        this.endWeek = calculateEndWeek();
     }
 
     public Task(){} //Needed for JSON-file to work
@@ -74,6 +76,15 @@ public class Task {
         else return "Not Completed";
         //return this.completion;
     }
+
+    public int getEndWeek() {
+        return endWeek;
+    }
+
+    public void setEndWeek(int endWeek) {
+        this.endWeek = endWeek;
+    }
+
     public void setCompletion(boolean status){
         this.completion = status;
     }
@@ -81,6 +92,12 @@ public class Task {
         return teamMembers.size();
     }
     //--------------------Methods--------------------
+
+    private int calculateEndWeek(){
+        WeekFields weekFields = WeekFields.of(Locale.getDefault());
+        return endDate.get(weekFields.weekOfWeekBasedYear());
+    }
+
     public void addTeamMember(TeamMember teamMember){
         this.teamMembers.add(teamMember);
         setTotalTeamMembers();
