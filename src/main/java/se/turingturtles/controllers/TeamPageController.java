@@ -253,11 +253,11 @@
                     loadMemberInfoPage();
 
                 } else {
-                    Alert perkele = new Alert(Alert.AlertType.ERROR);
-                    perkele.setTitle("Error!");
-                    perkele.setHeaderText("Team member not found!");
-                    perkele.setContentText("There is not a team member with the ID you were looking for.");
-                    perkele.showAndWait();
+                    Alert memberNotFoundError = new Alert(Alert.AlertType.ERROR);
+                    memberNotFoundError.setTitle("Error!");
+                    memberNotFoundError.setHeaderText("Team member not found!");
+                    memberNotFoundError.setContentText("There is not a team member with the ID you were looking for.");
+                    memberNotFoundError.showAndWait();
                 }
                 searchBar.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
                 searchBar.clear();
