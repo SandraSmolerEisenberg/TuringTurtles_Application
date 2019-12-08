@@ -39,23 +39,18 @@ public class Task {
     public void setName(String newName){
         this.name = newName;
     }
-
     public LocalDate getStartDate() {
         return startDate;
     }
-
     public void setStartDate(LocalDate startDate) {
         this.startDate = startDate;
     }
-
     public LocalDate getEndDate() {
         return endDate;
     }
-
     public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
     }
-
     public int getStartWeek(){
         return this.startWeek;
     }
@@ -76,28 +71,25 @@ public class Task {
         else return "Not Completed";
         //return this.completion;
     }
-
     public int getEndWeek() {
         return endWeek;
     }
-
     public void setEndWeek(int endWeek) {
         this.endWeek = endWeek;
     }
-
     public void setCompletion(boolean status){
         this.completion = status;
     }
     public int getTotalTeamMembers(){
         return teamMembers.size();
     }
+
     //--------------------Methods--------------------
 
     private int calculateEndWeek(){
         WeekFields weekFields = WeekFields.of(Locale.getDefault());
         return endDate.get(weekFields.weekOfWeekBasedYear());
     }
-
     public void addTeamMember(TeamMember teamMember){
         this.teamMembers.add(teamMember);
         setTotalTeamMembers();
@@ -111,17 +103,14 @@ public class Task {
     public void setTotalTeamMembers(){
         totalTeamMembers = totalTeamMembers();
     }
-
     private int calculateStartWeek(){
         WeekFields weekFields = WeekFields.of(Locale.getDefault());
         return startDate.get(weekFields.weekOfWeekBasedYear());
     }
-
     private int calculateDuration(){
         long weeks = ChronoUnit.WEEKS.between(startDate,endDate);
         return (int) weeks;
     }
-
     @Override
     public String toString() {
         return "Task: " + this.getName() + ", Duration: " + this.getDuration() +
