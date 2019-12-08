@@ -11,6 +11,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.util.StringConverter;
 import se.turingturtles.ProjectManagement;
+import se.turingturtles.Validator;
 import se.turingturtles.entities.Task;
 import se.turingturtles.implementations.ProjectCalculationsImp;
 import se.turingturtles.implementations.ProjectFactory;
@@ -64,13 +65,11 @@ public class ProjectOverviewController {
         weeksAxis.setUpperBound(ProjectManagementImp.getProject().getStartWeek() + ProjectManagementImp.getProject().getDuration());
         weeksAxis.setLabel("Weeks");
         taskAxis.setLabel("Tasks");
-        for (Task task : tasks) {
-                series1.getData().add(new XYChart.Data<Integer, String>(task.getStartWeek(), task.getName()));
-                series2.getData().add(new XYChart.Data<Integer, String>(task.getDuration(), task.getName()));
-        }
+        // The code works for projects not longer of 2 years
         weeksAxis.setTickLabelFormatter(new StringConverter<Number>() {
             @Override
             public String toString(Number object) {
+
                 int week = (int) object.doubleValue();
                 if (week > WEEKS_PER_YEAR) {
                     week = week -WEEKS_PER_YEAR;
@@ -82,10 +81,22 @@ public class ProjectOverviewController {
                 return null;
             }
         });
+        for (Task task : tasks) {
+            //Works for projects less then 1 year
+            if (task.getStartDate().isAfter(ProjectManagementImp.getProject().getProjectStartDate()) && task.getStartWeek() < ProjectManagementImp.getProject().getStartWeek()){
+                series1.getData().add(new XYChart.Data<Integer, String>(task.getStartWeek() + WEEKS_PER_YEAR, task.getName()));
+                series2.getData().add(new XYChart.Data<Integer, String>(task.getDuration(), task.getName()));
+            }
+            else {
+                series1.getData().add(new XYChart.Data<Integer, String>(task.getStartWeek(), task.getName()));
+                series2.getData().add(new XYChart.Data<Integer, String>(task.getDuration(), task.getName()));
+            }
+
+
+        }
         series1.setName("Tasks");
         weeksAxis.setTickUnit(1.0);
         projectSchedule.getData().addAll(series1,series2);
-        projectSchedule.getStylesheets().add(
-                getClass().getResource("/se/turingturtles/css/03-projectoverview.css").toExternalForm());
+        projectSchedule.getStylesheets().add(getClass().getResource("/se/turingturtles/css/03-projectoverview.css").toExternalForm());
     }
 }

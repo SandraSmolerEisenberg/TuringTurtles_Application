@@ -72,7 +72,7 @@ public class TaskPageController {
     private ProjectFactory projectFactory = new ProjectFactory();
     private ProjectManagement projectManagement = projectFactory.makeProjectManagement();
 
-    @FXML public void initialize(){
+    @FXML private void initialize(){
         taskName.setCellValueFactory(new PropertyValueFactory<>("name"));
         taskStartWeek.setCellValueFactory(new PropertyValueFactory<>("startWeek"));
         taskDuration.setCellValueFactory(new PropertyValueFactory<>("duration"));

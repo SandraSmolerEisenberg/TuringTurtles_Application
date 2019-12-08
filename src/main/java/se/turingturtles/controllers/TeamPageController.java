@@ -67,7 +67,7 @@ public class TeamPageController {
     Validator validator = factory.makeValidator();
     private int lastViewedID;
 
-    @FXML public void initialize(){
+    @FXML private void initialize(){
         loadTeamList();
     }
 

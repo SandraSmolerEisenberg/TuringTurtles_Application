@@ -56,7 +56,7 @@ public class CreateProjectController {
            projectManagement.createProject(name , Double.parseDouble(budget) , projectStartDate, projectEndDate);
            projectBudget.clear();
            projectName.clear();
-           factory.changeScene(startPageButton.getScene(),"taskpage");
+           factory.changeScene(startPageButton.getScene(),"projectmaster");
        }
        else {
            if (!validator.validateNumericInput(budget)){
