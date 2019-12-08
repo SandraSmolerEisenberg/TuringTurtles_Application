@@ -2,6 +2,7 @@ package se.turingturtles.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import se.turingturtles.ProjectCalculations;
 import se.turingturtles.ProjectManagement;
@@ -16,6 +17,8 @@ import java.awt.*;
 import static java.lang.Integer.parseInt;
 
 public class ProjectManagementController {
+    @FXML
+    private AnchorPane projectManagementPage;
     @FXML
     private Text projectName;
     @FXML
@@ -46,6 +49,7 @@ public class ProjectManagementController {
     private Text activeTasks;
 
     private ProjectFactory factory = new ProjectFactory();
+    @FXML
     ProjectManagement projectManagement = factory.makeProjectManagement();
     ProjectCalculations projectCalculations = factory.makeProjectCalculations();
     Validator validator = factory.makeValidator();
@@ -66,9 +70,6 @@ public class ProjectManagementController {
         timeOnTasks.setText("Total time spent on project: " + projectManagement.timeSpentOnProject() + " Weeks");
         completedTasks.setText("No. completed tasks: " + countCompletedTasks());
         activeTasks.setText("No. Active or planned tasks: " + countActiveTasks());
-
-
-
 
     }
     @FXML

@@ -22,6 +22,7 @@ import se.turingturtles.implementations.ProjectManagementImp;
 
 public class TeamPageController {
 
+    public AnchorPane teamPage;
     @FXML
     private ListView teamList;
     @FXML
@@ -65,6 +66,10 @@ public class TeamPageController {
     ProjectManagement projectManagement = factory.makeProjectManagement();
     Validator validator = factory.makeValidator();
     private int lastViewedID;
+
+    @FXML public void initialize(){
+        loadTeamList();
+    }
 
     public void loadTeamList() {
         ObservableList<TeamMember> members = FXCollections.observableArrayList(projectManagement.getTeamMembers());

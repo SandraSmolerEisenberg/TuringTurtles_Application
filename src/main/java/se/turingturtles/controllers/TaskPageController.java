@@ -13,18 +13,21 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import javafx.util.StringConverter;
 import se.turingturtles.ProjectManagement;
 import se.turingturtles.Validator;
 import se.turingturtles.entities.Task;
 import se.turingturtles.implementations.ProjectFactory;
 import se.turingturtles.implementations.ProjectManagementImp;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
 public class TaskPageController {
 
+    public AnchorPane taskPage;
     @FXML
     private TableView taskTableView;
 
@@ -77,8 +80,8 @@ public class TaskPageController {
         taskStatus.setCellValueFactory(new PropertyValueFactory<>("completion"));
         ObservableList<Task> tasks = FXCollections.observableArrayList(projectManagement.retrieveTasks());
         taskTableView.setItems(tasks);
-        setDatePicker(taskStartDate);
-        setDatePicker(taskEndDate);
+        setDatePicker(taskStartDate, "StartDate");
+        setDatePicker(taskEndDate, "EndDate");
         createTaskAnchorPane.setVisible(false);
         tableAnchorPane.setVisible(true);
     }
@@ -87,14 +90,21 @@ public class TaskPageController {
         ObservableList<Task> tasks = FXCollections.observableArrayList(projectManagement.retrieveTasks());
         taskTableView.setItems(tasks);
     }
-    private void setDatePicker(DatePicker datePicker){
+    private void setDatePicker(DatePicker datePicker, String calendar){
+        datePicker.setEditable(false);
         datePicker.setStyle(String.valueOf(ProjectManagementImp.getProject().getProjectStartDate()));
+        StringConverter<LocalDate> defaultConverter = datePicker.getConverter();
         datePicker.setDayCellFactory(picker -> new DateCell() {
             public void updateItem(LocalDate date, boolean empty) {
                 super.updateItem(date, empty);
                 LocalDate projectStartDay = ProjectManagementImp.getProject().getProjectStartDate();
                 LocalDate projectFinalDay = ProjectManagementImp.getProject().getProjectEndDate();
-                setDisable(date.isAfter(projectFinalDay) || date.isBefore(projectStartDay));
+                if (calendar.equals("StartDate")) {
+                    setDisable(date.isAfter(projectFinalDay) || date.isBefore(projectStartDay) || date.getDayOfWeek() != DayOfWeek.MONDAY);
+                }
+                else if (calendar.equals("EndDate")){
+                    setDisable(date.isAfter(projectFinalDay) || date.isBefore(projectStartDay) || date.getDayOfWeek() != DayOfWeek.SUNDAY);
+                }
             }
         });
         datePicker.setPromptText("Choose date:");
@@ -114,10 +124,11 @@ public class TaskPageController {
         }
 
     }
-    @FXML public void applyNewTask(ActionEvent event){
+    @FXML public void makeNewTask(ActionEvent event){
         String name = newTaskName.getText();
         LocalDate taskStart = taskStartDate.getValue();
         LocalDate taskEnd = taskEndDate.getValue();
+        taskEnd = taskEnd.plusDays(1);
         Validator validator = projectFactory.makeValidator();
         if (validator.validateTextInput(name) && validator.validateDate(taskStart, taskEnd)) {
                 projectManagement.createTask(name, taskStart, taskEnd);

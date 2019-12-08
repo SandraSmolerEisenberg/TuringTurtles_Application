@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.chart.*;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.BorderPane;
 import se.turingturtles.ProjectManagement;
 import se.turingturtles.entities.Risk;
 import se.turingturtles.implementations.ProjectFactory;
@@ -16,6 +17,7 @@ import java.util.List;
 
 public class RiskPageController {
 
+    public BorderPane riskpage;
     @FXML
     private TableColumn<Risk, String> riskName;
     @FXML
@@ -40,7 +42,6 @@ public class RiskPageController {
 
     //Load data into matrix and initialize table and set it to not visible by default
     @FXML public void initialize(){
-
         riskName.setCellValueFactory(new PropertyValueFactory<>("name"));
         riskImpact.setCellValueFactory(new PropertyValueFactory<>("impact"));
         riskProbability.setCellValueFactory(new PropertyValueFactory<>("probability"));

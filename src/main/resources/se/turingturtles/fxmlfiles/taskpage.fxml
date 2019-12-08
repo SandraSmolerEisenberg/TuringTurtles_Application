@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="se.turingturtles.controllers.TaskPageController">
+<AnchorPane fx:id="taskPage" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="se.turingturtles.controllers.TaskPageController">
    <children>
       <Button fx:id="taskCreateTaskButton" layoutX="14.0" layoutY="46.0" mnemonicParsing="false" onAction="#createNewTask" text="Create Task" />
       <Text fx:id="taskHeaderText" layoutX="289.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tasks" />
@@ -18,7 +18,7 @@
             <TextField fx:id="newTaskName" layoutX="166.0" layoutY="67.0" promptText="Enter Task Name" />
             <Label layoutX="82.0" layoutY="71.0" text="Task Name:" />
             <Label layoutX="82.0" layoutY="120.0" text="Start Week:" />
-            <Button fx:id="newTaskCreateButton" layoutX="215.0" layoutY="222.0" mnemonicParsing="false" onAction="#applyNewTask" text="Create" />
+            <Button fx:id="newTaskCreateButton" layoutX="215.0" layoutY="222.0" mnemonicParsing="false" onAction="#makeNewTask" text="Create" />
             <DatePicker fx:id="taskStartDate" layoutX="166.0" layoutY="116.0" prefHeight="25.0" prefWidth="149.0" />
             <Label layoutX="82.0" layoutY="167.0" text="End Week:" />
             <DatePicker fx:id="taskEndDate" layoutX="166.0" layoutY="163.0" prefHeight="25.0" prefWidth="149.0" />

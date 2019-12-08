@@ -35,10 +35,10 @@ public class Main extends Application {
         window.setResizable(true);
 
         //Scene creation.
-        Scene scene = new Scene(factory.loadFXML("startpage"), width, height);
+        Scene scene = new Scene(factory.loadFXML("projectmaster"), width, height);
         scene.getStylesheets().addAll();
         window.setScene(scene);
-        scene.getStylesheets().add(getClass().getResource("/se/turingturtles/css/00-default.css").toExternalForm());
+       // scene.getStylesheets().add(getClass().getResource("/se/turingturtles/css/03-projectoverview.css").toExternalForm());
 
         //Application window title.
         window.setTitle("Turing Turtles");
@@ -62,11 +62,11 @@ public class Main extends Application {
             projectManagement = factory.makeProjectManagement();
             LocalDate localDate = LocalDate.now();
            projectManagement.createProject("TestProject", 10000.0, localDate.parse("2019-10-01"), localDate.parse("2020-01-20"));
-            projectManagement.createTask("Task1", localDate.parse("2019-11-01"),localDate.parse("2019-11-08"));
-            projectManagement.createTask("Task2", localDate.parse("2019-12-24"),localDate.parse("2019-12-30"));
-            projectManagement.createTask("Task3", localDate.parse("2020-01-05"),localDate.parse("2020-01-15"));
-            projectManagement.createTask("Task4", localDate.parse("2019-11-01"),localDate.parse("2019-11-03"));
-            projectManagement.createTask("Task6", localDate.parse("2019-12-01"),localDate.parse("2019-12-10"));
+            projectManagement.createTask("Task1", localDate.parse("2019-11-04"),localDate.parse("2019-11-11"));
+            projectManagement.createTask("Task2", localDate.parse("2019-12-23"),localDate.parse("2019-12-30"));
+            projectManagement.createTask("Task3", localDate.parse("2019-12-06"),localDate.parse("2020-01-10"));
+            projectManagement.createTask("Task4", localDate.parse("2019-11-04"),localDate.parse("2019-11-11"));
+            projectManagement.createTask("Task6", localDate.parse("2019-12-02"),localDate.parse("2019-12-09"));
             //projectManagement.createTask("Task7", 49,13);
             projectManagement.createMember("TeamMember1", 1, 1000);
             projectManagement.createMember("TeamMember2", 2, 2000);
