@@ -54,6 +54,7 @@ public class Main extends Application {
     public static void main(String[] args) throws IOException {
         testData();
         launch();
+
     }
 
     private static void testData() {
@@ -80,11 +81,7 @@ public class Main extends Application {
             projectManagement.createRisk("Risk8", 1,7);
             projectManagement.completeTask(ProjectManagementImp.getProject().getTasks().get(0)); //Complete a task
             ProjectManagementImp.getProject().getTeamMembers().get(0).addTask(ProjectManagementImp.getProject().getTasks().get(0));
-        ProjectManagementImp.getProject().getTeamMembers().get(1).addTask(ProjectManagementImp.getProject().getTasks().get(1));
-        ProjectManagementImp.getProject().getTeamMembers().get(0).addTask(ProjectManagementImp.getProject().getTasks().get(2));
-        ProjectManagementImp.getProject().getTeamMembers().get(0).addTask(ProjectManagementImp.getProject().getTasks().get(3));
-        ProjectManagementImp.getProject().getTeamMembers().get(0).addTask(ProjectManagementImp.getProject().getTasks().get(4));
-            //ProjectManagementImp.getProject().getTasks().get(0).addTeamMember(ProjectManagementImp.getProject().getTeamMembers().get(0));
+            projectManagement.assignTask(projectManagement.findTeamMember(1), (projectManagement.findTask("Task1")));
 
         }
     }

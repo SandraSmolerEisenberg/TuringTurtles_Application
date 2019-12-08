@@ -209,6 +209,7 @@ public class TeamPageController {
         }
     }
     public void loadMemberInfoPage() {
+        memberAssignTaskPage.setVisible(false);
         newMemberPage.setVisible(false);
         memberInfoPage.setVisible(true);
         memberEditPage.setVisible(false);
