@@ -112,9 +112,21 @@ public class TaskPageController {
     public TableColumn teamMemberSalary;
     @FXML
     private Text removeTaskErrorMsg;
-
-
     //-----Detailed View Attributes End-----
+    //------Edit Page Attributes Start------
+    @FXML
+    private AnchorPane taskEditPageAnchorPane;
+    @FXML
+    private Text taskEditPageHeaderText;
+    @FXML
+    private TextField taskEditPageNewName;
+    @FXML
+    private Button taskEditOkNameButton;
+    @FXML
+    private Button taskEditStatusButton;
+    @FXML
+    private Text taskEditErrorMsg;
+    //------Edit Page Attributes End------
 
     private ProjectFactory projectFactory = new ProjectFactory();
     private ProjectManagement projectManagement = projectFactory.makeProjectManagement();
@@ -126,6 +138,7 @@ public class TaskPageController {
         setDatePicker(taskEndDate, "EndDate");
         createTaskAnchorPane.setVisible(false);
         taskDetailsAnchorPane.setVisible(false);
+        taskEditPageAnchorPane.setVisible(false);
     }
 
     private void loadTasksTable(){
@@ -175,6 +188,7 @@ public class TaskPageController {
             createTaskAnchorPane.setVisible(false);
             tableAnchorPane.setVisible(true);
             taskDetailsAnchorPane.setVisible(false);
+            taskEditPageAnchorPane.setVisible(false);
             taskCreateTaskButton.setText("Create Task");
 
             viewTaskButton.setVisible(true);
@@ -287,6 +301,7 @@ public class TaskPageController {
             assignmentError.showAndWait();
         }
         else {
+            //This is never executed?
             Alert assignmentError = new Alert(Alert.AlertType.ERROR);
             assignmentError.setTitle("Error!");
             assignmentError.setHeaderText("Assignment to task failed!");
@@ -333,12 +348,13 @@ public class TaskPageController {
 
     public void removeTeamMember(ActionEvent event){
         TeamMember teamMember = (TeamMember) taskDetailsTeamMemberList.getSelectionModel().getSelectedItem();
-        //The if-statement only executes once per run?
+        Task task = projectManagement.findTask(taskDetailsViewHeaderText.getText());
+        //The if-statement only executes once per run...
         if(teamMember == null ){
             removeTaskErrorMsg.setText("Select a Team Member first!");
             removeTaskErrorMsg.setStyle("-fx-text-fill: red;");
         }
-        else if(teamMember != null) {
+        else {
             removeTaskErrorMsg.setVisible(false);
             Alert deleteAlert = new Alert(Alert.AlertType.CONFIRMATION);
             deleteAlert.setTitle("You are about to remove this member from the task");
@@ -346,7 +362,8 @@ public class TaskPageController {
             deleteAlert.setContentText("You have selected to delete the following team member: \nName: " + teamMember.getName() + "\n\nPlease click OK, in order to proceed!");
             deleteAlert.showAndWait();
             if (deleteAlert.getResult() == ButtonType.OK) {
-                projectManagement.removeMember(teamMember);
+                task.removeTeamMember(teamMember);
+                teamMember.removeTask(task);
                 loadTasksTable();
                 tableAnchorPane.setVisible(true);
                 taskDetailsAnchorPane.setVisible(false);
@@ -358,4 +375,14 @@ public class TaskPageController {
             }
         }
     }
+    public void loadEditTaskPage(ActionEvent event){
+        taskDetailsAnchorPane.setVisible(false);
+        taskEditPageAnchorPane.setVisible(true);
+        taskEditErrorMsg.setVisible(false);
+        taskCreateTaskButton.setText("Back");
+        viewTaskButton.setVisible(false);
+        Task task = projectManagement.findTask(taskDetailsViewHeaderText.getText());
+        taskEditPageHeaderText.setText("You are editing " + task.getName());
+    }
+    public void applyEditedName(ActionEvent event){}
 }
