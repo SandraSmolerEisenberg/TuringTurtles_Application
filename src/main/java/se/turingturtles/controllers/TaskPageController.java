@@ -110,6 +110,8 @@ public class TaskPageController {
     public TableColumn teamMemberTotalTasks;
     @FXML
     public TableColumn teamMemberSalary;
+    @FXML
+    private Text removeTaskErrorMsg;
 
 
     //-----Detailed View Attributes End-----
@@ -331,21 +333,29 @@ public class TaskPageController {
 
     public void removeTeamMember(ActionEvent event){
         TeamMember teamMember = (TeamMember) taskDetailsTeamMemberList.getSelectionModel().getSelectedItem();
-        Alert deleteAlert = new Alert(Alert.AlertType.CONFIRMATION);
-        deleteAlert.setTitle("You are about to remove this member from the task");
-        deleteAlert.setHeaderText("WARNING!");
-        deleteAlert.setContentText("You have selected to delete the following team member: \nName: " + teamMember.getName() + "\n\nPlease click OK, in order to proceed!");
-        deleteAlert.showAndWait();
-        if (deleteAlert.getResult() == ButtonType.OK) {
-            projectManagement.removeMember(teamMember);
-            loadTasksTable();
-            tableAnchorPane.setVisible(true);
-            taskDetailsAnchorPane.setVisible(false);
-            createTaskAnchorPane.setVisible(false);
-            viewTaskButton.setVisible(true);
-            taskCreateTaskButton.setText("Create Task");
-            viewTaskErrorMsg.setText("");
-            viewTaskErrorMsg.setVisible(true);
+        //The if-statement only executes once per run?
+        if(teamMember == null ){
+            removeTaskErrorMsg.setText("Select a Team Member first!");
+            removeTaskErrorMsg.setStyle("-fx-text-fill: red;");
+        }
+        else if(teamMember != null) {
+            removeTaskErrorMsg.setVisible(false);
+            Alert deleteAlert = new Alert(Alert.AlertType.CONFIRMATION);
+            deleteAlert.setTitle("You are about to remove this member from the task");
+            deleteAlert.setHeaderText("WARNING!");
+            deleteAlert.setContentText("You have selected to delete the following team member: \nName: " + teamMember.getName() + "\n\nPlease click OK, in order to proceed!");
+            deleteAlert.showAndWait();
+            if (deleteAlert.getResult() == ButtonType.OK) {
+                projectManagement.removeMember(teamMember);
+                loadTasksTable();
+                tableAnchorPane.setVisible(true);
+                taskDetailsAnchorPane.setVisible(false);
+                createTaskAnchorPane.setVisible(false);
+                viewTaskButton.setVisible(true);
+                taskCreateTaskButton.setText("Create Task");
+                viewTaskErrorMsg.setText("");
+                viewTaskErrorMsg.setVisible(true);
+            }
         }
     }
 }
