@@ -3,17 +3,10 @@ package se.turingturtles.controllers;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.util.StringConverter;
 import se.turingturtles.ProjectManagement;
@@ -23,11 +16,9 @@ import se.turingturtles.entities.TeamMember;
 import se.turingturtles.implementations.ProjectFactory;
 import se.turingturtles.implementations.ProjectManagementImp;
 
-import java.awt.event.MouseEvent;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class TaskPageController {
     @FXML
@@ -41,6 +32,12 @@ public class TaskPageController {
 
     @FXML
     public Label viewTaskErrorMsg;
+    public TableView teamMembersTable;
+    public TableColumn teamMemberNameColumn;
+    public TableColumn teamMemberIdColumn;
+    public TableColumn teamMemberTotalTasks;
+    public TableColumn teamMemberSalary;
+    public Button assignTeamMemberButton;
 
     @FXML
     private TableView taskTableView;
@@ -108,6 +105,7 @@ public class TaskPageController {
     @FXML
     private Button taskDetailsAssignButton;
 
+
     //-----Detailed View Attributes End-----
 
     private ProjectFactory projectFactory = new ProjectFactory();
@@ -115,26 +113,25 @@ public class TaskPageController {
 
     @FXML private void initialize(){
         tableAnchorPane.setVisible(true);
+        loadTasksTable();
+        setDatePicker(taskStartDate, "StartDate");
+        setDatePicker(taskEndDate, "EndDate");
+        createTaskAnchorPane.setVisible(false);
+        taskDetailsAnchorPane.setVisible(false);
+    }
+
+    private void loadTasksTable(){
         taskName.setCellValueFactory(new PropertyValueFactory<>("name"));
         taskStartWeek.setCellValueFactory(new PropertyValueFactory<>("startWeek"));
         taskDuration.setCellValueFactory(new PropertyValueFactory<>("duration"));
         taskTeamMembersAmount.setCellValueFactory(new PropertyValueFactory<>("totalTeamMembers"));
         taskStatus.setCellValueFactory(new PropertyValueFactory<>("completion"));
         taskEndWeek.setCellValueFactory(new PropertyValueFactory<>("endWeek"));
-        ObservableList<Task> tasks = FXCollections.observableArrayList(projectManagement.retrieveTasks());
-        taskTableView.setItems(tasks);
-        taskTableView.setEditable(true);
         taskTableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-        setDatePicker(taskStartDate, "StartDate");
-        setDatePicker(taskEndDate, "EndDate");
-        createTaskAnchorPane.setVisible(false);
-        taskDetailsAnchorPane.setVisible(false);
-        tableAnchorPane.setVisible(true);
-    }
-
-    private void updateTable(){
         ObservableList<Task> tasks = FXCollections.observableArrayList(projectManagement.retrieveTasks());
         taskTableView.setItems(tasks);
+        taskTableView.refresh();
+
     }
     private void setDatePicker(DatePicker datePicker, String calendar){
         datePicker.setEditable(false);
@@ -160,14 +157,22 @@ public class TaskPageController {
         if (tableAnchorPane.isVisible()){
             tableAnchorPane.setVisible(false);
             createTaskAnchorPane.setVisible(true);
+            taskDetailsAnchorPane.setVisible(false);
             taskCreateTaskButton.setText("Back");
-            viewTaskButton.setDisable(true);
+            viewTaskButton.setVisible(false);
+            viewTaskErrorMsg.setVisible(false);
+            loadTasksTable();
         }
         else {
             createTaskAnchorPane.setVisible(false);
             tableAnchorPane.setVisible(true);
+            taskDetailsAnchorPane.setVisible(false);
             taskCreateTaskButton.setText("Create Task");
-            viewTaskButton.setDisable(false);
+
+            viewTaskButton.setVisible(true);
+            viewTaskErrorMsg.setText("");
+            viewTaskErrorMsg.setVisible(true);
+            loadTasksTable();
         }
     }
 
@@ -192,7 +197,7 @@ public class TaskPageController {
             }
             else {
                 projectManagement.createTask(name, taskStart, taskEnd);
-                updateTable();
+                loadTasksTable();
                 resetCreateTaskFields();
                 newTaskName.clear();
             }
@@ -225,21 +230,24 @@ public class TaskPageController {
             viewTaskErrorMsg.setVisible(false);
             loadViewTaskAnchorPane();
         }
-
     }
 
     private void loadViewTaskAnchorPane(){
         if (taskTableView.isVisible()){
-            taskTableView.setVisible(false);
+            tableAnchorPane.setVisible(false);
+            createTaskAnchorPane.setVisible(false);
             taskDetailsAnchorPane.setVisible(true);
-            viewTaskButton.setText("Back");
-            taskCreateTaskButton.setDisable(true);
+            viewTaskButton.setVisible(false);
+            taskCreateTaskButton.setText("Back");
+            loadTasksTable();
         }
         else {
             taskDetailsAnchorPane.setVisible(false);
-            taskTableView.setVisible(true);
-            viewTaskButton.setText("View Task");
-            taskCreateTaskButton.setDisable(false);
+            createTaskAnchorPane.setVisible(false);
+            tableAnchorPane.setVisible(true);
+            viewTaskButton.setVisible(true);
+            taskCreateTaskButton.setText("Create Task");
+            loadTasksTable();
         }
 
         Task task = (Task) taskTableView.getSelectionModel().getSelectedItem();
@@ -249,9 +257,49 @@ public class TaskPageController {
         taskDetailsDurationText.setText("" + task.getDuration());
         taskDetailsTeamMembersText.setText("" + task.getTotalTeamMembers());
         taskDetailsStatusText.setText(task.getCompletion());
+        loadTaskTeamMembersList(task);
+        loadTeamMembersTable();
+    }
+
+    public void assignTeamMember(ActionEvent event){
+        TeamMember teamMember = (TeamMember) teamMembersTable.getSelectionModel().getSelectedItem();
+        Task task = projectManagement.findTask(taskDetailsViewHeaderText.getText());
+        if (task != null && !task.getTeamMembers().contains(teamMember) && teamMember != null){
+            projectManagement.assignTask(teamMember,task);
+            loadTaskTeamMembersList(task);
+            loadTeamMembersTable();
+            loadTasksTable();
+            taskDetailsTeamMembersText.setText("" + task.getTotalTeamMembers());
+        }
+        else if (task != null || teamMember != null){
+            Alert assignmentError = new Alert(Alert.AlertType.ERROR);
+            assignmentError.setTitle("Error!");
+            assignmentError.setHeaderText("Assignment to task failed!");
+            assignmentError.setContentText("Couldn't find team member" + ".");
+            assignmentError.showAndWait();
+        }
+        else {
+            Alert assignmentError = new Alert(Alert.AlertType.ERROR);
+            assignmentError.setTitle("Error!");
+            assignmentError.setHeaderText("Assignment to task failed!");
+            assignmentError.setContentText(teamMember.getName() + " is already assigned to " + task.getName() + ".");
+            assignmentError.showAndWait();
+        }
+    }
+
+    private void loadTeamMembersTable() {
+        teamMemberNameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        teamMemberIdColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+        teamMemberTotalTasks.setCellValueFactory(new PropertyValueFactory<>("totalTasks"));
+        teamMemberSalary.setCellValueFactory(new PropertyValueFactory<>("hourlyWage"));
+        ObservableList<TeamMember> teamMembers = FXCollections.observableArrayList(projectManagement.getTeamMembers());
+        teamMembersTable.setItems(teamMembers);
+        teamMembersTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        teamMembersTable.refresh();
+    }
+
+    private void loadTaskTeamMembersList(Task task){
         ObservableList<TeamMember> teamMembers = FXCollections.observableArrayList(task.getTeamMembers());
         taskDetailsTeamMemberList.setItems(teamMembers);
-
-
     }
 }

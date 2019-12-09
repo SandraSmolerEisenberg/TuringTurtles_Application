@@ -13,6 +13,7 @@ public class TeamMember {
     private String name;
     private int id;
     private double hourlyWage;
+    private int totalTasks;
     private ArrayList<Task> tasks;
 
     public TeamMember(String name, int id, double hourlyWage){
@@ -20,6 +21,7 @@ public class TeamMember {
         this.id = id;
         this.hourlyWage = hourlyWage;
         this.tasks = new ArrayList<Task>();
+        this.totalTasks = totalTasks();
     }
 
     public TeamMember(){} //Needed for JSON-file to work
@@ -37,6 +39,15 @@ public class TeamMember {
     public double getHourlyWage(){
         return this.hourlyWage;
     }
+
+    public int getTotalTasks() {
+        return totalTasks;
+    }
+
+    public void setTotalTasks(int totalTasks) {
+        this.totalTasks = totalTasks;
+    }
+
     public void setHourlyWage(double newHourlyWage){
         this.hourlyWage = newHourlyWage;
     }
@@ -46,6 +57,7 @@ public class TeamMember {
     //--------------------Methods--------------------
     public void addTask(Task task){
         tasks.add(task);
+        setTotalTasks(totalTasks());
     }
     public void removeTask(Task task){
         tasks.remove(task);
