@@ -302,4 +302,24 @@ public class TaskPageController {
         ObservableList<TeamMember> teamMembers = FXCollections.observableArrayList(task.getTeamMembers());
         taskDetailsTeamMemberList.setItems(teamMembers);
     }
+
+    public void deleteTask(ActionEvent event) {
+        Task task = projectManagement.findTask(taskDetailsViewHeaderText.getText());
+        Alert deleteAlert = new Alert(Alert.AlertType.CONFIRMATION);
+        deleteAlert.setTitle("You are about ot delete a this task");
+        deleteAlert.setHeaderText("WARNING!");
+        deleteAlert.setContentText("You have selected to delete the following task: \nName: " + task.getName() + "\n\nPlease click OK, in order to proceed!");
+        deleteAlert.showAndWait();
+        if (deleteAlert.getResult() == ButtonType.OK) {
+            projectManagement.removeTask(task);
+            loadTasksTable();
+            tableAnchorPane.setVisible(true);
+            taskDetailsAnchorPane.setVisible(false);
+            createTaskAnchorPane.setVisible(false);
+            viewTaskButton.setVisible(true);
+            taskCreateTaskButton.setText("Create Task");
+            viewTaskErrorMsg.setText("");
+            viewTaskErrorMsg.setVisible(true);
+        }
+    }
 }
