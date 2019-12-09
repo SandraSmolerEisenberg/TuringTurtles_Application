@@ -5,17 +5,20 @@
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Tab?>
-<?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 
-
-            <BorderPane fx:id="riskpage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="se.turingturtles.controllers.RiskPageController">
+<BorderPane fx:id="riskpage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="se.turingturtles.controllers.RiskPageController">
                <bottom>
-                  <Button fx:id="riskDetailsButton" mnemonicParsing="false" onAction="#showDetails" prefHeight="63.0" prefWidth="137.0" text="Risk Details" BorderPane.alignment="CENTER" />
+      <AnchorPane BorderPane.alignment="CENTER">
+         <children>
+                        <Button fx:id="riskDetailsButton" layoutX="162.0" mnemonicParsing="false" onAction="#showDetails" prefHeight="63.0" prefWidth="137.0" text="Risk Details" />
+            <Button fx:id="addRiskButton" layoutX="304.0" layoutY="1.0" mnemonicParsing="false" onAction="#loadCreateRiskAnchorPane" prefHeight="61.0" prefWidth="119.0" text="Add Risk" />
+         </children>
+      </AnchorPane>
                </bottom>
                <center>
                   <AnchorPane BorderPane.alignment="CENTER">
@@ -39,6 +42,17 @@
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                            </columnResizePolicy>
                         </TableView>
+            <AnchorPane fx:id="createRiskAnchorPane" prefHeight="292.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Label layoutX="183.0" layoutY="49.0" text="Risk Description" />
+                  <Label layoutX="183.0" layoutY="101.0" text="Risk Probability" />
+                  <Label layoutX="183.0" layoutY="150.0" text="Risk impact" />
+                  <TextField fx:id="newRiskName" layoutX="293.0" layoutY="45.0" promptText="risk description" />
+                  <TextField fx:id="newRiskProbability" layoutX="293.0" layoutY="97.0" promptText="risk probability" />
+                  <TextField fx:id="newRiskImpact" layoutX="293.0" layoutY="146.0" promptText="risk impact" />
+                  <Button fx:id="createRiskButton" layoutX="233.0" layoutY="206.0" mnemonicParsing="false" onAction="#createRisk" text="Add Project Risk" />
+               </children>
+            </AnchorPane>
                      </children>
                   </AnchorPane>
                </center>
@@ -46,4 +60,3 @@
                   <Label alignment="CENTER" prefHeight="45.0" prefWidth="144.0" text="Risk Overview" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS" BorderPane.alignment="CENTER" />
                </top>
             </BorderPane>
-

@@ -2,12 +2,15 @@ package se.turingturtles.controllers;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.chart.*;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import se.turingturtles.ProjectManagement;
+import se.turingturtles.Validator;
 import se.turingturtles.entities.Risk;
 import se.turingturtles.implementations.ProjectFactory;
 
@@ -18,6 +21,12 @@ import java.util.List;
 public class RiskPageController {
 
     public BorderPane riskpage;
+    public TextField newRiskName;
+    public TextField newRiskProbability;
+    public TextField newRiskImpact;
+    public Button createRiskButton;
+    public Button addRiskButton;
+    public AnchorPane createRiskAnchorPane;
     @FXML
     private TableColumn<Risk, String> riskName;
     @FXML
@@ -48,10 +57,10 @@ public class RiskPageController {
         riskCalculated.setCellValueFactory(new PropertyValueFactory<>("riskCalculated"));
         riskIndex.setAutoRanging(false);
         riskIndex.setUpperBound(getHighestRisk());
-        ObservableList<Risk> risk = FXCollections.observableArrayList(projectManagement.getProjectRisks());
         riskMatrix.getData().add(loadRiskMatrix());
-        riskDetails.setItems(risk);
+        createRiskAnchorPane.setVisible(false);
         riskDetails.setVisible(false);
+        loadRiskDetailsTable();
     }
 
     // Return the highest risk value and use it for the matrix
@@ -65,6 +74,7 @@ public class RiskPageController {
         highestRisk = Collections.max(risksValues);
         return highestRisk;
     }
+
     //Read, load and return the data for the matrix
     private XYChart.Series<String, Integer> loadRiskMatrix(){
         List<Risk> risks = projectManagement.getProjectRisks();
@@ -78,19 +88,90 @@ public class RiskPageController {
 
 
     // Switch between matrix and table
-    public void showDetails(javafx.event.ActionEvent event) {
+    public void showDetails(ActionEvent event) {
+        clearInputFields();
         if (riskMatrix.isVisible()){
             riskMatrix.setVisible(false);
             riskDetails.setVisible(true);
             riskDetailsButton.setText("Show Matrix");
         }
+        else if (createRiskAnchorPane.isVisible())
+        {
+            riskDetails.setVisible(true);
+            riskMatrix.setVisible(false);
+            createRiskAnchorPane.setVisible(false);
+            riskDetailsButton.setText("Show Matrix");
+            addRiskButton.setText("Add Risk");
+        }
         else {
             riskDetails.setVisible(false);
             riskMatrix.setVisible(true);
-            riskDetailsButton.setText("View Details");
+            riskDetailsButton.setText("Risk Details");
         }
 
     }
 
+
+    public void createRisk(ActionEvent event) {
+        String name = newRiskName.getText();
+        String probability = newRiskProbability.getText();
+        String impact = newRiskImpact.getText();
+        Validator validator = projectFactory.makeValidator();
+        if (validator.validateTextInput(name) && validator.validateNumericInput(probability) && validator.validateNumericInput(impact)){
+            projectManagement.createRisk(name, Integer.parseInt(impact), Integer.parseInt(probability));
+            clearInputFields();
+            loadRiskDetailsTable();
+            riskIndex.setUpperBound(getHighestRisk());
+            riskMatrix.getData().setAll(loadRiskMatrix());
+        }
+        else if (!validator.validateTextInput(name) || !validator.validateNumericInput(impact) || !validator.validateNumericInput(probability)) {
+
+           if (!validator.validateTextInput(name)) {
+               newRiskName.clear();
+               newRiskName.setPromptText("Invalid Description");
+           }
+            if (!validator.validateNumericInput(impact)) {
+                newRiskImpact.clear();
+                newRiskImpact.setPromptText("Invalid Impact");
+            }
+            if (!validator.validateNumericInput(probability)) {
+                newRiskProbability.clear();
+                newRiskProbability.setPromptText("Invalid Probability");
+            }
+
+
+            }
+    }
+
+    private void clearInputFields() {
+        newRiskName.clear();
+        newRiskProbability.clear();
+        newRiskImpact.clear();
+        newRiskProbability.setPromptText("risk probability");
+        newRiskImpact.setPromptText("risk impact");
+        newRiskName.setPromptText("risk description");
+
+    }
+
+    private void loadRiskDetailsTable(){
+        ObservableList<Risk> risk = FXCollections.observableArrayList(projectManagement.getProjectRisks());
+        riskDetails.setItems(risk);}
+
+    public void loadCreateRiskAnchorPane(ActionEvent event) {
+        clearInputFields();
+        if (!createRiskAnchorPane.isVisible()) {
+            riskDetails.setVisible(false);
+            riskMatrix.setVisible(false);
+            createRiskAnchorPane.setVisible(true);
+            addRiskButton.setText("View Matrix");
+            riskDetailsButton.setText("View Details");
+        }
+        else {
+            riskDetails.setVisible(false);
+            riskMatrix.setVisible(true);
+            createRiskAnchorPane.setVisible(false);
+            addRiskButton.setText("Add Risk");
+        }
+    }
 
 }

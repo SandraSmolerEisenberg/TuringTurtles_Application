@@ -3,26 +3,16 @@ package se.turingturtles;
 //Commented out imports are for the GUI later on. /Liv
 
 import javafx.application.Application;
-//import javafx.event.ActionEvent;
-//import javafx.eventEventHandler;
 import javafx.scene.Scene;
-import javafx.scene.control.DatePicker;
 import javafx.scene.image.Image;
-//import javafx.scene.control.Button;
-//import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-//Font import
-import javafx.scene.text.Font;
-import se.turingturtles.controllers.ProjectManagementController;
 import se.turingturtles.implementations.ProjectFactory;
 import se.turingturtles.implementations.ProjectManagementImp;
-
 import java.awt.*;
 import java.io.*;
 import java.time.LocalDate;
 
 public class Main extends Application {
-
 
     private static ProjectFactory factory = new ProjectFactory();
 
