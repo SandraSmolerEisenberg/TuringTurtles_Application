@@ -32,12 +32,6 @@ public class TaskPageController {
 
     @FXML
     public Label viewTaskErrorMsg;
-    public TableView teamMembersTable;
-    public TableColumn teamMemberNameColumn;
-    public TableColumn teamMemberIdColumn;
-    public TableColumn teamMemberTotalTasks;
-    public TableColumn teamMemberSalary;
-    public Button assignTeamMemberButton;
 
     @FXML
     private TableView taskTableView;
@@ -103,7 +97,19 @@ public class TaskPageController {
     @FXML
     private Button taskDetailsDeleteTaskButton;
     @FXML
-    private Button taskDetailsAssignButton;
+    private Button removeTeamMemberButton;
+    @FXML
+    public Button assignTeamMemberButton;
+    @FXML
+    public TableView teamMembersTable;
+    @FXML
+    public TableColumn teamMemberNameColumn;
+    @FXML
+    public TableColumn teamMemberIdColumn;
+    @FXML
+    public TableColumn teamMemberTotalTasks;
+    @FXML
+    public TableColumn teamMemberSalary;
 
 
     //-----Detailed View Attributes End-----
@@ -306,12 +312,32 @@ public class TaskPageController {
     public void deleteTask(ActionEvent event) {
         Task task = projectManagement.findTask(taskDetailsViewHeaderText.getText());
         Alert deleteAlert = new Alert(Alert.AlertType.CONFIRMATION);
-        deleteAlert.setTitle("You are about ot delete a this task");
+        deleteAlert.setTitle("You are about to delete this task");
         deleteAlert.setHeaderText("WARNING!");
         deleteAlert.setContentText("You have selected to delete the following task: \nName: " + task.getName() + "\n\nPlease click OK, in order to proceed!");
         deleteAlert.showAndWait();
         if (deleteAlert.getResult() == ButtonType.OK) {
             projectManagement.removeTask(task);
+            loadTasksTable();
+            tableAnchorPane.setVisible(true);
+            taskDetailsAnchorPane.setVisible(false);
+            createTaskAnchorPane.setVisible(false);
+            viewTaskButton.setVisible(true);
+            taskCreateTaskButton.setText("Create Task");
+            viewTaskErrorMsg.setText("");
+            viewTaskErrorMsg.setVisible(true);
+        }
+    }
+
+    public void removeTeamMember(ActionEvent event){
+        TeamMember teamMember = (TeamMember) taskDetailsTeamMemberList.getSelectionModel().getSelectedItem();
+        Alert deleteAlert = new Alert(Alert.AlertType.CONFIRMATION);
+        deleteAlert.setTitle("You are about to remove this member from the task");
+        deleteAlert.setHeaderText("WARNING!");
+        deleteAlert.setContentText("You have selected to delete the following team member: \nName: " + teamMember.getName() + "\n\nPlease click OK, in order to proceed!");
+        deleteAlert.showAndWait();
+        if (deleteAlert.getResult() == ButtonType.OK) {
+            projectManagement.removeMember(teamMember);
             loadTasksTable();
             tableAnchorPane.setVisible(true);
             taskDetailsAnchorPane.setVisible(false);

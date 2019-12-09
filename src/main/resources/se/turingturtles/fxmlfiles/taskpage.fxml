@@ -54,7 +54,7 @@
             <Text fx:id="taskDetailsTeamMembersText" layoutX="125.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*Team Members Number*" />
             <Text layoutX="30.0" layoutY="140.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Status:" />
             <Text fx:id="taskDetailsStatusText" layoutX="125.0" layoutY="140.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*Status Value*" />
-            <ListView fx:id="taskDetailsTeamMemberList" layoutX="347.0" layoutY="38.0" prefHeight="97.0" prefWidth="127.0" />
+            <ListView fx:id="taskDetailsTeamMemberList" layoutX="325.0" layoutY="38.0" prefHeight="97.0" prefWidth="172.0" />
             <Button fx:id="taskDetailsEditTaskButton" layoutX="29.0" layoutY="274.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="85.0" text="Edit Task" />
             <Button fx:id="taskDetailsDeleteTaskButton" layoutX="140.0" layoutY="274.0" mnemonicParsing="false" onAction="#deleteTask" prefHeight="25.0" prefWidth="97.0" text="Delete Task" />
             <Button fx:id="assignTeamMemberButton" layoutX="264.0" layoutY="274.0" mnemonicParsing="false" onAction="#assignTeamMember" prefHeight="25.0" prefWidth="139.0" text="Assign Team Member" />
@@ -68,6 +68,7 @@
                   <TableColumn fx:id="teamMemberSalary" prefWidth="107.99996948242188" text="Salary" />
               </columns>
             </TableView>
+            <Button fx:id="removeTeamMemberButton" layoutX="341.0" layoutY="141.0" mnemonicParsing="false" onAction="#removeTeamMember" text="Remove Team Member" />
          </children>
       </AnchorPane>
    </children>
