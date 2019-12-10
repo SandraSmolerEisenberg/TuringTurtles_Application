@@ -23,18 +23,21 @@ import java.util.ArrayList;
 public class TaskPageController {
     //Used to
     private static final int ONE_WEEK_DAY = 1;
+    @FXML private RadioButton updateNameButton;
 
     @FXML
-    public AnchorPane taskPage;
+    private AnchorPane taskPage;
 
     @FXML
-    public TableColumn taskEndWeek;
+    private TableColumn taskEndWeek;
 
     @FXML
     public Button viewTaskButton;
 
     @FXML
-    public Label viewTaskErrorMsg;
+    private Label viewTaskErrorMsg;
+    @FXML private Text removeTaskErrorMsg;
+    @FXML private RadioButton updateDateButton;
 
     @FXML
     private TableView taskTableView;
@@ -142,6 +145,7 @@ public class TaskPageController {
         createTaskAnchorPane.setVisible(false);
         taskDetailsAnchorPane.setVisible(false);
         taskEditPageAnchorPane.setVisible(false);
+        updateTextFields();
     }
 
     private void loadTasksTable(){
@@ -416,17 +420,20 @@ public class TaskPageController {
             task.setStartDate(projectStartDate);
             task.setEndDate(projectEndDate);
             updateTables(task);
+            updateTextFields();
             loadViewTaskAnchorPane();
         }
         if(validator.validateTextInput(name) && taskEditPageStartWeek.getValue() == null && taskEditPageEndWeek.getValue() == null){
             task.setName(name);
             updateTables(task);
+            updateTextFields();
             loadViewTaskAnchorPane();
         }
         if(!validator.validateTextInput(name) && validator.validateDate(projectStartDate, projectEndDate)){
             task.setStartDate(projectStartDate);
             task.setEndDate(projectEndDate);
             updateTables(task);
+            updateTextFields();
             loadViewTaskAnchorPane();
         }
         if(!validator.validateTextInput(name)){
@@ -452,7 +459,7 @@ public class TaskPageController {
         updateTables(task);
     }
 
-    public void updateTables(Task task){
+    private void updateTables(Task task){
         loadTaskTeamMembersList(task);
         loadTeamMembersTable();
         loadTasksTable();
@@ -468,13 +475,36 @@ public class TaskPageController {
             taskDetailsCompleteButton.setText("Re-Open Task");
         }
     }
-    public void updateTextFields(){
+    private void updateTextFields(){
         taskStartDate.getEditor().clear();
         taskEndDate.getEditor().clear();
         newTaskName.setPromptText("Enter name:");
         taskEditPageNewName.clear();
         taskEditPageStartWeek.getEditor().clear();
         taskEditPageEndWeek.getEditor().clear();
+        taskEditPageNewName.setDisable(true);
+        taskEditPageStartWeek.setDisable(true);
+        taskEditPageEndWeek.setDisable(true);
+        updateDateButton.setSelected(false);
+        updateNameButton.setSelected(false);
+    }
+
+    public void enableChangeName(ActionEvent event){
+        if (taskEditPageNewName.isDisable()){taskEditPageNewName.setDisable(false);}
+        else{taskEditPageNewName.setDisable(true);}
+    }
+
+    public void enableChangeDate(ActionEvent event){
+        if (taskEditPageStartWeek.isDisable()){
+            taskEditPageStartWeek.setDisable(false);
+            taskEditPageEndWeek.setDisable(false);}
+        else{
+            taskEditPageStartWeek.setDisable(true);
+            taskEditPageEndWeek.setDisable(true);
+
+        }
+
+
     }
 
 
