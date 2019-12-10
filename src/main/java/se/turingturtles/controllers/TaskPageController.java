@@ -133,12 +133,12 @@ public class TaskPageController {
 
     @FXML private void initialize(){
         tableAnchorPane.setVisible(true);
-        loadTasksTable();
-        setDatePicker(taskStartDate, "StartDate");
-        setDatePicker(taskEndDate, "EndDate");
         createTaskAnchorPane.setVisible(false);
         taskDetailsAnchorPane.setVisible(false);
         taskEditPageAnchorPane.setVisible(false);
+        loadTasksTable();
+        setDatePicker(taskStartDate, "StartDate");
+        setDatePicker(taskEndDate, "EndDate");
     }
 
     private void loadTasksTable(){
@@ -184,7 +184,7 @@ public class TaskPageController {
             viewTaskErrorMsg.setVisible(false);
             loadTasksTable();
         }
-        else {
+        else if(createTaskAnchorPane.isVisible()){
             createTaskAnchorPane.setVisible(false);
             tableAnchorPane.setVisible(true);
             taskDetailsAnchorPane.setVisible(false);
@@ -194,6 +194,15 @@ public class TaskPageController {
             viewTaskButton.setVisible(true);
             viewTaskErrorMsg.setText("");
             viewTaskErrorMsg.setVisible(true);
+            loadTasksTable();
+        } else if (taskEditPageAnchorPane.isVisible()) {
+            tableAnchorPane.setVisible(false);
+            createTaskAnchorPane.setVisible(false);
+            taskDetailsAnchorPane.setVisible(true);
+            taskEditPageAnchorPane.setVisible(false);
+            taskCreateTaskButton.setText("Back");
+            viewTaskButton.setVisible(false);
+            viewTaskErrorMsg.setVisible(false);
             loadTasksTable();
         }
     }
@@ -220,7 +229,7 @@ public class TaskPageController {
             else {
                 projectManagement.createTask(name, taskStart, taskEnd);
                 loadTasksTable();
-                resetCreateTaskFields();
+                updateTextFields();
                 newTaskName.clear();
             }
         }
@@ -229,17 +238,12 @@ public class TaskPageController {
             newTaskName.setPromptText("Invalid Name!");
         }
         else if(!validator.validateDate(taskStart, taskEnd)){
-            resetCreateTaskFields();
+
             taskStartDate.setPromptText("Set Valid Date!");
             taskEndDate.setPromptText("Set Valid Date!");
         }
     }
 
-    private void resetCreateTaskFields(){
-        taskStartDate.getEditor().clear();
-        taskEndDate.getEditor().clear();
-        newTaskName.setPromptText("Enter name:");
-    }
 
 
     public void selectTaskRow(ActionEvent event){
@@ -259,16 +263,28 @@ public class TaskPageController {
             tableAnchorPane.setVisible(false);
             createTaskAnchorPane.setVisible(false);
             taskDetailsAnchorPane.setVisible(true);
+            taskEditPageAnchorPane.setVisible(false);
             viewTaskButton.setVisible(false);
             taskCreateTaskButton.setText("Back");
             loadTasksTable();
         }
-        else {
+        if  (taskDetailsAnchorPane.isVisible()){
             taskDetailsAnchorPane.setVisible(false);
             createTaskAnchorPane.setVisible(false);
             tableAnchorPane.setVisible(true);
+            taskEditPageAnchorPane.setVisible(false);
             viewTaskButton.setVisible(true);
             taskCreateTaskButton.setText("Create Task");
+            loadTasksTable();
+        }
+        if  (taskEditPageAnchorPane.isVisible()){
+            taskDetailsAnchorPane.setVisible(true);
+            createTaskAnchorPane.setVisible(false);
+            tableAnchorPane.setVisible(false);
+            taskEditPageAnchorPane.setVisible(false);
+            viewTaskButton.setVisible(true);
+            taskCreateTaskButton.setText("Create Task");
+            updateTextFields();
             loadTasksTable();
         }
 
@@ -279,8 +295,7 @@ public class TaskPageController {
         taskDetailsDurationText.setText("" + task.getDuration());
         taskDetailsTeamMembersText.setText("" + task.getTotalTeamMembers());
         taskDetailsStatusText.setText(task.getCompletion());
-        loadTaskTeamMembersList(task);
-        loadTeamMembersTable();
+        updateTables(task);
     }
 
     public void assignTeamMember(ActionEvent event){
@@ -288,9 +303,7 @@ public class TaskPageController {
         Task task = projectManagement.findTask(taskDetailsViewHeaderText.getText());
         if (task != null && !task.getTeamMembers().contains(teamMember) && teamMember != null){
             projectManagement.assignTask(teamMember,task);
-            loadTaskTeamMembersList(task);
-            loadTeamMembersTable();
-            loadTasksTable();
+            updateTables(task);
             taskDetailsTeamMembersText.setText("" + task.getTotalTeamMembers());
         }
         else if (task != null || teamMember != null){
@@ -359,9 +372,7 @@ public class TaskPageController {
             if (deleteAlert.getResult() == ButtonType.OK) {
                 task.removeTeamMember(teamMember);
                 teamMember.removeTask(task);
-                loadTaskTeamMembersList(task);
-                loadTeamMembersTable();
-                loadTasksTable();
+                updateTables(task);
             }
         }
     }
@@ -380,6 +391,51 @@ public class TaskPageController {
 
     }
     public void taskEditSaveChanges(ActionEvent event){
+        Task task = projectManagement.findTask(taskDetailsViewHeaderText.getText());;
+        String name = taskEditPageNewName.getText();
+        LocalDate projectStartDate = taskEditPageStartWeek.getValue();
+        LocalDate projectEndDate = taskEditPageEndWeek.getValue();
+        Validator validator = projectFactory.makeValidator();
+        if(validator.validateTextInput(name) && validator.validateDate(projectStartDate, projectEndDate)){
+            task.setName(name);
+            task.setStartDate(projectStartDate);
+            task.setEndDate(projectEndDate);
+            updateTables(task);
+            loadViewTaskAnchorPane();
+        }
+        if(validator.validateTextInput(name) && taskEditPageStartWeek.getValue() == null && taskEditPageEndWeek.getValue() == null){
+            task.setName(name);
+            updateTables(task);
+            loadViewTaskAnchorPane();
 
+        }
+        if(!validator.validateTextInput(name)){
+                taskEditPageNewName.clear();
+                taskEditPageNewName.setPromptText("Invalid name!");
+        }
+        if(!validator.validateDate(projectStartDate, projectEndDate)){
+            taskEditPageStartWeek.getEditor().clear();
+            taskEditPageEndWeek.getEditor().clear();
+            taskEditPageStartWeek.setPromptText("Choose date:");
+            taskEditPageEndWeek.setPromptText("Choose date:");
+        }
     }
+    public void updateTables(Task task){
+        loadTaskTeamMembersList(task);
+        loadTeamMembersTable();
+        loadTasksTable();
+        taskDetailsStartWeekText.setText("" + task.getStartWeek());
+        taskDetailsEndWeekText.setText("" + task.getEndWeek());
+        taskDetailsDurationText.setText("" + task.getDuration());
+    }
+    public void updateTextFields(){
+        taskStartDate.getEditor().clear();
+        taskEndDate.getEditor().clear();
+        newTaskName.setPromptText("Enter name:");
+        taskEditPageNewName.clear();
+        taskEditPageStartWeek.getEditor().clear();
+        taskEditPageEndWeek.getEditor().clear();
+    }
+
+
 }

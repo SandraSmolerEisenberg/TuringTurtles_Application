@@ -44,12 +44,16 @@ public class Task {
     }
     public void setStartDate(LocalDate startDate) {
         this.startDate = startDate;
+        setStartWeek(calculateStartWeek());
+        setDuration(calculateDuration());
     }
     public LocalDate getEndDate() {
         return endDate;
     }
     public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
+        setEndWeek(calculateEndWeek());
+        setDuration(calculateDuration());
     }
     public int getStartWeek(){
         return this.startWeek;
