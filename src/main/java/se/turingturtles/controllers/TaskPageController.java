@@ -198,7 +198,6 @@ public class TaskPageController {
             taskDetailsAnchorPane.setVisible(false);
             taskEditPageAnchorPane.setVisible(false);
             taskCreateTaskButton.setText("Create Task");
-
             viewTaskButton.setVisible(true);
             viewTaskErrorMsg.setText("");
             viewTaskErrorMsg.setVisible(true);
