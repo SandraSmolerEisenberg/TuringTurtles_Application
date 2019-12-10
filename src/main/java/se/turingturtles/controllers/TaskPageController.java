@@ -443,11 +443,11 @@ public class TaskPageController {
 
     public void changeStatus(){
         Task task = projectManagement.findTask(taskDetailsViewHeaderText.getText());
-        if(taskDetailsCompleteButton.getText() == "Complete Task"){
-            task.setCompletion(true);
-        }
-        else if(taskDetailsCompleteButton.getText() == "Re-Open Task"){
+        if(task.getCompletion().equals("Completed")){
             task.setCompletion(false);
+        }
+        if(taskDetailsStatusText.getText().equals("Not Completed")){
+            task.setCompletion(true);
         }
         updateTables(task);
     }
@@ -461,10 +461,10 @@ public class TaskPageController {
         taskDetailsDurationText.setText("" + task.getDuration());
         taskDetailsTeamMembersText.setText("" + task.getTotalTeamMembers());
         taskDetailsStatusText.setText("" + task.getCompletion());
-        if(task.getCompletion() == "Not Completed"){
+        if(task.getCompletion().equals("Not Completed")){
             taskDetailsCompleteButton.setText("Complete Task");
         }
-        else if(task.getCompletion() == "Completed"){
+        else if(task.getCompletion().equals("Completed")){
             taskDetailsCompleteButton.setText("Re-Open Task");
         }
     }
