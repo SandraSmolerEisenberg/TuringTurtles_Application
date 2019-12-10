@@ -173,18 +173,26 @@
             String hourlyWage = enterWage.getText();
 
             if (validator.validateTextInput(name) && validator.validateNumericInput(id) && validator.validateNumericInput(hourlyWage)) {
-                projectManagement.createMember(name, Integer.parseInt(id), Double.parseDouble(hourlyWage));
-                enterName.clear();
-                enterWage.clear();
-                enterID.clear();
+                if(projectManagement.findTeamMember(Integer.parseInt(id)) == null) {
+                    projectManagement.createMember(name, Integer.parseInt(id), Double.parseDouble(hourlyWage));
+                    enterName.clear();
+                    enterWage.clear();
+                    enterID.clear();
 
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("New team member creation was successful!");
-                alert.setHeaderText("You have created a new team member successfully!");
-                alert.setContentText("A new team member has been created with the following information: \nName: " + name + "\nID: " + id + "\nHourly Wage: " + hourlyWage + "\n\nPlease click OK, in order to proceed!");
-                alert.showAndWait();
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("New team member creation was successful!");
+                    alert.setHeaderText("You have created a new team member successfully!");
+                    alert.setContentText("A new team member has been created with the following information: \nName: " + name + "\nID: " + id + "\nHourly Wage: " + hourlyWage + "\n\nPlease click OK, in order to proceed!");
+                    alert.showAndWait();
 
-                loadTeamList();
+                    loadTeamList();
+                }else{
+                    Alert idTaken = new Alert(Alert.AlertType.ERROR);
+                    idTaken.setTitle("Error!");
+                    idTaken.setHeaderText("ID already assigned");
+                    idTaken.setContentText("The chosen ID was already assigned to another team member, please choose another one.");
+                    idTaken.showAndWait();
+                }
             } else {
                 //With the above if statement we make sure that in case of empty values, the fields will not show the error messages.
                 if (!validator.validateTextInput(name)) {

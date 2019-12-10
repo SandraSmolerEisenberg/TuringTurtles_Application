@@ -27,7 +27,7 @@
             <Button fx:id="createNewProjectButton" cache="true" cacheHint="SCALE" layoutX="158.0" layoutY="350.0" mnemonicParsing="false" onAction="#createNewProject" prefHeight="25.0" prefWidth="329.0" text="Create new Project" />
             <Button fx:id="startPageButton" alignment="CENTER" cache="true" cacheHint="SCALE" layoutX="537.0" mnemonicParsing="false" onAction="#backToStartPage" prefHeight="47.0" prefWidth="90.0" text="Start Page" AnchorPane.bottomAnchor="392.0" AnchorPane.leftAnchor="537.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
             <RadioButton fx:id="disclaimerButton" layoutX="285.0" layoutY="309.0" mnemonicParsing="false" onAction="#activateCreateProjectButton" text="Accept" />
-            <Label layoutX="234.0" layoutY="280.0" prefHeight="17.0" prefWidth="190.0" text="Disclaimer Text to be entared..." />
+            <Label layoutX="195.0" layoutY="261.0" prefHeight="47.0" prefWidth="267.0" text="Disclaimer: If you choose to create a new project &#10;any current projects will be overwritten." textAlignment="CENTER" />
             <Label cache="true" cacheHint="SCALE" layoutX="164.0" layoutY="226.0" text="Project End" />
             <DatePicker fx:id="projectStart" layoutX="329.0" layoutY="179.0" promptText="Choose date:" />
             <DatePicker fx:id="projectEnd" layoutX="329.0" layoutY="222.0" promptText="Choose date:" />

@@ -37,11 +37,19 @@
                                     </AnchorPane>
                                     <AnchorPane fx:id="memberInfoPage" disable="false" layoutX="14.0" layoutY="47.0" prefHeight="448.0" prefWidth="539.0" visible="false">
                                        <children>
+                        <TableView fx:id="taskTable" layoutX="15.0" layoutY="265.0" prefHeight="124.0" prefWidth="510.0">
+                           <columns>
+                              <TableColumn fx:id="memberTaskName" prefWidth="93.0" text="Task Name" />
+                              <TableColumn fx:id="memberTaskStartWeek" prefWidth="76.0" text="Start Week" />
+                              <TableColumn fx:id="memberTaskDuration" prefWidth="90.0" text="Duration" />
+                              <TableColumn fx:id="memberTeamMembersAmount" prefWidth="127.0" text="Team Members" />
+                              <TableColumn fx:id="memberTaskStatus" prefWidth="123.0" text="Status" />
+                           </columns>
+                        </TableView>
                                           <Button fx:id="deleteTeamMember" layoutX="297.0" layoutY="399.0" mnemonicParsing="false" onAction="#deleteAlert" text="Delete teammember" />
                                           <Button layoutX="443.0" layoutY="399.0" mnemonicParsing="false" onAction="#showMemberAssignTaskPage" text="Assign task" />
                                           <Button fx:id="returnHome" layoutX="150.0" layoutY="399.0" mnemonicParsing="false" onAction="#returnToTeamPage" text="Return to teampage" />
                                           <Button layoutX="14.0" layoutY="399.0" mnemonicParsing="false" onAction="#showEditMemberPage" text="Edit teammember" />
-                                          <ListView fx:id="taskList" layoutX="15.0" layoutY="265.0" prefHeight="124.0" prefWidth="510.0" />
                                           <Label layoutX="63.0" layoutY="45.0" text="Name" />
                                           <Label layoutX="65.0" layoutY="104.0" text="ID" />
                                           <Label layoutX="63.0" layoutY="163.0" text="Hourly wage" />
@@ -63,20 +71,19 @@
                                     </AnchorPane>
                                     <AnchorPane fx:id="memberAssignTaskPage" disable="false" layoutX="15.0" layoutY="47.0" prefHeight="448.0" prefWidth="539.0" visible="false">
                                        <children>
-                                          <ListView fx:id="assignTaskList" layoutX="13.0" layoutY="181.0" prefHeight="199.0" prefWidth="514.0" />
+                        <TableView fx:id="assignTaskTable" layoutX="13.0" layoutY="181.0" prefHeight="199.0" prefWidth="514.0">
+                           <columns>
+                              <TableColumn fx:id="taskName" prefWidth="91.0" text="Task Name" />
+                              <TableColumn fx:id="taskStartWeek" prefWidth="93.0" text="Start Week" />
+                              <TableColumn fx:id="taskDuration" prefWidth="67.0" text="Duration" />
+                              <TableColumn fx:id="taskTeamMembersAmount" prefWidth="124.0" text="Team Members" />
+                              <TableColumn fx:id="taskStatus" prefWidth="138.0" text="Status" />
+                           </columns>
+                        </TableView>
                                           <Button layoutX="49.0" layoutY="398.0" mnemonicParsing="false" onAction="#returnToTeamPage" text="Return to teampage" />
                                           <Button layoutX="387.0" layoutY="398.0" mnemonicParsing="false" onAction="#assignTaskToMember" text="Assign task" />
                                           <Text fx:id="memberAssignTaskInfoText" layoutX="14.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" />
                                           <Label layoutX="13.0" layoutY="164.0" text="Please choose a task from the list below" />
-                        <TableView fx:id="assignTaskTable" layoutX="13.0" layoutY="181.0" prefHeight="199.0" prefWidth="514.0">
-                           <columns>
-                              <TableColumn fx:id="taskName" prefWidth="75.0" text="Task Name" />
-                              <TableColumn fx:id="taskStartWeek" prefWidth="75.0" text="Start Week" />
-                              <TableColumn fx:id="taskDuration" prefWidth="75.0" text="Duration" />
-                              <TableColumn fx:id="taskTeamMembersAmount" prefWidth="126.6666259765625" text="Team Members" />
-                              <TableColumn fx:id="taskStatus" prefWidth="124.66665649414062" text="Status" />
-                           </columns>
-                        </TableView>
                                        </children>
                                     </AnchorPane>
                                  </children>
