@@ -1,3 +1,3 @@
 .default-color0.chart-bar {
-    visibility:hidden;
+    -fx-visibility:hidden;
 }

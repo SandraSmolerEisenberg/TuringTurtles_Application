@@ -5,7 +5,33 @@
 @import "05-teamtab.css"
 @import "06-risktab.css"
 @import "07-calctab.css"
-$light-background: linear-gradient(to top right, rgba(240, 240, 240, 1) 0%, rgba(255, 255, 255, 1) 100%)
-.root AnchorPane
-  -fx-color: #373A43
-  -fx-background: $light-background
+@font-face
+  font-family: 'Lobster'
+  font-style: normal
+  font-weight: 400
+  src: url('../fonts/Lobster/Lobster-Regular.ttf')
+@font-face
+  font-family: 'Open Sans Condensed'
+  font-style: normal
+  font-weight: 300
+  src: url('../fonts/Open_Sans_Condensed/OpenSansCondensed-Light.ttf')
+$light-background: linear-gradient(to top right, rgba(230, 230, 230, 1) 0%, rgba(255, 255, 255, 1) 100%)
+.root
+  -fx-background-color: $light-background
+.button
+  -fx-background-color: #71C688
+  -fx-font-size: 9pt
+  -fx-text-fill: white
+  -fx-background-radius: 20
+  -fx-padding: 10pt
+  -fx-effect: dropshadow(three-pass-box, #71C688, 10, 0, 0, 2)
+.button:hover
+  -fx-background-color: #3E6C4B
+  -fx-effect: dropshadow(three-pass-box, #3E6C4B, 10, 0, 0, 2)
+#h1
+  -fx-font-family: 'Lobster'
+  -fx-font-size: 45pt
+#h2
+  -fx-font-family: 'Open Sans Condensed'
+  -fx-font-size: 15pt
+  -fx-font-weight: 300

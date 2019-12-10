@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
@@ -35,8 +36,7 @@
       </Button>
 </children></AnchorPane>
 -->
-
-<AnchorPane stylesheets="@../css/00-default.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="se.turingturtles.controllers.StartPageController">
+<!--<AnchorPane prefHeight="700.0" prefWidth="1000.0" stylesheets="@../css/00-default.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="se.turingturtles.controllers.StartPageController">
    <children>
       <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Turing Turtle" />
@@ -44,5 +44,21 @@
       <Button fx:id="createProjectButtoncreateProjectButton" mnemonicParsing="false" onAction="#createNewProject" text="Create Project" />
       <Button fx:id="loadProjectButtonloadProjectButton" mnemonicParsing="false" onAction="#loadProject" text="Load Project" />
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Disclaimer: Current projects are overwritten whenever a new project is created." />
+   </children>
+</AnchorPane>
+-->
+
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" stylesheets="@../css/00-default.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="se.turingturtles.controllers.StartPageController">
+   <children>
+      <ImageView fitHeight="161.0" fitWidth="204.0" layoutX="148.0" layoutY="121.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/turtle.png" />
+         </image>
+      </ImageView>
+      <Text id="h1" layoutX="344.0" layoutY="202.0" text="Turing Turtle" />
+      <Text id="h2" layoutX="344.0" layoutY="242.0" text="PROJECT MANAGEMENT" />
+      <Button fx:id="createProjectButton" layoutX="201.0" layoutY="343.0" mnemonicParsing="false" onAction="#createNewProject" text="Create Project" />
+      <Button fx:id="loadProjectButton" layoutX="476.0" layoutY="344.0" mnemonicParsing="false" onAction="#loadProject" text="Load Project" />
+      <Text layoutX="157.0" layoutY="427.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Disclaimer: Current projects are overwritten whenever a new project is created." />
    </children>
 </AnchorPane>

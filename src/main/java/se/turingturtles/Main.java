@@ -25,19 +25,16 @@ public class Main extends Application {
         window.setResizable(true);
 
         //Scene creation.
-        Scene scene = new Scene(factory.loadFXML("projectmaster"), width, height);
+        Scene scene = new Scene(factory.loadFXML("startpage"), width, height);
         scene.getStylesheets().addAll();
         window.setScene(scene);
-       // scene.getStylesheets().add(getClass().getResource("/se/turingturtles/css/00-default.css").toExternalForm());
+        scene.getStylesheets().add(getClass().getResource("/se/turingturtles/css/00-default.css").toExternalForm());
 
         //Application window title.
-        window.setTitle("Turing Turtles");
+        window.setTitle("Turing Turtle");
         Image image = factory.loadImage("turtle");
         window.getIcons().add(image);
         window.show();
-
-        //Application fonts.
-        //Font.loadFont(getStylesheets().add(getClass().getResource("https://fonts.googleapis.com/css?family=Lobster|Open+Sans+Condensed:300,300i,700|Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&display=swap&subset=latin-ext")));
     }
 
 

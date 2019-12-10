@@ -23,7 +23,7 @@ public class StartPageController {
     ProjectFactory factory = new ProjectFactory();
 
     public void createNewProject(ActionEvent event) throws IOException {
-        factory.changeScene(loadProjectButton.getScene(),"projectoverview");
+        factory.changeScene(createProjectButton.getScene(),"createproject");
     }
 
     public void loadProject(ActionEvent event) {
