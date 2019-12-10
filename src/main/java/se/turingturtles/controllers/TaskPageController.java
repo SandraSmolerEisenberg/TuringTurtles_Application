@@ -422,7 +422,12 @@ public class TaskPageController {
             task.setName(name);
             updateTables(task);
             loadViewTaskAnchorPane();
-
+        }
+        if(!validator.validateTextInput(name) && validator.validateDate(projectStartDate, projectEndDate)){
+            task.setStartDate(projectStartDate);
+            task.setEndDate(projectEndDate);
+            updateTables(task);
+            loadViewTaskAnchorPane();
         }
         if(!validator.validateTextInput(name)){
                 taskEditPageNewName.clear();
