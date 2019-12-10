@@ -180,19 +180,20 @@ public class TaskPageController {
             tableAnchorPane.setVisible(false);
             createTaskAnchorPane.setVisible(true);
             taskDetailsAnchorPane.setVisible(false);
+            taskEditPageAnchorPane.setVisible(false);
             taskCreateTaskButton.setText("Back");
             viewTaskButton.setVisible(false);
             viewTaskErrorMsg.setVisible(false);
             loadTasksTable();
         }
-        if (taskEditPageAnchorPane.isVisible()){
+        else if (taskEditPageAnchorPane.isVisible()){
             createTaskAnchorPane.setVisible(false);
             tableAnchorPane.setVisible(false);
             taskDetailsAnchorPane.setVisible(true);
             taskEditPageAnchorPane.setVisible(false);
             loadTasksTable();
         }
-        else {
+        else if (taskDetailsAnchorPane.isVisible()){
             createTaskAnchorPane.setVisible(false);
             tableAnchorPane.setVisible(true);
             taskDetailsAnchorPane.setVisible(false);
@@ -203,6 +204,18 @@ public class TaskPageController {
             viewTaskErrorMsg.setVisible(true);
             loadTasksTable();
         }
+        else if (createTaskAnchorPane.isVisible()){
+            createTaskAnchorPane.setVisible(false);
+            tableAnchorPane.setVisible(true);
+            taskDetailsAnchorPane.setVisible(false);
+            taskEditPageAnchorPane.setVisible(false);
+            taskCreateTaskButton.setText("Create Task");
+            viewTaskButton.setVisible(true);
+            viewTaskErrorMsg.setText("");
+            viewTaskErrorMsg.setVisible(true);
+            loadTasksTable();
+        }
+
     }
 
     @FXML public void makeNewTask(ActionEvent event){
