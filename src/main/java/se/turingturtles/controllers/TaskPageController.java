@@ -21,6 +21,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class TaskPageController {
+
     @FXML
     public AnchorPane taskPage;
 
@@ -182,6 +183,13 @@ public class TaskPageController {
             taskCreateTaskButton.setText("Back");
             viewTaskButton.setVisible(false);
             viewTaskErrorMsg.setVisible(false);
+            loadTasksTable();
+        }
+        if (taskEditPageAnchorPane.isVisible()){
+            createTaskAnchorPane.setVisible(false);
+            tableAnchorPane.setVisible(false);
+            taskDetailsAnchorPane.setVisible(true);
+            taskEditPageAnchorPane.setVisible(false);
             loadTasksTable();
         }
         else {
