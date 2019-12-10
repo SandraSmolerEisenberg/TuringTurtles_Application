@@ -14,6 +14,7 @@
     import javafx.scene.layout.CornerRadii;
     import javafx.scene.paint.Color;
     import javafx.scene.text.Text;
+    import se.turingturtles.ProjectCalculations;
     import se.turingturtles.ProjectManagement;
     import se.turingturtles.Validator;
     import se.turingturtles.entities.Task;
@@ -45,6 +46,8 @@
         @FXML
         private Text wageText;
         @FXML
+        private Text memberTimeSpent;
+        @FXML
         private AnchorPane memberInfoPage;
         @FXML
         private AnchorPane memberEditPage;
@@ -71,7 +74,7 @@
         @FXML
         private TableColumn taskStatus;
         @FXML
-                private TableView taskTable;
+        private TableView taskTable;
         @FXML
         private TableColumn memberTaskName;
         @FXML
@@ -82,15 +85,32 @@
         private TableColumn memberTeamMembersAmount;
         @FXML
         private TableColumn memberTaskStatus;
+        @FXML
+        private AnchorPane landingTeamPage;
+        @FXML
+                private Text totalTimeSpent;
+        @FXML
+                private Text totalMembersAmount;
+        @FXML
+                private Text totalSalaries;
 
 
         ProjectFactory factory = new ProjectFactory();
         ProjectManagement projectManagement = factory.makeProjectManagement();
         Validator validator = factory.makeValidator();
+        ProjectCalculations calculation = factory.makeProjectCalculations();
         private int lastViewedID;
 
         @FXML public void initialize(){
             loadTeamList();
+            loadLandingPage();
+        }
+        public void loadLandingPage(){
+            landingTeamPage.setVisible(true);
+            totalSalaries.setText(String.valueOf(calculation.calculateTotalSalaries()));
+            totalTimeSpent.setText(String.valueOf(projectManagement.timeSpentOnProject()));
+            totalMembersAmount.setText(String.valueOf(projectManagement.getTeamMembers().size()));
+
         }
 
         public void loadTeamList() {
@@ -112,10 +132,10 @@
             Alert deleteAlert = new Alert(Alert.AlertType.CONFIRMATION);
             deleteAlert.setTitle("Warning: Deleting member");
             deleteAlert.setHeaderText("WARNING!");
-            deleteAlert.setContentText("You have selected to delete the following member: \nName: " + projectManagement.findTeamMember(findSelectedID()).getName() + "\nID: " + projectManagement.findTeamMember(findSelectedID()).getId() + "\n\nPlease click OK, in order to proceed!");
+            deleteAlert.setContentText("You have selected to delete the following member: \nName: " + projectManagement.findTeamMember(lastViewedID).getName() + "\nID: " + projectManagement.findTeamMember(lastViewedID).getId() + "\n\nPlease click OK, in order to proceed!");
             deleteAlert.showAndWait();
             if (deleteAlert.getResult() == ButtonType.OK) {
-                projectManagement.removeMember(projectManagement.findTeamMember(findSelectedID()));
+                projectManagement.removeMember(projectManagement.findTeamMember(lastViewedID));
                 loadTeamList();
                 memberInfoPage.setVisible(false);
             }
@@ -126,6 +146,7 @@
             memberInfoPage.setVisible(false);
             memberEditPage.setVisible(false);
             memberAssignTaskPage.setVisible(false);
+            landingTeamPage.setVisible(false);
         }
 
         public void showEditMemberPage(ActionEvent e) {
@@ -270,10 +291,12 @@
             newMemberPage.setVisible(false);
             memberInfoPage.setVisible(true);
             memberEditPage.setVisible(false);
+            landingTeamPage.setVisible(false);
             memberLoadAssignTaskList();
             nameText.setText(projectManagement.findTeamMember(lastViewedID).getName());
             idText.setText(String.valueOf(projectManagement.findTeamMember(lastViewedID).getId()));
             wageText.setText(String.valueOf(projectManagement.findTeamMember(lastViewedID).getHourlyWage()));
+            memberTimeSpent.setText(String.valueOf(projectManagement.findTeamMember(lastViewedID).getWeeksSpent()));
 
 
         }
@@ -316,6 +339,7 @@
             newMemberPage.setVisible(false);
             memberEditPage.setVisible(false);
             memberAssignTaskPage.setVisible(false);
+            loadLandingPage();
             //We clear the fields in case of incorrect values entered the last time, so that the previous values will not appear again.
             enterName.clear();
             enterWage.clear();
