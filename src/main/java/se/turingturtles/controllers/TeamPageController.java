@@ -39,8 +39,6 @@
         @FXML
         private TextField searchBar;
         @FXML
-        private ListView taskList;
-        @FXML
         private Text nameText;
         @FXML
         private Text idText;
@@ -72,6 +70,19 @@
         private TableColumn taskTeamMembersAmount;
         @FXML
         private TableColumn taskStatus;
+        @FXML
+                private TableView taskTable;
+        @FXML
+        private TableColumn memberTaskName;
+        @FXML
+        private TableColumn memberTaskStartWeek;
+        @FXML
+        private TableColumn memberTaskDuration;
+        @FXML
+        private TableColumn memberTeamMembersAmount;
+        @FXML
+        private TableColumn memberTaskStatus;
+
 
         ProjectFactory factory = new ProjectFactory();
         ProjectManagement projectManagement = factory.makeProjectManagement();
@@ -206,6 +217,15 @@
             ObservableList<Task> tasks = FXCollections.observableArrayList(projectManagement.retrieveTasks());
             assignTaskTable.setItems(tasks);
         }
+        public void memberLoadAssignTaskList(){
+            memberTaskName.setCellValueFactory(new PropertyValueFactory<>("name"));
+            memberTaskStartWeek.setCellValueFactory(new PropertyValueFactory<>("startWeek"));
+            memberTaskDuration.setCellValueFactory(new PropertyValueFactory<>("duration"));
+            memberTeamMembersAmount.setCellValueFactory(new PropertyValueFactory<>("totalTeamMembers"));
+            memberTaskStatus.setCellValueFactory(new PropertyValueFactory<>("completion"));
+            ObservableList<Task> tasks = FXCollections.observableArrayList(projectManagement.findTeamMember(lastViewedID).getTasks());
+            taskTable.setItems(tasks);
+        }
         public void showMemberAssignTaskPage(Event event){
             memberInfoPage.setVisible(false);
             memberAssignTaskPage.setVisible(true);
@@ -222,7 +242,7 @@
             }else {
                 if (!projectManagement.findTeamMember(lastViewedID).getTasks().contains(assignTaskTable.getSelectionModel().getSelectedItem())) {
                     projectManagement.assignTask(projectManagement.findTeamMember(lastViewedID), (Task) assignTaskTable.getSelectionModel().getSelectedItem());
-                    loadAssignTaskList();
+                    assignTaskTable.refresh();
                     Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
                     successAlert.setTitle("Success!");
                     successAlert.setHeaderText("Successful assignment!");
@@ -242,8 +262,7 @@
             newMemberPage.setVisible(false);
             memberInfoPage.setVisible(true);
             memberEditPage.setVisible(false);
-            ObservableList<Task> tasks = FXCollections.observableArrayList(projectManagement.retrieveMemberTasks(projectManagement.findTeamMember(lastViewedID)));
-            taskList.setItems(tasks);
+            memberLoadAssignTaskList();
             nameText.setText(projectManagement.findTeamMember(lastViewedID).getName());
             idText.setText(String.valueOf(projectManagement.findTeamMember(lastViewedID).getId()));
             wageText.setText(String.valueOf(projectManagement.findTeamMember(lastViewedID).getHourlyWage()));
