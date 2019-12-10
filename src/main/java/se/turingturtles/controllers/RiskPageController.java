@@ -56,8 +56,13 @@ public class RiskPageController {
         riskProbability.setCellValueFactory(new PropertyValueFactory<>("probability"));
         riskCalculated.setCellValueFactory(new PropertyValueFactory<>("riskCalculated"));
         riskIndex.setAutoRanging(false);
-        riskIndex.setUpperBound(getHighestRisk());
-        riskMatrix.getData().add(loadRiskMatrix());
+        try{
+            riskIndex.setUpperBound(getHighestRisk());
+            riskMatrix.getData().add(loadRiskMatrix());
+        }
+        catch (Exception e){
+            riskIndex.setUpperBound(0);
+        }
         createRiskAnchorPane.setVisible(false);
         riskDetails.setVisible(false);
         loadRiskDetailsTable();

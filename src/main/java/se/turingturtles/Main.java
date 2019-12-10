@@ -28,7 +28,7 @@ public class Main extends Application {
         Scene scene = new Scene(factory.loadFXML("startpage"), width, height);
         scene.getStylesheets().addAll();
         window.setScene(scene);
-        scene.getStylesheets().add(getClass().getResource("/se/turingturtles/css/00-default.css").toExternalForm());
+        //scene.getStylesheets().add(getClass().getResource("/se/turingturtles/css/00-default.css").toExternalForm());
 
         //Application window title.
         window.setTitle("Turing Turtle");
@@ -39,7 +39,7 @@ public class Main extends Application {
 
 
     public static void main(String[] args) throws IOException {
-        testData();
+     //   testData();
         launch();
 
     }
