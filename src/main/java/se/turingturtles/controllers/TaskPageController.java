@@ -133,12 +133,12 @@ public class TaskPageController {
 
     @FXML private void initialize(){
         tableAnchorPane.setVisible(true);
-        createTaskAnchorPane.setVisible(false);
-        taskDetailsAnchorPane.setVisible(false);
-        taskEditPageAnchorPane.setVisible(false);
         loadTasksTable();
         setDatePicker(taskStartDate, "StartDate");
         setDatePicker(taskEndDate, "EndDate");
+        createTaskAnchorPane.setVisible(false);
+        taskDetailsAnchorPane.setVisible(false);
+        taskEditPageAnchorPane.setVisible(false);
     }
 
     private void loadTasksTable(){
@@ -184,7 +184,7 @@ public class TaskPageController {
             viewTaskErrorMsg.setVisible(false);
             loadTasksTable();
         }
-        else if(createTaskAnchorPane.isVisible()){
+        else {
             createTaskAnchorPane.setVisible(false);
             tableAnchorPane.setVisible(true);
             taskDetailsAnchorPane.setVisible(false);
@@ -194,15 +194,6 @@ public class TaskPageController {
             viewTaskButton.setVisible(true);
             viewTaskErrorMsg.setText("");
             viewTaskErrorMsg.setVisible(true);
-            loadTasksTable();
-        } else if (taskEditPageAnchorPane.isVisible()) {
-            tableAnchorPane.setVisible(false);
-            createTaskAnchorPane.setVisible(false);
-            taskDetailsAnchorPane.setVisible(true);
-            taskEditPageAnchorPane.setVisible(false);
-            taskCreateTaskButton.setText("Back");
-            viewTaskButton.setVisible(false);
-            viewTaskErrorMsg.setVisible(false);
             loadTasksTable();
         }
     }
@@ -268,7 +259,7 @@ public class TaskPageController {
             taskCreateTaskButton.setText("Back");
             loadTasksTable();
         }
-        if  (taskDetailsAnchorPane.isVisible()){
+        else if(taskDetailsAnchorPane.isVisible()){
             taskDetailsAnchorPane.setVisible(false);
             createTaskAnchorPane.setVisible(false);
             tableAnchorPane.setVisible(true);
@@ -277,14 +268,13 @@ public class TaskPageController {
             taskCreateTaskButton.setText("Create Task");
             loadTasksTable();
         }
-        if  (taskEditPageAnchorPane.isVisible()){
+        else if(taskEditPageAnchorPane.isVisible()){
             taskDetailsAnchorPane.setVisible(true);
             createTaskAnchorPane.setVisible(false);
             tableAnchorPane.setVisible(false);
             taskEditPageAnchorPane.setVisible(false);
             viewTaskButton.setVisible(true);
             taskCreateTaskButton.setText("Create Task");
-            updateTextFields();
             loadTasksTable();
         }
 
