@@ -99,19 +99,19 @@ public class TaskPageController {
     @FXML
     private Button removeTeamMemberButton;
     @FXML
-    public Button assignTeamMemberButton;
+    private Button assignTeamMemberButton;
     @FXML
-    public TableView teamMembersTable;
+    private Button taskDetailsCompleteButton;
     @FXML
-    public TableColumn teamMemberNameColumn;
+    private TableView teamMembersTable;
     @FXML
-    public TableColumn teamMemberIdColumn;
+    private TableColumn teamMemberNameColumn;
     @FXML
-    public TableColumn teamMemberTotalTasks;
+    private TableColumn teamMemberIdColumn;
     @FXML
-    public TableColumn teamMemberSalary;
+    private TableColumn teamMemberTotalTasks;
     @FXML
-    private Text removeTaskErrorMsg;
+    private TableColumn teamMemberSalary;
     //-----Detailed View Attributes End-----
     //------Edit Page Attributes Start------
     @FXML
@@ -121,11 +121,11 @@ public class TaskPageController {
     @FXML
     private TextField taskEditPageNewName;
     @FXML
-    private Button taskEditOkNameButton;
+    private DatePicker taskEditPageStartWeek;
     @FXML
-    private Button taskEditStatusButton;
+    private DatePicker taskEditPageEndWeek;
     @FXML
-    private Text taskEditErrorMsg;
+    private Button taskEditSaveButton;
     //------Edit Page Attributes End------
 
     private ProjectFactory projectFactory = new ProjectFactory();
@@ -297,17 +297,10 @@ public class TaskPageController {
             Alert assignmentError = new Alert(Alert.AlertType.ERROR);
             assignmentError.setTitle("Error!");
             assignmentError.setHeaderText("Assignment to task failed!");
-            assignmentError.setContentText("Couldn't find team member" + ".");
+            assignmentError.setContentText("Couldn't find team member" + ",\n" + "or team member is already assigned to task!");
             assignmentError.showAndWait();
         }
-        else {
-            //This is never executed?
-            Alert assignmentError = new Alert(Alert.AlertType.ERROR);
-            assignmentError.setTitle("Error!");
-            assignmentError.setHeaderText("Assignment to task failed!");
-            assignmentError.setContentText(teamMember.getName() + " is already assigned to " + task.getName() + ".");
-            assignmentError.showAndWait();
-        }
+
     }
 
     private void loadTeamMembersTable() {
@@ -351,11 +344,13 @@ public class TaskPageController {
         Task task = projectManagement.findTask(taskDetailsViewHeaderText.getText());
         //The if-statement only executes once per run...
         if(teamMember == null ){
-            removeTaskErrorMsg.setText("Select a Team Member first!");
-            removeTaskErrorMsg.setStyle("-fx-text-fill: red;");
+            Alert deleteAlert = new Alert(Alert.AlertType.INFORMATION);
+            deleteAlert.setTitle("Selection missing");
+            deleteAlert.setHeaderText("Hey!");
+            deleteAlert.setContentText("Please select a team member to remove!");
+            deleteAlert.showAndWait();
         }
         else {
-            removeTaskErrorMsg.setVisible(false);
             Alert deleteAlert = new Alert(Alert.AlertType.CONFIRMATION);
             deleteAlert.setTitle("You are about to remove this member from the task");
             deleteAlert.setHeaderText("WARNING!");
@@ -364,25 +359,27 @@ public class TaskPageController {
             if (deleteAlert.getResult() == ButtonType.OK) {
                 task.removeTeamMember(teamMember);
                 teamMember.removeTask(task);
+                loadTaskTeamMembersList(task);
+                loadTeamMembersTable();
                 loadTasksTable();
-                tableAnchorPane.setVisible(true);
-                taskDetailsAnchorPane.setVisible(false);
-                createTaskAnchorPane.setVisible(false);
-                viewTaskButton.setVisible(true);
-                taskCreateTaskButton.setText("Create Task");
-                viewTaskErrorMsg.setText("");
-                viewTaskErrorMsg.setVisible(true);
             }
         }
     }
     public void loadEditTaskPage(ActionEvent event){
         taskDetailsAnchorPane.setVisible(false);
         taskEditPageAnchorPane.setVisible(true);
-        taskEditErrorMsg.setVisible(false);
         taskCreateTaskButton.setText("Back");
         viewTaskButton.setVisible(false);
         Task task = projectManagement.findTask(taskDetailsViewHeaderText.getText());
         taskEditPageHeaderText.setText("You are editing " + task.getName());
+        taskEditPageNewName.clear();
+        taskEditPageStartWeek.getEditor().clear();
+        taskEditPageEndWeek.getEditor().clear();
+        setDatePicker(taskEditPageStartWeek, "StartDate");
+        setDatePicker(taskEditPageEndWeek, "EndDate");
+
     }
-    public void applyEditedName(ActionEvent event){}
+    public void taskEditSaveChanges(ActionEvent event){
+
+    }
 }

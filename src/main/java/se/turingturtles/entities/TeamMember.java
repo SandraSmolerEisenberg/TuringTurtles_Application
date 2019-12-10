@@ -60,7 +60,9 @@ public class TeamMember {
         setTotalTasks(totalTasks());
     }
     public void removeTask(Task task){
+
         tasks.remove(task);
+        setTotalTasks(totalTasks());
     }
     public int totalTasks(){
         return tasks.size();
