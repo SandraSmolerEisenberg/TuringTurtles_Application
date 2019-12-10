@@ -20,7 +20,6 @@
     import se.turingturtles.entities.Task;
     import se.turingturtles.entities.TeamMember;
     import se.turingturtles.implementations.ProjectFactory;
-    import se.turingturtles.implementations.ProjectManagementImp;
 
     public class TeamPageController {
 
@@ -88,11 +87,11 @@
         @FXML
         private AnchorPane landingTeamPage;
         @FXML
-                private Text totalTimeSpent;
+        private Text totalTimeSpent;
         @FXML
-                private Text totalMembersAmount;
+        private Text totalMembersAmount;
         @FXML
-                private Text totalSalaries;
+        private Text totalSalaries;
 
 
         ProjectFactory factory = new ProjectFactory();
@@ -138,10 +137,11 @@
                 projectManagement.removeMember(projectManagement.findTeamMember(lastViewedID));
                 loadTeamList();
                 memberInfoPage.setVisible(false);
+                loadLandingPage();
             }
         }
 
-        public void showNewMemberCreation(ActionEvent e) {
+        public void showNewMemberCreation(ActionEvent event) {
             newMemberPage.setVisible(true);
             memberInfoPage.setVisible(false);
             memberEditPage.setVisible(false);
@@ -149,7 +149,7 @@
             landingTeamPage.setVisible(false);
         }
 
-        public void showEditMemberPage(ActionEvent e) {
+        public void showEditMemberPage(ActionEvent event) {
             memberEditPage.setVisible(true);
             memberInfoPage.setVisible(false);
             editMemberInfoText.setText("You are editing: " + projectManagement.findTeamMember(lastViewedID).getName() + " with ID: " + lastViewedID);
@@ -246,6 +246,7 @@
             ObservableList<Task> tasks = FXCollections.observableArrayList(projectManagement.retrieveTasks());
             assignTaskTable.setItems(tasks);
         }
+
         public void memberLoadAssignTaskList(){
             memberTaskName.setCellValueFactory(new PropertyValueFactory<>("name"));
             memberTaskStartWeek.setCellValueFactory(new PropertyValueFactory<>("startWeek"));
@@ -255,12 +256,14 @@
             ObservableList<Task> tasks = FXCollections.observableArrayList(projectManagement.findTeamMember(lastViewedID).getTasks());
             taskTable.setItems(tasks);
         }
+
         public void showMemberAssignTaskPage(Event event){
             memberInfoPage.setVisible(false);
             memberAssignTaskPage.setVisible(true);
             memberAssignTaskInfoText.setText("You are assigning tasks to: " + projectManagement.findTeamMember(lastViewedID).getName() + " with ID: " + lastViewedID);
             loadAssignTaskList();
         }
+
         public void assignTaskToMember(Event event){
             if(assignTaskTable.getSelectionModel().getSelectedItem() == null){
                 Alert selectionError = new Alert(Alert.AlertType.ERROR);
@@ -301,14 +304,14 @@
 
         }
 
-        public void selectTeamMember(Event e) {
+        public void selectTeamMember(Event event) {
             int selectedID = findSelectedID();
             lastViewedID = selectedID;
             loadMemberInfoPage();
 
         }
 
-        public void searchTeamMember(Event e) {
+        public void searchTeamMember(Event event) {
             if (!validator.validateNumericInput(searchBar.getText())) {
                 searchBar.clear();
                 searchBar.setPromptText("Invalid ID!");
