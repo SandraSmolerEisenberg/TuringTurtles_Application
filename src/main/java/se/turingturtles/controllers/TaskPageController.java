@@ -417,6 +417,7 @@ public class TaskPageController {
         taskDetailsStartWeekText.setText("" + task.getStartWeek());
         taskDetailsEndWeekText.setText("" + task.getEndWeek());
         taskDetailsDurationText.setText("" + task.getDuration());
+        taskDetailsTeamMembersText.setText("" + task.getTotalTeamMembers());
     }
     public void updateTextFields(){
         taskStartDate.getEditor().clear();
