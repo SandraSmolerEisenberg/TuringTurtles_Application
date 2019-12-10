@@ -406,7 +406,7 @@ public class TaskPageController {
 
     }
     public void taskEditSaveChanges(ActionEvent event){
-        Task task = projectManagement.findTask(taskDetailsViewHeaderText.getText());;
+        Task task = projectManagement.findTask(taskDetailsViewHeaderText.getText());
         String name = taskEditPageNewName.getText();
         LocalDate projectStartDate = taskEditPageStartWeek.getValue();
         LocalDate projectEndDate = taskEditPageEndWeek.getValue();
@@ -435,6 +435,18 @@ public class TaskPageController {
             taskEditPageEndWeek.setPromptText("Choose date:");
         }
     }
+
+    public void changeStatus(){
+        Task task = projectManagement.findTask(taskDetailsViewHeaderText.getText());
+        if(taskDetailsCompleteButton.getText() == "Complete Task"){
+            task.setCompletion(true);
+        }
+        else if(taskDetailsCompleteButton.getText() == "Re-Open Task"){
+            task.setCompletion(false);
+        }
+        updateTables(task);
+    }
+
     public void updateTables(Task task){
         loadTaskTeamMembersList(task);
         loadTeamMembersTable();
@@ -443,6 +455,13 @@ public class TaskPageController {
         taskDetailsEndWeekText.setText("" + task.getEndWeek());
         taskDetailsDurationText.setText("" + task.getDuration());
         taskDetailsTeamMembersText.setText("" + task.getTotalTeamMembers());
+        taskDetailsStatusText.setText("" + task.getCompletion());
+        if(task.getCompletion() == "Not Completed"){
+            taskDetailsCompleteButton.setText("Complete Task");
+        }
+        else if(task.getCompletion() == "Completed"){
+            taskDetailsCompleteButton.setText("Re-Open Task");
+        }
     }
     public void updateTextFields(){
         taskStartDate.getEditor().clear();

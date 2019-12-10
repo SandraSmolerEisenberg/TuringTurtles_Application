@@ -82,7 +82,7 @@
                   <TableColumn fx:id="teamMemberSalary" prefWidth="107.99996948242188" text="Salary" />
               </columns>
             </TableView>
-            <Button fx:id="taskDetailsCompleteButton" layoutX="377.0" layoutY="299.0" mnemonicParsing="false" text="Complete Task" />
+            <Button fx:id="taskDetailsCompleteButton" layoutX="377.0" layoutY="299.0" mnemonicParsing="false" onAction="#changeStatus" text="Complete Task" />
          </children>
       </AnchorPane>
    </children>
