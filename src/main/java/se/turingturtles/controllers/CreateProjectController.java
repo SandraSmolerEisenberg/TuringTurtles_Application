@@ -3,11 +3,14 @@ package se.turingturtles.controllers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.util.StringConverter;
 import se.turingturtles.ProjectManagement;
 import se.turingturtles.Validator;
 import se.turingturtles.implementations.ProjectFactory;
+import se.turingturtles.implementations.ProjectManagementImp;
 
 import java.io.IOException;
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 
 public class CreateProjectController {
@@ -31,8 +34,26 @@ public class CreateProjectController {
     @FXML
     public void initialize(){
         createNewProjectButton.setDisable(true);
+        setDatePicker(projectStart, "StartDate");
+        setDatePicker(projectEnd, "EndDate");
     }
 
+    private void setDatePicker(DatePicker datePicker, String calendar){
+        datePicker.setEditable(false);
+        StringConverter<LocalDate> defaultConverter = datePicker.getConverter();
+        datePicker.setDayCellFactory(picker -> new DateCell() {
+            public void updateItem(LocalDate date, boolean empty) {
+                super.updateItem(date, empty);
+                if (calendar.equals("StartDate")) {
+                    setDisable(empty || date.getDayOfWeek() != DayOfWeek.MONDAY);
+                }
+                else if (calendar.equals("EndDate")){
+                    setDisable(empty || date.getDayOfWeek() != DayOfWeek.SUNDAY);
+                }
+            }
+        });
+        datePicker.setPromptText("Choose date:");
+    }
 
     private ProjectFactory factory = new ProjectFactory();
     //Create project button set to disable by default

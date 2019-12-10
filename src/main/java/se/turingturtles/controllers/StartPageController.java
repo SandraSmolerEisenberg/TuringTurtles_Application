@@ -17,8 +17,7 @@ public class StartPageController {
     private Button createProjectButton;
     @FXML
     private Button loadProjectButton;
-    @FXML
-    private Text startPageText;
+
 
     ProjectFactory factory = new ProjectFactory();
 
@@ -26,13 +25,10 @@ public class StartPageController {
         factory.changeScene(createProjectButton.getScene(),"createproject");
     }
 
-    public void loadProject(ActionEvent event) {
-        StreamJSON testStream = factory.makeStream();
-        try {
+    public void loadProject(ActionEvent event) throws Exception{
+            StreamJSON testStream = factory.makeStream();
             testStream.importFromJSON("project.json");
-        } catch (IOException e) {
-            startPageText.setText("404 Fel");
-        }
+            factory.changeScene(createProjectButton.getScene(),"projectmaster");
 
     }
 }
