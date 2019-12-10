@@ -21,6 +21,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class TaskPageController {
+    //Used to
+    private static final int ONE_WEEK_DAY = 1;
 
     @FXML
     public AnchorPane taskPage;
@@ -222,9 +224,8 @@ public class TaskPageController {
         String name = newTaskName.getText();
         LocalDate taskStart = taskStartDate.getValue();
         LocalDate taskEnd = taskEndDate.getValue();
-        taskEnd = taskEnd.plusDays(1);
         Validator validator = projectFactory.makeValidator();
-        if (validator.validateTextInput(name) && validator.validateDate(taskStart, taskEnd)) {
+        if (validator.validateDate(taskStart, taskEnd) && validator.validateTextInput(name) ){
             boolean sameName = false;
             ArrayList<Task> tasks = (ArrayList<Task>) projectManagement.retrieveTasks();
             for (int i = 0; i < tasks.size(); i++ ){
@@ -238,23 +239,27 @@ public class TaskPageController {
                 newTaskName.setPromptText("Invalid Name!");
             }
             else {
+                taskEnd = taskEnd.plusDays(1);
                 projectManagement.createTask(name, taskStart, taskEnd);
                 loadTasksTable();
                 updateTextFields();
                 newTaskName.clear();
             }
         }
-        else if (!validator.validateTextInput(name)) {
-            newTaskName.clear();
-            newTaskName.setPromptText("Invalid Name!");
-        }
-        else if(!validator.validateDate(taskStart, taskEnd)){
+        else {
+            if (!validator.validateTextInput(name)){
+                newTaskName.clear();
+                newTaskName.setPromptText("Invalid Name!");
 
-            taskStartDate.setPromptText("Set Valid Date!");
-            taskEndDate.setPromptText("Set Valid Date!");
+            }
+            if(!validator.validateDate(taskStart, taskEnd)){
+                taskStartDate.getEditor().clear();
+                taskEndDate.getEditor().clear();
+                taskStartDate.setPromptText("Set Valid Date!");
+                taskEndDate.setPromptText("Set Valid Date!");
+            }
         }
     }
-
 
 
     public void selectTaskRow(ActionEvent event){
