@@ -243,7 +243,7 @@ public class TaskPageController {
                 newTaskName.setPromptText("Invalid Name!");
             }
             else {
-                taskEnd = taskEnd.plusDays(1);
+                taskEnd = taskEnd.plusDays(ONE_WEEK_DAY);
                 projectManagement.createTask(name, taskStart, taskEnd);
                 loadTasksTable();
                 updateTextFields();

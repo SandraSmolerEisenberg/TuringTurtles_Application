@@ -27,6 +27,7 @@ public class RiskPageController {
     public Button createRiskButton;
     public Button addRiskButton;
     public AnchorPane createRiskAnchorPane;
+    @FXML private AnchorPane riskDetails;
     @FXML
     private TableColumn<Risk, String> riskName;
     @FXML
@@ -38,7 +39,7 @@ public class RiskPageController {
     @FXML
     private CategoryAxis riskType;
     @FXML
-    private TableView<Risk> riskDetails;
+    private TableView<Risk> riskDetailsTable;
     @FXML
     private NumberAxis riskIndex;
     @FXML
@@ -123,7 +124,18 @@ public class RiskPageController {
         String impact = newRiskImpact.getText();
         Validator validator = projectFactory.makeValidator();
         if (validator.validateTextInput(name) && validator.validateNumericInput(probability) && validator.validateNumericInput(impact)){
-            projectManagement.createRisk(name, Integer.parseInt(impact), Integer.parseInt(probability));
+            int impactValue = Integer.parseInt(impact);
+            int probabilityValue = Integer.parseInt(probability);
+            if (impactValue > 10 ){
+                newRiskImpact.clear();
+                newRiskImpact.setPromptText("Invalid impact");
+
+            }
+            if ( probabilityValue > 10){
+                newRiskProbability.clear();
+                newRiskProbability.setPromptText("Invalid Probability");
+            }
+            projectManagement.createRisk(name, impactValue , probabilityValue);
             clearInputFields();
             loadRiskDetailsTable();
             riskIndex.setUpperBound(getHighestRisk());
@@ -160,7 +172,7 @@ public class RiskPageController {
 
     private void loadRiskDetailsTable(){
         ObservableList<Risk> risk = FXCollections.observableArrayList(projectManagement.getProjectRisks());
-        riskDetails.setItems(risk);}
+        riskDetailsTable.setItems(risk);}
 
     public void loadCreateRiskAnchorPane(ActionEvent event) {
         clearInputFields();

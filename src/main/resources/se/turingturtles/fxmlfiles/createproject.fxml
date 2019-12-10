@@ -19,7 +19,7 @@
                   <Font size="14.0" />
                </font>
             </Text>
-            <Label cache="true" cacheHint="SCALE" layoutX="161.0" layoutY="183.0" text="Project Start" />
+            <Label cache="true" cacheHint="SCALE" layoutX="161.0" layoutY="183.0" text="Project Start week" />
             <Label cache="true" cacheHint="SCALE" layoutX="161.0" layoutY="92.0" text="Project Name" />
             <Label cache="true" cacheHint="SCALE" layoutX="158.0" layoutY="135.0" text="Project Budget" />
             <TextField fx:id="projectName" cache="true" cacheHint="SCALE" layoutX="341.0" layoutY="88.0" promptText="name" />
@@ -28,7 +28,7 @@
             <Button fx:id="startPageButton" alignment="CENTER" cache="true" cacheHint="SCALE" layoutX="537.0" mnemonicParsing="false" onAction="#backToStartPage" prefHeight="47.0" prefWidth="90.0" text="Start Page" AnchorPane.bottomAnchor="392.0" AnchorPane.leftAnchor="537.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
             <RadioButton fx:id="disclaimerButton" layoutX="285.0" layoutY="309.0" mnemonicParsing="false" onAction="#activateCreateProjectButton" text="Accept" />
             <Label layoutX="195.0" layoutY="261.0" prefHeight="47.0" prefWidth="267.0" text="Disclaimer: If you choose to create a new project &#10;any current projects will be overwritten." textAlignment="CENTER" />
-            <Label cache="true" cacheHint="SCALE" layoutX="164.0" layoutY="226.0" text="Project End" />
+            <Label cache="true" cacheHint="SCALE" layoutX="164.0" layoutY="226.0" text="Project End week" />
             <DatePicker fx:id="projectStart" layoutX="329.0" layoutY="179.0" promptText="Choose date:" />
             <DatePicker fx:id="projectEnd" layoutX="329.0" layoutY="222.0" promptText="Choose date:" />
          </children>
