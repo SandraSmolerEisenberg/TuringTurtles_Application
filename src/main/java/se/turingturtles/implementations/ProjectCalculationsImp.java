@@ -74,6 +74,11 @@ public class ProjectCalculationsImp implements ProjectCalculations {
 
         return totalSalary;
     }
-    public void increaseBudget(double amount){}
-    public void decreaseBudget(double amount){}
+    public void increaseBudget(double amount){
+        ProjectManagementImp.getProject().setBudget(ProjectManagementImp.getProject().getBudget()  + amount);
+    }
+
+    public void decreaseBudget(double amount){
+        ProjectManagementImp.getProject().setBudget(ProjectManagementImp.getProject().getBudget()  - amount);
+    }
 }
