@@ -8,6 +8,8 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import se.turingturtles.implementations.ProjectFactory;
 import se.turingturtles.implementations.ProjectManagementImp;
+import se.turingturtles.streamIO.StreamJSON;
+
 import java.awt.*;
 import java.io.*;
 import java.time.LocalDate;
@@ -40,6 +42,16 @@ public class Main extends Application {
 
     public static void main(String[] args) throws IOException {
         testData();
+
+        /* -------------------------------------------------------------------
+        Test the import and export JSON functionality with the following code:
+
+        StreamJSON testStream = new StreamJSON();
+        testStream.exportToJSON("testData.json");
+
+        testStream.importFromJSON("testData.json");
+        ------------------------------------------------------------------- */
+
         launch();
 
     }
