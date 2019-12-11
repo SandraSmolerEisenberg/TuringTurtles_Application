@@ -3,6 +3,7 @@ package se.turingturtles.controllers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -12,14 +13,12 @@ import se.turingturtles.ProjectCalculations;
 import se.turingturtles.ProjectManagement;
 import se.turingturtles.Validator;
 import se.turingturtles.entities.Task;
-import se.turingturtles.implementations.ProjectCalculationsImp;
 import se.turingturtles.implementations.ProjectFactory;
 import se.turingturtles.implementations.ProjectManagementImp;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.List;
-import java.awt.*;
 
 import static java.lang.Integer.parseInt;
 
@@ -145,21 +144,50 @@ public class ProjectManagementController {
         currentBudget.setText("Current budget: " + ProjectManagementImp.getProject().getBudget());
     }
     @FXML
-    public void increaseBudget(ActionEvent event){
+    public void invalidFormatAlert(){
+        Alert invalidFormatAlert = new Alert(Alert.AlertType.CONFIRMATION);
+        invalidFormatAlert.setTitle("Invalid format");
+        invalidFormatAlert.setHeaderText("Input should consist of only numbers (0-9)");
+        invalidFormatAlert.showAndWait();
+    }
 
-        double amount = Double.parseDouble(increaseBudgetAmount.getText());
-        projectCalculations.increaseBudget(amount);
-        increaseBudgetAmount.clear();
-        updateValues();
+    @FXML
+    public void increaseBudget(ActionEvent event){
+        String text = increaseBudgetAmount.getText();
+        if(validator.validateNumericInput(text)) {
+            try {
+                double amount = Double.parseDouble(increaseBudgetAmount.getText());
+                projectCalculations.increaseBudget(amount);
+                increaseBudgetAmount.clear();
+                updateValues();
+            }catch(Exception exception) {
+                if (text.contains(",")) {
+                    Alert invalidFormatAlert = new Alert(Alert.AlertType.CONFIRMATION);
+                    invalidFormatAlert.setTitle("Invalid format");
+                    invalidFormatAlert.setHeaderText("Decimal numbers should should be separated by \".\"");
+                    invalidFormatAlert.showAndWait();
+                } else {
+                    Alert invalidFormatAlert = new Alert(Alert.AlertType.CONFIRMATION);
+                    invalidFormatAlert.setTitle("Invalid format");
+                    invalidFormatAlert.setHeaderText("Decimal numbers should should be separated by \",\"");
+                    invalidFormatAlert.showAndWait();
+                }
+            }
+        }else{
+            invalidFormatAlert();
+        }
     }
     @FXML
     public void decreaseAmount(ActionEvent event){
-
-        double amount = Double.parseDouble(decreaseBudgetAmount.getText());
-        projectCalculations.decreaseBudget(amount);
-        decreaseBudgetAmount.clear();
-        updateValues();
-
+        String text = decreaseBudgetAmount.getText();
+        if(validator.validateNumericInput(text)) {
+            double amount = Double.parseDouble(decreaseBudgetAmount.getText());
+            projectCalculations.decreaseBudget(amount);
+            decreaseBudgetAmount.clear();
+            updateValues();
+        }else{
+            invalidFormatAlert();
+        }
     }
 
     @FXML
@@ -228,6 +256,11 @@ public class ProjectManagementController {
             projectEndWeek.getEditor().clear();
             projectStartWeek.setPromptText("Choose date:");
             projectEndWeek.setPromptText("Choose date:");
+            Alert selectionError = new Alert(Alert.AlertType.ERROR);
+            selectionError.setTitle("Error!");
+            selectionError.setHeaderText("No or invalid date selected!");
+            selectionError.setContentText("Please select a valid date from the.");
+            selectionError.showAndWait();
         }
         else {
             ProjectManagementImp.getProject().setProjectStartDate(projectStartDate);

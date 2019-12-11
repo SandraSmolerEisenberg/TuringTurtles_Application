@@ -9,7 +9,7 @@ public class ValidatorImp implements Validator {
     //Valid only number input and using , for decimals
     @Override
     public boolean validateNumericInput(String input) {
-        return input.matches("[0-9]+[,0-9]*");
+        return input.matches("[0-9]+[,.0-9]*");
     }
     //Validate user input It needs to start with a letter and contains letters, numbers . and ,
     @Override

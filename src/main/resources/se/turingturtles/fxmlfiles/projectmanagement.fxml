@@ -9,27 +9,27 @@
 
 <AnchorPane fx:id="projectManagementPage" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="se.turingturtles.controllers.ProjectManagementController">
    <children>
-      <AnchorPane fx:id="projectManagementAnchor" layoutX="14.0" layoutY="6.0">
+      <AnchorPane fx:id="projectManagementAnchor" layoutX="14.0" layoutY="6.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Text fx:id="projectName" layoutX="235.0" strokeType="OUTSIDE" strokeWidth="0.0" text="&lt;Project Name&gt;" wrappingWidth="102.89532470703125" />
-            <Text layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Finance" wrappingWidth="158.93673706054688" />
-            <Text fx:id="earnedValue" layoutX="20.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Earned Value: 999" wrappingWidth="158.93673706054688" />
-            <Text fx:id="scheduleVariance" layoutX="206.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Schedule variance: 999" wrappingWidth="141.33670043945312" />
-            <Text fx:id="costVariance" layoutX="390.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Planned value: 999" wrappingWidth="158.93673706054688" />
-            <Text fx:id="totalSalaries" layoutX="20.0" layoutY="114.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total Salaries: 9999" wrappingWidth="150.13674926757812" />
-            <Text fx:id="budget" layoutX="21.0" layoutY="147.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Budget: 999sek" wrappingWidth="122.13668823242188" />
-            <Button fx:id="changeBudget" layoutX="171.0" layoutY="143.0" mnemonicParsing="false" onAction="#changeBudget" text="Change Budget" />
-            <Text layoutX="3.0" layoutY="213.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Progress" wrappingWidth="158.93673706054688" />
-            <Text fx:id="startWeek" layoutX="21.0" layoutY="241.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Start week: 99" wrappingWidth="215.73678588867188" />
-            <Text fx:id="endWeek" layoutX="20.0" layoutY="269.0" strokeType="OUTSIDE" strokeWidth="0.0" text="End week: 99" wrappingWidth="215.73678588867188" />
-            <Text fx:id="duration" layoutX="20.0" layoutY="297.05078125" strokeType="OUTSIDE" strokeWidth="0.0" text="Duration: 99w" wrappingWidth="112.53677368164062" />
-            <Button fx:id="changeDuration" layoutX="133.0" layoutY="293.0" mnemonicParsing="false" onAction="#changeDuration" text="Change Duration" />
-            <Text fx:id="timeOnTasks" layoutX="297.0" layoutY="241.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total time for completed tasks: 99d 999h" wrappingWidth="252.53677368164062" />
-            <Text fx:id="completedTasks" layoutX="297.0" layoutY="269.0" strokeType="OUTSIDE" strokeWidth="0.0" text="No. Completed tasks:" wrappingWidth="158.93673706054688" />
-            <Text fx:id="activeTasks" layoutX="297.0" layoutY="297.0" strokeType="OUTSIDE" strokeWidth="0.0" text="No. Active or planned tasks:" wrappingWidth="158.93673706054688" />
+            <Text fx:id="projectName" layoutX="248.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="&lt;Project Name&gt;" wrappingWidth="102.89532470703125" />
+            <Text layoutX="9.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Finance" wrappingWidth="158.93673706054688" />
+            <Text fx:id="earnedValue" layoutX="29.0" layoutY="110.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Earned Value: 999" wrappingWidth="158.93673706054688" />
+            <Text fx:id="scheduleVariance" layoutX="215.0" layoutY="110.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Schedule variance: 999" wrappingWidth="141.33670043945312" />
+            <Text fx:id="costVariance" layoutX="399.0" layoutY="110.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Planned value: 999" wrappingWidth="158.93673706054688" />
+            <Text fx:id="totalSalaries" layoutX="29.0" layoutY="143.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total Salaries: 9999" wrappingWidth="150.13674926757812" />
+            <Text fx:id="budget" layoutX="30.0" layoutY="176.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Budget: 999sek" wrappingWidth="122.13668823242188" />
+            <Button fx:id="changeBudget" layoutX="180.0" layoutY="172.0" mnemonicParsing="false" onAction="#changeBudget" text="Change Budget" />
+            <Text layoutX="12.0" layoutY="242.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Progress" wrappingWidth="158.93673706054688" />
+            <Text fx:id="startWeek" layoutX="30.0" layoutY="270.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Start week: 99" wrappingWidth="215.73678588867188" />
+            <Text fx:id="endWeek" layoutX="29.0" layoutY="298.0" strokeType="OUTSIDE" strokeWidth="0.0" text="End week: 99" wrappingWidth="215.73678588867188" />
+            <Text fx:id="duration" layoutX="29.0" layoutY="326.05078125" strokeType="OUTSIDE" strokeWidth="0.0" text="Duration: 99w" wrappingWidth="112.53677368164062" />
+            <Button fx:id="changeDuration" layoutX="142.0" layoutY="322.0" mnemonicParsing="false" onAction="#changeDuration" text="Change Duration" />
+            <Text fx:id="timeOnTasks" layoutX="306.0" layoutY="270.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total time for completed tasks: 99d 999h" wrappingWidth="252.53677368164062" />
+            <Text fx:id="completedTasks" layoutX="306.0" layoutY="298.0" strokeType="OUTSIDE" strokeWidth="0.0" text="No. Completed tasks:" wrappingWidth="158.93673706054688" />
+            <Text fx:id="activeTasks" layoutX="306.0" layoutY="326.0" strokeType="OUTSIDE" strokeWidth="0.0" text="No. Active or planned tasks:" wrappingWidth="158.93673706054688" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="changeBudgetPage" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="-6.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="6.0">
+      <AnchorPane fx:id="changeBudgetPage" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Text fx:id="projectName2" layoutX="248.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="&lt;Project Name&gt;" wrappingWidth="102.89532470703125" />
             <Text fx:id="increaseBudget" layoutX="131.0" layoutY="164.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Increase budget" />
