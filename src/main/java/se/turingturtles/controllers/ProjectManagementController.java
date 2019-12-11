@@ -113,14 +113,37 @@ public class ProjectManagementController {
     }
 
     @FXML
+    public void updateValues(){
+        //Project management page
+        earnedValue.setText("Earned value: " + ProjectManagementImp.getProject().getEarnedValue());
+        costVariance.setText("Cost Variance: " + ProjectManagementImp.getProject().getCostVariance());
+        scheduleVariance.setText("Schedule variance: " + ProjectManagementImp.getProject().getScheduleVariance());
+        totalSalaries.setText("Total Salaries: " + projectCalculations.calculateTotalSalaries());
+        budget.setText("Budget: " + ProjectManagementImp.getProject().getBudget());
+        startWeek.setText("Start week: " + ProjectManagementImp.getProject().getStartWeek());
+        endWeek.setText("End week: " + ProjectManagementImp.getProject().getEndWeek());
+        duration.setText("Duration: " + ProjectManagementImp.getProject().getDuration());
+        timeOnTasks.setText("Total time spent on project: " + projectManagement.timeSpentOnProject() + " Weeks");
+        completedTasks.setText("No. completed tasks: " + countCompletedTasks());
+        activeTasks.setText("No. Active or planned tasks: " + countActiveTasks());
+
+        //Change budget Page
+        projectName2.setText(ProjectManagementImp.getProject().getName());
+        currentBudget.setText("Current budget: " + ProjectManagementImp.getProject().getBudget());
+    }
+    @FXML
     public void increaseBudget(ActionEvent event){
         double amount = Double.parseDouble(increaseBudgetAmount.getText());
         projectCalculations.increaseBudget(amount);
+        increaseBudgetAmount.clear();
+        updateValues();
     }
     @FXML
     public void decreaseAmount(ActionEvent event){
         double amount = Double.parseDouble(decreaseBudgetAmount.getText());
         projectCalculations.decreaseBudget(amount);
+        decreaseBudgetAmount.clear();
+        updateValues();
     }
 
     @FXML
@@ -139,8 +162,7 @@ public class ProjectManagementController {
     }
     @FXML
     public void changeDuration(){
-        int newDuration = Integer.parseInt(changeBudget.getText());
-        ProjectManagementImp.getProject().setDuration(newDuration);
+
     }
     @FXML
     public int countCompletedTasks(){
