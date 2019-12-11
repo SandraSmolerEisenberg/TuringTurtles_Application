@@ -13,15 +13,16 @@ import java.io.IOException;
 public class StreamJSON {
 
     private ObjectMapper mapper;
+    private static final String JSON_FILE_PATH = "turtleData.json";
 
     public StreamJSON(){
         ProjectFactory factory = new ProjectFactory();
         mapper = factory.makeObjectMapper();
     }
 
-    public void exportToJSON(String filePath) {
+    public void exportToJSON() {
         try {
-            mapper.writeValue(new File(filePath), ProjectManagementImp.getProject());
+            mapper.writeValue(new File(JSON_FILE_PATH), ProjectManagementImp.getProject());
         }catch(IOException e){
             Alert exportError = new Alert(Alert.AlertType.ERROR);
             exportError.setTitle("Error!");
@@ -31,10 +32,10 @@ public class StreamJSON {
         }
     }
 
-    public void importFromJSON(String filePath) {
+    public void importFromJSON() {
         try {
             mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-            ProjectManagementImp.setProject(mapper.readValue(new File(filePath), Project.class));
+            ProjectManagementImp.setProject(mapper.readValue(new File(JSON_FILE_PATH), Project.class));
         }catch (IOException e){
             Alert importError = new Alert(Alert.AlertType.ERROR);
             importError.setTitle("Error!");

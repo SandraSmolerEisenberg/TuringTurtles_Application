@@ -142,7 +142,7 @@
                 loadTeamList();
                 memberInfoPage.setVisible(false);
                 loadLandingPage();
-                json.exportToJSON("testData.json");
+                json.exportToJSON();
             }
         }
 
@@ -176,7 +176,7 @@
                 editWage.clear();
                 returnToTeamPage();
                 loadTeamList();
-                json.exportToJSON("testData.json");
+                json.exportToJSON();
             } else {
                 if (!validator.validateTextInput(name)) {
                     editName.clear();
@@ -213,7 +213,7 @@
                     alert.showAndWait();
 
                     loadTeamList();
-                    json.exportToJSON("testData.json");
+                    json.exportToJSON();
                 }else{
                     Alert idTaken = new Alert(Alert.AlertType.ERROR);
                     idTaken.setTitle("Error!");
@@ -287,7 +287,7 @@
                     successAlert.setHeaderText("Successful assignment!");
                     successAlert.setContentText("You have added " + projectManagement.findTeamMember(lastViewedID).getName() + " to " + ((Task) assignTaskTable.getSelectionModel().getSelectedItem()).getName() + ".");
                     successAlert.showAndWait();
-                    json.exportToJSON("testData.json");
+                    json.exportToJSON();
                 } else {
                     Alert assignmentError = new Alert(Alert.AlertType.ERROR);
                     assignmentError.setTitle("Error!");

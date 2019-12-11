@@ -42,39 +42,13 @@ public class Main extends Application {
 
 
     public static void main(String[] args) {
-        testData();
         try {
             launch();
         }catch (Exception e){
-            json.exportToJSON("testData.json");
+            json.exportToJSON();
         }
 
     }
-
-    private static void testData() {
-            ProjectFactory factory = new ProjectFactory();
-            ProjectManagement projectManagement;
-            projectManagement = factory.makeProjectManagement();
-            LocalDate localDate = LocalDate.now();
-            projectManagement.createProject("TestProject", 10000.0, localDate.parse("2019-10-01"), localDate.parse("2020-01-30"));
-            projectManagement.createTask("Task1", localDate.parse("2019-11-04"),localDate.parse("2019-11-11"));
-            projectManagement.createTask("Task2", localDate.parse("2019-12-23"),localDate.parse("2019-12-30"));
-            projectManagement.createTask("Task3", localDate.parse("2019-12-30"),localDate.parse("2020-01-20"));
-            projectManagement.createTask("Task4", localDate.parse("2019-11-04"),localDate.parse("2019-11-11"));
-            projectManagement.createTask("Task6", localDate.parse("2019-12-02"),localDate.parse("2019-12-09"));
-            //projectManagement.createTask("Task7", 49,13);
-            projectManagement.createMember("TeamMember1", 1, 1000);
-            projectManagement.createMember("TeamMember2", 2, 2000);
-            projectManagement.createRisk("Risk1", 1,4);
-            projectManagement.createRisk("Risk2", 2,2);
-            projectManagement.createRisk("Risk3", 6,2);
-            projectManagement.createRisk("Risk4", 0,5);
-            projectManagement.createRisk("Risk5", 3,3);
-            projectManagement.createRisk("Risk6", 4,2);
-            projectManagement.createRisk("Risk7", 5,10);
-            projectManagement.createRisk("Risk8", 1,7);
-            projectManagement.completeTask(ProjectManagementImp.getProject().getTasks().get(0)); //Complete a task
-        }
-    }
+}
 
 

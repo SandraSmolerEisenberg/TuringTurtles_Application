@@ -27,7 +27,7 @@ public class StartPageController {
 
     public void loadProject(ActionEvent event) throws Exception{
             StreamJSON testStream = factory.makeStream();
-            testStream.importFromJSON("project.json");
+            testStream.importFromJSON();
             factory.changeScene(createProjectButton.getScene(),"projectmaster");
 
     }
