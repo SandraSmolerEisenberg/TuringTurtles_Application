@@ -21,10 +21,10 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class TaskPageController {
-    //Used to
+    //Used for calculations, so we can have a count in week
     private static final int ONE_WEEK_DAY = 1;
-    @FXML private RadioButton updateNameButton;
 
+    @FXML private RadioButton updateNameButton;
     @FXML
     private AnchorPane taskPage;
 
@@ -34,8 +34,6 @@ public class TaskPageController {
     @FXML
     public Button viewTaskButton;
 
-    @FXML
-    private Label viewTaskErrorMsg;
     @FXML private Text removeTaskErrorMsg;
     @FXML private RadioButton updateDateButton;
 
@@ -54,8 +52,7 @@ public class TaskPageController {
     @FXML
     private TableColumn taskTeamMembersAmount;
 
-    @FXML
-    private TableColumn taskStatus;
+    @FXML private TableColumn taskStatus;
 
     @FXML
     private Button taskCreateTaskButton;
@@ -189,7 +186,6 @@ public class TaskPageController {
             taskEditPageAnchorPane.setVisible(false);
             taskCreateTaskButton.setText("Back");
             viewTaskButton.setVisible(false);
-            viewTaskErrorMsg.setVisible(false);
             loadTasksTable();
         }
         else if (taskEditPageAnchorPane.isVisible()){
@@ -206,8 +202,6 @@ public class TaskPageController {
             taskEditPageAnchorPane.setVisible(false);
             taskCreateTaskButton.setText("Create Task");
             viewTaskButton.setVisible(true);
-            viewTaskErrorMsg.setText("");
-            viewTaskErrorMsg.setVisible(true);
             loadTasksTable();
         }
         else if (createTaskAnchorPane.isVisible()){
@@ -217,8 +211,6 @@ public class TaskPageController {
             taskEditPageAnchorPane.setVisible(false);
             taskCreateTaskButton.setText("Create Task");
             viewTaskButton.setVisible(true);
-            viewTaskErrorMsg.setText("");
-            viewTaskErrorMsg.setVisible(true);
             loadTasksTable();
         }
 
@@ -274,11 +266,13 @@ public class TaskPageController {
     public void selectTaskRow(ActionEvent event){
         Task task = (Task) taskTableView.getSelectionModel().getSelectedItem();
         if(task == null ){
-            viewTaskErrorMsg.setText("Select Task First");
-            viewTaskErrorMsg.setStyle("-fx-text-fill: red;");
+            Alert selectionError = new Alert(Alert.AlertType.ERROR);
+            selectionError.setTitle("Error!");
+            selectionError.setHeaderText("No task selected!");
+            selectionError.setContentText("Please select a task from the task table.");
+            selectionError.showAndWait();
         }
         else{
-            viewTaskErrorMsg.setVisible(false);
             loadViewTaskAnchorPane();
         }
     }
@@ -371,8 +365,6 @@ public class TaskPageController {
             createTaskAnchorPane.setVisible(false);
             viewTaskButton.setVisible(true);
             taskCreateTaskButton.setText("Create Task");
-            viewTaskErrorMsg.setText("");
-            viewTaskErrorMsg.setVisible(true);
         }
     }
 

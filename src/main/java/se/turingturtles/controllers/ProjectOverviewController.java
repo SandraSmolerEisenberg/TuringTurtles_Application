@@ -9,9 +9,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.util.StringConverter;
 import se.turingturtles.ProjectManagement;
-import se.turingturtles.Validator;
 import se.turingturtles.entities.Task;
-import se.turingturtles.implementations.ProjectCalculationsImp;
 import se.turingturtles.implementations.ProjectFactory;
 import se.turingturtles.implementations.ProjectManagementImp;
 
@@ -49,6 +47,7 @@ public class ProjectOverviewController {
         numberOfMembers.setText("Total number of members: " + projectManagement.getTeamMembers().size());
         projectDuration.setText("Project duration: " + ProjectManagementImp.getProject().getDuration() + "w");
         loadTaskData();
+        overviewTab.getStylesheets().add(getClass().getResource("/se/turingturtles/css/03-projectoverview.css").toExternalForm());
     }
 
     // loading the schedule into the Gannt Graph setting the lower and upper bound of the X axis
@@ -95,4 +94,6 @@ public class ProjectOverviewController {
         weeksAxis.setTickUnit(1.0);
         projectSchedule.getData().addAll(series1,series2);
     }
+
+
 }

@@ -1,3 +1,3 @@
-.default-color0.chart-bar {
-    -fx-visibility:hidden;
+.chart-bar.default-color0{
+    -fx-background-color: transparent;
 }

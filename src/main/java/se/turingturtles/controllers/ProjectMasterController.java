@@ -21,7 +21,6 @@ public class ProjectMasterController {
     @FXML public Tab projectManagementTab;
 
     public void refreshSchedule(Event event) {
-
     }
 
     public void refreshTask(Event event) {
