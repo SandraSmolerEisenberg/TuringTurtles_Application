@@ -17,6 +17,7 @@ import java.time.LocalDate;
 public class Main extends Application {
 
     private static ProjectFactory factory = new ProjectFactory();
+    private static StreamJSON json = factory.makeStream();
 
     @Override
     public void start(Stage window) throws IOException {
@@ -40,19 +41,13 @@ public class Main extends Application {
     }
 
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         testData();
-
-        /* -------------------------------------------------------------------
-        Test the import and export JSON functionality with the following code:
-
-        StreamJSON testStream = new StreamJSON();
-        testStream.exportToJSON("testData.json");
-
-        testStream.importFromJSON("testData.json");
-        ------------------------------------------------------------------- */
-
-        launch();
+        try {
+            launch();
+        }catch (Exception e){
+            json.exportToJSON("testData.json");
+        }
 
     }
 

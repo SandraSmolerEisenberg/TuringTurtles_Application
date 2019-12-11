@@ -20,6 +20,9 @@
     import se.turingturtles.entities.Task;
     import se.turingturtles.entities.TeamMember;
     import se.turingturtles.implementations.ProjectFactory;
+    import se.turingturtles.streamIO.StreamJSON;
+
+    import java.io.IOException;
 
     public class TeamPageController {
 
@@ -93,8 +96,8 @@
         @FXML
         private Text totalSalaries;
 
-
         ProjectFactory factory = new ProjectFactory();
+        StreamJSON json = factory.makeStream();
         ProjectManagement projectManagement = factory.makeProjectManagement();
         Validator validator = factory.makeValidator();
         ProjectCalculations calculation = factory.makeProjectCalculations();
@@ -115,6 +118,7 @@
         public void loadTeamList() {
             ObservableList<TeamMember> members = FXCollections.observableArrayList(projectManagement.getTeamMembers());
             teamList.setItems(members);
+
 
         }
 
@@ -138,6 +142,7 @@
                 loadTeamList();
                 memberInfoPage.setVisible(false);
                 loadLandingPage();
+                json.exportToJSON("testData.json");
             }
         }
 
@@ -171,6 +176,7 @@
                 editWage.clear();
                 returnToTeamPage();
                 loadTeamList();
+                json.exportToJSON("testData.json");
             } else {
                 if (!validator.validateTextInput(name)) {
                     editName.clear();
@@ -207,6 +213,7 @@
                     alert.showAndWait();
 
                     loadTeamList();
+                    json.exportToJSON("testData.json");
                 }else{
                     Alert idTaken = new Alert(Alert.AlertType.ERROR);
                     idTaken.setTitle("Error!");
@@ -280,6 +287,7 @@
                     successAlert.setHeaderText("Successful assignment!");
                     successAlert.setContentText("You have added " + projectManagement.findTeamMember(lastViewedID).getName() + " to " + ((Task) assignTaskTable.getSelectionModel().getSelectedItem()).getName() + ".");
                     successAlert.showAndWait();
+                    json.exportToJSON("testData.json");
                 } else {
                     Alert assignmentError = new Alert(Alert.AlertType.ERROR);
                     assignmentError.setTitle("Error!");

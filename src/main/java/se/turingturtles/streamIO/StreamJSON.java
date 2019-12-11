@@ -2,6 +2,7 @@ package se.turingturtles.streamIO;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import javafx.scene.control.Alert;
 import se.turingturtles.entities.Project;
 import se.turingturtles.implementations.ProjectFactory;
 import se.turingturtles.implementations.ProjectManagementImp;
@@ -18,15 +19,29 @@ public class StreamJSON {
         mapper = factory.makeObjectMapper();
     }
 
-    public void exportToJSON(String filePath) throws IOException {
-        // Doing error handling in controller
-        mapper.writeValue(new File(filePath), ProjectManagementImp.getProject());
+    public void exportToJSON(String filePath) {
+        try {
+            mapper.writeValue(new File(filePath), ProjectManagementImp.getProject());
+        }catch(IOException e){
+            Alert exportError = new Alert(Alert.AlertType.ERROR);
+            exportError.setTitle("Error!");
+            exportError.setHeaderText("Export to json failed...");
+            exportError.setContentText("An internal error occurred, the application was not able to export the data.");
+            exportError.showAndWait();
+        }
     }
 
-    public void importFromJSON(String filePath) throws IOException{
-        //  DOing error handling in controller
-        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-        ProjectManagementImp.setProject(mapper.readValue(new File(filePath), Project.class));
+    public void importFromJSON(String filePath) {
+        try {
+            mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+            ProjectManagementImp.setProject(mapper.readValue(new File(filePath), Project.class));
+        }catch (IOException e){
+            Alert importError = new Alert(Alert.AlertType.ERROR);
+            importError.setTitle("Error!");
+            importError.setHeaderText("Import from json failed!");
+            importError.setContentText("An internal error occurred, the application was not able to import the data.");
+            importError.showAndWait();
+        }
     }
 
 }
