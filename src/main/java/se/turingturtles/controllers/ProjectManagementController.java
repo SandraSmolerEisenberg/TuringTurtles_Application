@@ -2,10 +2,12 @@ package se.turingturtles.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
+import javafx.util.StringConverter;
 import se.turingturtles.ProjectCalculations;
 import se.turingturtles.ProjectManagement;
 import se.turingturtles.Validator;
@@ -13,12 +15,21 @@ import se.turingturtles.entities.Task;
 import se.turingturtles.implementations.ProjectCalculationsImp;
 import se.turingturtles.implementations.ProjectFactory;
 import se.turingturtles.implementations.ProjectManagementImp;
+
+import java.time.DayOfWeek;
+import java.time.LocalDate;
 import java.util.List;
 import java.awt.*;
 
 import static java.lang.Integer.parseInt;
 
 public class ProjectManagementController {
+
+    @FXML private DatePicker projectStartWeek;
+    @FXML private DatePicker projectEndWeek;
+    @FXML private Button updateProjectDurationButton;
+    @FXML private Button backToOverview;
+    @FXML private AnchorPane changeDurationAnchorPane;
     //Mater anchor
     @FXML
     private AnchorPane projectManagementPage;
@@ -88,6 +99,8 @@ public class ProjectManagementController {
     @FXML
     public void initialize(){
         //Project management page
+        changeDurationAnchorPane.setVisible(false);
+
         projectName.setText(ProjectManagementImp.getProject().getName());
         earnedValue.setText("Earned value: " + ProjectManagementImp.getProject().getEarnedValue());
         costVariance.setText("Cost Variance: " + ProjectManagementImp.getProject().getCostVariance());
@@ -133,6 +146,7 @@ public class ProjectManagementController {
     }
     @FXML
     public void increaseBudget(ActionEvent event){
+
         double amount = Double.parseDouble(increaseBudgetAmount.getText());
         projectCalculations.increaseBudget(amount);
         increaseBudgetAmount.clear();
@@ -140,10 +154,12 @@ public class ProjectManagementController {
     }
     @FXML
     public void decreaseAmount(ActionEvent event){
+
         double amount = Double.parseDouble(decreaseBudgetAmount.getText());
         projectCalculations.decreaseBudget(amount);
         decreaseBudgetAmount.clear();
         updateValues();
+
     }
 
     @FXML
@@ -162,8 +178,21 @@ public class ProjectManagementController {
     }
     @FXML
     public void changeDuration(){
+        loadChangeDurationPage();
 
     }
+
+    private void loadChangeDurationPage() {
+            if (projectManagementAnchor.isVisible()){
+                projectManagementAnchor.setVisible(false);
+                changeDurationAnchorPane.setVisible(true);
+                setDatePicker(projectStartWeek, "StartDate");
+                setDatePicker(projectEndWeek, "EndDate");
+            }
+
+    }
+
+
     @FXML
     public int countCompletedTasks(){
         int fullCounter = 0;
@@ -175,6 +204,7 @@ public class ProjectManagementController {
         }
         return fullCounter;
     }
+
     @FXML
     public int countActiveTasks(){
         int fullCounter = 0;
@@ -188,4 +218,52 @@ public class ProjectManagementController {
     }
 
 
+    public void updateProjectDuration(ActionEvent event) {
+
+        LocalDate projectStartDate = projectStartWeek.getValue();
+        LocalDate projectEndDate = projectEndWeek.getValue();
+
+        if(!validator.validateDate(projectStartDate, projectEndDate)){
+            projectStartWeek.getEditor().clear();
+            projectEndWeek.getEditor().clear();
+            projectStartWeek.setPromptText("Choose date:");
+            projectEndWeek.setPromptText("Choose date:");
+        }
+        else {
+            ProjectManagementImp.getProject().setProjectStartDate(projectStartDate);
+            ProjectManagementImp.getProject().setProjectEndDate(projectEndDate);
+            projectStartWeek.getEditor().clear();
+            projectEndWeek.getEditor().clear();
+            Alert confirmationAlert = new Alert(Alert.AlertType.INFORMATION);
+            confirmationAlert.setTitle("Success!");
+            confirmationAlert.setHeaderText("Successfully updated the duration.");
+            confirmationAlert.setContentText("The project start and/or end date has been updated.");
+            confirmationAlert.showAndWait();
+            updateValues();
+        }
+
+    }
+
+    private void setDatePicker(DatePicker datePicker, String calendar){
+        datePicker.setEditable(false);
+        StringConverter<LocalDate> defaultConverter = datePicker.getConverter();
+        datePicker.setDayCellFactory(picker -> new DateCell() {
+            public void updateItem(LocalDate date, boolean empty) {
+                super.updateItem(date, empty);
+                if (calendar.equals("StartDate")) {
+                    setDisable(empty || date.getDayOfWeek() != DayOfWeek.MONDAY);
+                }
+                else if (calendar.equals("EndDate")){
+                    setDisable(empty || date.getDayOfWeek() != DayOfWeek.SUNDAY);
+                }
+            }
+        });
+        datePicker.setPromptText("Choose date:");
+    }
+
+    public void backToOverviewPage(){
+        changeDurationAnchorPane.setVisible(false);
+        projectManagementAnchor.setVisible(true);
+        updateValues();
+    }
 }
