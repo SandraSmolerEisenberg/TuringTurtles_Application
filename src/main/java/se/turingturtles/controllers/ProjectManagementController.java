@@ -1,7 +1,9 @@
 package se.turingturtles.controllers;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import se.turingturtles.ProjectCalculations;
@@ -17,8 +19,13 @@ import java.awt.*;
 import static java.lang.Integer.parseInt;
 
 public class ProjectManagementController {
+    //Mater anchor
     @FXML
     private AnchorPane projectManagementPage;
+
+    //Project Management page
+    @FXML
+    private AnchorPane projectManagementAnchor;
     @FXML
     private Text projectName;
     @FXML
@@ -48,6 +55,30 @@ public class ProjectManagementController {
     @FXML
     private Text activeTasks;
 
+    //Change Budget Page
+    @FXML
+    private AnchorPane changeBudgetPage;
+    @FXML
+    private Text projectName2;
+    @FXML
+    private Text currentBudget;
+    @FXML
+    private Text increaseBudget;
+    @FXML
+    private Text decreaseBudget;
+    @FXML
+    private TextField increaseBudgetAmount;
+    @FXML
+    private TextField decreaseBudgetAmount;
+    @FXML
+    private Button backButton;
+    @FXML
+    private Button setIncreaseAmount;
+    @FXML
+    private Button setDecreaseAmount;
+
+
+
     private ProjectFactory factory = new ProjectFactory();
     @FXML
     ProjectManagement projectManagement = factory.makeProjectManagement();
@@ -56,6 +87,7 @@ public class ProjectManagementController {
 
     @FXML
     public void initialize(){
+        //Project management page
         projectName.setText(ProjectManagementImp.getProject().getName());
         earnedValue.setText("Earned value: " + ProjectManagementImp.getProject().getEarnedValue());
         costVariance.setText("Cost Variance: " + ProjectManagementImp.getProject().getCostVariance());
@@ -71,11 +103,39 @@ public class ProjectManagementController {
         completedTasks.setText("No. completed tasks: " + countCompletedTasks());
         activeTasks.setText("No. Active or planned tasks: " + countActiveTasks());
 
+        //Change budget Page
+        changeBudgetPage.setVisible(false);
+        projectName2.setText(ProjectManagementImp.getProject().getName());
+        currentBudget.setText("Current budget: " + ProjectManagementImp.getProject().getBudget());
+        increaseBudget.setText("Increase budget: ");
+        decreaseBudget.setText("Decrease budget");
+
+    }
+
+    @FXML
+    public void increaseBudget(ActionEvent event){
+        double amount = Double.parseDouble(increaseBudgetAmount.getText());
+        projectCalculations.increaseBudget(amount);
     }
     @FXML
-    public void changeBudget(){
-        int newBudget = Integer.parseInt(changeBudget.getText());
-        ProjectManagementImp.getProject().setBudget(newBudget);
+    public void decreaseAmount(ActionEvent event){
+        double amount = Double.parseDouble(decreaseBudgetAmount.getText());
+        projectCalculations.decreaseBudget(amount);
+    }
+
+    @FXML
+    public void goBack(){
+        changeBudgetPage.setVisible(false);
+        increaseBudgetAmount.clear();
+        decreaseBudgetAmount.clear();
+        projectManagementAnchor.setVisible(true);
+    }
+
+    @FXML
+    public void changeBudget(ActionEvent event){
+        projectManagementAnchor.setVisible(false);
+        changeBudgetPage.setVisible(true);
+
     }
     @FXML
     public void changeDuration(){
@@ -93,6 +153,7 @@ public class ProjectManagementController {
         }
         return fullCounter;
     }
+    @FXML
     public int countActiveTasks(){
         int fullCounter = 0;
         List<Task> tasks = projectManagement.retrieveTasks();
