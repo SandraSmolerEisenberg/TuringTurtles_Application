@@ -13,6 +13,7 @@ import se.turingturtles.ProjectManagement;
 import se.turingturtles.Validator;
 import se.turingturtles.entities.Risk;
 import se.turingturtles.implementations.ProjectFactory;
+import se.turingturtles.implementations.ProjectManagementImp;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -20,14 +21,15 @@ import java.util.List;
 
 public class RiskPageController {
 
-    public BorderPane riskpage;
-    public TextField newRiskName;
-    public TextField newRiskProbability;
-    public TextField newRiskImpact;
-    public Button createRiskButton;
-    public Button addRiskButton;
-    public AnchorPane createRiskAnchorPane;
+    @FXML private BorderPane riskPage;
+    @FXML private TextField newRiskName;
+    @FXML private TextField newRiskProbability;
+    @FXML private TextField newRiskImpact;
+    @FXML private Button createRiskButton;
+    @FXML private Button addRiskButton;
+    @FXML private AnchorPane createRiskAnchorPane;
     @FXML private AnchorPane riskDetails;
+    @FXML private Button deleteRiskButton;
     @FXML
     private TableColumn<Risk, String> riskName;
     @FXML
@@ -124,22 +126,49 @@ public class RiskPageController {
         String impact = newRiskImpact.getText();
         Validator validator = projectFactory.makeValidator();
         if (validator.validateTextInput(name) && validator.validateNumericInput(probability) && validator.validateNumericInput(impact)){
-            int impactValue = Integer.parseInt(impact);
-            int probabilityValue = Integer.parseInt(probability);
-            if (impactValue > 10 ){
+            int impactValue = 0;
+            int probabilityValue = 0;
+            try{
+                impactValue = Integer.parseInt(impact);
+                probabilityValue = Integer.parseInt(probability);
+            }
+            catch (Exception e){
                 newRiskImpact.clear();
                 newRiskImpact.setPromptText("Invalid impact");
-
-            }
-            if ( probabilityValue > 10){
                 newRiskProbability.clear();
                 newRiskProbability.setPromptText("Invalid Probability");
+                impactValue = 11;
+                probabilityValue = 11;
+                Alert deleteAlert = new Alert(Alert.AlertType.INFORMATION);
+                deleteAlert.setTitle("Invalid selection");
+                deleteAlert.setHeaderText("Hey!");
+                deleteAlert.setContentText("Probability and impact are non-decimal numbers\n between 0 and 10!");
+                deleteAlert.showAndWait();
             }
-            projectManagement.createRisk(name, impactValue , probabilityValue);
-            clearInputFields();
-            loadRiskDetailsTable();
-            riskIndex.setUpperBound(getHighestRisk());
-            riskMatrix.getData().setAll(loadRiskMatrix());
+
+            if (impactValue > 10 || probabilityValue > 10) {
+                if (impactValue > 10) {
+                    newRiskImpact.clear();
+                    newRiskImpact.setPromptText("Invalid impact");
+
+                }
+                if (probabilityValue > 10) {
+                    newRiskProbability.clear();
+                    newRiskProbability.setPromptText("Invalid Probability");
+                }
+            }
+            else {
+                Alert confirmationAlert = new Alert(Alert.AlertType.INFORMATION);
+                confirmationAlert.setTitle("Success!");
+                confirmationAlert.setHeaderText("Successfully added risk: " + newRiskName.getText() + ".");
+                confirmationAlert.setContentText("The following information was added: " + "\n" + "Description: " + newRiskName.getText() + "\n" + "Impact: " + newRiskImpact.getText() + " Probability: " + newRiskProbability.getText());
+                confirmationAlert.showAndWait();
+                projectManagement.createRisk(name, impactValue, probabilityValue);
+                clearInputFields();
+                loadRiskDetailsTable();
+                riskIndex.setUpperBound(getHighestRisk());
+                riskMatrix.getData().setAll(loadRiskMatrix());
+            }
         }
         else if (!validator.validateTextInput(name) || !validator.validateNumericInput(impact) || !validator.validateNumericInput(probability)) {
 
@@ -172,7 +201,8 @@ public class RiskPageController {
 
     private void loadRiskDetailsTable(){
         ObservableList<Risk> risk = FXCollections.observableArrayList(projectManagement.getProjectRisks());
-        riskDetailsTable.setItems(risk);}
+        riskDetailsTable.setItems(risk);
+    }
 
     public void loadCreateRiskAnchorPane(ActionEvent event) {
         clearInputFields();
@@ -191,4 +221,28 @@ public class RiskPageController {
         }
     }
 
+    public void deleteRisk(ActionEvent event) {
+        Risk risk = (Risk) riskDetailsTable.getSelectionModel().getSelectedItem();
+        if (risk == null) {
+            Alert deleteAlert = new Alert(Alert.AlertType.INFORMATION);
+            deleteAlert.setTitle("Selection missing");
+            deleteAlert.setHeaderText("Hey!");
+            deleteAlert.setContentText("Please select a risk to delete!");
+            deleteAlert.showAndWait();
+        } else {
+            Alert deleteAlert = new Alert(Alert.AlertType.CONFIRMATION);
+            deleteAlert.setTitle("You are about to delete this risk from the risk list");
+            deleteAlert.setHeaderText("WARNING!");
+            deleteAlert.setContentText("You have selected to delete the following risk: \nDescription: " + risk.getName() + "\n\nPlease click OK, in order to proceed!");
+            deleteAlert.showAndWait();
+            if (deleteAlert.getResult() == ButtonType.OK) {
+
+                ProjectManagementImp.getProject().getRisk().remove(risk);
+                loadRiskDetailsTable();
+                riskDetailsTable.refresh();
+                riskMatrix.getData().setAll(loadRiskMatrix());
+
+            }
+        }
+    }
 }

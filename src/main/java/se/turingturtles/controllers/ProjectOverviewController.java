@@ -90,11 +90,9 @@ public class ProjectOverviewController {
                 series2.getData().add(new XYChart.Data<Integer, String>(task.getDuration(), task.getName()));
             }
 
-
         }
         series1.setName("Tasks");
         weeksAxis.setTickUnit(1.0);
         projectSchedule.getData().addAll(series1,series2);
-        projectSchedule.getStylesheets().add(getClass().getResource("/se/turingturtles/css/03-projectoverview.css").toExternalForm());
     }
 }

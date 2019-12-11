@@ -4,7 +4,7 @@
 @import "04-tasktab.css";
 @import "05-teamtab.css";
 @import "06-risktab.css";
-@import "07-calctab.css";
+@import "07-managementtab.css";
 @font-face {
   font-family: "Lobster";
   font-style: normal;
@@ -45,5 +45,14 @@
   -fx-font-size: 15pt;
   -fx-font-weight: 300;
 }
+.label {
+  -fx-font-family: "Open Sans Condensed";
+  -fx-font-size: 15pt;
+  -fx-font-weight: 300;
+}
+.default-color0.chart-bar {
+  -fx-visibility: hidden;
+}
+
 
 /*# sourceMappingURL=00-default.css.map */

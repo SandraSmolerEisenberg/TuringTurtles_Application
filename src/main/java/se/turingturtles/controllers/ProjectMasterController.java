@@ -1,5 +1,6 @@
 package se.turingturtles.controllers;
 
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Tab;
 import javafx.scene.layout.AnchorPane;
@@ -11,7 +12,7 @@ public class ProjectMasterController {
     @FXML public AnchorPane overviewTab;
     @FXML public AnchorPane taskPage;
     @FXML public AnchorPane teamPage;
-    @FXML public BorderPane riskpage;
+    @FXML public BorderPane riskPage;
     @FXML public AnchorPane projectManagementPage;
     @FXML public Tab projectOverviewTab;
     @FXML public Tab tasksTab;
@@ -19,4 +20,16 @@ public class ProjectMasterController {
     @FXML public Tab riskTab;
     @FXML public Tab projectManagementTab;
 
+    public void refreshSchedule(Event event) {
+
+    }
+
+    public void refreshTask(Event event) {
+    }
+
+    public void refreshTeamPage(Event event) {
+    }
+
+    public void refreshProjectManagement(Event event) {
+    }
 }

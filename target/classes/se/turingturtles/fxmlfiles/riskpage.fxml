@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane fx:id="riskpage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="se.turingturtles.controllers.RiskPageController">
+<BorderPane fx:id="riskPage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="se.turingturtles.controllers.RiskPageController">
                <bottom>
       <AnchorPane BorderPane.alignment="CENTER">
          <children>
@@ -45,7 +45,7 @@
             </AnchorPane>
             <AnchorPane fx:id="riskDetails" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                              <TableView fx:id="riskDetailsTable" editable="true" prefHeight="291.0" prefWidth="536.0" tableMenuButtonVisible="true">
+                              <TableView fx:id="riskDetailsTable" editable="true" prefHeight="232.0" prefWidth="600.0" tableMenuButtonVisible="true">
                                 <columns>
                                   <TableColumn fx:id="riskName" prefWidth="106.00000250339508" text="Name" />
                                   <TableColumn fx:id="riskImpact" prefWidth="159.3333511352539" text="Impact" />
@@ -56,7 +56,7 @@
                                     <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                                  </columnResizePolicy>
                               </TableView>
-                  <Button layoutX="538.0" layoutY="1.0" mnemonicParsing="false" text="Delete Risk" />
+                  <Button fx:id="deleteRiskButton" layoutX="263.0" layoutY="240.0" mnemonicParsing="false" onAction="#deleteRisk" text="Delete Risk" />
                </children>
             </AnchorPane>
                      </children>

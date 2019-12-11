@@ -58,12 +58,18 @@ public class CreateProjectController {
     private ProjectFactory factory = new ProjectFactory();
     //Create project button set to disable by default
     public void activateCreateProjectButton(ActionEvent event){
-        createNewProjectButton.setDisable(false);
+        if (createNewProjectButton.isDisable()){
+            createNewProjectButton.setDisable(false);}
+        else{
+            createNewProjectButton.setDisable(true);}
+
     }
 
     public void backToStartPage(ActionEvent actionEvent) throws IOException {
 
         factory.changeScene(startPageButton.getScene(),"startPage");
+        createNewProjectButton.setDisable(true);
+        disclaimerButton.setSelected(false);
     }
     //Validation of user input and creation a project
     public void createNewProject(ActionEvent event) throws IOException {

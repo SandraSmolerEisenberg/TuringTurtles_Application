@@ -8,11 +8,11 @@
    <children>
       <TabPane layoutX="179.0" layoutY="113.0" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <tabs>
-            <Tab fx:id="projectOverviewTab" text="Project Overview"><content><fx:include fx:id="overviewTab" source="projectoverview.fxml" /></content></Tab>
-            <Tab fx:id="tasksTab" text="Tasks"><content><fx:include fx:id="taskPage" source="taskpage.fxml" /></content></Tab>
-            <Tab fx:id="teamMembersTab" text="Team Members"><content><fx:include fx:id="teamPage" source="teampage.fxml" /></content></Tab>
-            <Tab fx:id="riskTab" text="Risk"><content><fx:include fx:id="riskpage" source="riskpage.fxml" /></content></Tab>
-            <Tab fx:id="projectManagementTab" text="Project Management"><content><fx:include fx:id="projectManagementPage" source="projectmanagement.fxml" /></content></Tab>
+            <Tab fx:id="projectOverviewTab" onSelectionChanged="#refreshSchedule" text="Project Overview"><content><fx:include fx:id="overviewTab" source="projectoverview.fxml" /></content></Tab>
+            <Tab fx:id="tasksTab" onSelectionChanged="#refreshTask" text="Tasks"><content><fx:include fx:id="taskPage" source="taskpage.fxml" /></content></Tab>
+            <Tab fx:id="teamMembersTab" onSelectionChanged="#refreshTeamPage" text="Team Members"><content><fx:include fx:id="teamPage" source="teampage.fxml" /></content></Tab>
+            <Tab fx:id="riskTab" text="Risk"><content><fx:include fx:id="riskPage" source="riskpage.fxml" /></content></Tab>
+            <Tab fx:id="projectManagementTab" onSelectionChanged="#refreshProjectManagement" text="Project Management"><content><fx:include fx:id="projectManagementPage" source="projectmanagement.fxml" /></content></Tab>
         </tabs>
       </TabPane>
    </children>

@@ -245,6 +245,11 @@ public class TaskPageController {
             else {
                 taskEnd = taskEnd.plusDays(ONE_WEEK_DAY);
                 projectManagement.createTask(name, taskStart, taskEnd);
+                Alert confirmationAlert = new Alert(Alert.AlertType.INFORMATION);
+                confirmationAlert.setTitle("Success!");
+                confirmationAlert.setHeaderText("Successfully added task: " + name + ".");
+                confirmationAlert.setContentText("The following task was added: " + "\n" + "Name: " + name + "\n" + "Start date: " + taskStart + " End date: " + taskEnd);
+                confirmationAlert.showAndWait();
                 loadTasksTable();
                 updateTextFields();
                 newTaskName.clear();
