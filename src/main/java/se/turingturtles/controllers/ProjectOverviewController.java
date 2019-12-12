@@ -1,10 +1,9 @@
 package se.turingturtles.controllers;
 
 import javafx.fxml.FXML;
-import javafx.scene.chart.CategoryAxis;
-import javafx.scene.chart.NumberAxis;
-import javafx.scene.chart.StackedBarChart;
-import javafx.scene.chart.XYChart;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.chart.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.util.StringConverter;
@@ -12,13 +11,16 @@ import se.turingturtles.ProjectManagement;
 import se.turingturtles.entities.Task;
 import se.turingturtles.implementations.ProjectFactory;
 import se.turingturtles.implementations.ProjectManagementImp;
+import javafx.scene.control.Button;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.util.List;
 
 public class ProjectOverviewController {
 
-    public javafx.scene.control.Button updateScheduleButton;
+    @FXML
+    private Button scheduleButton;
     @FXML
     private AnchorPane overviewTab;
     @FXML
@@ -41,6 +43,8 @@ public class ProjectOverviewController {
     private static final int WEEKS_PER_YEAR = 52;
 
 
+
+
     // Default project information loaded into the page
     @FXML
     public void initialize(){
@@ -59,7 +63,6 @@ public class ProjectOverviewController {
         List<Task> tasks = projectManagement.retrieveTasks();
         XYChart.Series<Integer, String> series1 = new XYChart.Series<Integer, String>();
         XYChart.Series<Integer, String> series2 = new XYChart.Series<Integer, String>();
-
         weeksAxis.setAutoRanging(false);
         weeksAxis.setLowerBound(ProjectManagementImp.getProject().getStartWeek());
         weeksAxis.setUpperBound(ProjectManagementImp.getProject().getStartWeek() + ProjectManagementImp.getProject().getDuration());
@@ -105,7 +108,8 @@ public class ProjectOverviewController {
 
     }
 
-    public void updateSchedule(){
-        loadTaskData();
+
+    public void updateSchedule(javafx.event.ActionEvent event) {
+
     }
 }

@@ -25,6 +25,6 @@
             <Insets />
          </opaqueInsets>
       </StackedBarChart>
-      <Button fx:id="updateScheduleButton" layoutX="215.0" layoutY="391.0" mnemonicParsing="false" onAction="#updateSchedule" text="Update schedule" />
+      <Button fx:id="scheduleButton" layoutX="215.0" layoutY="391.0" mnemonicParsing="false" onAction="#updateSchedule" text="Update schedule" />
    </children>
 </AnchorPane>
