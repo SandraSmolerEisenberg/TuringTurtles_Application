@@ -7,19 +7,19 @@ import se.turingturtles.entities.Risk;
 import se.turingturtles.entities.Task;
 import se.turingturtles.entities.TeamMember;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class ProjectManagementImp implements ProjectManagement {
+public class ProjectManagementImp implements ProjectManagement, Serializable {
 
     private final static int DAYS_OF_UPD_INTERVAL = 14;
     private final static long MILLI_SEC_PER_DAY = 86400000L;
     //Using static entity for project information to avoid database building
     private static Project project;
     private ProjectFactory factory;
-
 
     public ProjectManagementImp() {
         this.factory =  new ProjectFactory();

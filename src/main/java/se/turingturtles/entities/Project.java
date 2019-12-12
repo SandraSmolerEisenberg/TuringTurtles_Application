@@ -1,11 +1,12 @@
 package se.turingturtles.entities;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.time.temporal.WeekFields;
 import java.util.*;
 
-public class Project {
+public class Project implements Serializable {
 
     private static final int NUMBER_OF_WEEKS_IN_A_YEAR = 52;
     private String name;

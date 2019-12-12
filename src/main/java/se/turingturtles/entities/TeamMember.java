@@ -2,13 +2,14 @@ package se.turingturtles.entities;
 
 import se.turingturtles.implementations.ProjectManagementImp;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
 import java.util.Objects;
 
-public class TeamMember {
+public class TeamMember implements Serializable {
 
     private String name;
     private int id;

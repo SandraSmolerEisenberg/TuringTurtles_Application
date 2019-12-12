@@ -9,6 +9,7 @@
         <module name="project-group-2-new" />
         <module name="TuringTurtles" />
         <module name="project-group" />
+        <module name="project-group-2" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="11" />

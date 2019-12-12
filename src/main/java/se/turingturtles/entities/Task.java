@@ -1,12 +1,13 @@
 package se.turingturtles.entities;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.time.temporal.WeekFields;
 import java.util.ArrayList;
 import java.util.Locale;
 
-public class Task {
+public class Task implements Serializable {
 
     private String name;
     private int startWeek;
@@ -98,6 +99,19 @@ public class Task {
         this.teamMembers.add(teamMember);
         setTotalTeamMembers();
     }
+
+    public void setTeamMembers(ArrayList<TeamMember> teamMembers) {
+        this.teamMembers = teamMembers;
+    }
+
+    public boolean isCompletion() {
+        return completion;
+    }
+
+    public void setTotalTeamMembers(int totalTeamMembers) {
+        this.totalTeamMembers = totalTeamMembers;
+    }
+
     public void removeTeamMember(TeamMember teamMember){
         this.teamMembers.remove(teamMember);
     }

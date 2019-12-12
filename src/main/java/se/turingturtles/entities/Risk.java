@@ -1,8 +1,9 @@
 package se.turingturtles.entities;
 
+import java.io.Serializable;
 import java.util.Comparator;
 
-public class Risk {
+public class Risk implements Serializable {
 
     private String name;
     private int impact;

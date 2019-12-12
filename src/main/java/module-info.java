@@ -5,4 +5,5 @@ open module se.turingturtles {
     requires java.desktop;
     requires javafx.graphics;
     requires javafx.base;
+    requires com.fasterxml.jackson.datatype.jsr310;
 }
