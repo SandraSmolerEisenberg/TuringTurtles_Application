@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="project-group-2-new" />
         <module name="TuringTurtles" />
+        <module name="project-group" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="11" />

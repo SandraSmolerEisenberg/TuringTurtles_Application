@@ -6,6 +6,7 @@ import java.time.temporal.WeekFields;
 import java.util.*;
 
 public class Project {
+
     private static final int NUMBER_OF_WEEKS_IN_A_YEAR = 52;
     private String name;
     private double budget;
@@ -22,8 +23,6 @@ public class Project {
     private double costVariance;
     private double earnedValue;
     private double scheduleVariance;
-
-
 
 
 
@@ -54,8 +53,8 @@ public class Project {
     }
 
     private int calculateDuration(){
-    long weeks = ChronoUnit.WEEKS.between(projectStartDate,projectEndDate);
-    return (int) weeks;
+        long weeks = ChronoUnit.WEEKS.between(projectStartDate,projectEndDate);
+        return (int) weeks;
     }
     // Assign the project start week and Year
     private int assignStartYear(LocalDate projectStart) {
@@ -84,6 +83,8 @@ public class Project {
 
     public void setProjectStartDate(LocalDate projectStartDate) {
         this.projectStartDate = projectStartDate;
+        setStartWeek(assignStartWeek(projectStartDate));
+        setDuration(calculateDuration());
     }
 
     public LocalDate getProjectEndDate() {
@@ -92,6 +93,8 @@ public class Project {
 
     public void setProjectEndDate(LocalDate projectEndDate) {
         this.projectEndDate = projectEndDate;
+        setEndWeek(calculateEndWeek());
+        setDuration(calculateDuration());
     }
 
     public int getStartWeek() {

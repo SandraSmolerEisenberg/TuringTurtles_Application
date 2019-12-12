@@ -8,7 +8,6 @@ import javafx.scene.layout.BorderPane;
 
 public class ProjectMasterController {
 
-
     @FXML public AnchorPane overviewTab;
     @FXML public AnchorPane taskPage;
     @FXML public AnchorPane teamPage;
@@ -19,4 +18,5 @@ public class ProjectMasterController {
     @FXML public Tab teamMembersTab;
     @FXML public Tab riskTab;
     @FXML public Tab projectManagementTab;
+
 }
