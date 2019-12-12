@@ -4,25 +4,27 @@
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.chart.StackedBarChart?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="overviewTab" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseMoved="#updateFields" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="se.turingturtles.controllers.ProjectOverviewController">
+<AnchorPane fx:id="overviewTab" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseMoved="#updateFields" prefHeight="454.0" prefWidth="535.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="se.turingturtles.controllers.ProjectOverviewController">
    <children>
       <Text fx:id="projectName" layoutX="231.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Project Name" />
       <Text fx:id="numberOfTasks" layoutX="25.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total number of task: 35" />
       <Text fx:id="numberOfMembers" layoutX="209.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total number of members: 99" wrappingWidth="181.31951904296875" />
       <Text fx:id="projectDuration" layoutX="422.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Project duration: 99w" />
-      <StackedBarChart fx:id="projectSchedule" layoutX="17.0" layoutY="78.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" title="Schedule">
+      <StackedBarChart fx:id="projectSchedule" layoutX="17.0" layoutY="78.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="295.0" prefWidth="500.0" title="Schedule">
         <yAxis>
           <CategoryAxis fx:id="taskAxis" label="Task" />
         </yAxis>
         <xAxis>
-          <NumberAxis fx:id="weeksAxis" label="Weeks" />
+          <NumberAxis fx:id="weeksAxis" label="Weeks" prefWidth="438.0" />
         </xAxis>
          <opaqueInsets>
             <Insets />
          </opaqueInsets>
       </StackedBarChart>
+      <Button fx:id="updateScheduleButton" layoutX="215.0" layoutY="391.0" mnemonicParsing="false" onAction="#updateSchedule" text="Update schedule" />
    </children>
 </AnchorPane>

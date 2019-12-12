@@ -13,9 +13,12 @@ import se.turingturtles.entities.Task;
 import se.turingturtles.implementations.ProjectFactory;
 import se.turingturtles.implementations.ProjectManagementImp;
 
+import java.awt.*;
 import java.util.List;
 
 public class ProjectOverviewController {
+
+    public javafx.scene.control.Button updateScheduleButton;
     @FXML
     private AnchorPane overviewTab;
     @FXML
@@ -32,6 +35,7 @@ public class ProjectOverviewController {
     private NumberAxis weeksAxis;
     @FXML
     private CategoryAxis taskAxis;
+
     private ProjectFactory projectFactory = new ProjectFactory();
     private ProjectManagement projectManagement = projectFactory.makeProjectManagement();
     private static final int WEEKS_PER_YEAR = 52;
@@ -91,7 +95,7 @@ public class ProjectOverviewController {
         }
         series1.setName("Tasks");
         weeksAxis.setTickUnit(1.0);
-        projectSchedule.getData().addAll(series1,series2);
+        projectSchedule.getData().setAll(series1,series2);
     }
 
     public void updateFields(){
@@ -99,9 +103,9 @@ public class ProjectOverviewController {
         numberOfMembers.setText("Total number of members: " + projectManagement.getTeamMembers().size());
         projectDuration.setText("Project duration: " + ProjectManagementImp.getProject().getDuration() + "w");
 
-
-
-
     }
 
+    public void updateSchedule(){
+        loadTaskData();
+    }
 }
