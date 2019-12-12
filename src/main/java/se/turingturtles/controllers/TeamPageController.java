@@ -181,15 +181,11 @@
                 if (!validator.validateTextInput(name)) {
                     editName.clear();
                     editName.setPromptText("Invalid Name!");
-                    //Color to be changed
-                    editName.setBackground(new Background(new BackgroundFill(Color.BEIGE, CornerRadii.EMPTY, Insets.EMPTY)));
                 }
 
                 if (!validator.validateNumericInput(wage)) {
                     editWage.clear();
                     editWage.setPromptText("Invalid Wage!");
-                    //Color to be changed
-                    editWage.setBackground(new Background(new BackgroundFill(Color.BEIGE, CornerRadii.EMPTY, Insets.EMPTY)));
                 }
             }
         }
@@ -211,8 +207,9 @@
                     alert.setHeaderText("You have created a new team member successfully!");
                     alert.setContentText("A new team member has been created with the following information: \nName: " + name + "\nID: " + id + "\nHourly Wage: " + hourlyWage + "\n\nPlease click OK, in order to proceed!");
                     alert.showAndWait();
-
-                    loadTeamList();
+                    enterName.setPromptText("Enter name");
+                    enterID.setPromptText("Enter ID");
+                    enterWage.setPromptText("Enter hourly wage");
                     json.exportToJSON();
                 }else{
                     Alert idTaken = new Alert(Alert.AlertType.ERROR);
@@ -226,20 +223,14 @@
                 if (!validator.validateTextInput(name)) {
                     enterName.clear();
                     enterName.setPromptText("Invalid Name!");
-                    //Color to be changed
-                    enterName.setBackground(new Background(new BackgroundFill(Color.BEIGE, CornerRadii.EMPTY, Insets.EMPTY)));
                 }
                 if (!validator.validateNumericInput(id)) {
                     enterID.clear();
                     enterID.setPromptText("Invalid ID!");
-                    //Color to be changed
-                    enterID.setBackground(new Background(new BackgroundFill(Color.BEIGE, CornerRadii.EMPTY, Insets.EMPTY)));
                 }
                 if (!validator.validateNumericInput(hourlyWage)) {
                     enterWage.clear();
                     enterWage.setPromptText("Invalid Wage!");
-                    //Color to be changed
-                    enterWage.setBackground(new Background(new BackgroundFill(Color.BEIGE, CornerRadii.EMPTY, Insets.EMPTY)));
                 }
             }
         }
@@ -324,7 +315,6 @@
                 searchBar.clear();
                 searchBar.setPromptText("Invalid ID!");
                 //Color to be changed
-                searchBar.setBackground(new Background(new BackgroundFill(Color.BEIGE, CornerRadii.EMPTY, Insets.EMPTY)));
             } else {
                 lastViewedID = Integer.parseInt(searchBar.getText());
                 if (projectManagement.getTeamMembers().contains(projectManagement.findTeamMember(lastViewedID))) {
@@ -337,7 +327,6 @@
                     memberNotFoundError.setContentText("There is not a team member with the ID you were looking for.");
                     memberNotFoundError.showAndWait();
                 }
-                searchBar.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
                 searchBar.clear();
                 searchBar.setPromptText("Search by ID");
             }
@@ -356,18 +345,11 @@
             enterWage.clear();
             enterID.clear();
 
-            /*We set the name and the background color of the fields to the default ones, in case of invalid user input data, so they will not
-            appear the next time again. */
             editName.setPromptText("Enter name");
-            editName.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
             editWage.setPromptText("Enter hourly wage");
-            editWage.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
 
             enterName.setPromptText("Enter name");
-            enterName.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
             enterID.setPromptText("Enter ID");
-            enterID.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
             enterWage.setPromptText("Enter hourly wage");
-            enterWage.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
         }
     }
