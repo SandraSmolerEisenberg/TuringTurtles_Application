@@ -28,7 +28,7 @@ public class Main extends Application {
         window.setResizable(true);
 
         //Scene creation.
-        Scene scene = new Scene(factory.loadFXML("projectmaster"), width, height);
+        Scene scene = new Scene(factory.loadFXML("startpage"), width, height);
         scene.getStylesheets().addAll();
         window.setScene(scene);
         scene.getStylesheets().add(getClass().getResource("/se/turingturtles/css/00-default.css").toExternalForm());

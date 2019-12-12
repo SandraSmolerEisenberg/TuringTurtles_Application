@@ -16,6 +16,7 @@ import se.turingturtles.entities.TeamMember;
 import se.turingturtles.implementations.ProjectFactory;
 import se.turingturtles.implementations.ProjectManagementImp;
 
+import java.io.IOException;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -79,56 +80,32 @@ public class TaskPageController {
     private AnchorPane tableAnchorPane;
 
     //-----Detailed View Attributes Start-----
-    @FXML
-    private AnchorPane taskDetailsAnchorPane;
-    @FXML
-    private Text taskDetailsViewHeaderText;
-    @FXML
-    private Text taskDetailsStartWeekText;
-    @FXML
-    private Text taskDetailsEndWeekText;
-    @FXML
-    private Text taskDetailsDurationText;
-    @FXML
-    private Text taskDetailsTeamMembersText;
-    @FXML
-    private Text taskDetailsStatusText;
-    @FXML
-    private ListView taskDetailsTeamMemberList;
-    @FXML
-    private Button taskDetailsEditTaskButton;
-    @FXML
-    private Button taskDetailsDeleteTaskButton;
-    @FXML
-    private Button removeTeamMemberButton;
-    @FXML
-    private Button assignTeamMemberButton;
-    @FXML
-    private Button taskDetailsCompleteButton;
-    @FXML
-    private TableView teamMembersTable;
-    @FXML
-    private TableColumn teamMemberNameColumn;
-    @FXML
-    private TableColumn teamMemberIdColumn;
-    @FXML
-    private TableColumn teamMemberTotalTasks;
-    @FXML
-    private TableColumn teamMemberSalary;
+    @FXML private AnchorPane taskDetailsAnchorPane;
+    @FXML private Text taskDetailsViewHeaderText;
+    @FXML private Text taskDetailsStartWeekText;
+    @FXML private Text taskDetailsEndWeekText;
+    @FXML private Text taskDetailsDurationText;
+    @FXML private Text taskDetailsTeamMembersText;
+    @FXML private Text taskDetailsStatusText;
+    @FXML private ListView taskDetailsTeamMemberList;
+    @FXML private Button taskDetailsEditTaskButton;
+    @FXML private Button taskDetailsDeleteTaskButton;
+    @FXML private Button removeTeamMemberButton;
+    @FXML private Button assignTeamMemberButton;
+    @FXML private Button taskDetailsCompleteButton;
+    @FXML private TableView teamMembersTable;
+    @FXML private TableColumn teamMemberNameColumn;
+    @FXML private TableColumn teamMemberIdColumn;
+    @FXML private TableColumn teamMemberTotalTasks;
+    @FXML private TableColumn teamMemberSalary;
     //-----Detailed View Attributes End-----
     //------Edit Page Attributes Start------
-    @FXML
-    private AnchorPane taskEditPageAnchorPane;
-    @FXML
-    private Text taskEditPageHeaderText;
-    @FXML
-    private TextField taskEditPageNewName;
-    @FXML
-    private DatePicker taskEditPageStartWeek;
-    @FXML
-    private DatePicker taskEditPageEndWeek;
-    @FXML
-    private Button taskEditSaveButton;
+    @FXML private AnchorPane taskEditPageAnchorPane;
+    @FXML private Text taskEditPageHeaderText;
+    @FXML private TextField taskEditPageNewName;
+    @FXML private DatePicker taskEditPageStartWeek;
+    @FXML private DatePicker taskEditPageEndWeek;
+    @FXML private Button taskEditSaveButton;
     //------Edit Page Attributes End------
 
     private ProjectFactory projectFactory = new ProjectFactory();
@@ -216,7 +193,7 @@ public class TaskPageController {
 
     }
 
-    @FXML public void makeNewTask(ActionEvent event){
+    @FXML public void makeNewTask(ActionEvent event) throws IOException {
         String name = newTaskName.getText();
         LocalDate taskStart = taskStartDate.getValue();
         LocalDate taskEnd = taskEndDate.getValue();
@@ -334,7 +311,7 @@ public class TaskPageController {
 
     }
 
-    private void loadTeamMembersTable() {
+    public void loadTeamMembersTable() {
         teamMemberNameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         teamMemberIdColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         teamMemberTotalTasks.setCellValueFactory(new PropertyValueFactory<>("totalTasks"));

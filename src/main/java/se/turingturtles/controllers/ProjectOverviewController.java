@@ -39,6 +39,7 @@ public class ProjectOverviewController {
     private ProjectManagement projectManagement = projectFactory.makeProjectManagement();
     private static final int WEEKS_PER_YEAR = 52;
 
+
     // Default project information loaded into the page
     @FXML
     public void initialize(){
@@ -48,6 +49,7 @@ public class ProjectOverviewController {
         projectDuration.setText("Project duration: " + ProjectManagementImp.getProject().getDuration() + "w");
         loadTaskData();
         overviewTab.getStylesheets().add(getClass().getResource("/se/turingturtles/css/03-projectoverview.css").toExternalForm());
+
     }
 
     // loading the schedule into the Gannt Graph setting the lower and upper bound of the X axis
@@ -95,5 +97,11 @@ public class ProjectOverviewController {
         projectSchedule.getData().addAll(series1,series2);
     }
 
+    public void updateFields(){
+        numberOfTasks.setText("Total number of tasks: " + projectManagement.retrieveTasks().size());
+        numberOfMembers.setText("Total number of members: " + projectManagement.getTeamMembers().size());
+        projectDuration.setText("Project duration: " + ProjectManagementImp.getProject().getDuration() + "w");
+
+    }
 
 }
