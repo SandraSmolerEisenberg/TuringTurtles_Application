@@ -13,9 +13,6 @@ import se.turingturtles.entities.Task;
 import se.turingturtles.implementations.ProjectFactory;
 import se.turingturtles.implementations.ProjectManagementImp;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Calendar;
 import java.util.List;
 
 public class ProjectOverviewController {
@@ -101,6 +98,9 @@ public class ProjectOverviewController {
         numberOfTasks.setText("Total number of tasks: " + projectManagement.retrieveTasks().size());
         numberOfMembers.setText("Total number of members: " + projectManagement.getTeamMembers().size());
         projectDuration.setText("Project duration: " + ProjectManagementImp.getProject().getDuration() + "w");
+
+
+
 
     }
 
