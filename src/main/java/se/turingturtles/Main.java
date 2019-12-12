@@ -7,17 +7,15 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import se.turingturtles.implementations.ProjectFactory;
-import se.turingturtles.implementations.ProjectManagementImp;
-import se.turingturtles.streamIO.StreamJSON;
+import se.turingturtles.streamIO.StreamIO;
 
 import java.awt.*;
 import java.io.*;
-import java.time.LocalDate;
 
 public class Main extends Application {
 
     private static ProjectFactory factory = new ProjectFactory();
-    private static StreamJSON json = factory.makeStream();
+    private static StreamIO json = factory.makeStream();
 
     @Override
     public void start(Stage window) throws IOException {
@@ -44,9 +42,9 @@ public class Main extends Application {
     public static void main(String[] args) {
         try {
             launch();
-            json.exportToJSON();
+            json.exportToStreamIO();
         }catch (Exception e){
-            json.exportToJSON();
+            json.exportToStreamIO();
         }
 
     }

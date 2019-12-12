@@ -7,8 +7,7 @@ import javafx.util.StringConverter;
 import se.turingturtles.ProjectManagement;
 import se.turingturtles.Validator;
 import se.turingturtles.implementations.ProjectFactory;
-import se.turingturtles.implementations.ProjectManagementImp;
-import se.turingturtles.streamIO.StreamJSON;
+import se.turingturtles.streamIO.StreamIO;
 
 import java.io.IOException;
 import java.time.DayOfWeek;
@@ -32,7 +31,7 @@ public class CreateProjectController {
     private RadioButton disclaimerButton;
 
     ProjectFactory factory = new ProjectFactory();
-    StreamJSON json = factory.makeStream();
+    StreamIO json = factory.makeStream();
 
 
     @FXML
@@ -84,7 +83,7 @@ public class CreateProjectController {
        if (validator.validateNumericInput(budget) && validator.validateDate(projectStartDate, projectEndDate) && validator.validateTextInput(name) ){
            ProjectManagement projectManagement= factory.makeProjectManagement();
            projectManagement.createProject(name , Double.parseDouble(budget) , projectStartDate, projectEndDate);
-           json.exportToJSON();
+           json.exportToStreamIO();
            projectBudget.clear();
            projectName.clear();
            factory.changeScene(startPageButton.getScene(),"projectmaster");

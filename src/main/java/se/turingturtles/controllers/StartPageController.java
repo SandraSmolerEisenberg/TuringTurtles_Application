@@ -5,11 +5,9 @@ import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.text.Text;
-import se.turingturtles.Main;
 import se.turingturtles.ProjectManagement;
 import se.turingturtles.implementations.ProjectFactory;
-import se.turingturtles.streamIO.StreamJSON;
+import se.turingturtles.streamIO.StreamIO;
 
 public class StartPageController {
 
@@ -28,8 +26,8 @@ public class StartPageController {
     }
 
     public void loadProject(ActionEvent event) throws Exception{
-            StreamJSON testStream = factory.makeStream();
-            testStream.importFromJSON();
+            StreamIO testStream = factory.makeStream();
+            testStream.importFromStreamIO();
             projectManagement.triggerCalculations();
             factory.changeScene(createProjectButton.getScene(),"projectmaster");
 

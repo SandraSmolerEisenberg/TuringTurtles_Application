@@ -20,9 +20,7 @@
     import se.turingturtles.entities.Task;
     import se.turingturtles.entities.TeamMember;
     import se.turingturtles.implementations.ProjectFactory;
-    import se.turingturtles.streamIO.StreamJSON;
-
-    import java.io.IOException;
+    import se.turingturtles.streamIO.StreamIO;
 
     public class TeamPageController {
 
@@ -97,7 +95,7 @@
         private Text totalSalaries;
 
         ProjectFactory factory = new ProjectFactory();
-        StreamJSON json = factory.makeStream();
+        StreamIO json = factory.makeStream();
         ProjectManagement projectManagement = factory.makeProjectManagement();
         Validator validator = factory.makeValidator();
         ProjectCalculations calculation = factory.makeProjectCalculations();
@@ -142,7 +140,7 @@
                 loadTeamList();
                 memberInfoPage.setVisible(false);
                 loadLandingPage();
-                json.exportToJSON();
+                json.exportToStreamIO();
             }
         }
 
@@ -176,7 +174,7 @@
                 editWage.clear();
                 returnToTeamPage();
                 loadTeamList();
-                json.exportToJSON();
+                json.exportToStreamIO();
             } else {
                 if (!validator.validateTextInput(name)) {
                     editName.clear();
@@ -211,7 +209,7 @@
                     enterID.setPromptText("Enter ID");
                     enterWage.setPromptText("Enter hourly wage");
                     loadTeamList();
-                    json.exportToJSON();
+                    json.exportToStreamIO();
                 }else{
                     Alert idTaken = new Alert(Alert.AlertType.ERROR);
                     idTaken.setTitle("Error!");
@@ -279,7 +277,7 @@
                     successAlert.setHeaderText("Successful assignment!");
                     successAlert.setContentText("You have added " + projectManagement.findTeamMember(lastViewedID).getName() + " to " + ((Task) assignTaskTable.getSelectionModel().getSelectedItem()).getName() + ".");
                     successAlert.showAndWait();
-                    json.exportToJSON();
+                    json.exportToStreamIO();
                 } else {
                     Alert assignmentError = new Alert(Alert.AlertType.ERROR);
                     assignmentError.setTitle("Error!");

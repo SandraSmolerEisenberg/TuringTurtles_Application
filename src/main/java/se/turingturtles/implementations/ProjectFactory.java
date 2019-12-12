@@ -13,7 +13,7 @@ import se.turingturtles.entities.Project;
 import se.turingturtles.entities.Risk;
 import se.turingturtles.entities.Task;
 import se.turingturtles.entities.TeamMember;
-import se.turingturtles.streamIO.StreamJSON;
+import se.turingturtles.streamIO.StreamIO;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -67,8 +67,8 @@ public class ProjectFactory {
         return new Project(name, budget, projectStart, projectEnd);
     }
 
-    public StreamJSON makeStream(){
-        return new StreamJSON();
+    public StreamIO makeStream(){
+        return new StreamIO();
     }
 
     public Project makeProject(){

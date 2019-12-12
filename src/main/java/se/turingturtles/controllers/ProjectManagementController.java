@@ -15,7 +15,7 @@ import se.turingturtles.Validator;
 import se.turingturtles.entities.Task;
 import se.turingturtles.implementations.ProjectFactory;
 import se.turingturtles.implementations.ProjectManagementImp;
-import se.turingturtles.streamIO.StreamJSON;
+import se.turingturtles.streamIO.StreamIO;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -91,7 +91,7 @@ public class ProjectManagementController {
 
 
     private ProjectFactory factory = new ProjectFactory();
-    StreamJSON json = factory.makeStream();
+    StreamIO json = factory.makeStream();
     private ProjectManagement projectManagement = factory.makeProjectManagement();
     private ProjectCalculations projectCalculations = factory.makeProjectCalculations();
     private Validator validator = factory.makeValidator();
@@ -159,7 +159,7 @@ public class ProjectManagementController {
             try {
                 double amount = Double.parseDouble(increaseBudgetAmount.getText());
                 projectCalculations.increaseBudget(amount);
-                json.exportToJSON();
+                json.exportToStreamIO();
                 increaseBudgetAmount.clear();
                 updateValues();
             }catch(Exception exception) {
@@ -185,7 +185,7 @@ public class ProjectManagementController {
         if(validator.validateNumericInput(text)) {
             double amount = Double.parseDouble(decreaseBudgetAmount.getText());
             projectCalculations.decreaseBudget(amount);
-            json.exportToJSON();
+            json.exportToStreamIO();
             decreaseBudgetAmount.clear();
             updateValues();
         }else{
@@ -268,7 +268,7 @@ public class ProjectManagementController {
         else {
             ProjectManagementImp.getProject().setProjectStartDate(projectStartDate);
             ProjectManagementImp.getProject().setProjectEndDate(projectEndDate);
-            json.exportToJSON();
+            json.exportToStreamIO();
             projectStartWeek.getEditor().clear();
             projectEndWeek.getEditor().clear();
             Alert confirmationAlert = new Alert(Alert.AlertType.INFORMATION);

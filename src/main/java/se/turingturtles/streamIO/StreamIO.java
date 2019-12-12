@@ -11,19 +11,19 @@ import se.turingturtles.implementations.ProjectManagementImp;
 
 import java.io.*;
 
-public class StreamJSON {
+public class StreamIO {
 
     private ObjectMapper mapper;
     private static final String JSON_FILE_PATH = "turtleData.json";
     private static final String DATA_FILE_PATH = "data.db";
 
 
-    public StreamJSON(){
+    public StreamIO(){
         ProjectFactory factory = new ProjectFactory();
         mapper = factory.makeObjectMapper();
     }
 
-    public void exportToJSON() {
+    public void exportToStreamIO() {
         try {
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream(DATA_FILE_PATH));
             objectOutputStream.writeObject(ProjectManagementImp.getProject());
@@ -41,7 +41,7 @@ public class StreamJSON {
         }
     }
 
-    public void importFromJSON() {
+    public void importFromStreamIO() {
         try {
             ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(DATA_FILE_PATH));
             ProjectManagementImp.setProject((Project) objectInputStream.readObject());
