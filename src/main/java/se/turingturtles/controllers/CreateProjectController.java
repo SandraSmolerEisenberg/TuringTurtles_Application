@@ -15,23 +15,16 @@ import java.time.LocalDate;
 
 public class CreateProjectController {
 
-    @FXML
-    private Button startPageButton;
-    @FXML
-    private Button createNewProjectButton;
-    @FXML
-    private TextField projectName;
-    @FXML
-    private DatePicker projectStart;
-    @FXML
-    private DatePicker projectEnd;
-    @FXML
-    private TextField projectBudget;
-    @FXML
-    private RadioButton disclaimerButton;
+    @FXML private Button startPageButton;
+    @FXML private Button createNewProjectButton;
+    @FXML private TextField projectName;
+    @FXML private DatePicker projectStart;
+    @FXML private DatePicker projectEnd;
+    @FXML private TextField projectBudget;
+    @FXML private RadioButton disclaimerButton;
 
-    ProjectFactory factory = new ProjectFactory();
-    StreamIO json = factory.makeStream();
+    private ProjectFactory factory = new ProjectFactory();
+    private StreamIO json = factory.makeStream();
 
 
     @FXML

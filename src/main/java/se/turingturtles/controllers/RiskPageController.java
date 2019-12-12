@@ -31,27 +31,19 @@ public class RiskPageController {
     @FXML private AnchorPane createRiskAnchorPane;
     @FXML private AnchorPane riskDetails;
     @FXML private Button deleteRiskButton;
-    @FXML
-    private TableColumn<Risk, String> riskName;
-    @FXML
-    private TableColumn<Risk, Integer> riskImpact;
-    @FXML
-    private TableColumn<Risk, Integer> riskProbability;
-    @FXML
-    private BarChart<String, Integer> riskMatrix;
-    @FXML
-    private CategoryAxis riskType;
-    @FXML
-    private TableView<Risk> riskDetailsTable;
-    @FXML
-    private NumberAxis riskIndex;
-    @FXML
-    private Button riskDetailsButton;
-    @FXML
-    private TableColumn<Risk,String> riskCalculated;
+    @FXML private TableColumn<Risk, String> riskName;
+    @FXML private TableColumn<Risk, Integer> riskImpact;
+    @FXML private TableColumn<Risk, Integer> riskProbability;
+    @FXML private BarChart<String, Integer> riskMatrix;
+    @FXML private CategoryAxis riskType;
+    @FXML private TableView<Risk> riskDetailsTable;
+    @FXML private NumberAxis riskIndex;
+    @FXML private Button riskDetailsButton;
+    @FXML private TableColumn<Risk,String> riskCalculated;
     private ProjectFactory projectFactory = new ProjectFactory();
-    ProjectFactory factory = new ProjectFactory();
-    StreamIO json = factory.makeStream();
+
+    private ProjectFactory factory = new ProjectFactory();
+    private StreamIO json = factory.makeStream();
     private ProjectManagement projectManagement = projectFactory.makeProjectManagement();
 
 

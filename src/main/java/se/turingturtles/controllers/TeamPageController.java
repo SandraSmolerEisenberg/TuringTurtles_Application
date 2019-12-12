@@ -24,88 +24,54 @@
 
     public class TeamPageController {
 
-        public AnchorPane teamPage;
-        @FXML
-        private ListView teamList;
-        @FXML
-        private TextField enterName;
-        @FXML
-        private TextField enterID;
-        @FXML
-        private TextField enterWage;
-        @FXML
-        protected Button createMemberButton;
-        @FXML
-        private AnchorPane newMemberPage;
-        @FXML
-        private TextField searchBar;
-        @FXML
-        private Text nameText;
-        @FXML
-        private Text idText;
-        @FXML
-        private Text wageText;
-        @FXML
-        private Text memberTimeSpent;
-        @FXML
-        private AnchorPane memberInfoPage;
-        @FXML
-        private AnchorPane memberEditPage;
-        @FXML
-        private TextField editName;
-        @FXML
-        private TextField editWage;
-        @FXML
-        private Text editMemberInfoText;
-        @FXML
-        private AnchorPane memberAssignTaskPage;
-        @FXML
-        private Text memberAssignTaskInfoText;
-        @FXML
-        private TableView assignTaskTable;
-        @FXML
-        private TableColumn taskName;
-        @FXML
-        private TableColumn taskStartWeek;
-        @FXML
-        private TableColumn taskDuration;
-        @FXML
-        private TableColumn taskTeamMembersAmount;
-        @FXML
-        private TableColumn taskStatus;
-        @FXML
-        private TableView taskTable;
-        @FXML
-        private TableColumn memberTaskName;
-        @FXML
-        private TableColumn memberTaskStartWeek;
-        @FXML
-        private TableColumn memberTaskDuration;
-        @FXML
-        private TableColumn memberTeamMembersAmount;
-        @FXML
-        private TableColumn memberTaskStatus;
-        @FXML
-        private AnchorPane landingTeamPage;
-        @FXML
-        private Text totalTimeSpent;
-        @FXML
-        private Text totalMembersAmount;
-        @FXML
-        private Text totalSalaries;
+        @FXML private AnchorPane teamPage;
+        @FXML private ListView teamList;
+        @FXML private TextField enterName;
+        @FXML private TextField enterID;
+        @FXML private TextField enterWage;
+        @FXML private Button createMemberButton;
+        @FXML private AnchorPane newMemberPage;
+        @FXML private TextField searchBar;
+        @FXML private Text nameText;
+        @FXML private Text idText;
+        @FXML private Text wageText;
+        @FXML private Text memberTimeSpent;
+        @FXML private AnchorPane memberInfoPage;
+        @FXML private AnchorPane memberEditPage;
+        @FXML private TextField editName;
+        @FXML private TextField editWage;
+        @FXML private Text editMemberInfoText;
+        @FXML private AnchorPane memberAssignTaskPage;
+        @FXML private Text memberAssignTaskInfoText;
+        @FXML private TableView assignTaskTable;
+        @FXML private TableColumn taskName;
+        @FXML private TableColumn taskStartWeek;
+        @FXML private TableColumn taskDuration;
+        @FXML private TableColumn taskTeamMembersAmount;
+        @FXML private TableColumn taskStatus;
+        @FXML private TableView taskTable;
+        @FXML private TableColumn memberTaskName;
+        @FXML private TableColumn memberTaskStartWeek;
+        @FXML private TableColumn memberTaskDuration;
+        @FXML private TableColumn memberTeamMembersAmount;
+        @FXML private TableColumn memberTaskStatus;
+        @FXML private AnchorPane landingTeamPage;
+        @FXML private Text totalTimeSpent;
+        @FXML private Text totalMembersAmount;
+        @FXML private Text totalSalaries;
 
-        ProjectFactory factory = new ProjectFactory();
-        StreamIO json = factory.makeStream();
-        ProjectManagement projectManagement = factory.makeProjectManagement();
-        Validator validator = factory.makeValidator();
-        ProjectCalculations calculation = factory.makeProjectCalculations();
+        private ProjectFactory factory = new ProjectFactory();
+        private StreamIO json = factory.makeStream();
+        private ProjectManagement projectManagement = factory.makeProjectManagement();
+        private Validator validator = factory.makeValidator();
+        private ProjectCalculations calculation = factory.makeProjectCalculations();
         private int lastViewedID;
 
         @FXML public void initialize(){
             loadTeamList();
             loadLandingPage();
         }
-        public void loadLandingPage(){
+        private void loadLandingPage(){
             landingTeamPage.setVisible(true);
             totalSalaries.setText(String.valueOf(calculation.calculateTotalSalaries()));
             totalTimeSpent.setText(String.valueOf(projectManagement.timeSpentOnProject()));
@@ -113,14 +79,14 @@
 
         }
 
-        public void loadTeamList() {
+        private void loadTeamList() {
             ObservableList<TeamMember> members = FXCollections.observableArrayList(projectManagement.getTeamMembers());
             teamList.setItems(members);
 
 
         }
 
-        public int findSelectedID() {
+        private int findSelectedID() {
             searchBar.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
             searchBar.clear();
             searchBar.setPromptText("Search by ID");
@@ -234,7 +200,7 @@
             }
         }
 
-        public void loadAssignTaskList(){
+        private void loadAssignTaskList(){
             taskName.setCellValueFactory(new PropertyValueFactory<>("name"));
             taskStartWeek.setCellValueFactory(new PropertyValueFactory<>("startWeek"));
             taskDuration.setCellValueFactory(new PropertyValueFactory<>("duration"));
@@ -244,7 +210,7 @@
             assignTaskTable.setItems(tasks);
         }
 
-        public void memberLoadAssignTaskList(){
+        private void memberLoadAssignTaskList(){
             memberTaskName.setCellValueFactory(new PropertyValueFactory<>("name"));
             memberTaskStartWeek.setCellValueFactory(new PropertyValueFactory<>("startWeek"));
             memberTaskDuration.setCellValueFactory(new PropertyValueFactory<>("duration"));
@@ -287,7 +253,7 @@
                 }
             }
         }
-        public void loadMemberInfoPage() {
+        private void loadMemberInfoPage() {
             memberAssignTaskPage.setVisible(false);
             newMemberPage.setVisible(false);
             memberInfoPage.setVisible(true);

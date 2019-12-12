@@ -31,67 +31,38 @@ public class ProjectManagementController {
     @FXML private Button backToOverview;
     @FXML private AnchorPane changeDurationAnchorPane;
     //Mater anchor
-    @FXML
-    private AnchorPane projectManagementPage;
-
+    @FXML private AnchorPane projectManagementPage;
     //Project Management page
-    @FXML
-    private AnchorPane projectManagementAnchor;
-    @FXML
-    private Text projectName;
-    @FXML
-    private Text earnedValue;
-    @FXML
-    private Text costVariance;
-    @FXML
-    private Text scheduleVariance;
-    @FXML
-    private Text totalSalaries;
-    @FXML
-    private Text budget;
-    @FXML
-    private Button changeBudget;
-    @FXML
-    private Text startWeek;
-    @FXML
-    private Text endWeek;
-    @FXML
-    private Text duration;
-    @FXML
-    private Button changeDuration;
-    @FXML
-    private Text timeOnTasks;
-    @FXML
-    private Text completedTasks;
-    @FXML
-    private Text activeTasks;
+    @FXML private AnchorPane projectManagementAnchor;
+    @FXML private Text projectName;
+    @FXML private Text earnedValue;
+    @FXML private Text costVariance;
+    @FXML private Text scheduleVariance;
+    @FXML private Text totalSalaries;
+    @FXML private Text budget;
+    @FXML private Button changeBudget;
+    @FXML private Text startWeek;
+    @FXML private Text endWeek;
+    @FXML private Text duration;
+    @FXML private Button changeDuration;
+    @FXML private Text timeOnTasks;
+    @FXML private Text completedTasks;
+    @FXML private Text activeTasks;
 
     //Change Budget Page
-    @FXML
-    private AnchorPane changeBudgetPage;
-    @FXML
-    private Text projectName2;
-    @FXML
-    private Text currentBudget;
-    @FXML
-    private Text increaseBudget;
-    @FXML
-    private Text decreaseBudget;
-    @FXML
-    private TextField increaseBudgetAmount;
-    @FXML
-    private TextField decreaseBudgetAmount;
-    @FXML
-    private Button backButton;
-    @FXML
-    private Button setIncreaseAmount;
-    @FXML
-    private Button setDecreaseAmount;
-
-
+    @FXML private AnchorPane changeBudgetPage;
+    @FXML private Text projectName2;
+    @FXML private Text currentBudget;
+    @FXML private Text increaseBudget;
+    @FXML private Text decreaseBudget;
+    @FXML private TextField increaseBudgetAmount;
+    @FXML private TextField decreaseBudgetAmount;
+    @FXML private Button backButton;
+    @FXML private Button setIncreaseAmount;
+    @FXML private Button setDecreaseAmount;
 
     private ProjectFactory factory = new ProjectFactory();
-    StreamIO json = factory.makeStream();
+    private StreamIO json = factory.makeStream();
     private ProjectManagement projectManagement = factory.makeProjectManagement();
     private ProjectCalculations projectCalculations = factory.makeProjectCalculations();
     private Validator validator = factory.makeValidator();

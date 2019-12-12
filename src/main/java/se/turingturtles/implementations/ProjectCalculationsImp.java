@@ -12,7 +12,6 @@ import java.util.Locale;
 public class ProjectCalculationsImp implements ProjectCalculations {
 
 
-
     public double calculateEarnedValue(){
         return calculateCompletedWorkPercentage()*ProjectManagementImp.getProject().getBudget();
     }

@@ -25,61 +25,26 @@ import java.util.ArrayList;
 public class TaskPageController {
     //Used for calculations, so we can have a count in week
     private static final int ONE_WEEK_DAY = 1;
-
     @FXML private RadioButton updateNameButton;
-    @FXML
-    private AnchorPane taskPage;
-
-    @FXML
-    private TableColumn taskEndWeek;
-
-    @FXML
-    public Button viewTaskButton;
-
+    @FXML private AnchorPane taskPage;
+    @FXML private TableColumn taskEndWeek;
+    @FXML private Button viewTaskButton;
     @FXML private Text removeTaskErrorMsg;
     @FXML private RadioButton updateDateButton;
-
-    @FXML
-    private TableView taskTableView;
-
-    @FXML
-    private TableColumn taskName;
-
-    @FXML
-    private TableColumn taskStartWeek;
-
-    @FXML
-    private TableColumn taskDuration;
-
-    @FXML
-    private TableColumn taskTeamMembersAmount;
-
+    @FXML private TableView taskTableView;
+    @FXML private TableColumn taskName;
+    @FXML private TableColumn taskStartWeek;
+    @FXML private TableColumn taskDuration;
+    @FXML private TableColumn taskTeamMembersAmount;
     @FXML private TableColumn taskStatus;
-
-    @FXML
-    private Button taskCreateTaskButton;
-
-    @FXML
-    private Text taskHeaderText;
-
-    @FXML
-    private DatePicker taskStartDate;
-
-    @FXML
-    private DatePicker taskEndDate;
-
-    @FXML
-    private AnchorPane createTaskAnchorPane;
-
-    @FXML
-    private TextField newTaskName;
-
-    @FXML
-    private Button newTaskCreateButton;
-
-    @FXML
-    private AnchorPane tableAnchorPane;
-
+    @FXML private Button taskCreateTaskButton;
+    @FXML private Text taskHeaderText;
+    @FXML private DatePicker taskStartDate;
+    @FXML private DatePicker taskEndDate;
+    @FXML private AnchorPane createTaskAnchorPane;
+    @FXML private TextField newTaskName;
+    @FXML private Button newTaskCreateButton;
+    @FXML private AnchorPane tableAnchorPane;
     //-----Detailed View Attributes Start-----
     @FXML private AnchorPane taskDetailsAnchorPane;
     @FXML private Text taskDetailsViewHeaderText;
@@ -113,6 +78,7 @@ public class TaskPageController {
     private ProjectManagement projectManagement = projectFactory.makeProjectManagement();
     private StreamIO json = projectFactory.makeStream();
 
+    //Default method calls the load table and updates the text fields
     @FXML private void initialize(){
         tableAnchorPane.setVisible(true);
         loadTasksTable();
@@ -124,6 +90,7 @@ public class TaskPageController {
         updateTextFields();
     }
 
+    //loads the table with all tasks
     private void loadTasksTable(){
         taskName.setCellValueFactory(new PropertyValueFactory<>("name"));
         taskStartWeek.setCellValueFactory(new PropertyValueFactory<>("startWeek"));
@@ -137,6 +104,7 @@ public class TaskPageController {
         taskTableView.refresh();
 
     }
+    //Initializes the calendar for task creation given the project start and and date
     private void setDatePicker(DatePicker datePicker, String calendar){
         datePicker.setEditable(false);
         datePicker.setStyle(String.valueOf(ProjectManagementImp.getProject().getProjectStartDate()));
@@ -157,6 +125,7 @@ public class TaskPageController {
         datePicker.setPromptText("Choose date:");
     }
 
+    //Connected to createTask button - Checks the page that is loaded and calls the swaps between pages calling the update table method
     @FXML public void createNewTask(ActionEvent event){
         if (tableAnchorPane.isVisible()){
             tableAnchorPane.setVisible(false);
@@ -194,7 +163,7 @@ public class TaskPageController {
         }
 
     }
-
+    //Creates new task by checking for valid input and if the task with the same name already exist
     @FXML public void makeNewTask(ActionEvent event) throws IOException {
         String name = newTaskName.getText();
         LocalDate taskStart = taskStartDate.getValue();
@@ -203,8 +172,8 @@ public class TaskPageController {
         if (validator.validateDate(taskStart, taskEnd) && validator.validateTextInput(name) ){
             boolean sameName = false;
             ArrayList<Task> tasks = (ArrayList<Task>) projectManagement.retrieveTasks();
-            for (int i = 0; i < tasks.size(); i++ ){
-                if (tasks.get(i).getName().equals(name)) {
+            for (Task task : tasks) {
+                if (task.getName().equals(name)) {
                     sameName = true;
                     break;
                 }
@@ -242,7 +211,7 @@ public class TaskPageController {
         }
     }
 
-
+    //If a task row is selected the view task page is loaded
     public void selectTaskRow(ActionEvent event){
         Task task = (Task) taskTableView.getSelectionModel().getSelectedItem();
         if(task == null ){
@@ -257,6 +226,7 @@ public class TaskPageController {
         }
     }
 
+    //If the button is clicked it checks the page and loads a new page depending on the choise in the same time reloads the data
     private void loadViewTaskAnchorPane(){
         if (taskTableView.isVisible()){
             tableAnchorPane.setVisible(false);
@@ -295,7 +265,7 @@ public class TaskPageController {
         taskDetailsStatusText.setText(task.getCompletion());
         updateTables(task);
     }
-
+    // Assigns a team member to a task method if the team member is not already assigned
     public void assignTeamMember(ActionEvent event){
         TeamMember teamMember = (TeamMember) teamMembersTable.getSelectionModel().getSelectedItem();
         Task task = projectManagement.findTask(taskDetailsViewHeaderText.getText());
@@ -314,7 +284,7 @@ public class TaskPageController {
         }
 
     }
-
+    //loads team member table
     public void loadTeamMembersTable() {
         teamMemberNameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         teamMemberIdColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -325,12 +295,12 @@ public class TaskPageController {
         teamMembersTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         teamMembersTable.refresh();
     }
-
+    //Creates observable list from the team member array and loads it to the table
     private void loadTaskTeamMembersList(Task task){
         ObservableList<TeamMember> teamMembers = FXCollections.observableArrayList(task.getTeamMembers());
         taskDetailsTeamMemberList.setItems(teamMembers);
     }
-
+    //Deletes a task after showing an alert
     public void deleteTask(ActionEvent event) {
         Task task = projectManagement.findTask(taskDetailsViewHeaderText.getText());
         Alert deleteAlert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -350,6 +320,7 @@ public class TaskPageController {
         }
     }
 
+    //Removes a team member from the task member list
     public void removeTeamMember(ActionEvent event){
         TeamMember teamMember = (TeamMember) taskDetailsTeamMemberList.getSelectionModel().getSelectedItem();
         Task task = projectManagement.findTask(taskDetailsViewHeaderText.getText());
@@ -375,6 +346,7 @@ public class TaskPageController {
             }
         }
     }
+    //Changes the page to edit task
     public void loadEditTaskPage(ActionEvent event){
         taskDetailsAnchorPane.setVisible(false);
         taskEditPageAnchorPane.setVisible(true);
@@ -389,6 +361,7 @@ public class TaskPageController {
         setDatePicker(taskEditPageEndWeek, "EndDate");
 
     }
+    //Saves the changes to the task depending of the user input. The user can change the name, the duration or all.
     public void taskEditSaveChanges(ActionEvent event){
         Task task = projectManagement.findTask(taskDetailsViewHeaderText.getText());
         String name = taskEditPageNewName.getText();
@@ -430,7 +403,7 @@ public class TaskPageController {
             taskEditPageEndWeek.setPromptText("Choose date:");
         }
     }
-
+    //Changes the status of the task between completed/not completed
     public void changeStatus(){
         Task task = projectManagement.findTask(taskDetailsViewHeaderText.getText());
         if(task.getCompletion().equals("Completed")){
@@ -444,6 +417,7 @@ public class TaskPageController {
         updateTables(task);
     }
 
+    //Calls the all the update table methods
     private void updateTables(Task task){
         loadTaskTeamMembersList(task);
         loadTeamMembersTable();
@@ -460,6 +434,7 @@ public class TaskPageController {
             taskDetailsCompleteButton.setText("Re-Open Task");
         }
     }
+    //updates the fields
     private void updateTextFields(){
         taskStartDate.getEditor().clear();
         taskEndDate.getEditor().clear();
@@ -474,11 +449,12 @@ public class TaskPageController {
         updateNameButton.setSelected(false);
     }
 
+    //Radio button enables task change name
     public void enableChangeName(ActionEvent event){
         if (taskEditPageNewName.isDisable()){taskEditPageNewName.setDisable(false);}
         else{taskEditPageNewName.setDisable(true);}
     }
-
+    //Radio button enables task change date
     public void enableChangeDate(ActionEvent event){
         if (taskEditPageStartWeek.isDisable()){
             taskEditPageStartWeek.setDisable(false);

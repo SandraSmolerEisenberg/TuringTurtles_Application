@@ -1,12 +1,14 @@
 package se.turingturtles.controllers;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.util.StringConverter;
+import se.turingturtles.Main;
 import se.turingturtles.ProjectManagement;
 import se.turingturtles.entities.Task;
 import se.turingturtles.implementations.ProjectFactory;
@@ -15,6 +17,7 @@ import javafx.scene.control.Button;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.io.IOException;
 import java.util.List;
 
 public class ProjectOverviewController {
@@ -109,7 +112,7 @@ public class ProjectOverviewController {
     }
 
 
-    public void updateSchedule(javafx.event.ActionEvent event) {
-
+    public void updateSchedule(javafx.event.ActionEvent event) throws IOException {
+        projectFactory.changeScene(overviewTab.getScene(),"projectmaster");
     }
 }

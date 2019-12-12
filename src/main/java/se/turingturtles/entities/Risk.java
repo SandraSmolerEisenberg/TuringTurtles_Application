@@ -53,11 +53,10 @@ public class Risk implements Serializable {
 
     @Override
     public String toString() {
-        return "Risk{" +
-                "name='" + name + '\'' +
-                ", impact=" + impact +
-                ", probability=" + probability +
-                '}';
+        return "Risk " +
+                "name: " + name +
+                ", impact: " + impact +
+                ", probability: " + probability;
     }
 
 

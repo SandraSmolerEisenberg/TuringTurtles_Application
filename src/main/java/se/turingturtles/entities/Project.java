@@ -8,15 +8,14 @@ import java.util.*;
 
 public class Project implements Serializable {
 
-    private static final int NUMBER_OF_WEEKS_IN_A_YEAR = 52;
+    //private static final int NUMBER_OF_WEEKS_IN_A_YEAR = 52;
     private String name;
     private double budget;
     private int duration;    //In weeks
     private int startWeek;
+    private int endWeek;
     private LocalDate projectStartDate;
     private LocalDate projectEndDate;
-    private int endWeek;
-    private int startYear;
     private List<TeamMember> teamMembers;
     private List<Task> tasks;
     private List<Risk> risk;
@@ -25,8 +24,6 @@ public class Project implements Serializable {
     private double earnedValue;
     private double scheduleVariance;
 
-
-
     public Project(String name, double budget, LocalDate projectStart, LocalDate projectEnd){
         this.name = name;
         this.budget = budget;
@@ -34,7 +31,6 @@ public class Project implements Serializable {
         this.tasks = new ArrayList<>();
         this.risk = new ArrayList<>();
         this.startWeek = assignStartWeek(projectStart);
-        this.startYear = assignStartYear(projectStart);
         this.nextUpdateMilli = 0;
         this.projectStartDate = projectStart;
         this.projectEndDate = projectEnd;
@@ -45,9 +41,9 @@ public class Project implements Serializable {
         this.scheduleVariance = 0;
     }
 
-
     public Project(){} //Needed for JSON-file to work
 
+//--------Methods-------------------------
     private int calculateEndWeek() {
         WeekFields weekFields = WeekFields.of(Locale.getDefault());
         return projectEndDate.get(weekFields.weekOfWeekBasedYear());
@@ -57,19 +53,13 @@ public class Project implements Serializable {
         long weeks = ChronoUnit.WEEKS.between(projectStartDate,projectEndDate);
         return (int) weeks;
     }
-    // Assign the project start week and Year
-    private int assignStartYear(LocalDate projectStart) {
-        return projectStart.getYear();    }
-
+    // Assign the project start week
     private int assignStartWeek(LocalDate projectStart) {
         WeekFields weekFields = WeekFields.of(Locale.getDefault());
         return projectStart.get(weekFields.weekOfWeekBasedYear());
     }
 
-    public static int getNumberOfWeeksInAYear() {
-        return NUMBER_OF_WEEKS_IN_A_YEAR;
-    }
-
+//--------Getters and Setters----------------
     public int getEndWeek() {
         return endWeek;
     }
@@ -102,16 +92,8 @@ public class Project implements Serializable {
         return startWeek;
     }
 
-    public int getStartYear() {
-        return startYear;
-    }
-
     public void setStartWeek(int startWeek) {
         this.startWeek = startWeek;
-    }
-
-    public void setStartYear(int startYear) {
-        this.startYear = startYear;
     }
 
     public String getName() {
@@ -149,6 +131,7 @@ public class Project implements Serializable {
     public int getDuration() {
         return duration;
     }
+
     public long getNextUpdateMilli() {
         return nextUpdateMilli;
     }
@@ -195,11 +178,10 @@ public class Project implements Serializable {
 
     @Override
     public String toString() {
-        return "Project{" +
-                "name='" + name + '\'' +
-                ", budget=" + budget +
-                ", duration=" + duration +
-                '}';
+        return "Project " +
+                "name: " + name  +
+                ", budget: " + budget +
+                ", duration: " + duration;
     }
 
 }

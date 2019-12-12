@@ -12,14 +12,12 @@ import se.turingturtles.streamIO.StreamIO;
 public class StartPageController {
 
 
-    @FXML
-    private Button createProjectButton;
-    @FXML
-    private Button loadProjectButton;
+    @FXML private Button createProjectButton;
+    @FXML private Button loadProjectButton;
 
 
-    ProjectFactory factory = new ProjectFactory();
-    ProjectManagement projectManagement = factory.makeProjectManagement();
+    private ProjectFactory factory = new ProjectFactory();
+    private ProjectManagement projectManagement = factory.makeProjectManagement();
 
     public void createNewProject(ActionEvent event) throws IOException {
         factory.changeScene(createProjectButton.getScene(),"createproject");
@@ -29,7 +27,7 @@ public class StartPageController {
             StreamIO testStream = factory.makeStream();
             testStream.importFromStreamIO();
             projectManagement.triggerCalculations();
-            factory.changeScene(createProjectButton.getScene(),"projectmaster");
+            factory.changeScene(loadProjectButton.getScene(),"projectmaster");
 
     }
 }

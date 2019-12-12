@@ -23,8 +23,9 @@ public class ValidatorImp implements Validator {
         if (projectStartDate != null && projectEndDate != null && projectStartDate.compareTo(projectEndDate) < 0){
             return true;
         }
-        else
+        else{
             return false;
+        }
 
     }
 
