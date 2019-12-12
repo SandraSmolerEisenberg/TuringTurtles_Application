@@ -210,6 +210,7 @@
                     enterName.setPromptText("Enter name");
                     enterID.setPromptText("Enter ID");
                     enterWage.setPromptText("Enter hourly wage");
+                    loadTeamList();
                     json.exportToJSON();
                 }else{
                     Alert idTaken = new Alert(Alert.AlertType.ERROR);
