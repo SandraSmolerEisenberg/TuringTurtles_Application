@@ -8,6 +8,7 @@ import se.turingturtles.ProjectManagement;
 import se.turingturtles.Validator;
 import se.turingturtles.implementations.ProjectFactory;
 import se.turingturtles.implementations.ProjectManagementImp;
+import se.turingturtles.streamIO.StreamJSON;
 
 import java.io.IOException;
 import java.time.DayOfWeek;
@@ -29,6 +30,9 @@ public class CreateProjectController {
     private TextField projectBudget;
     @FXML
     private RadioButton disclaimerButton;
+
+    ProjectFactory factory = new ProjectFactory();
+    StreamJSON json = factory.makeStream();
 
 
     @FXML
@@ -55,7 +59,6 @@ public class CreateProjectController {
         datePicker.setPromptText("Choose date:");
     }
 
-    private ProjectFactory factory = new ProjectFactory();
     //Create project button set to disable by default
     public void activateCreateProjectButton(ActionEvent event){
         if (createNewProjectButton.isDisable()){
@@ -81,6 +84,7 @@ public class CreateProjectController {
        if (validator.validateNumericInput(budget) && validator.validateDate(projectStartDate, projectEndDate) && validator.validateTextInput(name) ){
            ProjectManagement projectManagement= factory.makeProjectManagement();
            projectManagement.createProject(name , Double.parseDouble(budget) , projectStartDate, projectEndDate);
+           json.exportToJSON();
            projectBudget.clear();
            projectName.clear();
            factory.changeScene(startPageButton.getScene(),"projectmaster");

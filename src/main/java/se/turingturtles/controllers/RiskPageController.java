@@ -14,6 +14,7 @@ import se.turingturtles.Validator;
 import se.turingturtles.entities.Risk;
 import se.turingturtles.implementations.ProjectFactory;
 import se.turingturtles.implementations.ProjectManagementImp;
+import se.turingturtles.streamIO.StreamJSON;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -49,6 +50,8 @@ public class RiskPageController {
     @FXML
     private TableColumn<Risk,String> riskCalculated;
     private ProjectFactory projectFactory = new ProjectFactory();
+    ProjectFactory factory = new ProjectFactory();
+    StreamJSON json = factory.makeStream();
     private ProjectManagement projectManagement = projectFactory.makeProjectManagement();
 
 
@@ -164,6 +167,7 @@ public class RiskPageController {
                 confirmationAlert.setContentText("The following information was added: " + "\n" + "Description: " + newRiskName.getText() + "\n" + "Impact: " + newRiskImpact.getText() + " Probability: " + newRiskProbability.getText());
                 confirmationAlert.showAndWait();
                 projectManagement.createRisk(name, impactValue, probabilityValue);
+                json.exportToJSON();
                 clearInputFields();
                 loadRiskDetailsTable();
                 riskIndex.setUpperBound(getHighestRisk());
@@ -238,6 +242,7 @@ public class RiskPageController {
             if (deleteAlert.getResult() == ButtonType.OK) {
 
                 ProjectManagementImp.getProject().getRisk().remove(risk);
+                json.exportToJSON();
                 loadRiskDetailsTable();
                 riskDetailsTable.refresh();
                 riskMatrix.getData().setAll(loadRiskMatrix());

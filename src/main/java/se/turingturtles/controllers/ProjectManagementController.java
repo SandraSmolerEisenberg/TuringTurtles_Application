@@ -15,6 +15,7 @@ import se.turingturtles.Validator;
 import se.turingturtles.entities.Task;
 import se.turingturtles.implementations.ProjectFactory;
 import se.turingturtles.implementations.ProjectManagementImp;
+import se.turingturtles.streamIO.StreamJSON;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -90,10 +91,10 @@ public class ProjectManagementController {
 
 
     private ProjectFactory factory = new ProjectFactory();
-    @FXML
-    ProjectManagement projectManagement = factory.makeProjectManagement();
-    ProjectCalculations projectCalculations = factory.makeProjectCalculations();
-    Validator validator = factory.makeValidator();
+    StreamJSON json = factory.makeStream();
+    private ProjectManagement projectManagement = factory.makeProjectManagement();
+    private ProjectCalculations projectCalculations = factory.makeProjectCalculations();
+    private Validator validator = factory.makeValidator();
 
     @FXML
     public void initialize(){
@@ -158,6 +159,7 @@ public class ProjectManagementController {
             try {
                 double amount = Double.parseDouble(increaseBudgetAmount.getText());
                 projectCalculations.increaseBudget(amount);
+                json.exportToJSON();
                 increaseBudgetAmount.clear();
                 updateValues();
             }catch(Exception exception) {
@@ -183,6 +185,7 @@ public class ProjectManagementController {
         if(validator.validateNumericInput(text)) {
             double amount = Double.parseDouble(decreaseBudgetAmount.getText());
             projectCalculations.decreaseBudget(amount);
+            json.exportToJSON();
             decreaseBudgetAmount.clear();
             updateValues();
         }else{
@@ -265,6 +268,7 @@ public class ProjectManagementController {
         else {
             ProjectManagementImp.getProject().setProjectStartDate(projectStartDate);
             ProjectManagementImp.getProject().setProjectEndDate(projectEndDate);
+            json.exportToJSON();
             projectStartWeek.getEditor().clear();
             projectEndWeek.getEditor().clear();
             Alert confirmationAlert = new Alert(Alert.AlertType.INFORMATION);
