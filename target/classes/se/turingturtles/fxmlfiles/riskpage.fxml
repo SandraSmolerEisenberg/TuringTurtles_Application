@@ -18,8 +18,8 @@
                <center>
                   <AnchorPane BorderPane.alignment="CENTER">
                      <children>
-            <Button fx:id="addRiskButton" layoutX="305.0" layoutY="320.0" mnemonicParsing="false" onAction="#loadCreateRiskAnchorPane" prefHeight="30.0" prefWidth="200.0" text="Add Risk" />
-                        <Button fx:id="riskDetailsButton" layoutX="100.0" layoutY="320.0" mnemonicParsing="false" onAction="#showDetails" prefHeight="30.0" prefWidth="200.0" text="Risk Details" />
+            <Button fx:id="addRiskButton" layoutX="304.0" layoutY="320.0" mnemonicParsing="false" onAction="#loadCreateRiskAnchorPane" prefHeight="30.0" prefWidth="200.0" text="Add Risk" />
+                        <Button fx:id="riskDetailsButton" layoutX="96.0" layoutY="320.0" mnemonicParsing="false" onAction="#showDetails" prefHeight="30.0" prefWidth="200.0" text="Risk Details" />
                         <BarChart fx:id="riskMatrix" layoutY="35.0" prefHeight="286.0" prefWidth="592.0" AnchorPane.bottomAnchor="92.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="35.0" BorderPane.alignment="CENTER">
                           <xAxis>
                             <CategoryAxis fx:id="riskType" label="Type of Risk" side="BOTTOM" BorderPane.alignment="CENTER" />
@@ -30,7 +30,7 @@
                         </BarChart>
             <AnchorPane fx:id="riskDetails" prefWidth="600.0" AnchorPane.bottomAnchor="110.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <Button fx:id="deleteRiskButton" layoutX="270.0" layoutY="277.0" mnemonicParsing="false" onAction="#deleteRisk" text="Delete Risk" />
+                  <Button fx:id="deleteRiskButton" layoutX="263.0" layoutY="277.0" mnemonicParsing="false" onAction="#deleteRisk" text="Delete Risk" />
                               <TableView fx:id="riskDetailsTable" editable="true" layoutX="19.0" layoutY="36.0" prefHeight="239.0" prefWidth="561.0" tableMenuButtonVisible="true">
                                 <columns>
                                   <TableColumn fx:id="riskName" prefWidth="106.00000250339508" text="Name" />
@@ -52,7 +52,7 @@
                   <TextField fx:id="newRiskName" layoutX="300.0" layoutY="76.0" promptText="risk description" />
                   <TextField fx:id="newRiskProbability" layoutX="300.0" layoutY="156.0" promptText="risk probability" />
                   <TextField fx:id="newRiskImpact" layoutX="300.0" layoutY="196.0" promptText="risk impact" />
-                  <Button fx:id="createRiskButton" layoutX="249.0" layoutY="276.0" mnemonicParsing="false" onAction="#createRisk" text="Add Project Risk" />
+                  <Button fx:id="createRiskButton" layoutX="249.0" layoutY="271.0" mnemonicParsing="false" onAction="#createRisk" text="Add Project Risk" />
                   <Label layoutX="183.0" layoutY="120.0" prefHeight="17.0" prefWidth="266.0" text="Impact and Probability can be between 0 and 10" underline="true" />
                </children>
             </AnchorPane>
