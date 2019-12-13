@@ -48,7 +48,7 @@
 </AnchorPane>
 -->
 
-<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" stylesheets="@../css/00-default.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="se.turingturtles.controllers.StartPageController">
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" stylesheets="@../css/00-default.css" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/" fx:controller="se.turingturtles.controllers.StartPageController">
    <children>
       <ImageView fitHeight="161.0" fitWidth="204.0" layoutX="148.0" layoutY="121.0" pickOnBounds="true" preserveRatio="true">
          <image>

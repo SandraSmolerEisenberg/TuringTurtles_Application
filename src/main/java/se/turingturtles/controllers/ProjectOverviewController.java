@@ -22,24 +22,15 @@ import java.util.List;
 
 public class ProjectOverviewController {
 
-    @FXML
-    private Button scheduleButton;
-    @FXML
-    private AnchorPane overviewTab;
-    @FXML
-    private Text projectName;
-    @FXML
-    private Text numberOfTasks;
-    @FXML
-    private Text numberOfMembers;
-    @FXML
-    private Text projectDuration;
-    @FXML
-    private StackedBarChart projectSchedule;
-    @FXML
-    private NumberAxis weeksAxis;
-    @FXML
-    private CategoryAxis taskAxis;
+    @FXML private Button scheduleButton;
+    @FXML private AnchorPane overviewTab;
+    @FXML private Text projectName;
+    @FXML private Text numberOfTasks;
+    @FXML private Text numberOfMembers;
+    @FXML private Text projectDuration;
+    @FXML private StackedBarChart projectSchedule;
+    @FXML private NumberAxis weeksAxis;
+    @FXML private CategoryAxis taskAxis;
 
     private ProjectFactory projectFactory = new ProjectFactory();
     private ProjectManagement projectManagement = projectFactory.makeProjectManagement();

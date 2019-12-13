@@ -29,7 +29,6 @@ public class TaskPageController {
     @FXML private AnchorPane taskPage;
     @FXML private TableColumn taskEndWeek;
     @FXML private Button viewTaskButton;
-    @FXML private Text removeTaskErrorMsg;
     @FXML private RadioButton updateDateButton;
     @FXML private TableView taskTableView;
     @FXML private TableColumn taskName;
@@ -164,7 +163,7 @@ public class TaskPageController {
 
     }
     //Creates new task by checking for valid input and if the task with the same name already exist
-    @FXML public void makeNewTask(ActionEvent event) throws IOException {
+    @FXML public void makeNewTask(ActionEvent event) {
         String name = newTaskName.getText();
         LocalDate taskStart = taskStartDate.getValue();
         LocalDate taskEnd = taskEndDate.getValue();
@@ -285,7 +284,7 @@ public class TaskPageController {
 
     }
     //loads team member table
-    public void loadTeamMembersTable() {
+    private void loadTeamMembersTable() {
         teamMemberNameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         teamMemberIdColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         teamMemberTotalTasks.setCellValueFactory(new PropertyValueFactory<>("totalTasks"));

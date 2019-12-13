@@ -40,11 +40,10 @@ public class RiskPageController {
     @FXML private NumberAxis riskIndex;
     @FXML private Button riskDetailsButton;
     @FXML private TableColumn<Risk,String> riskCalculated;
-    private ProjectFactory projectFactory = new ProjectFactory();
 
     private ProjectFactory factory = new ProjectFactory();
     private StreamIO json = factory.makeStream();
-    private ProjectManagement projectManagement = projectFactory.makeProjectManagement();
+    private ProjectManagement projectManagement = factory.makeProjectManagement();
 
 
     //Load data into matrix and initialize table and set it to not visible by default
@@ -68,11 +67,11 @@ public class RiskPageController {
 
     // Return the highest risk value and use it for the matrix
     private int getHighestRisk(){
-        int highestRisk = 0;
+        int highestRisk;
         List<Risk> risks = projectManagement.getProjectRisks();
         ArrayList<Integer> risksValues = new ArrayList<>();
-        for (int i = 0; i < risks.size(); i++){
-            risksValues.add(risks.get(i).calculateRisk());
+        for (Risk risk : risks) {
+            risksValues.add(risk.calculateRisk());
         }
         highestRisk = Collections.max(risksValues);
         return highestRisk;
@@ -119,10 +118,10 @@ public class RiskPageController {
         String name = newRiskName.getText();
         String probability = newRiskProbability.getText();
         String impact = newRiskImpact.getText();
-        Validator validator = projectFactory.makeValidator();
+        Validator validator = factory.makeValidator();
         if (validator.validateTextInput(name) && validator.validateNumericInput(probability) && validator.validateNumericInput(impact)){
-            int impactValue = 0;
-            int probabilityValue = 0;
+            int impactValue;
+            int probabilityValue;
             try{
                 impactValue = Integer.parseInt(impact);
                 probabilityValue = Integer.parseInt(probability);
@@ -218,7 +217,7 @@ public class RiskPageController {
     }
 
     public void deleteRisk(ActionEvent event) {
-        Risk risk = (Risk) riskDetailsTable.getSelectionModel().getSelectedItem();
+        Risk risk = riskDetailsTable.getSelectionModel().getSelectedItem();
         if (risk == null) {
             Alert deleteAlert = new Alert(Alert.AlertType.INFORMATION);
             deleteAlert.setTitle("Selection missing");
