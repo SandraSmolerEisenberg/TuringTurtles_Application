@@ -9,6 +9,7 @@ import javafx.scene.layout.BorderPane;
 
 public class ProjectMasterController {
 
+    @FXML private AnchorPane projectMasterTabs;
     @FXML private TabPane masterTab;
     @FXML private AnchorPane overviewTab;
     @FXML private AnchorPane taskPage;
@@ -20,5 +21,10 @@ public class ProjectMasterController {
     @FXML private Tab teamMembersTab;
     @FXML private Tab riskTab;
     @FXML private Tab projectManagementTab;
+
+    public void initialize(){
+       projectMasterTabs.getStylesheets().add(getClass().getResource("/se/turingturtles/css/00-default.css").toExternalForm());
+
+    }
 
 }

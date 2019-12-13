@@ -18,7 +18,7 @@
   src: url("../fonts/Open_Sans_Condensed/OpenSansCondensed-Light.ttf");
 }
 /* Universal styling */
-.root {
+.root{
   -fx-background-color: linear-gradient(to top right, #e6e6e6 0%, white 100%);
 }
 
@@ -29,13 +29,11 @@
   -fx-effect: dropshadow(three-pass-box, #71C688, 10, 0, 0, 2);
   -fx-background-radius: 50;
 }
-
-#big-button {
+.button #big-button {
   -fx-font-size: 14pt;
   -fx-padding: 10pt 0pt;
 }
-
-#small-button {
+.button #small-button {
   -fx-font-size: 9pt;
   -fx-padding: 1pt;
 }
@@ -57,9 +55,10 @@
   -fx-font-weight: 300;
 }
 
+
 /* Start page and create project page styling */
 #startpage-anchor,
-#createproject-anchor {
+#createproject-anchor, #overviewTab{
   -fx-background-color: #fff;
   -fx-background-radius: 20;
   -fx-effect: dropshadow(three-pass-box, #ccc, 10, 0, 0, 2);

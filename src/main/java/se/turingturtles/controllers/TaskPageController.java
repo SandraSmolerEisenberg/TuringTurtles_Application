@@ -187,6 +187,7 @@ public class TaskPageController {
                 json.exportToStreamIO();
                 Alert confirmationAlert = new Alert(Alert.AlertType.INFORMATION);
                 confirmationAlert.setTitle("Success!");
+                confirmationAlert.setGraphic(projectFactory.loadNode());
                 confirmationAlert.setHeaderText("Successfully added task: " + name + ".");
                 confirmationAlert.setContentText("The following task was added: " + "\n" + "Name: " + name + "\n" + "Start date: " + taskStart + " End date: " + taskEnd);
                 confirmationAlert.showAndWait();
@@ -216,6 +217,7 @@ public class TaskPageController {
         if(task == null ){
             Alert selectionError = new Alert(Alert.AlertType.ERROR);
             selectionError.setTitle("Error!");
+            selectionError.setGraphic(projectFactory.loadNode());
             selectionError.setHeaderText("No task selected!");
             selectionError.setContentText("Please select a task from the task table.");
             selectionError.showAndWait();
@@ -277,6 +279,7 @@ public class TaskPageController {
         else {
             Alert assignmentError = new Alert(Alert.AlertType.ERROR);
             assignmentError.setTitle("Error!");
+            assignmentError.setGraphic(projectFactory.loadNode());
             assignmentError.setHeaderText("Assignment to task failed!");
             assignmentError.setContentText("Couldn't find team member" + ",\n" + "or team member is already assigned to task!");
             assignmentError.showAndWait();
@@ -304,6 +307,7 @@ public class TaskPageController {
         Task task = projectManagement.findTask(taskDetailsViewHeaderText.getText());
         Alert deleteAlert = new Alert(Alert.AlertType.CONFIRMATION);
         deleteAlert.setTitle("You are about to delete this task");
+        deleteAlert.setGraphic(projectFactory.loadNode());
         deleteAlert.setHeaderText("WARNING!");
         deleteAlert.setContentText("You have selected to delete the following task: \nName: " + task.getName() + "\n\nPlease click OK, in order to proceed!");
         deleteAlert.showAndWait();
@@ -326,6 +330,7 @@ public class TaskPageController {
         //The if-statement only executes once per run...
         if(teamMember == null ){
             Alert deleteAlert = new Alert(Alert.AlertType.INFORMATION);
+            deleteAlert.setGraphic(projectFactory.loadNode());
             deleteAlert.setTitle("Selection missing");
             deleteAlert.setHeaderText("Hey!");
             deleteAlert.setContentText("Please select a team member to remove!");
@@ -335,6 +340,7 @@ public class TaskPageController {
             Alert deleteAlert = new Alert(Alert.AlertType.CONFIRMATION);
             deleteAlert.setTitle("You are about to remove this member from the task");
             deleteAlert.setHeaderText("WARNING!");
+            deleteAlert.setGraphic(projectFactory.loadNode());
             deleteAlert.setContentText("You have selected to delete the following team member: \nName: " + teamMember.getName() + "\n\nPlease click OK, in order to proceed!");
             deleteAlert.showAndWait();
             if (deleteAlert.getResult() == ButtonType.OK) {
