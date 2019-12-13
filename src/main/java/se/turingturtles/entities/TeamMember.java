@@ -10,6 +10,8 @@ import java.util.Locale;
 import java.util.Objects;
 
 public class TeamMember implements Serializable {
+    //The team works 16 hours per week
+    private static int hoursPerWeek = 16;
 
     private String name;
     private int id;
@@ -47,6 +49,18 @@ public class TeamMember implements Serializable {
 
     public void setTotalTasks(int totalTasks) {
         this.totalTasks = totalTasks;
+    }
+
+    public void setTasks(ArrayList<Task> tasks) {
+        this.tasks = tasks;
+    }
+
+    public static int getHoursPerWeek() {
+        return hoursPerWeek;
+    }
+
+    public static void setHoursPerWeek(int hoursPerWeek) {
+        TeamMember.hoursPerWeek = hoursPerWeek;
     }
 
     public void setHourlyWage(double newHourlyWage){
@@ -88,7 +102,7 @@ public class TeamMember implements Serializable {
         return calendar.get(Calendar.WEEK_OF_YEAR);
     }
     public int getTimeSpent(){
-        int hoursPerWeek = 40;
+
         return (getWeeksSpent() * hoursPerWeek);
     }
 

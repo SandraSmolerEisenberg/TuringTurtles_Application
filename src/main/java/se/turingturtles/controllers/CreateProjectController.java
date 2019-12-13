@@ -3,6 +3,7 @@ package se.turingturtles.controllers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
 import javafx.util.StringConverter;
 import se.turingturtles.ProjectManagement;
 import se.turingturtles.Validator;
@@ -15,6 +16,7 @@ import java.time.LocalDate;
 
 public class CreateProjectController {
 
+    @FXML private AnchorPane createProjectAnchorPane;
     @FXML private Button startPageButton;
     @FXML private Button createNewProjectButton;
     @FXML private TextField projectName;
@@ -32,6 +34,8 @@ public class CreateProjectController {
         createNewProjectButton.setDisable(true);
         setDatePicker(projectStart, "StartDate");
         setDatePicker(projectEnd, "EndDate");
+        createProjectAnchorPane.getStylesheets().add(getClass().getResource("/se/turingturtles/css/02-createproject.css").toExternalForm());
+
     }
 
     private void setDatePicker(DatePicker datePicker, String calendar){
