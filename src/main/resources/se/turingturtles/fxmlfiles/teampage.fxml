@@ -52,13 +52,13 @@
                               </AnchorPane>
                               <AnchorPane fx:id="memberEditPage" disable="false" prefHeight="448.0" prefWidth="631.0" visible="false">
                                  <children>
-                                    <TextField fx:id="editName" layoutX="341.0" layoutY="134.0" promptText="Enter name" />
-                                    <TextField fx:id="editWage" layoutX="341.0" layoutY="197.0" promptText="Enter wage" />
-                                    <Label layoutX="213.0" layoutY="139.0" prefHeight="17.0" prefWidth="121.0" text="New name" />
-                                    <Label layoutX="213.0" layoutY="202.0" prefHeight="17.0" prefWidth="121.0" text="New wage" />
-                                    <Button layoutX="456.0" layoutY="351.0" mnemonicParsing="false" onAction="#editMember" text="Save" />
-                                    <Button layoutX="228.0" layoutY="351.0" mnemonicParsing="false" onAction="#returnToTeamPage" text="Back" />
-                                    <Text fx:id="editMemberInfoText" layoutX="213.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="372.22900390625" />
+                                    <TextField fx:id="editName" layoutX="356.0" layoutY="161.0" promptText="Enter name" />
+                                    <TextField fx:id="editWage" layoutX="356.0" layoutY="224.0" promptText="Enter wage" />
+                                    <Label layoutX="228.0" layoutY="166.0" prefHeight="17.0" prefWidth="121.0" text="New name" />
+                                    <Label layoutX="228.0" layoutY="229.0" prefHeight="17.0" prefWidth="121.0" text="New wage" />
+                                    <Button layoutX="471.0" layoutY="351.0" mnemonicParsing="false" onAction="#editMember" text="Save" />
+                                    <Button layoutX="243.0" layoutY="351.0" mnemonicParsing="false" onAction="#returnToTeamPage" text="Back" />
+                                    <Text fx:id="editMemberInfoText" layoutX="213.0" layoutY="113.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="372.22900390625" />
                                  </children>
                               </AnchorPane>
                               <AnchorPane fx:id="memberAssignTaskPage" disable="false" prefHeight="448.0" prefWidth="631.0" visible="false">

@@ -103,8 +103,8 @@
         public void deleteAlert(Event event) {
             Alert deleteAlert = new Alert(Alert.AlertType.CONFIRMATION);
             deleteAlert.setGraphic(factory.loadNode());
-            deleteAlert.setTitle("Warning: Deleting member");
-            deleteAlert.setHeaderText("WARNING!");
+            deleteAlert.setTitle("WARNING!");
+            deleteAlert.setHeaderText("Warning: Deleting member!");
             deleteAlert.setContentText("You have selected to delete the following member: \nName: " + projectManagement.findTeamMember(lastViewedID).getName() + "\nID: " + projectManagement.findTeamMember(lastViewedID).getId() + "\n\nPlease click OK, in order to proceed!");
             deleteAlert.showAndWait();
             if (deleteAlert.getResult() == ButtonType.OK) {
