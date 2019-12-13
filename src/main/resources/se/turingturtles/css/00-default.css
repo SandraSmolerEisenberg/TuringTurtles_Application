@@ -28,12 +28,14 @@
   -fx-background-color: #71C688;
   -fx-effect: dropshadow(three-pass-box, #71C688, 10, 0, 0, 2);
 }
-.button #big-button {
+
+#big-button {
   -fx-font-size: 14pt;
   -fx-background-radius: 50;
   -fx-padding: 10pt 0pt;
 }
-.button #small-button {
+
+#small-button {
   -fx-font-size: 9pt;
   -fx-background-radius: 50;
   -fx-padding: 1pt;
@@ -55,12 +57,6 @@
   -fx-font-size: 15pt;
   -fx-font-weight: 300;
 }
-/*Default chart color */
-.chart-bar{
-  -fx-background-color: #71C688;
-  -fx-font-size: 9pt;
-
-}
 
 /* Start page and create project page styling */
 #startpage-anchor,
@@ -77,5 +73,5 @@
 #input {
   -fx-pref-width: 100pt;
 }
-.ALERT
+
 /*# sourceMappingURL=00-default.css.map */
