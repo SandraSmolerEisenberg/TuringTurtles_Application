@@ -17,24 +17,25 @@
   src: url('../fonts/Open_Sans_Condensed/OpenSansCondensed-Light.ttf')
 
 // Variables
-$light-background: linear-gradient(to top right, rgba(230, 230, 230, 1) 0%, rgba(255, 255, 255, 1) 100%)
+$light-bg: linear-gradient(to top right, rgba(230, 230, 230, 1) 0%, rgba(255, 255, 255, 1) 100%)
+//$current-tab-bg: linear-gradient(to top right, rgba
+$dropshadow: dropshadow(three-pass-box, #ccc, 10, 0, 0, 2)
 
 /* Universal styling */
 .root
-  -fx-background-color: $light-background
+  -fx-background-color: $light-bg
 
 /* Button styling */
 .button
   -fx-text-fill: white
   -fx-background-color: #71C688
   -fx-effect: dropshadow(three-pass-box, #71C688, 10, 0, 0, 2)
+  -fx-background-radius: 50
 #big-button
   -fx-font-size: 14pt
-  -fx-background-radius: 50
   -fx-padding: 10pt 0pt
 #small-button
   -fx-font-size: 9pt
-  -fx-background-radius: 50
   -fx-padding: 1pt
 
 .button:hover
@@ -56,10 +57,14 @@ $light-background: linear-gradient(to top right, rgba(230, 230, 230, 1) 0%, rgba
 #createproject-anchor
   -fx-background-color: #fff
   -fx-background-radius: 20
-  -fx-effect: dropshadow(three-pass-box, #ccc, 10, 0, 0, 2)
+  -fx-effect: $dropshadow
 
 #disclaimer
   -fx-font-weight: bold
 
 #input
   -fx-pref-width: 100pt
+
+/* Tab pane styling */
+.tab-pane
+  //-fx-background-color: #85d199

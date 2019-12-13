@@ -27,17 +27,16 @@
   -fx-text-fill: white;
   -fx-background-color: #71C688;
   -fx-effect: dropshadow(three-pass-box, #71C688, 10, 0, 0, 2);
+  -fx-background-radius: 50;
 }
 
 #big-button {
   -fx-font-size: 14pt;
-  -fx-background-radius: 50;
   -fx-padding: 10pt 0pt;
 }
 
 #small-button {
   -fx-font-size: 9pt;
-  -fx-background-radius: 50;
   -fx-padding: 1pt;
 }
 
@@ -73,5 +72,7 @@
 #input {
   -fx-pref-width: 100pt;
 }
+
+/* Tab pane styling */
 
 /*# sourceMappingURL=00-default.css.map */
