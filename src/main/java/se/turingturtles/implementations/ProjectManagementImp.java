@@ -33,7 +33,7 @@ public class ProjectManagementImp implements ProjectManagement, Serializable {
         if(nextUpdateMilli == 0){
             project.setNextUpdateMilli(todayMilli + (MILLI_SEC_PER_DAY * DAYS_OF_UPD_INTERVAL));
         }
-        if(todayMilli >= nextUpdateMilli) {
+        else if(todayMilli >= nextUpdateMilli) {
 
             ProjectCalculations calculations = factory.makeProjectCalculations();
             project.setCostVariance(calculations.calculateCostVariance());

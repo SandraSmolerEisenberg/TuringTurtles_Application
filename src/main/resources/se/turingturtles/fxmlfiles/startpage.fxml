@@ -27,7 +27,7 @@
               minWidth="-Infinity"
               prefHeight="430.0"
               prefWidth="600.0"
-              BorderPane.alignment="CENTER"
+
       >
          <children>
             <!-- Application logo -->

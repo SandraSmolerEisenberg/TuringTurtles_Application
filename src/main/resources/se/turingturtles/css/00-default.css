@@ -46,7 +46,7 @@
 }
 
 /* Text, label, etc, styling */
-#h1 {
+#h1{
   -fx-font-family: "Lobster";
   -fx-font-size: 35pt;
 }

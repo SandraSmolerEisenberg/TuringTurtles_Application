@@ -4,3 +4,13 @@
     -fx-font-size: 9pt;
 
 }
+#riskHeaderText{
+  -fx-font-family: "Lobster";
+  -fx-font-size: 20pt;
+  }
+
+#riskBackground{
+-fx-background-color: #fff;
+  -fx-background-radius: 20;
+  -fx-effect: dropshadow(three-pass-box, #ccc, 10, 0, 0, 2);
+}

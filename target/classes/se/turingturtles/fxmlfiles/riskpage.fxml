@@ -11,41 +11,27 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane fx:id="riskPage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/" fx:controller="se.turingturtles.controllers.RiskPageController">
+<BorderPane id="riskBackground" fx:id="riskPage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="se.turingturtles.controllers.RiskPageController">
                <bottom>
-      <AnchorPane BorderPane.alignment="CENTER">
-         <children>
-                        <Button fx:id="riskDetailsButton" layoutX="162.0" mnemonicParsing="false" onAction="#showDetails" prefHeight="63.0" prefWidth="137.0" text="Risk Details" />
-            <Button fx:id="addRiskButton" layoutX="304.0" layoutY="1.0" mnemonicParsing="false" onAction="#loadCreateRiskAnchorPane" prefHeight="61.0" prefWidth="119.0" text="Add Risk" />
-         </children>
-      </AnchorPane>
+      <AnchorPane BorderPane.alignment="CENTER" />
                </bottom>
                <center>
                   <AnchorPane BorderPane.alignment="CENTER">
                      <children>
-                        <BarChart fx:id="riskMatrix" prefHeight="328.6666666666667" prefWidth="600.0" title="Risk Matrix" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <Button fx:id="addRiskButton" layoutX="305.0" layoutY="320.0" mnemonicParsing="false" onAction="#loadCreateRiskAnchorPane" prefHeight="30.0" prefWidth="200.0" text="Add Risk" />
+                        <Button fx:id="riskDetailsButton" layoutX="100.0" layoutY="320.0" mnemonicParsing="false" onAction="#showDetails" prefHeight="30.0" prefWidth="200.0" text="Risk Details" />
+                        <BarChart fx:id="riskMatrix" layoutY="35.0" prefHeight="286.0" prefWidth="592.0" AnchorPane.bottomAnchor="92.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="35.0" BorderPane.alignment="CENTER">
                           <xAxis>
-                            <CategoryAxis fx:id="riskType" label="Type of Risk" side="BOTTOM" />
+                            <CategoryAxis fx:id="riskType" label="Type of Risk" side="BOTTOM" BorderPane.alignment="CENTER" />
                           </xAxis>
                           <yAxis>
-                            <NumberAxis fx:id="riskIndex" cache="true" label="Risk" side="LEFT" />
+                            <NumberAxis fx:id="riskIndex" cache="true" label="Risk" side="LEFT" BorderPane.alignment="CENTER" />
                           </yAxis>
                         </BarChart>
-            <AnchorPane fx:id="createRiskAnchorPane" prefHeight="292.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <AnchorPane fx:id="riskDetails" prefWidth="600.0" AnchorPane.bottomAnchor="110.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <Label layoutX="183.0" layoutY="49.0" text="Risk Description" />
-                  <Label layoutX="185.0" layoutY="109.0" text="Risk Probability" />
-                  <Label layoutX="183.0" layoutY="150.0" text="Risk impact" />
-                  <TextField fx:id="newRiskName" layoutX="293.0" layoutY="45.0" promptText="risk description" />
-                  <TextField fx:id="newRiskProbability" layoutX="293.0" layoutY="105.0" promptText="risk probability" />
-                  <TextField fx:id="newRiskImpact" layoutX="293.0" layoutY="146.0" promptText="risk impact" />
-                  <Button fx:id="createRiskButton" layoutX="233.0" layoutY="206.0" mnemonicParsing="false" onAction="#createRisk" text="Add Project Risk" />
-                  <Label layoutX="182.0" layoutY="81.0" prefHeight="17.0" prefWidth="266.0" text="Impact and Probability can be between 0 and 10" />
-               </children>
-            </AnchorPane>
-            <AnchorPane fx:id="riskDetails" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <children>
-                              <TableView fx:id="riskDetailsTable" editable="true" prefHeight="232.0" prefWidth="600.0" tableMenuButtonVisible="true">
+                  <Button fx:id="deleteRiskButton" layoutX="270.0" layoutY="277.0" mnemonicParsing="false" onAction="#deleteRisk" text="Delete Risk" />
+                              <TableView fx:id="riskDetailsTable" editable="true" layoutX="19.0" layoutY="36.0" prefHeight="239.0" prefWidth="561.0" tableMenuButtonVisible="true">
                                 <columns>
                                   <TableColumn fx:id="riskName" prefWidth="106.00000250339508" text="Name" />
                                   <TableColumn fx:id="riskImpact" prefWidth="159.3333511352539" text="Impact" />
@@ -56,13 +42,24 @@
                                     <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                                  </columnResizePolicy>
                               </TableView>
-                  <Button fx:id="deleteRiskButton" layoutX="263.0" layoutY="240.0" mnemonicParsing="false" onAction="#deleteRisk" text="Delete Risk" />
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="createRiskAnchorPane" prefHeight="311.0" prefWidth="600.0" AnchorPane.bottomAnchor="102.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Label layoutX="183.0" layoutY="80.0" text="Risk Description" />
+                  <Label layoutX="182.0" layoutY="160.0" text="Risk Probability" />
+                  <Label layoutX="182.0" layoutY="200.0" text="Risk impact" />
+                  <TextField fx:id="newRiskName" layoutX="300.0" layoutY="76.0" promptText="risk description" />
+                  <TextField fx:id="newRiskProbability" layoutX="300.0" layoutY="156.0" promptText="risk probability" />
+                  <TextField fx:id="newRiskImpact" layoutX="300.0" layoutY="196.0" promptText="risk impact" />
+                  <Button fx:id="createRiskButton" layoutX="249.0" layoutY="276.0" mnemonicParsing="false" onAction="#createRisk" text="Add Project Risk" />
+                  <Label layoutX="183.0" layoutY="120.0" prefHeight="17.0" prefWidth="266.0" text="Impact and Probability can be between 0 and 10" underline="true" />
                </children>
             </AnchorPane>
                      </children>
                   </AnchorPane>
                </center>
                <top>
-                  <Label alignment="CENTER" prefHeight="45.0" prefWidth="144.0" text="Risk Overview" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS" BorderPane.alignment="CENTER" />
+                  <Label id="riskHeaderText" alignment="CENTER" prefHeight="45.0" prefWidth="144.0" text="Risk" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS" BorderPane.alignment="CENTER" />
                </top>
             </BorderPane>
