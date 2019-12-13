@@ -29,13 +29,14 @@ public class StreamIO {
             objectOutputStream.writeObject(ProjectManagementImp.getProject());
             objectOutputStream.flush();
             objectOutputStream.close();
-            mapper.registerModule(new JavaTimeModule());
-            mapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, true);
-            mapper.writeValue(new File(JSON_FILE_PATH), ProjectManagementImp.getProject());
+//            mapper.registerModule(new JavaTimeModule());
+//            mapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
+//            mapper.writeValueAsString(ProjectManagementImp.getProject());
         }catch(IOException e){
+            e.printStackTrace();
             Alert exportError = new Alert(Alert.AlertType.ERROR);
             exportError.setTitle("Error!");
-            exportError.setHeaderText("Export to json failed...");
+            exportError.setHeaderText("Export to database failed...");
             exportError.setContentText("An internal error occurred, the application was not able to export the data.");
             exportError.showAndWait();
         }
@@ -51,7 +52,7 @@ public class StreamIO {
         }catch (IOException | ClassNotFoundException e){
             Alert importError = new Alert(Alert.AlertType.ERROR);
             importError.setTitle("Error!");
-            importError.setHeaderText("Import from json failed!");
+            importError.setHeaderText("Import from database failed!");
             importError.setContentText("An internal error occurred, the application was not able to import the data.");
             importError.showAndWait();
         }

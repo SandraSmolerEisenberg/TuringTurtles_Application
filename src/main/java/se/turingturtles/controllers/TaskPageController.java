@@ -274,7 +274,7 @@ public class TaskPageController {
             json.exportToStreamIO();
             taskDetailsTeamMembersText.setText("" + task.getTotalTeamMembers());
         }
-        else if (task != null || teamMember != null){
+        else {
             Alert assignmentError = new Alert(Alert.AlertType.ERROR);
             assignmentError.setTitle("Error!");
             assignmentError.setHeaderText("Assignment to task failed!");

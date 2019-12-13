@@ -7,30 +7,29 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="se.turingturtles.controllers.CreateProjectController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/" fx:controller="se.turingturtles.controllers.CreateProjectController">
    <center>
-      <AnchorPane fx:id="createProjectAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="439.0" prefWidth="627.0" BorderPane.alignment="CENTER">
+      <!-- Content container -->
+      <AnchorPane fx:id="createProjectAnchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="500.0" BorderPane.alignment="CENTER">
          <children>
-            <Text cache="true" cacheHint="SCALE" layoutX="254.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="h2" text="Create New Project">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Text>
-            <Label cache="true" cacheHint="SCALE" layoutX="161.0" layoutY="183.0" text="Project Start week" />
-            <Label cache="true" cacheHint="SCALE" layoutX="161.0" layoutY="92.0" text="Project Name" />
-            <Label cache="true" cacheHint="SCALE" layoutX="158.0" layoutY="135.0" text="Project Budget" />
-            <TextField fx:id="projectName" cache="true" cacheHint="SCALE" layoutX="341.0" layoutY="88.0" promptText="name" />
-            <TextField fx:id="projectBudget" cache="true" cacheHint="SCALE" layoutX="341.0" layoutY="131.0" promptText="budget" />
-            <Button fx:id="createNewProjectButton" cache="true" cacheHint="SCALE" layoutX="158.0" layoutY="350.0" mnemonicParsing="false" onAction="#createNewProject" prefHeight="25.0" prefWidth="329.0" text="Create new Project" />
-            <Button fx:id="startPageButton" alignment="CENTER" cache="true" cacheHint="SCALE" layoutX="537.0" mnemonicParsing="false" onAction="#backToStartPage" prefHeight="47.0" prefWidth="90.0" text="Start Page" AnchorPane.bottomAnchor="392.0" AnchorPane.leftAnchor="537.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-            <RadioButton fx:id="disclaimerButton" layoutX="285.0" layoutY="309.0" mnemonicParsing="false" onAction="#activateCreateProjectButton" text="Accept" />
-            <Text layoutX="195.0" layoutY="261.0" text="Disclaimer: If you choose to create a new project &#10;any current projects will be overwritten." textAlignment="CENTER" />
-            <Label cache="true" cacheHint="SCALE" layoutX="164.0" layoutY="226.0" text="Project End week" />
-            <DatePicker fx:id="projectStart" layoutX="329.0" layoutY="179.0" promptText="Choose date:" />
-            <DatePicker fx:id="projectEnd" layoutX="329.0" layoutY="222.0" promptText="Choose date:" />
+            <!-- Button to go back to start page -->
+            <Button id="small-button" fx:id="startPageButton" alignment="CENTER" cache="true" cacheHint="SCALE" layoutX="408.0" layoutY="14.0" mnemonicParsing="false" onAction="#backToStartPage" prefHeight="41.0" prefWidth="75.0" text="Go back" />
+            <!-- Page header text -->
+            <Text id="h1" cache="true" cacheHint="SCALE" layoutX="90.0" layoutY="140.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Create new project" textAlignment="CENTER" />
+            <!-- Form input fields and labels -->
+            <Label cache="true" cacheHint="SCALE" layoutX="125.0" layoutY="186.0" text="Project Name" />
+            <TextField id="input" fx:id="projectName" cache="true" cacheHint="SCALE" layoutX="230.0" layoutY="181.0" promptText="name" />
+            <Label cache="true" cacheHint="SCALE" layoutX="116.0" layoutY="229.0" text="Project Budget" />
+            <TextField id="input" fx:id="projectBudget" cache="true" cacheHint="SCALE" layoutX="230.0" layoutY="225.0" promptText="budget" />
+            <Label cache="true" cacheHint="SCALE" layoutX="130.0" layoutY="274.0" text="Project Start week" />
+            <DatePicker id="input" fx:id="projectStart" layoutX="230.0" layoutY="270.0" promptText="YYYY-MM-DD" />
+            <Label cache="true" cacheHint="SCALE" layoutX="137.0" layoutY="319.0" text="Project End week" />
+            <DatePicker id="input" fx:id="projectEnd" layoutX="230.0" layoutY="314.0" promptText="YYYY-MM-DD" />
+            <!-- Action button and disclaimer agreement prompt -->
+            <RadioButton fx:id="disclaimerButton" layoutX="66.0" layoutY="400.0" mnemonicParsing="false" onAction="#activateCreateProjectButton" text="I accept that this action overwrites any previous project." />
+            <Button id="big-button" fx:id="createNewProjectButton" cache="true" cacheHint="SCALE" layoutX="84.0" layoutY="450.0" mnemonicParsing="false" onAction="#createNewProject" prefHeight="25.0" prefWidth="329.0" text="Create" />
          </children>
       </AnchorPane>
    </center>

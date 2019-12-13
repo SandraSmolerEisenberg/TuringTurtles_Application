@@ -55,6 +55,12 @@
   -fx-font-size: 15pt;
   -fx-font-weight: 300;
 }
+/*Default chart color */
+.chart-bar{
+  -fx-background-color: #71C688;
+  -fx-font-size: 9pt;
+
+}
 
 /* Start page and create project page styling */
 #startpage-anchor,
