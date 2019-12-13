@@ -51,6 +51,11 @@
   -fx-font-size: 35pt;
 }
 
+#tab-h1 {
+  -fx-font-family: "Lobster";
+  -fx-font-size: 15pt;
+}
+
 #h2 {
   -fx-font-family: "Open Sans Condensed";
   -fx-font-size: 15pt;
@@ -74,5 +79,51 @@
 }
 
 /* Tab pane styling */
+.tab-pane {
+  -fx-tab-max-height: 2em;
+  -fx-tab-min-height: 2em;
+  -fx-tab-max-width: 9em;
+  -fx-tab-min-width: 9em;
+  -fx-background-color: #fafcfb;
+}
+
+.tab .tab-label {
+  -fx-background-color: transparent;
+  -fx-alignment: center;
+  -fx-font-size: 9pt;
+  -fx-font-weight: bold;
+}
+
+.tab {
+  -fx-background-color: #fff;
+  -fx-background-insets: 0;
+  -fx-background-radius: 0;
+}
+
+.tab:selected {
+  -fx-background-color: #fafcfb;
+  -fx-background-radius: 0;
+  -fx-background-insets: 0;
+  -fx-border-width: 5 0 0 0;
+  -fx-border-color: #71C688;
+}
+
+.tab:selected .focus-indicator {
+  -fx-focus-color: transparent;
+  -fx-border-color: transparent;
+}
+
+.tab:focused {
+  -fx-focus-color: transparent;
+}
+
+.tab-pane * .tab-header-background {
+  -fx-background-color: linear-gradient(to top right, #e6e6e6 0%, white 100%);
+}
+
+.tab-pane:left *.tab-header-area {
+  -fx-background-insets: 0, 0 0 10;
+  -fx-padding: 0;
+}
 
 /*# sourceMappingURL=00-default.css.map */
