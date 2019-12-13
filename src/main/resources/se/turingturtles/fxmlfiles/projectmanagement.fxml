@@ -51,6 +51,7 @@
             <Button fx:id="updateProjectDurationButton" layoutX="203.0" layoutY="281.0" mnemonicParsing="false" onAction="#updateProjectDuration" text="Update duration" />
             <Button fx:id="backToOverview" layoutX="45.0" layoutY="35.0" mnemonicParsing="false" onAction="#backToOverviewPage" text="Back" />
             <Label layoutX="191.0" layoutY="75.0" text="Update project duration" />
+
          </children>
       </AnchorPane>
    </children>
