@@ -118,7 +118,7 @@ public class ProjectManagementController {
     @FXML
     public void invalidFormatAlert(){
         Alert invalidFormatAlert = new Alert(Alert.AlertType.CONFIRMATION);
-        invalidFormatAlert.setGraphic(factory.loadNode());
+        invalidFormatAlert.setGraphic(factory.loadErrorNode());
         invalidFormatAlert.setTitle("Invalid format");
         invalidFormatAlert.setHeaderText("Input should consist of only numbers (0-9)");
         invalidFormatAlert.showAndWait();
@@ -137,13 +137,13 @@ public class ProjectManagementController {
             }catch(Exception exception) {
                 if (text.contains(",")) {
                     Alert invalidFormatAlert = new Alert(Alert.AlertType.CONFIRMATION);
-                    invalidFormatAlert.setGraphic(factory.loadNode());
+                    invalidFormatAlert.setGraphic(factory.loadErrorNode());
                     invalidFormatAlert.setTitle("Invalid format");
                     invalidFormatAlert.setHeaderText("Decimal numbers should should be separated by \".\"");
                     invalidFormatAlert.showAndWait();
                 } else {
                     Alert invalidFormatAlert = new Alert(Alert.AlertType.CONFIRMATION);
-                    invalidFormatAlert.setGraphic(factory.loadNode());
+                    invalidFormatAlert.setGraphic(factory.loadErrorNode());
                     invalidFormatAlert.setTitle("Invalid format");
                     invalidFormatAlert.setHeaderText("Decimal numbers should should be separated by \",\"");
                     invalidFormatAlert.showAndWait();
@@ -234,7 +234,7 @@ public class ProjectManagementController {
             projectStartWeek.setPromptText("Choose date:");
             projectEndWeek.setPromptText("Choose date:");
             Alert selectionError = new Alert(Alert.AlertType.ERROR);
-            selectionError.setGraphic(factory.loadNode());
+            selectionError.setGraphic(factory.loadErrorNode());
             selectionError.setTitle("Error!");
             selectionError.setHeaderText("No or invalid date selected!");
             selectionError.setContentText("Please select a valid date from the.");
