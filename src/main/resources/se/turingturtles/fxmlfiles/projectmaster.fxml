@@ -10,51 +10,51 @@
 <?import javafx.scene.text.Text?>
 
 <AnchorPane id="masterAnchorPane" fx:id="projectMasterTabs" prefHeight="600.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="se.turingturtles.controllers.ProjectMasterController">
-   <children>
-      <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <center>
-            <TabPane fx:id="masterTab" side="LEFT" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
-              <tabs>
-                  <Tab fx:id="projectOverviewTab" text="Overview">
-                     <content>
-                        <fx:include fx:id="overviewTab" source="projectoverview.fxml" />
-                     </content>
-                  </Tab>
-                  <Tab fx:id="tasksTab" text="Tasks">
-                     <content>
-                        <fx:include fx:id="taskPage" source="taskpage.fxml" />
-                     </content>
-                  </Tab>
-                  <Tab fx:id="teamMembersTab" text="Team">
-                     <content>
-                        <fx:include fx:id="teamPage" source="teampage.fxml" />
-                     </content>
-                  </Tab>
-                  <Tab fx:id="riskTab" text="Risk">
-                     <content>
-                        <fx:include fx:id="riskPage" source="riskpage.fxml" />
-                     </content>
-                  </Tab>
-                  <Tab fx:id="projectManagementTab" text="Management">
-                     <content>
-                        <fx:include fx:id="projectManagementPage" source="projectmanagement.fxml" />
-                     </content>
-                  </Tab>
-              </tabs>
-            </TabPane>
-         </center>
-         <top>
-            <Pane prefHeight="50.0" prefWidth="150.0" BorderPane.alignment="CENTER">
-               <children>
-                   <ImageView fitHeight="30.0" fitWidth="141.0" layoutX="52.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
-                       <image>
-                           <Image url="@../images/turtlenode.png" />
-                       </image>
-                   </ImageView>
-                  <Text id="tab-h1" layoutX="118.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Turing turtle" />
-               </children>
-            </Pane>
-         </top>
-      </BorderPane>
-   </children>
+    <children>
+        <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <center>
+                <TabPane fx:id="masterTab" side="LEFT" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+                    <tabs>
+                        <Tab fx:id="projectOverviewTab" text="Overview">
+                            <content>
+                                <fx:include fx:id="overviewTab" source="projectoverview.fxml" />
+                            </content>
+                        </Tab>
+                        <Tab fx:id="tasksTab" text="Tasks">
+                            <content>
+                                <fx:include fx:id="taskPage" source="taskpage.fxml" />
+                            </content>
+                        </Tab>
+                        <Tab fx:id="teamMembersTab" text="Team">
+                            <content>
+                                <fx:include fx:id="teamPage" source="teampage.fxml" />
+                            </content>
+                        </Tab>
+                        <Tab fx:id="riskTab" text="Risk">
+                            <content>
+                                <fx:include fx:id="riskPage" source="riskpage.fxml" />
+                            </content>
+                        </Tab>
+                        <Tab fx:id="projectManagementTab" text="Management">
+                            <content>
+                                <fx:include fx:id="projectManagementPage" source="projectmanagement.fxml" />
+                            </content>
+                        </Tab>
+                    </tabs>
+                </TabPane>
+            </center>
+            <top>
+                <Pane prefHeight="50.0" prefWidth="150.0" BorderPane.alignment="CENTER">
+                    <children>
+                        <ImageView fitHeight="30.0" fitWidth="141.0" layoutX="52.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../images/turtlenode.png" />
+                            </image>
+                        </ImageView>
+                        <Text id="tab-h1" layoutX="118.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Turing turtle" />
+                    </children>
+                </Pane>
+            </top>
+        </BorderPane>
+    </children>
 </AnchorPane>
