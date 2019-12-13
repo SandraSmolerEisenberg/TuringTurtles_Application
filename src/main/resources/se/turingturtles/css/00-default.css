@@ -5,6 +5,8 @@
 @import "05-teamtab.css";
 @import "06-risktab.css";
 @import "07-managementtab.css";
+@import "08-projectmaster.css";
+
 @font-face {
   font-family: "Lobster";
   font-style: normal;
