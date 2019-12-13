@@ -21,12 +21,12 @@ public class Main extends Application {
     public void start(Stage window) throws IOException {
         //Application window size.
         Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-        double width = screenSize.getWidth() * 0.9;
+        double width = screenSize.getWidth() * 0.6;
         double height = screenSize.getHeight() * 0.8;
         window.setResizable(true);
 
         //Scene creation.
-        Scene scene = new Scene(factory.loadFXML("startpage"), width, height);
+        Scene scene = new Scene(factory.loadFXML("startpage"), width , height);
         scene.getStylesheets().addAll();
         window.setScene(scene);
         scene.getStylesheets().add(getClass().getResource("/se/turingturtles/css/00-default.css").toExternalForm());

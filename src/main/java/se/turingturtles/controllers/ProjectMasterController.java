@@ -2,12 +2,14 @@ package se.turingturtles.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 
 
 public class ProjectMasterController {
 
+    @FXML private TabPane masterTab;
     @FXML private AnchorPane overviewTab;
     @FXML private AnchorPane taskPage;
     @FXML private AnchorPane teamPage;
