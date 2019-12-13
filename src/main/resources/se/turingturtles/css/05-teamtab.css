@@ -1,0 +1,21 @@
+#deleteTeamMember{
+    -fx-background-color: #ed2f39;
+    -fx-effect: dropshadow(three-pass-box, #ed2f39,10, 0, 0, 2);
+}
+#deleteTeamMember:hover{
+    -fx-background-color: #85050a;
+    -fx-effect: dropshadow(three-pass-box, #85050a,10, 0, 0, 2);
+}
+#teamPageWelcome{
+    -fx-font-family: "Lobster";
+    -fx-font-size: 25pt;
+    -fx-font-weight: 300;
+}
+#teamMemberSummary,
+#memberAssignTaskInfoText,
+#editMemberInfoText{
+    -fx-font-family: "Open Sans Condensed";
+    -fx-font-size: 15pt;
+    -fx-font-weight: 300;
+}
+

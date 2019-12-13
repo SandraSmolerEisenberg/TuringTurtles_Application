@@ -20,7 +20,7 @@
   src: url("../fonts/Open_Sans_Condensed/OpenSansCondensed-Light.ttf");
 }
 /* Universal styling */
-.root {
+.root{
   -fx-background-color: linear-gradient(to top right, #e6e6e6 0%, white 100%);
 }
 
@@ -29,15 +29,14 @@
   -fx-text-fill: white;
   -fx-background-color: #71C688;
   -fx-effect: dropshadow(three-pass-box, #71C688, 10, 0, 0, 2);
+  -fx-background-radius: 50;
 }
 .button #big-button {
   -fx-font-size: 14pt;
-  -fx-background-radius: 50;
   -fx-padding: 10pt 0pt;
 }
 .button #small-button {
   -fx-font-size: 9pt;
-  -fx-background-radius: 50;
   -fx-padding: 1pt;
 }
 
@@ -57,16 +56,11 @@
   -fx-font-size: 15pt;
   -fx-font-weight: 300;
 }
-/*Default chart color */
-.chart-bar{
-  -fx-background-color: #71C688;
-  -fx-font-size: 9pt;
 
-}
 
 /* Start page and create project page styling */
 #startpage-anchor,
-#createproject-anchor {
+#createproject-anchor, #overviewTab{
   -fx-background-color: #fff;
   -fx-background-radius: 20;
   -fx-effect: dropshadow(three-pass-box, #ccc, 10, 0, 0, 2);
@@ -79,5 +73,7 @@
 #input {
   -fx-pref-width: 100pt;
 }
+
+/* Tab pane styling */
 
 /*# sourceMappingURL=00-default.css.map */

@@ -38,7 +38,6 @@ public class Main extends Application {
         window.show();
     }
 
-
     public static void main(String[] args) {
         try {
             launch();

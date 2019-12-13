@@ -24,12 +24,14 @@
 
     public class TeamPageController {
 
+
         @FXML private AnchorPane teamPage;
         @FXML private ListView teamList;
         @FXML private TextField enterName;
         @FXML private TextField enterID;
         @FXML private TextField enterWage;
         @FXML private Button createMemberButton;
+        @FXML private Button deleteTeamMember;
         @FXML private AnchorPane newMemberPage;
         @FXML private TextField searchBar;
         @FXML private Text nameText;
@@ -59,6 +61,9 @@
         @FXML private Text totalTimeSpent;
         @FXML private Text totalMembersAmount;
         @FXML private Text totalSalaries;
+        @FXML private Text teamPageWelcome;
+
+
 
         private ProjectFactory factory = new ProjectFactory();
         private StreamIO json = factory.makeStream();
@@ -76,7 +81,7 @@
             totalSalaries.setText(String.valueOf(calculation.calculateTotalSalaries()));
             totalTimeSpent.setText(String.valueOf(projectManagement.timeSpentOnProject()));
             totalMembersAmount.setText(String.valueOf(projectManagement.getTeamMembers().size()));
-
+            teamPage.getStylesheets().add(getClass().getResource("/se/turingturtles/css/05-teamtab.css").toExternalForm());
         }
 
         private void loadTeamList() {
@@ -97,6 +102,7 @@
 
         public void deleteAlert(Event event) {
             Alert deleteAlert = new Alert(Alert.AlertType.CONFIRMATION);
+            deleteAlert.setGraphic(factory.loadNode());
             deleteAlert.setTitle("Warning: Deleting member");
             deleteAlert.setHeaderText("WARNING!");
             deleteAlert.setContentText("You have selected to delete the following member: \nName: " + projectManagement.findTeamMember(lastViewedID).getName() + "\nID: " + projectManagement.findTeamMember(lastViewedID).getId() + "\n\nPlease click OK, in order to proceed!");
@@ -121,7 +127,7 @@
         public void showEditMemberPage(ActionEvent event) {
             memberEditPage.setVisible(true);
             memberInfoPage.setVisible(false);
-            editMemberInfoText.setText("You are editing: " + projectManagement.findTeamMember(lastViewedID).getName() + " with ID: " + lastViewedID);
+            editMemberInfoText.setText("You are editing " + projectManagement.findTeamMember(lastViewedID).getName() + " with ID: " + lastViewedID);
         }
 
         public void editMember(ActionEvent event) {
@@ -168,6 +174,7 @@
 
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("New team member creation was successful!");
+                    alert.setGraphic(factory.loadNode());
                     alert.setHeaderText("You have created a new team member successfully!");
                     alert.setContentText("A new team member has been created with the following information: \nName: " + name + "\nID: " + id + "\nHourly Wage: " + hourlyWage + "\n\nPlease click OK, in order to proceed!");
                     alert.showAndWait();
@@ -178,6 +185,7 @@
                     json.exportToStreamIO();
                 }else{
                     Alert idTaken = new Alert(Alert.AlertType.ERROR);
+                    idTaken.setGraphic(factory.loadNode());
                     idTaken.setTitle("Error!");
                     idTaken.setHeaderText("ID already assigned");
                     idTaken.setContentText("The chosen ID was already assigned to another team member, please choose another one.");
@@ -223,13 +231,14 @@
         public void showMemberAssignTaskPage(Event event){
             memberInfoPage.setVisible(false);
             memberAssignTaskPage.setVisible(true);
-            memberAssignTaskInfoText.setText("You are assigning tasks to: " + projectManagement.findTeamMember(lastViewedID).getName() + " with ID: " + lastViewedID);
+            memberAssignTaskInfoText.setText("You are assigning tasks to " + projectManagement.findTeamMember(lastViewedID).getName() + " with ID: " + lastViewedID);
             loadAssignTaskList();
         }
 
         public void assignTaskToMember(Event event){
             if(assignTaskTable.getSelectionModel().getSelectedItem() == null){
                 Alert selectionError = new Alert(Alert.AlertType.ERROR);
+                selectionError.setGraphic(factory.loadNode());
                 selectionError.setTitle("Error!");
                 selectionError.setHeaderText("No task selected!");
                 selectionError.setContentText("Please select a task from the task list below.");
@@ -239,6 +248,7 @@
                     projectManagement.assignTask(projectManagement.findTeamMember(lastViewedID), (Task) assignTaskTable.getSelectionModel().getSelectedItem());
                     assignTaskTable.refresh();
                     Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
+                    successAlert.setGraphic(factory.loadNode());
                     successAlert.setTitle("Success!");
                     successAlert.setHeaderText("Successful assignment!");
                     successAlert.setContentText("You have added " + projectManagement.findTeamMember(lastViewedID).getName() + " to " + ((Task) assignTaskTable.getSelectionModel().getSelectedItem()).getName() + ".");
@@ -246,6 +256,7 @@
                     json.exportToStreamIO();
                 } else {
                     Alert assignmentError = new Alert(Alert.AlertType.ERROR);
+                    assignmentError.setGraphic(factory.loadNode());
                     assignmentError.setTitle("Error!");
                     assignmentError.setHeaderText("Assignment to task failed!");
                     assignmentError.setContentText(projectManagement.findTeamMember(lastViewedID).getName() + " is already assigned to " + ((Task) assignTaskTable.getSelectionModel().getSelectedItem()).getName() + ".");
@@ -287,6 +298,7 @@
 
                 } else {
                     Alert memberNotFoundError = new Alert(Alert.AlertType.ERROR);
+                    memberNotFoundError.setGraphic(factory.loadNode());
                     memberNotFoundError.setTitle("Error!");
                     memberNotFoundError.setHeaderText("Team member not found!");
                     memberNotFoundError.setContentText("There is not a team member with the ID you were looking for.");

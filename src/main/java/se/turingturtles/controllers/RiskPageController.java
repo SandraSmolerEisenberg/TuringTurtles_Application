@@ -135,6 +135,7 @@ public class RiskPageController {
                 probabilityValue = 11;
                 Alert deleteAlert = new Alert(Alert.AlertType.INFORMATION);
                 deleteAlert.setTitle("Invalid selection");
+                deleteAlert.setGraphic(factory.loadNode());
                 deleteAlert.setHeaderText("Hey!");
                 deleteAlert.setContentText("Probability and impact are non-decimal numbers\n between 0 and 10!");
                 deleteAlert.showAndWait();
@@ -154,6 +155,7 @@ public class RiskPageController {
             else {
                 Alert confirmationAlert = new Alert(Alert.AlertType.INFORMATION);
                 confirmationAlert.setTitle("Success!");
+                confirmationAlert.setGraphic(factory.loadNode());
                 confirmationAlert.setHeaderText("Successfully added risk: " + newRiskName.getText() + ".");
                 confirmationAlert.setContentText("The following information was added: " + "\n" + "Description: " + newRiskName.getText() + "\n" + "Impact: " + newRiskImpact.getText() + " Probability: " + newRiskProbability.getText());
                 confirmationAlert.showAndWait();
@@ -220,6 +222,7 @@ public class RiskPageController {
         Risk risk = riskDetailsTable.getSelectionModel().getSelectedItem();
         if (risk == null) {
             Alert deleteAlert = new Alert(Alert.AlertType.INFORMATION);
+            deleteAlert.setGraphic(factory.loadNode());
             deleteAlert.setTitle("Selection missing");
             deleteAlert.setHeaderText("Hey!");
             deleteAlert.setContentText("Please select a risk to delete!");
@@ -227,6 +230,7 @@ public class RiskPageController {
         } else {
             Alert deleteAlert = new Alert(Alert.AlertType.CONFIRMATION);
             deleteAlert.setTitle("You are about to delete this risk from the risk list");
+            deleteAlert.setGraphic(factory.loadNode());
             deleteAlert.setHeaderText("WARNING!");
             deleteAlert.setContentText("You have selected to delete the following risk: \nDescription: " + risk.getName() + "\n\nPlease click OK, in order to proceed!");
             deleteAlert.showAndWait();

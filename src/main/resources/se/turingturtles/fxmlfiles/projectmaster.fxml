@@ -4,9 +4,9 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/" fx:controller="se.turingturtles.controllers.ProjectMasterController">
+<AnchorPane id="masterAnchorPane" fx:id="projectMasterTabs" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="se.turingturtles.controllers.ProjectMasterController">
    <children>
-      <TabPane fx:id="masterTab" layoutX="179.0" layoutY="113.0" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <TabPane fx:id="masterTab" layoutX="83.0" layoutY="27.0" prefHeight="320.0" prefWidth="449.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="53.0" AnchorPane.leftAnchor="83.0" AnchorPane.rightAnchor="68.0" AnchorPane.topAnchor="27.0">
         <tabs>
             <Tab fx:id="projectOverviewTab" text="Project Overview"><content><fx:include fx:id="overviewTab" source="projectoverview.fxml" /></content></Tab>
             <Tab fx:id="tasksTab" text="Tasks"><content><fx:include fx:id="taskPage" source="taskpage.fxml" /></content></Tab>
