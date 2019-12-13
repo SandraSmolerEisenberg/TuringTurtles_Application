@@ -24,12 +24,14 @@
 
     public class TeamPageController {
 
+
         @FXML private AnchorPane teamPage;
         @FXML private ListView teamList;
         @FXML private TextField enterName;
         @FXML private TextField enterID;
         @FXML private TextField enterWage;
         @FXML private Button createMemberButton;
+        @FXML private Button deleteTeamMember;
         @FXML private AnchorPane newMemberPage;
         @FXML private TextField searchBar;
         @FXML private Text nameText;
@@ -76,7 +78,7 @@
             totalSalaries.setText(String.valueOf(calculation.calculateTotalSalaries()));
             totalTimeSpent.setText(String.valueOf(projectManagement.timeSpentOnProject()));
             totalMembersAmount.setText(String.valueOf(projectManagement.getTeamMembers().size()));
-
+            teamPage.getStylesheets().add(getClass().getResource("/se/turingturtles/css/05-teamtab.css").toExternalForm());
         }
 
         private void loadTeamList() {
@@ -97,6 +99,7 @@
 
         public void deleteAlert(Event event) {
             Alert deleteAlert = new Alert(Alert.AlertType.CONFIRMATION);
+            deleteAlert.setGraphic(factory.loadNode());
             deleteAlert.setTitle("Warning: Deleting member");
             deleteAlert.setHeaderText("WARNING!");
             deleteAlert.setContentText("You have selected to delete the following member: \nName: " + projectManagement.findTeamMember(lastViewedID).getName() + "\nID: " + projectManagement.findTeamMember(lastViewedID).getId() + "\n\nPlease click OK, in order to proceed!");

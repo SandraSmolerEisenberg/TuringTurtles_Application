@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import se.turingturtles.Main;
 import se.turingturtles.ProjectCalculations;
 import se.turingturtles.ProjectManagement;
@@ -15,6 +16,7 @@ import se.turingturtles.entities.Task;
 import se.turingturtles.entities.TeamMember;
 import se.turingturtles.streamIO.StreamIO;
 
+import java.awt.*;
 import java.io.IOException;
 import java.time.LocalDate;
 
@@ -42,7 +44,15 @@ public class ProjectFactory {
         return new ProjectCalculationsImp();
     }
 
-
+    public ImageView loadNode(){
+        Image image = new Image("se/turingturtles/images/turtle.png");
+        ImageView imageView = new ImageView(image);
+        Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+        double width = screenSize.getWidth() * 0.6;
+        imageView.setFitWidth(width / 14);
+        imageView.setPreserveRatio(true);
+        return imageView;
+    }
     public Image loadImage(String image){
         return new Image("se/turingturtles/images/" + image + ".png");
     }
