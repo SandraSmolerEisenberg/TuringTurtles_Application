@@ -102,7 +102,7 @@
 
         public void deleteAlert(Event event) {
             Alert deleteAlert = new Alert(Alert.AlertType.CONFIRMATION);
-            deleteAlert.setGraphic(factory.loadNode());
+            deleteAlert.setGraphic(factory.loadErrorNode());
             deleteAlert.setTitle("WARNING!");
             deleteAlert.setHeaderText("Warning: Deleting member!");
             deleteAlert.setContentText("You have selected to delete the following member: \nName: " + projectManagement.findTeamMember(lastViewedID).getName() + "\nID: " + projectManagement.findTeamMember(lastViewedID).getId() + "\n\nPlease click OK, in order to proceed!");
@@ -138,6 +138,7 @@
                 projectManagement.findTeamMember(lastViewedID).setName(name);
                 projectManagement.findTeamMember(lastViewedID).setHourlyWage(Double.parseDouble(wage));
                 Alert confirmationAlert = new Alert(Alert.AlertType.INFORMATION);
+                confirmationAlert.setGraphic(factory.loadNode());
                 confirmationAlert.setTitle("Success!");
                 confirmationAlert.setHeaderText("Successfully edited team-member with ID: " + lastViewedID + ".");
                 confirmationAlert.setContentText("The following information was edited: " + "\n" + "Name: " +  editName.getText() + "\n" + "Hourly wage: " + editWage.getText() + " SEK.");
@@ -185,7 +186,7 @@
                     json.exportToStreamIO();
                 }else{
                     Alert idTaken = new Alert(Alert.AlertType.ERROR);
-                    idTaken.setGraphic(factory.loadNode());
+                    idTaken.setGraphic(factory.loadErrorNode());
                     idTaken.setTitle("Error!");
                     idTaken.setHeaderText("ID already assigned");
                     idTaken.setContentText("The chosen ID was already assigned to another team member, please choose another one.");
@@ -238,7 +239,7 @@
         public void assignTaskToMember(Event event){
             if(assignTaskTable.getSelectionModel().getSelectedItem() == null){
                 Alert selectionError = new Alert(Alert.AlertType.ERROR);
-                selectionError.setGraphic(factory.loadNode());
+                selectionError.setGraphic(factory.loadErrorNode());
                 selectionError.setTitle("Error!");
                 selectionError.setHeaderText("No task selected!");
                 selectionError.setContentText("Please select a task from the task list below.");
@@ -256,7 +257,7 @@
                     json.exportToStreamIO();
                 } else {
                     Alert assignmentError = new Alert(Alert.AlertType.ERROR);
-                    assignmentError.setGraphic(factory.loadNode());
+                    assignmentError.setGraphic(factory.loadErrorNode());
                     assignmentError.setTitle("Error!");
                     assignmentError.setHeaderText("Assignment to task failed!");
                     assignmentError.setContentText(projectManagement.findTeamMember(lastViewedID).getName() + " is already assigned to " + ((Task) assignTaskTable.getSelectionModel().getSelectedItem()).getName() + ".");
@@ -298,7 +299,7 @@
 
                 } else {
                     Alert memberNotFoundError = new Alert(Alert.AlertType.ERROR);
-                    memberNotFoundError.setGraphic(factory.loadNode());
+                    memberNotFoundError.setGraphic(factory.loadErrorNode());
                     memberNotFoundError.setTitle("Error!");
                     memberNotFoundError.setHeaderText("Team member not found!");
                     memberNotFoundError.setContentText("There is not a team member with the ID you were looking for.");

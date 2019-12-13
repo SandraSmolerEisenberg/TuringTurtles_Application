@@ -44,14 +44,23 @@ public class ProjectFactory {
         return new ProjectCalculationsImp();
     }
 
-    public ImageView loadNode(){
-        Image image = new Image("se/turingturtles/images/turtle.png");
+    public ImageView loadErrorNode(){
+        Image image = new Image("se/turingturtles/images/redturtlenode.png");
         ImageView imageView = new ImageView(image);
         Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
         double width = screenSize.getWidth() * 0.6;
         imageView.setFitWidth(width / 14);
         imageView.setPreserveRatio(true);
         return imageView;
+    }
+    public ImageView loadNode(){
+            Image image = new Image("se/turingturtles/images/turtlenode.png");
+            ImageView imageView = new ImageView(image);
+            Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+            double width = screenSize.getWidth() * 0.6;
+            imageView.setFitWidth(width / 14);
+            imageView.setPreserveRatio(true);
+            return imageView;
     }
     public Image loadImage(String image){
         return new Image("se/turingturtles/images/" + image + ".png");

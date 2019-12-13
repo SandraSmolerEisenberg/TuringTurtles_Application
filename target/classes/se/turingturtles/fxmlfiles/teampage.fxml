@@ -22,7 +22,7 @@
                                     <Label layoutX="256.0" layoutY="188.0" text="ID" />
                                     <Label layoutX="254.0" layoutY="247.0" text="Hourly wage" />
                                     <Button fx:id="createMemberButton" layoutX="414.0" layoutY="353.0" mnemonicParsing="false" onAction="#createNewMember" prefHeight="27.0" prefWidth="105.0" text="Create member" />
-                                    <Button fx:id="returnTeamPage" layoutX="231.0" layoutY="353.0" mnemonicParsing="false" onAction="#returnToTeamPage" text="Back" />
+                                    <Button fx:id="returnTeamPage" layoutX="231.0" layoutY="353.0" mnemonicParsing="false" onAction="#returnToTeamPage" prefHeight="27.0" prefWidth="105.0" text="Back" />
                                  </children>
                               </AnchorPane>
                               <AnchorPane fx:id="memberInfoPage" disable="false" prefHeight="448.0" prefWidth="631.0" visible="false">
@@ -56,8 +56,8 @@
                                     <TextField fx:id="editWage" layoutX="356.0" layoutY="224.0" promptText="Enter wage" />
                                     <Label layoutX="228.0" layoutY="166.0" prefHeight="17.0" prefWidth="121.0" text="New name" />
                                     <Label layoutX="228.0" layoutY="229.0" prefHeight="17.0" prefWidth="121.0" text="New wage" />
-                                    <Button layoutX="471.0" layoutY="351.0" mnemonicParsing="false" onAction="#editMember" text="Save" />
-                                    <Button layoutX="243.0" layoutY="351.0" mnemonicParsing="false" onAction="#returnToTeamPage" text="Back" />
+                                    <Button layoutX="412.0" layoutY="351.0" mnemonicParsing="false" onAction="#editMember" prefHeight="27.0" prefWidth="105.0" text="Save" />
+                                    <Button layoutX="243.0" layoutY="351.0" mnemonicParsing="false" onAction="#returnToTeamPage" prefHeight="27.0" prefWidth="105.0" text="Back" />
                                     <Text fx:id="editMemberInfoText" layoutX="213.0" layoutY="113.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="372.22900390625" />
                                  </children>
                               </AnchorPane>
@@ -72,9 +72,9 @@
                         <TableColumn fx:id="taskStatus" minWidth="0.0" prefWidth="100.0" text="Status" />
                      </columns>
                   </TableView>
-                                    <Button layoutX="234.0" layoutY="353.0" mnemonicParsing="false" onAction="#returnToTeamPage" text="Back" />
-                                    <Button layoutX="463.0" layoutY="353.0" mnemonicParsing="false" onAction="#assignTaskToMember" text="Assign task" />
-                                    <Text fx:id="memberAssignTaskInfoText" layoutX="172.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="372.22900390625" />
+                                    <Button layoutX="227.0" layoutY="353.0" mnemonicParsing="false" onAction="#returnToTeamPage" prefHeight="27.0" prefWidth="105.0" text="Back" />
+                                    <Button layoutX="439.0" layoutY="353.0" mnemonicParsing="false" onAction="#assignTaskToMember" prefHeight="27.0" prefWidth="105.0" text="Assign task" />
+                                    <Text fx:id="memberAssignTaskInfoText" layoutX="172.0" layoutY="92.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="372.22900390625" />
                                     <Label layoutX="172.0" layoutY="116.0" text="Please choose a task from the list below" />
                                  </children>
                               </AnchorPane>
