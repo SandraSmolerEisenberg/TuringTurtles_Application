@@ -24,7 +24,8 @@ public class StreamIO {
 
     public void exportToStreamIO() {
         try {
-            exportToJson();
+            //See line 43 for the reason of being commented out the following, exportToJson() call.
+            //exportToJson();
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream(DATA_FILE_PATH));
             objectOutputStream.writeObject(ProjectManagementImp.getProject());
             objectOutputStream.flush();
@@ -39,6 +40,7 @@ public class StreamIO {
         }
     }
 
+    //The following method was causing a stack overflow, while trying to assing a team member to task and export to JSON.
     private void exportToJson() throws IOException {
         mapper.registerModule(new JavaTimeModule());
         mapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
