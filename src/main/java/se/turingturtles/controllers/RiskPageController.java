@@ -42,7 +42,7 @@ public class RiskPageController {
     @FXML private TableColumn<Risk,String> riskCalculated;
 
     private ProjectFactory factory = new ProjectFactory();
-    private StreamIO json = factory.makeStream();
+    private StreamIO streamIO = factory.makeStream();
     private ProjectManagement projectManagement = factory.makeProjectManagement();
 
 
@@ -161,7 +161,7 @@ public class RiskPageController {
                 confirmationAlert.setContentText("The following information was added: " + "\n" + "Description: " + newRiskName.getText() + "\n" + "Impact: " + newRiskImpact.getText() + " Probability: " + newRiskProbability.getText());
                 confirmationAlert.showAndWait();
                 projectManagement.createRisk(name, impactValue, probabilityValue);
-                json.exportToStreamIO();
+                streamIO.exportToStreamIO();
                 clearInputFields();
                 loadRiskDetailsTable();
                 riskIndex.setUpperBound(getHighestRisk());
@@ -238,7 +238,7 @@ public class RiskPageController {
             if (deleteAlert.getResult() == ButtonType.OK) {
 
                 ProjectManagementImp.getProject().getRisk().remove(risk);
-                json.exportToStreamIO();
+                streamIO.exportToStreamIO();
                 loadRiskDetailsTable();
                 riskDetailsTable.refresh();
                 riskMatrix.getData().setAll(loadRiskMatrix());

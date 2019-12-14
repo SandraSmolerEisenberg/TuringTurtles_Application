@@ -1,6 +1,5 @@
 package se.turingturtles.streamIO;
 
-import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
@@ -25,13 +24,11 @@ public class StreamIO {
 
     public void exportToStreamIO() {
         try {
+            exportToJson();
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream(DATA_FILE_PATH));
             objectOutputStream.writeObject(ProjectManagementImp.getProject());
             objectOutputStream.flush();
             objectOutputStream.close();
-//            mapper.registerModule(new JavaTimeModule());
-//            mapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
-//            mapper.writeValueAsString(ProjectManagementImp.getProject());
         }catch(IOException e){
             e.printStackTrace();
             Alert exportError = new Alert(Alert.AlertType.ERROR);
@@ -42,13 +39,21 @@ public class StreamIO {
         }
     }
 
+    private void exportToJson() throws IOException {
+        mapper.registerModule(new JavaTimeModule());
+        mapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
+        String jsonString = mapper.writeValueAsString(ProjectManagementImp.getProject());
+        PrintWriter fileWriter = new PrintWriter(new FileWriter(JSON_FILE_PATH));
+        fileWriter.write(jsonString);
+        fileWriter.flush();
+        fileWriter.close();
+    }
+
     public void importFromStreamIO() {
         try {
             ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(DATA_FILE_PATH));
             ProjectManagementImp.setProject((Project) objectInputStream.readObject());
             objectInputStream.close();
-//            mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-//            ProjectManagementImp.setProject(mapper.readValue(new File(JSON_FILE_PATH), Project.class));
         }catch (IOException | ClassNotFoundException e){
             Alert importError = new Alert(Alert.AlertType.ERROR);
             importError.setTitle("Error!");

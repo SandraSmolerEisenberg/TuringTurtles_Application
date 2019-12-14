@@ -15,7 +15,7 @@ import java.io.*;
 public class Main extends Application {
 
     private static ProjectFactory factory = new ProjectFactory();
-    private static StreamIO json = factory.makeStream();
+    private static StreamIO streamIO = factory.makeStream();
 
     @Override
     public void start(Stage window) throws IOException {
@@ -41,9 +41,10 @@ public class Main extends Application {
     public static void main(String[] args) {
         try {
             launch();
-            json.exportToStreamIO();
+            streamIO.exportToStreamIO();
         }catch (Exception e){
-            json.exportToStreamIO();
+            e.printStackTrace();
+            streamIO.exportToStreamIO();
         }
 
     }

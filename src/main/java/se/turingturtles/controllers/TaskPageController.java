@@ -17,7 +17,6 @@ import se.turingturtles.implementations.ProjectFactory;
 import se.turingturtles.implementations.ProjectManagementImp;
 import se.turingturtles.streamIO.StreamIO;
 
-import java.io.IOException;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -75,7 +74,7 @@ public class TaskPageController {
 
     private ProjectFactory projectFactory = new ProjectFactory();
     private ProjectManagement projectManagement = projectFactory.makeProjectManagement();
-    private StreamIO json = projectFactory.makeStream();
+    private StreamIO streamIO = projectFactory.makeStream();
 
     //Default method calls the load table and updates the text fields
     @FXML private void initialize(){
@@ -184,7 +183,7 @@ public class TaskPageController {
             else {
                 taskEnd = taskEnd.plusDays(ONE_WEEK_DAY);
                 projectManagement.createTask(name, taskStart, taskEnd);
-                json.exportToStreamIO();
+                streamIO.exportToStreamIO();
                 Alert confirmationAlert = new Alert(Alert.AlertType.INFORMATION);
                 confirmationAlert.setTitle("Success!");
                 confirmationAlert.setGraphic(projectFactory.loadNode());
@@ -273,7 +272,7 @@ public class TaskPageController {
         if (task != null && !task.getTeamMembers().contains(teamMember) && teamMember != null){
             projectManagement.assignTask(teamMember,task);
             updateTables(task);
-            json.exportToStreamIO();
+            streamIO.exportToStreamIO();
             taskDetailsTeamMembersText.setText("" + task.getTotalTeamMembers());
         }
         else {
@@ -313,7 +312,7 @@ public class TaskPageController {
         deleteAlert.showAndWait();
         if (deleteAlert.getResult() == ButtonType.OK) {
             projectManagement.removeTask(task);
-            json.exportToStreamIO();
+            streamIO.exportToStreamIO();
             loadTasksTable();
             tableAnchorPane.setVisible(true);
             taskDetailsAnchorPane.setVisible(false);
@@ -346,7 +345,7 @@ public class TaskPageController {
             if (deleteAlert.getResult() == ButtonType.OK) {
                 task.removeTeamMember(teamMember);
                 teamMember.removeTask(task);
-                json.exportToStreamIO();
+                streamIO.exportToStreamIO();
                 updateTables(task);
             }
         }
@@ -377,7 +376,7 @@ public class TaskPageController {
             task.setName(name);
             task.setStartDate(projectStartDate);
             task.setEndDate(projectEndDate);
-            json.exportToStreamIO();
+            streamIO.exportToStreamIO();
             updateTables(task);
             updateTextFields();
             loadViewTaskAnchorPane();
@@ -387,7 +386,7 @@ public class TaskPageController {
             updateTables(task);
             updateTextFields();
             loadViewTaskAnchorPane();
-            json.exportToStreamIO();
+            streamIO.exportToStreamIO();
         }
         if(!validator.validateTextInput(name) && validator.validateDate(projectStartDate, projectEndDate)){
             task.setStartDate(projectStartDate);
@@ -395,7 +394,7 @@ public class TaskPageController {
             updateTables(task);
             updateTextFields();
             loadViewTaskAnchorPane();
-            json.exportToStreamIO();
+            streamIO.exportToStreamIO();
         }
         if(!validator.validateTextInput(name)){
                 taskEditPageNewName.clear();
@@ -413,11 +412,11 @@ public class TaskPageController {
         Task task = projectManagement.findTask(taskDetailsViewHeaderText.getText());
         if(task.getCompletion().equals("Completed")){
             task.setCompletion(false);
-            json.exportToStreamIO();
+            streamIO.exportToStreamIO();
         }
         if(taskDetailsStatusText.getText().equals("Not Completed")){
             task.setCompletion(true);
-            json.exportToStreamIO();
+            streamIO.exportToStreamIO();
         }
         updateTables(task);
     }
