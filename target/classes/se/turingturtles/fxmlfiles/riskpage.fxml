@@ -35,7 +35,7 @@
                                 <columns>
                                   <TableColumn fx:id="riskName" prefWidth="106.00000250339508" text="Name" />
                                   <TableColumn fx:id="riskImpact" prefWidth="159.3333511352539" text="Impact" />
-                                  <TableColumn fx:id="riskProbability" prefWidth="195.33331298828125" text="Probability" />
+                                    <TableColumn fx:id="riskProbability" prefWidth="195.33331298828125" text="Probability" />
                                     <TableColumn fx:id="riskCalculated" prefWidth="218.66665649414062" text="Risk" />
                                 </columns>
                                  <columnResizePolicy>

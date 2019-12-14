@@ -12,15 +12,15 @@
       <AnchorPane fx:id="projectManagementAnchor" layoutX="14.0" layoutY="6.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Text fx:id="projectName" layoutX="170.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="&lt;Project Name&gt;" textAlignment="CENTER" wrappingWidth="215.73678588867188" />
-            <Text layoutX="30.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Progress" textAlignment="CENTER" wrappingWidth="220.0" />
+            <Text fx:id="progressHeader" layoutX="30.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Progress" textAlignment="CENTER" wrappingWidth="220.0" />
             <Text fx:id="startWeek" layoutX="30.0" layoutY="140.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Start week: 99" wrappingWidth="220.0" />
             <Text fx:id="endWeek" layoutX="30.0" layoutY="170.0" strokeType="OUTSIDE" strokeWidth="0.0" text="End week: 99" wrappingWidth="220.0" />
             <Text fx:id="duration" layoutX="30.0" layoutY="200.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Duration: 99w" wrappingWidth="220.0" />
-            <Text fx:id="timeOnTasks" layoutX="30.0" layoutY="230.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total time spent on project: 99 weeks" wrappingWidth="220.0" />
+            <Text fx:id="timeOnTasks" layoutX="30.0" layoutY="229.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total time spent on project: 99 weeks" wrappingWidth="251.0" />
             <Text fx:id="completedTasks" layoutX="30.0" layoutY="254.0" strokeType="OUTSIDE" strokeWidth="0.0" text="No. Completed tasks:" wrappingWidth="220.0" />
             <Text fx:id="activeTasks" layoutX="30.0" layoutY="282.0" strokeType="OUTSIDE" strokeWidth="0.0" text="No. Active or planned tasks:" wrappingWidth="220.0" />
             <Button fx:id="changeDuration" layoutX="87.0" layoutY="313.0" mnemonicParsing="false" onAction="#changeDuration" text="Change Duration" />
-            <Text layoutX="315.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Finance" textAlignment="CENTER" wrappingWidth="220.0" />
+            <Text fx:id="financeHeader" layoutX="315.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Finance" textAlignment="CENTER" wrappingWidth="220.0" />
             <Text fx:id="costVariance" layoutX="315.0" layoutY="140.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Planned value: 999" wrappingWidth="220.0" />
             <Text fx:id="scheduleVariance" layoutX="315.0" layoutY="170.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Schedule variance: 999" wrappingWidth="220.0" />
             <Text fx:id="earnedValue" layoutX="315.0" layoutY="200.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Earned Value: 999" wrappingWidth="220.0" />
@@ -29,30 +29,30 @@
             <Button fx:id="changeBudget" layoutX="376.0" layoutY="313.0" mnemonicParsing="false" onAction="#changeBudget" text="Change Budget" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="changeBudgetPage" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane fx:id="changeBudgetPage" layoutX="14.0" layoutY="6.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Text fx:id="projectName2" layoutX="248.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="&lt;Project Name&gt;" wrappingWidth="102.89532470703125" />
+            <Text fx:id="projectName2" layoutX="224.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="&lt;Project Name&gt;" wrappingWidth="119.0" />
             <Text fx:id="increaseBudget" layoutX="131.0" layoutY="164.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Increase budget" />
             <Text fx:id="decreaseBudget" layoutX="129.0" layoutY="244.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Decrease budget" />
-            <TextField fx:id="increaseBudgetAmount" layoutX="223.0" layoutY="147.0" promptText="Amount" />
-            <TextField fx:id="decreaseBudgetAmount" layoutX="224.0" layoutY="227.0" promptText="Amount" />
+            <TextField fx:id="increaseBudgetAmount" layoutX="254.0" layoutY="147.0" promptText="Amount" />
+            <TextField fx:id="decreaseBudgetAmount" layoutX="254.0" layoutY="227.0" promptText="Amount" />
             <Button fx:id="backButton" layoutX="32.0" layoutY="31.0" mnemonicParsing="false" onAction="#goBack" text="Back" />
-            <Button fx:id="setIncreaseAmount" layoutX="384.0" layoutY="147.0" mnemonicParsing="false" onAction="#increaseBudget" text="Change" />
-            <Button fx:id="setDecreaseAmount" layoutX="384.0" layoutY="227.0" mnemonicParsing="false" onAction="#decreaseAmount" text="Change" />
+            <Button fx:id="setIncreaseAmount" layoutX="415.0" layoutY="147.0" mnemonicParsing="false" onAction="#increaseBudget" text="Change" />
+            <Button fx:id="setDecreaseAmount" layoutX="414.0" layoutY="227.0" mnemonicParsing="false" onAction="#decreaseAmount" text="Change" />
             <Text fx:id="currentBudget" layoutX="241.0" layoutY="107.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Current Budget: 9999" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="changeDurationAnchorPane" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane fx:id="changeDurationAnchorPane" layoutX="14.0" layoutY="6.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Label layoutX="119.0" layoutY="147.0" prefHeight="25.0" prefWidth="98.0" text="New start week" />
             <Label layoutX="119.0" layoutY="213.0" prefHeight="17.0" prefWidth="98.0" text="New end week" />
             <DatePicker fx:id="projectStartWeek" layoutX="255.0" layoutY="147.0" />
             <DatePicker fx:id="projectEndWeek" layoutX="255.0" layoutY="209.0" />
             <Button fx:id="updateProjectDurationButton" layoutX="203.0" layoutY="281.0" mnemonicParsing="false" onAction="#updateProjectDuration" text="Update duration" />
-            <Button fx:id="backToOverview" layoutX="45.0" layoutY="35.0" mnemonicParsing="false" onAction="#backToOverviewPage" text="Back" />
-            <Label layoutX="191.0" layoutY="75.0" text="Update project duration" />
+            <Button fx:id="backToOverview" layoutX="32.0" layoutY="32.0" mnemonicParsing="false" onAction="#backToOverviewPage" text="Back" />
+            <Label fx:id="updateProjectDuration" layoutX="191.0" layoutY="75.0" text="Update project duration" />
 
-         </children>
+                     </children>
       </AnchorPane>
    </children>
 </AnchorPane>

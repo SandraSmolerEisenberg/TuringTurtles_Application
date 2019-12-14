@@ -1,8 +1,15 @@
-@import '01-startpage.css';
-@import '02-createproject.css';
-@import '03-projectoverview.css';
-@import '04-tasktab.css';
-@import '05-teamtab.css';
-@import '06-risktab.css';
-@import '07-managementtab.css';
+#projectName,
+#projectName2{
+    -fx-font-family: "Lobster";
+    -fx-font-size: 25pt;
+    -fx-font-weight: 300;
+}
 
+#progressHeader,
+#financeHeader,
+#updateProjectDuration,
+#currentBudget{
+    -fx-font-family: "Open Sans Condensed";
+    -fx-font-size: 15pt;
+    -fx-font-weight: 300;
+}
