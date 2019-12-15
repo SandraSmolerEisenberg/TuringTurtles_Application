@@ -36,7 +36,7 @@ public class ProjectMasterController {
     }
 
     public void backToStartPage(ActionEvent actionEvent) throws IOException {
-        factory.changeScene(startPageButton.getScene(),"startPage");
+        factory.changeScene(startPageButton.getScene(),"startpage");
     }
 
 }

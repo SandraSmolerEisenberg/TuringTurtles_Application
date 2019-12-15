@@ -6,3 +6,8 @@
     -fx-background-color: #85050a;
     -fx-effect: dropshadow(three-pass-box, #85050a,10, 0, 0, 2);
 }
+#taskHeaderText{
+    -fx-font-family: "Open Sans Condensed";
+    -fx-font-size: 15pt;
+    -fx-font-weight: 300;
+}

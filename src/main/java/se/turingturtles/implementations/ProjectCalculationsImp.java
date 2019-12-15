@@ -5,6 +5,8 @@ import se.turingturtles.ProjectManagement;
 import se.turingturtles.entities.Task;
 import se.turingturtles.entities.TeamMember;
 
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
@@ -46,10 +48,10 @@ public class ProjectCalculationsImp implements ProjectCalculations {
     public double calculatePlannedValue(){
         //PlannedValue = BCWS
         Calendar calcCalendar = Calendar.getInstance(Locale.GERMANY);
-        int currentWeek = calcCalendar.get(Calendar.WEEK_OF_YEAR);
+        long projectRunTime = ChronoUnit.WEEKS.between(ProjectManagementImp.getProject().getProjectStartDate(), LocalDate.now());
         //Calculating the Planned Value by getting the current week-startweek to get a runtime duration for the project so far
         //and then we divide that with total duration to get a "percentage" which we then use to multiply with total budget to get PV
-        return ((currentWeek-ProjectManagementImp.getProject().getStartWeek())/ProjectManagementImp.getProject().getDuration())*(ProjectManagementImp.getProject().getBudget());
+        return ((projectRunTime/ProjectManagementImp.getProject().getDuration())*(ProjectManagementImp.getProject().getBudget()));
     }
 
 
