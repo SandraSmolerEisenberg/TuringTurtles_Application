@@ -86,6 +86,7 @@ public class TaskPageController {
         taskDetailsAnchorPane.setVisible(false);
         taskEditPageAnchorPane.setVisible(false);
         updateTextFields();
+        taskPage.getStylesheets().add(getClass().getResource("/se/turingturtles/css/04-tasktab.css").toExternalForm());
     }
 
     //loads the table with all tasks

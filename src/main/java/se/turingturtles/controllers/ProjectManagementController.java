@@ -93,6 +93,8 @@ public class ProjectManagementController {
         currentBudget.setText("Current budget: " + ProjectManagementImp.getProject().getBudget());
         increaseBudget.setText("Increase budget: ");
         decreaseBudget.setText("Decrease budget");
+        projectManagementPage.getStylesheets().add(getClass().getResource("/se/turingturtles/css/07-managementtab.css").toExternalForm());
+
 
     }
 
