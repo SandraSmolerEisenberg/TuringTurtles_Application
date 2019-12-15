@@ -1,8 +1,11 @@
 package se.turingturtles.entities;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import java.io.Serializable;
 import java.util.Comparator;
-
+@JsonIdentityInfo(generator= ObjectIdGenerators.IntSequenceGenerator.class, property="@risk")
 public class Risk implements Serializable {
 
     private String name;

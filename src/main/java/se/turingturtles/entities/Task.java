@@ -1,5 +1,8 @@
 package se.turingturtles.entities;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
@@ -7,6 +10,7 @@ import java.time.temporal.WeekFields;
 import java.util.ArrayList;
 import java.util.Locale;
 
+@JsonIdentityInfo(generator= ObjectIdGenerators.IntSequenceGenerator.class, property="@task")
 public class Task implements Serializable {
 
     private String name;

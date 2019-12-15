@@ -1,11 +1,14 @@
 package se.turingturtles.entities;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.time.temporal.WeekFields;
 import java.util.*;
-
+@JsonIdentityInfo(generator= ObjectIdGenerators.IntSequenceGenerator.class, property="@project")
 public class Project implements Serializable {
 
     //private static final int NUMBER_OF_WEEKS_IN_A_YEAR = 52;

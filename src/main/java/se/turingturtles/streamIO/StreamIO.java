@@ -1,8 +1,6 @@
 package se.turingturtles.streamIO;
-
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.fasterxml.jackson.databind.ObjectWriter;
 import javafx.scene.control.Alert;
 import se.turingturtles.entities.Project;
 import se.turingturtles.implementations.ProjectFactory;
@@ -12,20 +10,18 @@ import java.io.*;
 
 public class StreamIO {
 
-    private ObjectMapper mapper;
     private static final String JSON_FILE_PATH = "turtleData.json";
     private static final String DATA_FILE_PATH = "data.db";
 
 
     public StreamIO(){
         ProjectFactory factory = new ProjectFactory();
-        mapper = factory.makeObjectMapper();
     }
 
     public void exportToStreamIO() {
         try {
             //See line 43 for the reason of being commented out the following, exportToJson() call.
-            //exportToJson();
+            exportToJson();
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream(DATA_FILE_PATH));
             objectOutputStream.writeObject(ProjectManagementImp.getProject());
             objectOutputStream.flush();
@@ -42,13 +38,19 @@ public class StreamIO {
 
     //The following method was causing a stack overflow, while trying to assing a team member to task and export to JSON.
     private void exportToJson() throws IOException {
-        mapper.registerModule(new JavaTimeModule());
-        mapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
-        String jsonString = mapper.writeValueAsString(ProjectManagementImp.getProject());
-        PrintWriter fileWriter = new PrintWriter(new FileWriter(JSON_FILE_PATH));
-        fileWriter.write(jsonString);
-        fileWriter.flush();
-        fileWriter.close();
+
+//        PrintWriter fileWriter = new PrintWriter(new FileWriter(JSON_FILE_PATH));
+//        fileWriter.print(ProjectManagementImp.getProject());
+//        fileWriter.flush();
+//        fileWriter.close();
+//        FileWriter fileWriter = new FileWriter(new File(JSON_FILE_PATH));
+//        fileWriter.write(String.valueOf(ProjectManagementImp.getProject()));
+//        fileWriter.flush();
+//        fileWriter.close();
+
+        ObjectMapper ow = new ObjectMapper();
+        ow.writeValue(new File(JSON_FILE_PATH),ProjectManagementImp.getProject());
+
     }
 
     public void importFromStreamIO() {

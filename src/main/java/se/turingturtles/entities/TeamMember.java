@@ -1,5 +1,7 @@
 package se.turingturtles.entities;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import se.turingturtles.implementations.ProjectManagementImp;
 
 import java.io.Serializable;
@@ -8,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
 import java.util.Objects;
-
+@JsonIdentityInfo(generator= ObjectIdGenerators.IntSequenceGenerator.class, property="@member")
 public class TeamMember implements Serializable {
     //The team works 16 hours per week
     private static int hoursPerWeek = 16;
