@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="overviewTab" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseEntered="#updateFields" prefHeight="454.0" prefWidth="535.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="se.turingturtles.controllers.ProjectOverviewController">
+<AnchorPane fx:id="overviewTab" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseEntered="#updateFields" prefHeight="454.0" prefWidth="535.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="se.turingturtles.controllers.ProjectOverviewController">
    <children>
       <Text fx:id="projectName" layoutX="231.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Project Name" />
       <Text fx:id="numberOfTasks" layoutX="25.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total number of task: 35" />
