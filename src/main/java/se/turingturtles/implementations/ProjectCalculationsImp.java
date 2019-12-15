@@ -47,11 +47,11 @@ public class ProjectCalculationsImp implements ProjectCalculations {
 
     public double calculatePlannedValue(){
         //PlannedValue = BCWS
-        Calendar calcCalendar = Calendar.getInstance(Locale.GERMANY);
-        long projectRunTime = ChronoUnit.WEEKS.between(ProjectManagementImp.getProject().getProjectStartDate(), LocalDate.now());
+        double projectRunTime = ChronoUnit.WEEKS.between(ProjectManagementImp.getProject().getProjectStartDate(), LocalDate.now());
+        double time = (projectRunTime/ ProjectManagementImp.getProject().getDuration());
         //Calculating the Planned Value by getting the current week-startweek to get a runtime duration for the project so far
         //and then we divide that with total duration to get a "percentage" which we then use to multiply with total budget to get PV
-        return ((projectRunTime/ProjectManagementImp.getProject().getDuration())*(ProjectManagementImp.getProject().getBudget()));
+        return time*ProjectManagementImp.getProject().getBudget();
     }
 
 

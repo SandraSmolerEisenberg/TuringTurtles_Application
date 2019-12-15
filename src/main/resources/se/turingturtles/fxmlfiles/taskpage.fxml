@@ -14,7 +14,7 @@
 <AnchorPane fx:id="taskPage" prefHeight="406.0" prefWidth="668.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="se.turingturtles.controllers.TaskPageController">
    <children>
       <Button fx:id="taskCreateTaskButton" layoutX="14.0" layoutY="46.0" mnemonicParsing="false" onAction="#createNewTask" text="Create Task" />
-      <Text fx:id="taskHeaderText" layoutX="289.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tasks oveview" />
+      <Text fx:id="taskHeaderText" layoutX="289.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tasks overview" />
       <Button fx:id="viewTaskButton" layoutX="11.0" layoutY="108.0" mnemonicParsing="false" onAction="#selectTaskRow" prefHeight="25.0" prefWidth="84.0" text="View Task" />
       <AnchorPane fx:id="createTaskAnchorPane" layoutX="119.0" layoutY="15.0" prefHeight="334.0" prefWidth="481.0">
          <children>
