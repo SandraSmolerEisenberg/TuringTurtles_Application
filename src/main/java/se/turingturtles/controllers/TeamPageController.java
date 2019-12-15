@@ -284,7 +284,6 @@
             int selectedID = findSelectedID();
             lastViewedID = selectedID;
             loadMemberInfoPage();
-
         }
 
         public void searchTeamMember(Event event) {
