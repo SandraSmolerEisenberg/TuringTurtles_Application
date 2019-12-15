@@ -1,10 +1,4 @@
-@import "01-startpage.css"
-@import "02-createproject.css"
-@import "03-projectoverview.css"
-@import "04-tasktab.css"
-@import "05-teamtab.css"
-@import "06-risktab.css"
-@import "07-managementtab.css"
+/* ______________________ Custom fonts */
 @font-face
   font-family: 'Lobster'
   font-style: normal
@@ -16,64 +10,64 @@
   font-weight: 300
   src: url('../fonts/Open_Sans_Condensed/OpenSansCondensed-Light.ttf')
 
-// Variables
-$light-bg: linear-gradient(to top right, rgba(230, 230, 230, 1) 0%, rgba(255, 255, 255, 1) 100%)
-//$current-tab-bg: linear-gradient(to top right, rgba
-$dropshadow: dropshadow(three-pass-box, #ccc, 10, 0, 0, 2)
+//Variables
+$light-gradient: linear-gradient(to top right, rgba(230, 230, 230, 1) 0%, rgba(255, 255, 255, 1) 100%)
+$light-dropshadow: dropshadow(three-pass-box, rgba(0, 0, 0, .2), 4, 0, 0, 2)
+$primary-green: #71C688
+$primary-green-dropshadow: dropshadow(three-pass-box, #71C688, 10, 0, 0, 2)
+$dark-green: #3E6C4B
+$dark-green-dropshadow: dropshadow(three-pass-box, #3E6C4B, 10, 0, 0, 2)
 
-/* Universal styling */
+/* ______________________ Default styling */
 .root
-  -fx-background-color: $light-bg
+  -fx-background-color: $light-gradient
+  -fx-font-smoothing-type: LCD
+  -fx-font-family: Arial
+  -fx-font-size: 1em
 
-/* Button styling */
+/* ______________________ Button styling */
 .button
-  -fx-text-fill: white
-  -fx-background-color: #71C688
-  -fx-effect: dropshadow(three-pass-box, #71C688, 10, 0, 0, 2)
+  -fx-background-color: $primary-green
+  -fx-effect: $primary-green-dropshadow
   -fx-background-radius: 50
+  -fx-text-fill: #fff
+  -fx-font-weight: bold
 #big-button
-  -fx-font-size: 14pt
-  -fx-padding: 10pt 0pt
-#small-button
-  -fx-font-size: 9pt
-  -fx-padding: 1pt
-
+  -fx-padding: 15pt 0
+  -fx-font-size: 1.5em
 .button:hover
-  -fx-background-color: #3E6C4B
-  -fx-effect: dropshadow(three-pass-box, #3E6C4B, 10, 0, 0, 2)
+  -fx-background-color: $dark-green
+  -fx-effect: $dark-green-dropshadow
 
-/* Text, label, etc, styling */
+/* ______________________ Text, label etc, styling */
+#h1, #h1-tab
+  -fx-font-family: 'Lobster'
 #h1
-  -fx-font-family: 'Lobster'
   -fx-font-size: 35pt
-#tab-h1
-  -fx-font-family: 'Lobster'
+#h1-tab
   -fx-font-size: 15pt
-
 #h2
   -fx-font-family: 'Open Sans Condensed'
   -fx-font-size: 15pt
   -fx-font-weight: 300
 
-/* Start page and create project page styling */
-#startpage-anchor,
-#createproject-anchor
+/* ______________________ Start - and create project page styling */
+#content-box
   -fx-background-color: #fff
-  -fx-background-radius: 20
-  -fx-effect: $dropshadow
-
+  -fx-effect: $light-dropshadow
+  .label
+    -fx-font-weight: bold
 #disclaimer
-  -fx-font-weight: bold
-
+  -fx-font-style: italic
 #input
-  -fx-pref-width: 100pt
+  -fx-pref-width: 150pt
 
-/* Tab pane styling */
+/* ______________________ Tab pane styling */
 .tab-pane
   -fx-tab-max-height: 2em
   -fx-tab-min-height: 2em
-  -fx-tab-max-width: 9em
-  -fx-tab-min-width: 9em
+  -fx-tab-max-width: 7em
+  -fx-tab-min-width: 7em
   -fx-background-color: #fafcfb
 .tab .tab-label
   -fx-background-color: transparent
@@ -96,7 +90,7 @@ $dropshadow: dropshadow(three-pass-box, #ccc, 10, 0, 0, 2)
 .tab:focused
   -fx-focus-color: transparent
 .tab-pane * .tab-header-background
-  -fx-background-color: $light-bg
+  -fx-background-color: $light-gradient
 .tab-pane:left *.tab-header-area
   -fx-background-insets: 0, 0 0 10
   -fx-padding: 0

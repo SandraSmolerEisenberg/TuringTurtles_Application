@@ -9,27 +9,143 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="se.turingturtles.controllers.CreateProjectController">
+<BorderPane
+        maxHeight="-Infinity"
+        maxWidth="-Infinity"
+        minHeight="-Infinity"
+        minWidth="-Infinity"
+        prefHeight="600.0"
+        prefWidth="500.0"
+        xmlns="http://javafx.com/javafx"
+        xmlns:fx="http://javafx.com/fxml"
+        fx:controller="se.turingturtles.controllers.CreateProjectController"
+>
    <center>
       <!-- Content container -->
-      <AnchorPane id="createproject-anchor" fx:id="createProjectAnchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="500.0" BorderPane.alignment="CENTER">
+      <AnchorPane
+              id="content-box"
+              fx:id="createProjectAnchor"
+              maxHeight="-Infinity"
+              maxWidth="-Infinity"
+              minHeight="-Infinity"
+              minWidth="-Infinity"
+              prefHeight="500.0"
+              prefWidth="500.0"
+              BorderPane.alignment="CENTER"
+      >
          <children>
             <!-- Button to go back to start page -->
-            <Button id="small-button" fx:id="startPageButton" alignment="CENTER" cache="true" cacheHint="SCALE" layoutX="408.0" layoutY="14.0" mnemonicParsing="false" onAction="#backToStartPage" prefHeight="41.0" prefWidth="75.0" text="Go back" />
+            <Button
+                    id="small-button"
+                    fx:id="startPageButton"
+                    alignment="CENTER"
+                    cache="true"
+                    cacheHint="SCALE"
+                    layoutX="408.0"
+                    layoutY="14.0"
+                    mnemonicParsing="false"
+                    onAction="#backToStartPage"
+                    prefHeight="41.0"
+                    prefWidth="75.0"
+                    text="Go back"
+            />
             <!-- Page header text -->
-            <Text id="h1" cache="true" cacheHint="SCALE" layoutX="41.0" layoutY="122.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Create new project" textAlignment="CENTER" wrappingWidth="418.88555908203125" BorderPane.alignment="CENTER" />
+            <Text
+                    id="h1"
+                    cache="true"
+                    cacheHint="SCALE"
+                    layoutX="41.0"
+                    layoutY="122.0"
+                    strokeType="OUTSIDE"
+                    strokeWidth="0.0"
+                    text="Create new project"
+                    textAlignment="CENTER"
+                    wrappingWidth="418.88555908203125"
+                    BorderPane.alignment="CENTER"
+            />
             <!-- Form input fields and labels -->
-            <Label cache="true" cacheHint="SCALE" layoutX="140.0" layoutY="190.0" text="Project Name" />
-            <TextField id="input" fx:id="projectName" cache="true" cacheHint="SCALE" layoutX="230.0" layoutY="186.0" promptText="name" />
-            <Label cache="true" cacheHint="SCALE" layoutX="133.0" layoutY="230.0" text="Project Budget" />
-            <TextField id="input" fx:id="projectBudget" cache="true" cacheHint="SCALE" layoutX="230.0" layoutY="226.0" promptText="budget" />
-            <Label cache="true" cacheHint="SCALE" layoutX="115.0" layoutY="270.0" text="Project Start week" />
-            <DatePicker id="input" fx:id="projectStart" layoutX="230.0" layoutY="266.0" promptText="YYYY-MM-DD" />
-            <Label cache="true" cacheHint="SCALE" layoutX="119.0" layoutY="310.0" text="Project End week" />
-            <DatePicker id="input" fx:id="projectEnd" layoutX="230.0" layoutY="306.0" promptText="YYYY-MM-DD" />
+            <Label
+                    cache="true"
+                    cacheHint="SCALE"
+                    layoutX="130.0"
+                    layoutY="160.0"
+                    text="Name"
+            />
+            <TextField
+                    id="input"
+                    fx:id="projectName"
+                    cache="true"
+                    cacheHint="SCALE"
+                    layoutX="185.0"
+                    layoutY="156.0"
+                    promptText="Project name"
+            />
+            <Label
+                    cache="true"
+                    cacheHint="SCALE"
+                    layoutX="123.0"
+                    layoutY="200.0"
+                    text="Budget"
+            />
+            <TextField
+                    id="input"
+                    fx:id="projectBudget"
+                    cache="true"
+                    cacheHint="SCALE"
+                    layoutX="185.0"
+                    layoutY="196.0"
+                    promptText="Project budget"
+            />
+            <Label
+                    cache="true"
+                    cacheHint="SCALE"
+                    layoutX="105.0"
+                    layoutY="240.0"
+                    text="Start week"
+            />
+            <DatePicker
+                    id="input"
+                    fx:id="projectStart"
+                    layoutX="185.0"
+                    layoutY="236.0"
+                    promptText="YYYY-MM-DD"
+            />
+            <Label
+                    cache="true"
+                    cacheHint="SCALE"
+                    layoutX="109.0"
+                    layoutY="280.0"
+                    text="End week"
+            />
+            <DatePicker
+                    id="input"
+                    fx:id="projectEnd"
+                    layoutX="185.0"
+                    layoutY="276.0"
+                    promptText="YYYY-MM-DD"
+            />
             <!-- Action button and disclaimer agreement prompt -->
-            <RadioButton fx:id="disclaimerButton" layoutX="92.0" layoutY="369.0" mnemonicParsing="false" onAction="#activateCreateProjectButton" text="I accept that this action overwrites any previous project." />
-            <Button id="big-button" fx:id="createNewProjectButton" cache="true" cacheHint="SCALE" layoutX="85.0" layoutY="429.0" mnemonicParsing="false" onAction="#createNewProject" prefHeight="25.0" prefWidth="329.0" text="Create" />
+            <RadioButton
+                    fx:id="disclaimerButton"
+                    layoutX="90.0"
+                    layoutY="345.0"
+                    mnemonicParsing="false"
+                    onAction="#activateCreateProjectButton"
+                    text="I accept that this action overwrites any previous project."
+            />
+            <Button
+                    id="big-button"
+                    fx:id="createNewProjectButton"
+                    cache="true"
+                    cacheHint="SCALE"
+                    layoutX="85.0"
+                    layoutY="380.0"
+                    mnemonicParsing="false"
+                    onAction="#createNewProject"
+                    prefHeight="25.0"
+                    prefWidth="329.0"
+                    text="Create"
+            />
          </children>
       </AnchorPane>
    </center>

@@ -1,7 +1,5 @@
 package se.turingturtles;
 
-//Commented out imports are for the GUI later on. /Liv
-
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -23,13 +21,13 @@ public class Main extends Application {
     @Override
     public void start(Stage window) throws IOException {
         //Application window size.
-        Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-        double width = screenSize.getWidth() * 0.6;
-        double height = screenSize.getHeight() * 0.8;
+        //Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+        //double width = screenSize.getWidth() * 0.6;
+        //double height = screenSize.getHeight() * 0.8;
         window.setResizable(true);
 
         //Scene creation.
-        Scene scene = new Scene(factory.loadFXML("startpage"), width , height);
+        Scene scene = new Scene(factory.loadFXML("startpage"), 800 , 600);
         scene.getStylesheets().addAll();
         window.setScene(scene);
         scene.getStylesheets().add(getClass().getResource("/se/turingturtles/css/00-default.css").toExternalForm());

@@ -1,10 +1,4 @@
-@import "01-startpage.css";
-@import "02-createproject.css";
-@import "03-projectoverview.css";
-@import "04-tasktab.css";
-@import "05-teamtab.css";
-@import "06-risktab.css";
-@import "07-managementtab.css";
+/* ______________________ Custom fonts */
 @font-face {
   font-family: "Lobster";
   font-style: normal;
@@ -17,27 +11,26 @@
   font-weight: 300;
   src: url("../fonts/Open_Sans_Condensed/OpenSansCondensed-Light.ttf");
 }
-/* Universal styling */
+/* ______________________ Default styling */
 .root {
   -fx-background-color: linear-gradient(to top right, #e6e6e6 0%, white 100%);
+  -fx-font-smoothing-type: LCD;
+  -fx-font-family: Arial;
+  -fx-font-size: 1em;
 }
 
-/* Button styling */
+/* ______________________ Button styling */
 .button {
-  -fx-text-fill: white;
   -fx-background-color: #71C688;
   -fx-effect: dropshadow(three-pass-box, #71C688, 10, 0, 0, 2);
   -fx-background-radius: 50;
+  -fx-text-fill: #fff;
+  -fx-font-weight: bold;
 }
 
 #big-button {
-  -fx-font-size: 14pt;
-  -fx-padding: 10pt 0pt;
-}
-
-#small-button {
-  -fx-font-size: 9pt;
-  -fx-padding: 1pt;
+  -fx-padding: 15pt 0;
+  -fx-font-size: 1.5em;
 }
 
 .button:hover {
@@ -45,14 +38,16 @@
   -fx-effect: dropshadow(three-pass-box, #3E6C4B, 10, 0, 0, 2);
 }
 
-/* Text, label, etc, styling */
-#h1 {
+/* ______________________ Text, label etc, styling */
+#h1, #h1-tab {
   -fx-font-family: "Lobster";
+}
+
+#h1 {
   -fx-font-size: 35pt;
 }
 
-#tab-h1 {
-  -fx-font-family: "Lobster";
+#h1-tab {
   -fx-font-size: 15pt;
 }
 
@@ -62,28 +57,29 @@
   -fx-font-weight: 300;
 }
 
-/* Start page and create project page styling */
-#startpage-anchor,
-#createproject-anchor {
+/* ______________________ Start - and create project page styling */
+#content-box {
   -fx-background-color: #fff;
-  -fx-background-radius: 20;
-  -fx-effect: dropshadow(three-pass-box, #ccc, 10, 0, 0, 2);
+  -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 4, 0, 0, 2);
 }
-
-#disclaimer {
+#content-box .label {
   -fx-font-weight: bold;
 }
 
-#input {
-  -fx-pref-width: 100pt;
+#disclaimer {
+  -fx-font-style: italic;
 }
 
-/* Tab pane styling */
+#input {
+  -fx-pref-width: 150pt;
+}
+
+/* ______________________ Tab pane styling */
 .tab-pane {
   -fx-tab-max-height: 2em;
   -fx-tab-min-height: 2em;
-  -fx-tab-max-width: 9em;
-  -fx-tab-min-width: 9em;
+  -fx-tab-max-width: 7em;
+  -fx-tab-min-width: 7em;
   -fx-background-color: #fafcfb;
 }
 
