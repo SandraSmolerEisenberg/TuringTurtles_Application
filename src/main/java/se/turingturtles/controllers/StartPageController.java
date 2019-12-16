@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import se.turingturtles.ProjectManagement;
 import se.turingturtles.implementations.ProjectFactory;
@@ -23,11 +24,22 @@ public class StartPageController {
         factory.changeScene(createProjectButton.getScene(),"createproject");
     }
 
-    public void loadProject(ActionEvent event) throws Exception{
+    public void loadProject(ActionEvent event) throws IOException {
             StreamIO testStream = factory.makeStream();
-            testStream.importFromStreamIO();
-            projectManagement.triggerCalculations();
-            factory.changeScene(loadProjectButton.getScene(),"projectmaster");
+            try {
+                testStream.importFromStreamIO();
+                projectManagement.triggerCalculations();
+                factory.changeScene(loadProjectButton.getScene(),"projectmaster");
+            }
+            catch (Exception e){
+                Alert idTaken = new Alert(Alert.AlertType.ERROR);
+                idTaken.setGraphic(factory.loadErrorNode());
+                idTaken.setTitle("Error!");
+                idTaken.setHeaderText("Fail to import data!");
+                idTaken.setContentText("Internal data import error.");
+                idTaken.showAndWait();
+            }
+
 
     }
 }

@@ -2,6 +2,7 @@ package se.turingturtles;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import se.turingturtles.implementations.ProjectFactory;
@@ -44,7 +45,12 @@ public class Main extends Application {
             launch();
             streamIO.exportToStreamIO();
         }catch (Exception e){
-            e.printStackTrace();
+            Alert idTaken = new Alert(Alert.AlertType.ERROR);
+            idTaken.setGraphic(factory.loadErrorNode());
+            idTaken.setTitle("Error!");
+            idTaken.setHeaderText("Internal error!");
+            idTaken.setContentText("Please restart the application.");
+            idTaken.showAndWait();
             streamIO.exportToStreamIO();
         }
 
