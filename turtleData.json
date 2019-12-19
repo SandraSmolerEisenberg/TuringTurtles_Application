@@ -1,1 +1,1 @@
-null
+{"@project":1,"name":"MyProject","budget":12345.0,"duration":5,"startWeek":52,"endWeek":5,"projectStartDate":[2019,12,23],"projectEndDate":[2020,1,27],"teamMembers":[],"tasks":[{"@task":2,"name":"css","startWeek":52,"endWeek":1,"duration":1,"teamMembers":[],"completion":"Not Completed","totalTeamMembers":0,"startDate":[2019,12,23],"endDate":[2019,12,30]}],"risk":[],"nextUpdateMilli":1577999725606,"costVariance":0.0,"earnedValue":0.0,"scheduleVariance":0.0}

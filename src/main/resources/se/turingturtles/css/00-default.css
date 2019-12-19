@@ -39,7 +39,7 @@
 }
 
 /* ______________________ Text, label etc, styling */
-#h1, #h1-tab {
+#h1, #h1-tab, #h1-tab-title {
   -fx-font-family: "Lobster";
 }
 
@@ -49,6 +49,10 @@
 
 #h1-tab {
   -fx-font-size: 15pt;
+}
+
+#h1-tab-title {
+  -fx-font-size: 20pt;
 }
 
 #h2 {
