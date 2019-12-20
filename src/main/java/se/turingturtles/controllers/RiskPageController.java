@@ -32,9 +32,9 @@ public class RiskPageController {
     @FXML private AnchorPane riskDetails;
     @FXML private Button deleteRiskButton;
     @FXML private TableColumn<Risk, String> riskName;
-    @FXML private TableColumn<Risk, Integer> riskImpact;
-    @FXML private TableColumn<Risk, Integer> riskProbability;
-    @FXML private BarChart<String, Integer> riskMatrix;
+    @FXML private TableColumn<Risk, Double> riskImpact;
+    @FXML private TableColumn<Risk, Double> riskProbability;
+    @FXML private BarChart<String, Double> riskMatrix;
     @FXML private CategoryAxis riskType;
     @FXML private TableView<Risk> riskDetailsTable;
     @FXML private NumberAxis riskIndex;
@@ -67,10 +67,10 @@ public class RiskPageController {
     }
 
     // Return the highest risk value and use it for the matrix
-    private int getHighestRisk(){
-        int highestRisk;
+    private Double getHighestRisk(){
+        Double highestRisk;
         List<Risk> risks = projectManagement.getProjectRisks();
-        ArrayList<Integer> risksValues = new ArrayList<>();
+        ArrayList<Double> risksValues = new ArrayList<>();
         for (Risk risk : risks) {
             risksValues.add(risk.calculateRisk());
         }
@@ -79,11 +79,11 @@ public class RiskPageController {
     }
 
     //Read, load and return the data for the matrix
-    private XYChart.Series<String, Integer> loadRiskMatrix(){
+    private XYChart.Series<String, Double> loadRiskMatrix(){
         List<Risk> risks = projectManagement.getProjectRisks();
-        XYChart.Series<String,Integer> series = new XYChart.Series<String, Integer>();
+        XYChart.Series<String,Double> series = new XYChart.Series<String, Double>();
         for (Risk risk : risks) {
-            series.getData().add(new XYChart.Data<String, Integer>(risk.getName(), risk.calculateRisk()));
+            series.getData().add(new XYChart.Data<String, Double>(risk.getName(), risk.calculateRisk()));
         }
         series.setName("Risks");
         return series;
@@ -121,11 +121,11 @@ public class RiskPageController {
         String impact = newRiskImpact.getText();
         Validator validator = factory.makeValidator();
         if (validator.validateTextInput(name) && validator.validateNumericInput(probability) && validator.validateNumericInput(impact)){
-            int impactValue;
-            int probabilityValue;
+            double impactValue;
+            double probabilityValue;
             try{
-                impactValue = Integer.parseInt(impact);
-                probabilityValue = Integer.parseInt(probability);
+                impactValue = Double.parseDouble(impact);
+                probabilityValue = Double.parseDouble(probability);
             }
             catch (Exception e){
                 newRiskImpact.clear();
@@ -142,13 +142,13 @@ public class RiskPageController {
                 deleteAlert.showAndWait();
             }
 
-            if (impactValue > 10 || probabilityValue > 10) {
-                if (impactValue > 10) {
+            if (impactValue > 1 || probabilityValue > 1) {
+                if (impactValue > 1) {
                     newRiskImpact.clear();
                     newRiskImpact.setPromptText("Invalid impact");
 
                 }
-                if (probabilityValue > 10) {
+                if (probabilityValue > 1) {
                     newRiskProbability.clear();
                     newRiskProbability.setPromptText("Invalid Probability");
                 }

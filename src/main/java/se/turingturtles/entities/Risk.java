@@ -4,17 +4,17 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import java.io.Serializable;
-import java.util.Comparator;
+
 @JsonIdentityInfo(generator= ObjectIdGenerators.IntSequenceGenerator.class, property="@risk")
 public class Risk implements Serializable {
 
     private String name;
-    private int impact;
-    private int probability;
-    private int riskCalculated;
+    private double impact;
+    private double probability;
+    private double riskCalculated;
 
 
-    public Risk(String name, int impact, int probability){
+    public Risk(String name, double impact, double probability){
         this.name = name;
         this.impact = impact;
         this.probability = probability;
@@ -24,11 +24,11 @@ public class Risk implements Serializable {
     public Risk(){} //Needed for JSON-file to work
 
     //--------------------Getters & Setters--------------------
-    public int getRiskCalculated() {
+    public double getRiskCalculated() {
         return riskCalculated;
     }
 
-    public void setRiskCalculated(int riskCalculated) {
+    public void setRiskCalculated(double riskCalculated) {
         this.riskCalculated = riskCalculated;
     }
     public String getName(){
@@ -37,21 +37,23 @@ public class Risk implements Serializable {
     public void setName(String newName){
         this.name = newName;
     }
-    public int getImpact(){
+    public double getImpact(){
         return this.impact;
     }
-    public void setImpact(int newImpact){
+    public void setImpact(double newImpact){
         this.impact = newImpact;
     }
-    public int getProbability(){
+    public double getProbability(){
         return this.probability;
     }
-    public void setProbability(int newProbability){
+    public void setProbability(double newProbability){
         this.probability = newProbability;
     }
     //--------------------Methods--------------------
-    public int calculateRisk(){
-        return (this.impact * this.probability);
+    public double calculateRisk(){
+        double risk = (this.impact * this.probability);
+        setRiskCalculated(risk);
+        return risk;
     }
 
     @Override

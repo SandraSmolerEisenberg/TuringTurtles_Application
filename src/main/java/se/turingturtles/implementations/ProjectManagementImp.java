@@ -9,6 +9,9 @@ import se.turingturtles.entities.TeamMember;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.ZoneOffset;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -26,8 +29,8 @@ public class ProjectManagementImp implements ProjectManagement, Serializable {
     }
 
     public void triggerCalculations(){
-        Date today = new Date();
-        long todayMilli = today.getTime();
+        LocalDate today = project.getProjectStartDate();
+        long todayMilli = today.atStartOfDay(ZoneOffset.UTC).toInstant().toEpochMilli();
         long nextUpdateMilli = project.getNextUpdateMilli();
 
         if(nextUpdateMilli == 0){
@@ -158,7 +161,7 @@ public class ProjectManagementImp implements ProjectManagement, Serializable {
     }
 
     @Override
-    public void createRisk(String name, int impact, int probability) {
+    public void createRisk(String name, double impact, double probability) {
         project.getRisk().add(factory.makeRisk(name, impact, probability));
     }
 

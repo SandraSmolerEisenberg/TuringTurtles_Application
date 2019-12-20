@@ -66,7 +66,7 @@ public class ProjectFactory {
         return new Image("se/turingturtles/images/" + image + ".png");
     }
 
-    public Risk makeRisk(String name, int impact, int probability){
+    public Risk makeRisk(String name, double impact, double probability){
         return new Risk(name, impact, probability);
     }
 

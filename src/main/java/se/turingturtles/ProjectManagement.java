@@ -28,7 +28,7 @@ public interface ProjectManagement {
     List<Task> retrieveTasks();
     void completeTask(Task task);
     int timeSpentOnProject();
-    void createRisk(String name, int impact, int probability);
+    void createRisk(String name, double impact, double probability);
     List<Risk> getProjectRisks();
 
 
