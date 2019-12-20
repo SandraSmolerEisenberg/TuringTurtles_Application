@@ -37,8 +37,6 @@ public class CreateProjectController {
         createNewProjectButton.setDisable(true);
         setDatePicker(projectStart, "StartDate");
         setDatePicker(projectEnd, "EndDate");
-        createProjectAnchor.getStylesheets().add(getClass().getResource("/se/turingturtles/css/02-createproject.css").toExternalForm());
-
     }
 
     private void setDatePicker(DatePicker datePicker, String calendar){
