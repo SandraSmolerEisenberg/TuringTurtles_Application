@@ -4,8 +4,10 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import java.io.Serializable;
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.time.temporal.TemporalAdjusters;
 import java.time.temporal.WeekFields;
 import java.util.ArrayList;
 import java.util.Locale;
@@ -63,7 +65,8 @@ public class Task implements Serializable {
     public int getStartWeek(){
         return this.startWeek;
     }
-    public void setStartWeek(int newStartWeek){ this.startWeek = newStartWeek; }
+    public void setStartWeek(int newStartWeek){
+        this.startWeek = newStartWeek; }
     public int getDuration(){
         return this.duration;
     }
@@ -87,7 +90,16 @@ public class Task implements Serializable {
         this.endWeek = endWeek;
     }
     public void setCompletion(boolean status){
+
         this.completion = status;
+        if(completion){
+            LocalDate localDate = LocalDate.now();
+            localDate = localDate.with(TemporalAdjusters.next(DayOfWeek.MONDAY));
+            setEndWeek(calculateEndWeek());
+            setEndDate(localDate);
+            setDuration(calculateDuration());
+        }
+
     }
     public int getTotalTeamMembers(){
         return teamMembers.size();
@@ -113,6 +125,7 @@ public class Task implements Serializable {
     }
 
     public void setTotalTeamMembers(int totalTeamMembers) {
+
         this.totalTeamMembers = totalTeamMembers;
     }
 
