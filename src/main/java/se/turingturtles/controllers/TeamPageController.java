@@ -87,8 +87,6 @@
         private void loadTeamList() {
             ObservableList<TeamMember> members = FXCollections.observableArrayList(projectManagement.getTeamMembers());
             teamList.setItems(members);
-
-
         }
 
         private int findSelectedID() {
@@ -128,6 +126,7 @@
             memberEditPage.setVisible(true);
             memberInfoPage.setVisible(false);
             editMemberInfoText.setText("You are editing " + projectManagement.findTeamMember(lastViewedID).getName() + " with ID: " + lastViewedID);
+
         }
 
         public void editMember(ActionEvent event) {

@@ -98,6 +98,7 @@ public class TaskPageController {
         taskStatus.setCellValueFactory(new PropertyValueFactory<>("completion"));
         taskEndWeek.setCellValueFactory(new PropertyValueFactory<>("endWeek"));
         taskTableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        taskTableView.setPlaceholder(new Label("There are currently no tasks."));
         ObservableList<Task> tasks = FXCollections.observableArrayList(projectManagement.retrieveTasks());
         taskTableView.setItems(tasks);
         taskTableView.refresh();

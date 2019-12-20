@@ -40,8 +40,7 @@ public class ProjectCalculationsImp implements ProjectCalculations {
 
     public double calculateScheduleVariance() {
         //We calculate the Schedule Variance based on calculateEV & calculateBCWS
-        //EV = BCWP
-
+        //EV = BCWS
         return calculateEarnedValue()-calculatePlannedValue();
     }
 
