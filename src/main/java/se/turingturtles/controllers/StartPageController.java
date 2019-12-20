@@ -6,7 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import se.turingturtles.ProjectManagement;
+import se.turingturtles.application.ProjectManagement;
 import se.turingturtles.implementations.ProjectFactory;
 import se.turingturtles.streamIO.StreamIO;
 

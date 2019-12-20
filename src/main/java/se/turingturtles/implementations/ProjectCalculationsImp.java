@@ -1,15 +1,13 @@
 package se.turingturtles.implementations;
 
-import se.turingturtles.ProjectCalculations;
-import se.turingturtles.ProjectManagement;
+import se.turingturtles.application.ProjectCalculations;
+import se.turingturtles.application.ProjectManagement;
 import se.turingturtles.entities.Task;
 import se.turingturtles.entities.TeamMember;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
-import java.util.Calendar;
 import java.util.List;
-import java.util.Locale;
 
 public class ProjectCalculationsImp implements ProjectCalculations {
 

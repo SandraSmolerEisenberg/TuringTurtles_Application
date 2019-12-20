@@ -1,6 +1,6 @@
 package se.turingturtles.implementations;
 
-import se.turingturtles.Validator;
+import se.turingturtles.application.Validator;
 
 import java.time.LocalDate;
 

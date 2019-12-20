@@ -1,4 +1,4 @@
-package se.turingturtles;
+package se.turingturtles.application;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import se.turingturtles.entities.Project;

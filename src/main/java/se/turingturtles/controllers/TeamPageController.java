@@ -14,9 +14,9 @@
     import javafx.scene.layout.CornerRadii;
     import javafx.scene.paint.Color;
     import javafx.scene.text.Text;
-    import se.turingturtles.ProjectCalculations;
-    import se.turingturtles.ProjectManagement;
-    import se.turingturtles.Validator;
+    import se.turingturtles.application.ProjectCalculations;
+    import se.turingturtles.application.ProjectManagement;
+    import se.turingturtles.application.Validator;
     import se.turingturtles.entities.Task;
     import se.turingturtles.entities.TeamMember;
     import se.turingturtles.implementations.ProjectFactory;

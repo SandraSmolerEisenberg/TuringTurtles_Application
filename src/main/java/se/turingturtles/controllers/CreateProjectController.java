@@ -5,8 +5,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.StringConverter;
-import se.turingturtles.ProjectManagement;
-import se.turingturtles.Validator;
+import se.turingturtles.application.ProjectManagement;
+import se.turingturtles.application.Validator;
 import se.turingturtles.implementations.ProjectFactory;
 import se.turingturtles.streamIO.StreamIO;
 

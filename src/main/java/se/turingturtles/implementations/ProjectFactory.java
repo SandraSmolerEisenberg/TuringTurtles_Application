@@ -6,10 +6,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import se.turingturtles.Main;
-import se.turingturtles.ProjectCalculations;
-import se.turingturtles.ProjectManagement;
-import se.turingturtles.Validator;
+import se.turingturtles.App;
+import se.turingturtles.application.ProjectCalculations;
+import se.turingturtles.application.ProjectManagement;
+import se.turingturtles.application.Validator;
 import se.turingturtles.entities.Project;
 import se.turingturtles.entities.Risk;
 import se.turingturtles.entities.Task;
@@ -28,7 +28,7 @@ public class ProjectFactory {
 
 
     public Parent loadFXML(String fxml) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("fxmlfiles/" + fxml + ".fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("fxmlfiles/" + fxml + ".fxml"));
         return fxmlLoader.load();
     }
 

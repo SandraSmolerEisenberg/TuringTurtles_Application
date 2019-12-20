@@ -8,15 +8,13 @@ import javafx.scene.chart.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.util.StringConverter;
-import se.turingturtles.Main;
-import se.turingturtles.ProjectManagement;
+import se.turingturtles.application.ProjectManagement;
 import se.turingturtles.entities.Task;
 import se.turingturtles.implementations.ProjectFactory;
 import se.turingturtles.implementations.ProjectManagementImp;
 import javafx.scene.control.Button;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.util.List;
 

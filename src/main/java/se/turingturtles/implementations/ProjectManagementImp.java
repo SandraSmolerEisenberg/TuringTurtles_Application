@@ -1,7 +1,7 @@
 package se.turingturtles.implementations;
 
-import se.turingturtles.ProjectCalculations;
-import se.turingturtles.ProjectManagement;
+import se.turingturtles.application.ProjectCalculations;
+import se.turingturtles.application.ProjectManagement;
 import se.turingturtles.entities.Project;
 import se.turingturtles.entities.Risk;
 import se.turingturtles.entities.Task;
@@ -9,11 +9,8 @@ import se.turingturtles.entities.TeamMember;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.time.ZoneId;
 import java.time.ZoneOffset;
-import java.time.ZonedDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class ProjectManagementImp implements ProjectManagement, Serializable {

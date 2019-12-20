@@ -1,4 +1,4 @@
-package se.turingturtles;
+package se.turingturtles.application;
 
 public interface ProjectCalculations {
 

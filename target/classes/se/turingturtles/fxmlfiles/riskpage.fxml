@@ -53,7 +53,7 @@
                   <TextField fx:id="newRiskProbability" layoutX="300.0" layoutY="156.0" promptText="risk probability" />
                   <TextField fx:id="newRiskImpact" layoutX="300.0" layoutY="196.0" promptText="risk impact" />
                   <Button fx:id="createRiskButton" layoutX="249.0" layoutY="271.0" mnemonicParsing="false" onAction="#createRisk" text="Add Project Risk" />
-                  <Label layoutX="183.0" layoutY="120.0" prefHeight="17.0" prefWidth="266.0" text="Impact and Probability can be between 0 and 10" underline="true" />
+                  <Label layoutX="183.0" layoutY="120.0" prefHeight="17.0" prefWidth="266.0" text="Impact and Probability can be between 0 and 1" underline="true" />
                </children>
             </AnchorPane>
                      </children>
