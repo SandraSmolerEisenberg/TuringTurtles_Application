@@ -23,7 +23,7 @@
    <center>
       <!-- Content container -->
       <AnchorPane
-              id="content-box"
+              styleClass="content-box"
               fx:id="createProjectAnchor"
               maxHeight="-Infinity"
               maxWidth="-Infinity"
@@ -51,7 +51,7 @@
             />
             <!-- Page header text -->
             <Text
-                    id="h1"
+                    styleClass="h1"
                     cache="true"
                     cacheHint="SCALE"
                     layoutX="41.0"
@@ -134,7 +134,7 @@
                     text="I accept that this action overwrites any previous project."
             />
             <Button
-                    id="big-button"
+                    styleClass="big-button"
                     fx:id="createNewProjectButton"
                     cache="true"
                     cacheHint="SCALE"

@@ -20,7 +20,7 @@
 >
    <center>
       <AnchorPane
-              id="content-box"
+              styleClass="content-box"
               maxHeight="-Infinity"
               maxWidth="-Infinity"
               minHeight="-Infinity"
@@ -47,7 +47,7 @@
             </ImageView>
             <!-- Application brand name -->
             <Text
-                    id="h1"
+                    styleClass="h1"
                     layoutX="260.0"
                     layoutY="98.0"
                     strokeType="OUTSIDE"
@@ -55,7 +55,7 @@
                     text="Turing Turtle"
             />
             <Text
-                    id="h2"
+                    styleClass="h2"
                     layoutX="260.0"
                     layoutY="138.0"
                     strokeType="OUTSIDE"
@@ -64,7 +64,7 @@
             />
             <!-- Action buttons and action disclaimer text -->
             <Button
-                    id="big-button"
+                    styleClass="big-button"
                     fx:id="createProjectButton"
                     layoutX="75.0"
                     layoutY="270.0"
@@ -73,7 +73,7 @@
                     text="Create project"
             />
             <Button
-                    id="big-button"
+                    styleClass="big-button"
                     fx:id="loadProjectButton"
                     layoutX="325.0"
                     layoutY="270.0"
