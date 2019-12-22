@@ -63,7 +63,7 @@ public class RiskPageController {
         createRiskAnchorPane.setVisible(false);
         riskDetails.setVisible(false);
         loadRiskDetailsTable();
-        riskPage.getStylesheets().add(getClass().getResource("/se/turingturtles/css/06-risktab.css").toExternalForm());
+        riskPage.getStylesheets().add(getClass().getResource("/se/turingturtles/css/default.css").toExternalForm());
     }
 
     // Return the highest risk value and use it for the matrix

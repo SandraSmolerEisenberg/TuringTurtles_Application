@@ -81,7 +81,7 @@
             totalSalaries.setText(String.valueOf(calculation.calculateTotalSalaries()));
             totalTimeSpent.setText(String.valueOf(projectManagement.timeSpentOnProject()));
             totalMembersAmount.setText(String.valueOf(projectManagement.getTeamMembers().size()));
-            teamPage.getStylesheets().add(getClass().getResource("/se/turingturtles/css/05-teamtab.css").toExternalForm());
+            teamPage.getStylesheets().add(getClass().getResource("/se/turingturtles/css/default.css").toExternalForm());
         }
 
         private void loadTeamList() {

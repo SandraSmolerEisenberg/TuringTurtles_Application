@@ -31,7 +31,7 @@ public class App extends Application {
         Scene scene = new Scene(factory.loadFXML("startpage"), 800 , 600);
         scene.getStylesheets().addAll();
         window.setScene(scene);
-        scene.getStylesheets().add(getClass().getResource("/se/turingturtles/css/00-default.css").toExternalForm());
+        scene.getStylesheets().add(getClass().getResource("/se/turingturtles/css/default.css").toExternalForm());
 
         //Application window title.
         window.setTitle("Turing Turtle");

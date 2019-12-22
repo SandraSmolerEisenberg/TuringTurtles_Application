@@ -31,7 +31,7 @@ public class ProjectMasterController {
     private ProjectFactory factory = new ProjectFactory();
 
     public void initialize(){
-       projectMasterTabs.getStylesheets().add(getClass().getResource("/se/turingturtles/css/00-default.css").toExternalForm());
+       projectMasterTabs.getStylesheets().add(getClass().getResource("/se/turingturtles/css/default.css").toExternalForm());
 
     }
 
