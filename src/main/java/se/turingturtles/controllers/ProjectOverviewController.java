@@ -89,6 +89,7 @@ public class ProjectOverviewController {
         series1.setName("Tasks");
         weeksAxis.setTickUnit(1.0);
         projectSchedule.getData().setAll(series1,series2);
+        projectSchedule.setLegendVisible(false);
     }
 
     public void updateFields(){

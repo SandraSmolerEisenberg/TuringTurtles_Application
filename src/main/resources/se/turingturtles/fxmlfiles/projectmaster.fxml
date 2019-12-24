@@ -72,7 +72,7 @@
                                 <Image url="@../images/turtlenode.png" />
                             </image>
                         </ImageView>
-                        <Text id="h1-tab" layoutX="76.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Turing turtle" />
+                        <Text styleClass="h1-tab" layoutX="76.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Turing turtle" />
                   <Button fx:id="startPageButton" layoutX="619.0" layoutY="12.0" mnemonicParsing="false" onAction="#backToStartPage" text="Start page" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="10.0" />
                </children>
             </AnchorPane>

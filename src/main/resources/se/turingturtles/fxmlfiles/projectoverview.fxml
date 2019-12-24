@@ -9,9 +9,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="overview" fx:id="overviewTab" onMouseEntered="#updateFields" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="se.turingturtles.controllers.ProjectOverviewController">
+<AnchorPane fx:id="overviewTab" onMouseEntered="#updateFields" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="se.turingturtles.controllers.ProjectOverviewController">
     <children>
-          <StackedBarChart fx:id="projectSchedule" title="Schedule" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="250.0" AnchorPane.topAnchor="30.0">
+          <StackedBarChart id="gantt" fx:id="projectSchedule" title="Schedule" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="250.0" AnchorPane.topAnchor="30.0">
               <yAxis>
                   <CategoryAxis fx:id="taskAxis" label="Task" />
               </yAxis>
@@ -24,7 +24,7 @@
           </StackedBarChart>
           <VBox maxWidth="-Infinity" minWidth="-Infinity" prefWidth="200.0" AnchorPane.bottomAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="30.0">
               <children>
-                  <Text id="h1-tab-title" fx:id="projectName" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="hbox-content" text="Project Name" wrappingWidth="200.0">
+                  <Text fx:id="projectName" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="h1-tab-sub" text="Project Name" wrappingWidth="200.0">
                       <VBox.margin>
                           <Insets top="30.0" />
                       </VBox.margin>
@@ -54,11 +54,11 @@
                           <Insets top="10.0" />
                       </VBox.margin>
                   </Text>
-                  <Button fx:id="scheduleButton" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#updateSchedule" prefWidth="200.0" styleClass="hbox-content" text="Refresh schedule">
-                      <VBox.margin>
-                          <Insets top="50.0" />
-                      </VBox.margin>
-                  </Button>
+                  <Button fx:id="scheduleButton" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#updateSchedule" prefWidth="150.0" text="Refresh schedule">
+               <VBox.margin>
+                  <Insets top="50.0" />
+               </VBox.margin>
+            </Button>
               </children>
           </VBox>
     </children>
