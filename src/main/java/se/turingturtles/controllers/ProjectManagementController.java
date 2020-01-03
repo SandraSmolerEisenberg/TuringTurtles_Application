@@ -25,6 +25,7 @@ import static java.lang.Integer.parseInt;
 
 public class ProjectManagementController {
 
+    @FXML private Text projectName3;
     @FXML private DatePicker projectStartWeek;
     @FXML private DatePicker projectEndWeek;
     @FXML private Button updateProjectDurationButton;
@@ -70,27 +71,13 @@ public class ProjectManagementController {
     @FXML
     public void initialize(){
         //Project management page
+        updateValues();
         changeDurationAnchorPane.setVisible(false);
-
-        projectName.setText(ProjectManagementImp.getProject().getName());
-        earnedValue.setText("Earned value: " + ProjectManagementImp.getProject().getEarnedValue());
-        costVariance.setText("Cost Variance: " + ProjectManagementImp.getProject().getCostVariance());
-        scheduleVariance.setText("Schedule variance: " + ProjectManagementImp.getProject().getScheduleVariance());
-        totalSalaries.setText("Total Salaries: " + projectCalculations.calculateTotalSalaries());
-        budget.setText("Budget: " + ProjectManagementImp.getProject().getBudget());
         changeBudget.setText("Change Budget");
-        startWeek.setText("Start week: " + ProjectManagementImp.getProject().getStartWeek());
-        endWeek.setText("End week: " + ProjectManagementImp.getProject().getEndWeek());
-        duration.setText("Duration: " + ProjectManagementImp.getProject().getDuration());
         changeDuration.setText("Change Duration");
-        timeOnTasks.setText("Total time spent on project: " + projectManagement.timeSpentOnProject() + " Weeks");
-        completedTasks.setText("No. completed tasks: " + countCompletedTasks());
-        activeTasks.setText("No. Active or planned tasks: " + countActiveTasks());
 
         //Change budget Page
         changeBudgetPage.setVisible(false);
-        projectName2.setText(ProjectManagementImp.getProject().getName());
-        currentBudget.setText("Current budget: " + ProjectManagementImp.getProject().getBudget());
         increaseBudget.setText("Increase budget: ");
         decreaseBudget.setText("Decrease budget");
         projectManagementPage.getStylesheets().add(getClass().getResource("/se/turingturtles/css/default.css").toExternalForm());
@@ -101,6 +88,7 @@ public class ProjectManagementController {
     @FXML
     public void updateValues(){
         //Project management page
+        projectName.setText(ProjectManagementImp.getProject().getName());
         earnedValue.setText("Earned value: " + ProjectManagementImp.getProject().getEarnedValue());
         costVariance.setText("Cost Variance: " + ProjectManagementImp.getProject().getCostVariance());
         scheduleVariance.setText("Schedule variance: " + ProjectManagementImp.getProject().getScheduleVariance());
@@ -116,6 +104,7 @@ public class ProjectManagementController {
         //Change budget Page
         projectName2.setText(ProjectManagementImp.getProject().getName());
         currentBudget.setText("Current budget: " + ProjectManagementImp.getProject().getBudget());
+        projectName3.setText(ProjectManagementImp.getProject().getName());
     }
     @FXML
     public void invalidFormatAlert(){

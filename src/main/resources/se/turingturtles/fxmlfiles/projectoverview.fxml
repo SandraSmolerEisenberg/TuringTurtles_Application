@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="overviewTab" onMouseEntered="#updateFields" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="se.turingturtles.controllers.ProjectOverviewController">
+<AnchorPane fx:id="overviewTab" onMouseEntered="#updateFields" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/" fx:controller="se.turingturtles.controllers.ProjectOverviewController">
     <children>
           <StackedBarChart id="gantt" fx:id="projectSchedule" title="Schedule" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="250.0" AnchorPane.topAnchor="30.0">
               <yAxis>

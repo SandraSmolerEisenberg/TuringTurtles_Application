@@ -60,6 +60,6 @@
                   </AnchorPane>
                </center>
                <top>
-                  <Label id="riskHeaderText" alignment="CENTER" prefHeight="45.0" prefWidth="144.0" text="Risk" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS" BorderPane.alignment="CENTER" />
+                  <Label id="riskHeaderText" alignment="CENTER" prefHeight="45.0" prefWidth="144.0" text="Risk" styleClass="h1-tab" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS" BorderPane.alignment="CENTER" />
                </top>
             </BorderPane>

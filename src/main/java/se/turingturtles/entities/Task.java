@@ -89,16 +89,14 @@ public class Task implements Serializable {
     public void setEndWeek(int endWeek) {
         this.endWeek = endWeek;
     }
-    public void setCompletion(boolean status){
 
+    public void setCompletion(boolean status){
         this.completion = status;
-        if(completion){
             LocalDate localDate = LocalDate.now();
             localDate = localDate.with(TemporalAdjusters.next(DayOfWeek.MONDAY));
             setEndWeek(calculateEndWeek());
             setEndDate(localDate);
             setDuration(calculateDuration());
-        }
 
     }
     public int getTotalTeamMembers(){

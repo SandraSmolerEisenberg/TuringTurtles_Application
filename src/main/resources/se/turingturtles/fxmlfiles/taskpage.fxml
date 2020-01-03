@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="taskPage" prefHeight="406.0" prefWidth="668.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="se.turingturtles.controllers.TaskPageController">
+<AnchorPane fx:id="taskPage" prefHeight="406.0" prefWidth="668.0" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/" fx:controller="se.turingturtles.controllers.TaskPageController">
    <children>
       <Text fx:id="taskHeaderText" layoutX="31.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="h1-tab" text="Tasks overview" textAlignment="CENTER" AnchorPane.leftAnchor="31.0" AnchorPane.topAnchor="50.0" />
       <Button fx:id="taskCreateTaskButton" layoutX="28.0" layoutY="100.0" mnemonicParsing="false" onAction="#createNewTask" prefWidth="100.0" text="Create Task" />

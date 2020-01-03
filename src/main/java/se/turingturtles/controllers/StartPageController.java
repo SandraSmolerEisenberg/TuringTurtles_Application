@@ -24,7 +24,7 @@ public class StartPageController {
         factory.changeScene(createProjectButton.getScene(),"createproject");
     }
 
-    public void loadProject(ActionEvent event) throws IOException {
+    public void loadProject(ActionEvent event) {
             StreamIO testStream = factory.makeStream();
             try {
                 testStream.importFromStreamIO();
