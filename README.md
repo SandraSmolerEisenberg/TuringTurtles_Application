@@ -1,8 +1,5 @@
 # Turing Turtle
 
-[logo]: https://git.chalmers.se/courses/dit092/project-group-2/blob/master/src/main/resources/se/turingturtles/images/turtle.png "Turing Turle Logo"
-
-
 Turing Turtle is a desktop application developed by the Turing Turtles team to facilitate the management of larger scale projects. The Turing Turtle application makes it possible to store and manage team members, schedule the  project’s tasks and keep track of the project’s risk assessments. The application provides an easy overview of project data through deliberate display of values and matrixes.
 
 ## Setting up the Application
@@ -29,12 +26,13 @@ Closing the Application
 The application can be closed at any time by pressing the X at the top right corner. Your project will automatically save before the program is terminated.
 Repository
 We have been using Gitlab as repository. The project can be found and cloned at https://git.chalmers.se/courses/dit092/project-group-2.git 
+
 ### Contributors
 The developers of Turing Turtle:
 
-Sandra Smoler Eisenberg    gussmosa@student.gu.se
-Krasen Parvanov        gusparkr@student.gu.se
-Chrysostomos Tsagkidis    gustsach@student.gu.se
-Liv ML Alterskjaer        gusalteli@student.gu.se
-Eemil Jeskanen        gusjesee@student.gu.se
-Samuel Gunnarsson        gusgunsah@student.gu.se
+- Sandra Smoler Eisenberg    gussmosa@student.gu.se
+- Krasen Parvanov        gusparkr@student.gu.se
+- Chrysostomos Tsagkidis    gustsach@student.gu.se
+- Liv ML Alterskjaer        gusalteli@student.gu.se
+- Eemil Jeskanen        gusjesee@student.gu.se
+- Samuel Gunnarsson        gusgunsah@student.gu.se
