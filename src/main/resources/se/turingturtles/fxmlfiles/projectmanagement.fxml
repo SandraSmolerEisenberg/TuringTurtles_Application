@@ -12,7 +12,7 @@
       <AnchorPane fx:id="projectManagementAnchor" layoutX="14.0" layoutY="6.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="30.0">
          <children>
             <Text fx:id="projectName" layoutX="175.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="h1-tab-sub" text="&lt;Project Name&gt;" textAlignment="CENTER" wrappingWidth="215.73678588867188" />
-            <Text fx:id="progressHeader" layoutX="30.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Progress" textAlignment="CENTER" wrappingWidth="220.0" />
+            <Text styleClass="h1-tab" fx:id="progressHeader" layoutX="30.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Progress" textAlignment="CENTER" wrappingWidth="220.0" />
             <Text fx:id="startWeek" layoutX="63.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Start week: 99" wrappingWidth="220.0" />
             <Text fx:id="endWeek" layoutX="63.0" layoutY="164.0" strokeType="OUTSIDE" strokeWidth="0.0" text="End week: 99" wrappingWidth="220.0" />
             <Text fx:id="duration" layoutX="63.0" layoutY="194.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Duration: 99w" wrappingWidth="220.0" />
@@ -20,7 +20,7 @@
             <Text fx:id="completedTasks" layoutX="63.0" layoutY="248.0" strokeType="OUTSIDE" strokeWidth="0.0" text="No. Completed tasks:" wrappingWidth="220.0" />
             <Text fx:id="activeTasks" layoutX="63.0" layoutY="276.0" strokeType="OUTSIDE" strokeWidth="0.0" text="No. Active or planned tasks:" wrappingWidth="220.0" />
             <Button fx:id="changeDuration" layoutX="85.0" layoutY="313.0" mnemonicParsing="false" onAction="#changeDuration" text="Change Duration" />
-            <Text fx:id="financeHeader" layoutX="314.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Finance" textAlignment="CENTER" wrappingWidth="220.0" />
+            <Text styleClass="h1-tab" fx:id="financeHeader" layoutX="314.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Finance" textAlignment="CENTER" wrappingWidth="220.0" />
             <Text fx:id="costVariance" layoutX="348.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Planned value: 999" wrappingWidth="220.0" />
             <Text fx:id="scheduleVariance" layoutX="348.0" layoutY="164.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Schedule variance: 999" wrappingWidth="220.0" />
             <Text fx:id="earnedValue" layoutX="348.0" layoutY="194.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Earned Value: 999" wrappingWidth="220.0" />
