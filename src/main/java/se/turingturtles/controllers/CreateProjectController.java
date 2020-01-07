@@ -16,8 +16,7 @@ import java.time.LocalDate;
 
 public class CreateProjectController {
 
-    //Used for calculation of project duration
-    private static final int ONE_WEEK_DAY = 1;
+
 
     @FXML private AnchorPane createProjectAnchor;
     @FXML private Button startPageButton;
@@ -80,7 +79,6 @@ public class CreateProjectController {
        Validator validator = factory.makeValidator();
        if (validator.validateNumericInput(budget) && validator.validateDate(projectStartDate, projectEndDate) && validator.validateTextInput(name) ){
            ProjectManagement projectManagement= factory.makeProjectManagement();
-           projectEndDate = projectEndDate.plusDays(ONE_WEEK_DAY);
            projectManagement.createProject(name , Double.parseDouble(budget) , projectStartDate, projectEndDate);
            json.exportToStreamIO();
            projectBudget.clear();

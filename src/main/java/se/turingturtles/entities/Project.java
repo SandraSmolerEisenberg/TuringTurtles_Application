@@ -11,7 +11,8 @@ import java.util.*;
 @JsonIdentityInfo(generator= ObjectIdGenerators.IntSequenceGenerator.class, property="@project")
 public class Project implements Serializable {
 
-    //private static final int NUMBER_OF_WEEKS_IN_A_YEAR = 52;
+    //Used for calculation of project duration
+    private static final int ONE_WEEK_DAY = 1;
     private String name;
     private double budget;
     private int duration;    //In weeks
@@ -38,7 +39,7 @@ public class Project implements Serializable {
         this.projectStartDate = projectStart;
         this.projectEndDate = projectEnd;
         this.duration = calculateDuration();
-        this.endWeek = calculateEndWeek();
+        this.endWeek = calculateEndWeek(projectEnd);
         this.costVariance = 0;
         this.earnedValue = 0;
         this.scheduleVariance = 0;
@@ -47,12 +48,13 @@ public class Project implements Serializable {
     public Project(){} //Needed for JSON-file to work
 
 //--------Methods-------------------------
-    private int calculateEndWeek() {
+    private int calculateEndWeek(LocalDate projectEndDate) {
         WeekFields weekFields = WeekFields.of(Locale.getDefault());
         return projectEndDate.get(weekFields.weekOfWeekBasedYear());
     }
 
     private int calculateDuration(){
+        projectEndDate = projectEndDate.plusDays(ONE_WEEK_DAY);
         long weeks = ChronoUnit.WEEKS.between(projectStartDate,projectEndDate);
         return (int) weeks;
     }
@@ -87,7 +89,7 @@ public class Project implements Serializable {
 
     public void setProjectEndDate(LocalDate projectEndDate) {
         this.projectEndDate = projectEndDate;
-        setEndWeek(calculateEndWeek());
+        setEndWeek(calculateEndWeek(projectEndDate));
         setDuration(calculateDuration());
     }
 

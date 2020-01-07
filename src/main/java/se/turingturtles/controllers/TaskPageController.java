@@ -22,6 +22,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class TaskPageController {
+
     //Used for calculations, so we can have a count in week
     private static final int ONE_WEEK_DAY = 1;
     @FXML private RadioButton updateNameButton;
