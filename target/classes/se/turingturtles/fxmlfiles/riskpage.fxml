@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.chart.BarChart?>
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.NumberAxis?>
@@ -11,7 +12,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane id="riskBackground" fx:id="riskPage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="se.turingturtles.controllers.RiskPageController">
+<BorderPane id="riskBackground" fx:id="riskPage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="se.turingturtles.controllers.RiskPageController">
                <bottom>
       <AnchorPane BorderPane.alignment="CENTER" />
                </bottom>
@@ -60,6 +61,9 @@
                   </AnchorPane>
                </center>
                <top>
-                  <Label id="riskHeaderText" alignment="CENTER" prefHeight="45.0" prefWidth="144.0" text="Risk" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS" BorderPane.alignment="CENTER" />
+                  <Label alignment="CENTER" prefHeight="45.0" prefWidth="144.0" styleClass="h1-tab-sub" text="Risk" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS" BorderPane.alignment="CENTER" />
                </top>
+   <padding>
+      <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+   </padding>
             </BorderPane>
