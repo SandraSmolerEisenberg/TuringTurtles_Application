@@ -11,7 +11,7 @@
    <children>
       <AnchorPane fx:id="projectManagementAnchor" layoutX="14.0" layoutY="6.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Text fx:id="projectName" layoutX="175.0" layoutY="51.0" strokeType="OUTSIDE" styleClass="h1-tab" strokeWidth="0.0" text="&lt;Project Name&gt;" textAlignment="CENTER" wrappingWidth="215.73678588867188" />
+            <Text styleClass="h1-tab-sub" fx:id="projectName" layoutX="175.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="&lt;Project Name&gt;" textAlignment="CENTER" wrappingWidth="215.73678588867188" />
             <Text fx:id="progressHeader" layoutX="30.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Progress" textAlignment="CENTER" wrappingWidth="220.0" />
             <Text fx:id="startWeek" layoutX="63.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Start week: 99" wrappingWidth="220.0" />
             <Text fx:id="endWeek" layoutX="63.0" layoutY="164.0" strokeType="OUTSIDE" strokeWidth="0.0" text="End week: 99" wrappingWidth="220.0" />
