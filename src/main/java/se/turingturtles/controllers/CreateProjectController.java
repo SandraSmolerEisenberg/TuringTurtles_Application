@@ -66,7 +66,7 @@ public class CreateProjectController {
 
     public void backToStartPage(ActionEvent actionEvent) throws IOException {
 
-        factory.changeScene(startPageButton.getScene(),"startPage");
+        factory.changeScene(startPageButton.getScene(),"startpage");
         createNewProjectButton.setDisable(true);
         disclaimerButton.setSelected(false);
     }
