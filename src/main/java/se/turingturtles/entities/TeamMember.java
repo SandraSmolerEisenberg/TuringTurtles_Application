@@ -32,6 +32,14 @@ public class TeamMember implements Serializable {
     public TeamMember(){} //Needed for JSON-file to work
 
     //--------------------Getters & Setters--------------------
+    public HashMap<Task, Double> getTimeSpentOnTask() {
+        return timeSpentOnTask;
+    }
+
+    public void setTimeSpentOnTask(HashMap<Task, Double> timeSpentOnTask) {
+        this.timeSpentOnTask = timeSpentOnTask;
+    }
+
     public String getName(){
         return this.name;
     }

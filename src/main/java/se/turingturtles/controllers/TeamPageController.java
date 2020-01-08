@@ -1,5 +1,9 @@
     package se.turingturtles.controllers;
 
+    import javafx.beans.property.SimpleDoubleProperty;
+    import javafx.beans.property.SimpleStringProperty;
+    import javafx.beans.property.StringProperty;
+    import javafx.beans.value.ObservableValue;
     import javafx.collections.FXCollections;
     import javafx.collections.ObservableList;
     import javafx.event.ActionEvent;
@@ -8,12 +12,15 @@
     import javafx.geometry.Insets;
     import javafx.scene.control.*;
     import javafx.scene.control.cell.PropertyValueFactory;
+    import javafx.scene.input.MouseButton;
+    import javafx.scene.input.MouseEvent;
     import javafx.scene.layout.AnchorPane;
     import javafx.scene.layout.Background;
     import javafx.scene.layout.BackgroundFill;
     import javafx.scene.layout.CornerRadii;
     import javafx.scene.paint.Color;
     import javafx.scene.text.Text;
+    import javafx.util.Callback;
     import se.turingturtles.application.ProjectCalculations;
     import se.turingturtles.application.ProjectManagement;
     import se.turingturtles.application.Validator;
@@ -22,9 +29,14 @@
     import se.turingturtles.implementations.ProjectFactory;
     import se.turingturtles.streamIO.StreamIO;
 
+    import java.util.ArrayList;
+    import java.util.List;
+    import java.util.Map;
+
     public class TeamPageController {
 
 
+        @FXML private Text hoursSpentOnTask;
         @FXML private TextField hoursSpent;
         @FXML private AnchorPane teamPage;
         @FXML private ListView teamList;
@@ -76,6 +88,13 @@
         @FXML public void initialize(){
             loadTeamList();
             loadLandingPage();
+            hoursSpentOnTask.setText("");
+            taskTable.setOnMouseClicked((MouseEvent event) -> {
+                if(event.getButton().equals(MouseButton.PRIMARY)){
+                    double timeSpent = projectManagement.findTeamMember(lastViewedID).getTimeSpentOnTask().get((Task) taskTable.getSelectionModel().getSelectedItem());
+                    hoursSpentOnTask.setText(String.valueOf(timeSpent));
+                }
+            });
         }
         private void loadLandingPage(){
             landingTeamPage.setVisible(true);
@@ -216,17 +235,21 @@
             taskTeamMembersAmount.setCellValueFactory(new PropertyValueFactory<>("totalTeamMembers"));
             taskStatus.setCellValueFactory(new PropertyValueFactory<>("completion"));
             ObservableList<Task> tasks = FXCollections.observableArrayList(projectManagement.retrieveTasks());
+            assignTaskTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
             assignTaskTable.setItems(tasks);
         }
 
         private void memberLoadAssignTaskList(){
+            TeamMember teamMember = projectManagement.findTeamMember(lastViewedID);
             memberTaskName.setCellValueFactory(new PropertyValueFactory<>("name"));
             memberTaskStartWeek.setCellValueFactory(new PropertyValueFactory<>("startWeek"));
             memberTaskDuration.setCellValueFactory(new PropertyValueFactory<>("duration"));
             memberTeamMembersAmount.setCellValueFactory(new PropertyValueFactory<>("totalTeamMembers"));
             memberTaskStatus.setCellValueFactory(new PropertyValueFactory<>("completion"));
-            ObservableList<Task> tasks = FXCollections.observableArrayList(projectManagement.findTeamMember(lastViewedID).getTasks());
-            taskTable.setItems(tasks);
+            taskTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+            ObservableList<Task> timeOnTasks = FXCollections.observableArrayList(teamMember.getTasks());
+            taskTable.setItems(timeOnTasks);
+            taskTable.refresh();
         }
 
         public void showMemberAssignTaskPage(Event event){
@@ -348,11 +371,10 @@
                 inputError.showAndWait();
                 }
             else {
-
                 projectManagement.addTime(projectManagement.findTeamMember(lastViewedID), (Task) taskTable.getSelectionModel().getSelectedItem(), Double.parseDouble(time));
-                loadMemberInfoPage();
             }
-
+            memberLoadAssignTaskList();
+            loadMemberInfoPage();
             hoursSpent.clear();
 
         }
