@@ -31,7 +31,7 @@
                                     <AnchorPane fx:id="memberInfoPage" disable="false" prefHeight="448.0" prefWidth="631.0" visible="false">
                                        <children>
                         <Label layoutX="182.0" layoutY="312.0" text="Add hours to task:" />
-                        <TextField fx:id="hoursSpent" layoutX="321.0" layoutY="306.0" prefHeight="27.0" prefWidth="95.0" promptText="select task" />
+                        <TextField fx:id="hoursSpent" layoutX="321.0" layoutY="306.0" prefHeight="27.0" prefWidth="95.0" promptText="hours" />
                         <TableView fx:id="taskTable" layoutX="180.0" layoutY="163.0" prefHeight="130.0" prefWidth="424.0">
                            <columns>
                               <TableColumn fx:id="memberTaskName" prefWidth="73.0" text="Task Name" />

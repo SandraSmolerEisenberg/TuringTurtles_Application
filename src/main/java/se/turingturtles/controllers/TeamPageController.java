@@ -331,9 +331,29 @@
         }
 
         public void addHoursToTask(ActionEvent event){
-            double time= Double.parseDouble(hoursSpent.getText());
-            projectManagement.addTime(projectManagement.findTeamMember(lastViewedID), (Task) assignTaskTable.getSelectionModel().getSelectedItem(), time);
-            loadMemberInfoPage();
+            String time= hoursSpent.getText();
+            if(taskTable.getSelectionModel().getSelectedItem() == null){
+                Alert selectionError = new Alert(Alert.AlertType.ERROR);
+                selectionError.setGraphic(factory.loadErrorNode());
+                selectionError.setTitle("Error!");
+                selectionError.setHeaderText("No task selected!");
+                selectionError.setContentText("Please select a task from the task list above.");
+                selectionError.showAndWait();
+            }else if (!validator.validateNumericInput(time)){
+                Alert inputError = new Alert(Alert.AlertType.ERROR);
+                inputError.setGraphic(factory.loadErrorNode());
+                inputError.setTitle("Error!");
+                inputError.setHeaderText("Invalid input!");
+                inputError.setContentText("Please enter a valid positive numeric value.");
+                inputError.showAndWait();
+                }
+            else {
+
+                projectManagement.addTime(projectManagement.findTeamMember(lastViewedID), (Task) taskTable.getSelectionModel().getSelectedItem(), Double.parseDouble(time));
+                loadMemberInfoPage();
+            }
+
             hoursSpent.clear();
+
         }
     }
