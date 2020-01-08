@@ -33,7 +33,7 @@ public class ProjectManagementImp implements ProjectManagement, Serializable {
         if(nextUpdateMilli == 0){
             project.setNextUpdateMilli(todayMilli + (MILLI_SEC_PER_DAY * DAYS_OF_UPD_INTERVAL));
         }
-        else if(true) {
+        else if(todayMilli >= nextUpdateMilli) {
 
             ProjectCalculations calculations = factory.makeProjectCalculations();
             project.setCostVariance(calculations.calculateCostVariance());
@@ -110,8 +110,8 @@ public class ProjectManagementImp implements ProjectManagement, Serializable {
     }
 
     @Override
-    public int timeSpentByTeamMember(TeamMember member) {
-        return member.getWeeksSpent();
+    public double timeSpentByTeamMember(TeamMember member) {
+        return member.getTimeSpent();
     }
 
     @Override
@@ -148,11 +148,11 @@ public class ProjectManagementImp implements ProjectManagement, Serializable {
 
     //Returns time spent on the project for all team members
     @Override
-    public int timeSpentOnProject() {
+    public double timeSpentOnProject() {
         List<TeamMember> teamMembers = project.getTeamMembers();
-        int totalTimeSpent = 0;
+        double totalTimeSpent = 0;
         for (TeamMember teamMember : teamMembers) {
-            totalTimeSpent = totalTimeSpent + teamMember.getWeeksSpent();
+            totalTimeSpent = totalTimeSpent + teamMember.getTimeSpent();
         }
         return totalTimeSpent;
     }
@@ -175,6 +175,9 @@ public class ProjectManagementImp implements ProjectManagement, Serializable {
         return project;
     }
 
+    public void addTime(TeamMember teamMember, Task task, double time){
+        teamMember.addTime(task,time);
+    }
 
 
 }

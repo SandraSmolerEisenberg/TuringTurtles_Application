@@ -138,7 +138,7 @@ public class RiskPageController {
                 deleteAlert.setTitle("Invalid selection");
                 deleteAlert.setGraphic(factory.loadErrorNode());
                 deleteAlert.setHeaderText("Hey!");
-                deleteAlert.setContentText("Probability and impact are non-decimal numbers\n between 0 and 10!");
+                deleteAlert.setContentText("Probability and impact are non-decimal numbers\n between 0 and 1!");
                 deleteAlert.showAndWait();
             }
 

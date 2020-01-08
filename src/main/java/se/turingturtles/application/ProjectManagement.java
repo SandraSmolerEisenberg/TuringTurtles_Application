@@ -21,16 +21,16 @@ public interface ProjectManagement {
     void removeMember(TeamMember member);
     TeamMember findTeamMember(int id);
     List<TeamMember> getTeamMembers();
-    int timeSpentByTeamMember(TeamMember member);
+    double timeSpentByTeamMember(TeamMember member);
     ArrayList<Task> retrieveMemberTasks(TeamMember member);
     void assignTask(TeamMember member, Task task);
     Task findTask(String name);
     List<Task> retrieveTasks();
     void completeTask(Task task);
-    int timeSpentOnProject();
+    double timeSpentOnProject();
     void createRisk(String name, double impact, double probability);
     List<Risk> getProjectRisks();
 
 
-
+    void addTime(TeamMember teamMember, Task selectedItem, double time);
 }

@@ -6,10 +6,8 @@ import se.turingturtles.implementations.ProjectManagementImp;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Locale;
-import java.util.Objects;
+import java.util.*;
+
 @JsonIdentityInfo(generator= ObjectIdGenerators.IntSequenceGenerator.class, property="@member")
 public class TeamMember implements Serializable {
     //The team works 16 hours per week
@@ -20,6 +18,7 @@ public class TeamMember implements Serializable {
     private double hourlyWage;
     private int totalTasks;
     private ArrayList<Task> tasks;
+    private HashMap<Task, Double> timeSpentOnTask;
 
     public TeamMember(String name, int id, double hourlyWage){
         this.name = name;
@@ -27,6 +26,7 @@ public class TeamMember implements Serializable {
         this.hourlyWage = hourlyWage;
         this.tasks = new ArrayList<Task>();
         this.totalTasks = totalTasks();
+        this.timeSpentOnTask = new HashMap<>();
     }
 
     public TeamMember(){} //Needed for JSON-file to work
@@ -75,42 +75,35 @@ public class TeamMember implements Serializable {
     public void addTask(Task task){
         tasks.add(task);
         setTotalTasks(totalTasks());
+        timeSpentOnTask.put(task, 0.0);
     }
     public void removeTask(Task task){
 
         tasks.remove(task);
         setTotalTasks(totalTasks());
+        timeSpentOnTask.remove(task);
     }
+
     public int totalTasks(){
         return tasks.size();
     }
-    public int getWeeksSpent(){
-        int currentWeek = assignStartWeek();
-        int weeksSpent = 0;
-        int weeksInYear = 52;
-        LocalDate currentDate = LocalDate.now();
-        for(Task obj : tasks){
-            if(currentDate.isBefore(obj.getEndDate()) && currentDate.isAfter(obj.getStartDate())) {
-                if(obj.getStartWeek() > obj.getEndWeek()) {
-                    weeksSpent += ((currentWeek + weeksInYear) - obj.getStartWeek());
-                }else{
-                    weeksSpent += (currentWeek - obj.getStartWeek());
-                }
-            }else if(currentDate.isAfter(obj.getEndDate())){
-                weeksSpent += obj.getDuration();
-            }
+
+    public void addTime(Task task, double time){
+        double timeOnTask = timeSpentOnTask.get(task);
+        if (timeOnTask==0){
+            timeSpentOnTask.put(task, time);
         }
-        return weeksSpent;
+        else {
+            timeOnTask = timeOnTask + time;
+            timeSpentOnTask.replace(task, timeOnTask);
+        }
     }
-
-    private int assignStartWeek(){
-        Calendar calendar = Calendar.getInstance(Locale.GERMANY);
-        calendar.setFirstDayOfWeek(Calendar.MONDAY);
-        return calendar.get(Calendar.WEEK_OF_YEAR);
-    }
-    public int getTimeSpent(){
-
-        return (getWeeksSpent() * hoursPerWeek);
+    public double getTimeSpent(){
+        double totalTime = 0.0;
+        for(Task task : timeSpentOnTask.keySet()){
+            totalTime = totalTime + timeSpentOnTask.get(task);
+        }
+        return totalTime;
     }
 
     @Override

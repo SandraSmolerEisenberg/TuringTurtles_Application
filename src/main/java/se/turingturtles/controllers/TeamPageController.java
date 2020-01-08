@@ -25,6 +25,7 @@
     public class TeamPageController {
 
 
+        @FXML private TextField hoursSpent;
         @FXML private AnchorPane teamPage;
         @FXML private ListView teamList;
         @FXML private TextField enterName;
@@ -274,7 +275,7 @@
             nameText.setText(projectManagement.findTeamMember(lastViewedID).getName());
             idText.setText(String.valueOf(projectManagement.findTeamMember(lastViewedID).getId()));
             wageText.setText(String.valueOf(projectManagement.findTeamMember(lastViewedID).getHourlyWage()));
-            memberTimeSpent.setText(String.valueOf(projectManagement.findTeamMember(lastViewedID).getWeeksSpent()));
+            memberTimeSpent.setText(String.valueOf(projectManagement.findTeamMember(lastViewedID).getTimeSpent()));
 
 
         }
@@ -327,5 +328,12 @@
             enterName.setPromptText("Enter name");
             enterID.setPromptText("Enter ID");
             enterWage.setPromptText("Enter hourly wage");
+        }
+
+        public void addHoursToTask(ActionEvent event){
+            double time= Double.parseDouble(hoursSpent.getText());
+            projectManagement.addTime(projectManagement.findTeamMember(lastViewedID), (Task) assignTaskTable.getSelectionModel().getSelectedItem(), time);
+            loadMemberInfoPage();
+            hoursSpent.clear();
         }
     }

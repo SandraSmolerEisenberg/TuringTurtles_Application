@@ -97,7 +97,7 @@ public class ProjectManagementController {
         startWeek.setText("Start week: " + ProjectManagementImp.getProject().getStartWeek());
         endWeek.setText("End week: " + ProjectManagementImp.getProject().getEndWeek());
         duration.setText("Duration: " + ProjectManagementImp.getProject().getDuration());
-        timeOnTasks.setText("Total time spent on project: " + projectManagement.timeSpentOnProject() + " Weeks");
+        timeOnTasks.setText("Total time spent on project: " + projectManagement.timeSpentOnProject() + " hours");
         completedTasks.setText("No. completed tasks: " + countCompletedTasks());
         activeTasks.setText("No. Active or planned tasks: " + countActiveTasks());
 
