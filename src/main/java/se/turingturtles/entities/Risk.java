@@ -51,7 +51,8 @@ public class Risk implements Serializable {
     }
     //--------------------Methods--------------------
     public double calculateRisk(){
-        double risk = (this.impact * this.probability);
+        double round = 100.0;
+        double risk = Math.round(round*(this.impact * this.probability)) / round;
         setRiskCalculated(risk);
         return risk;
     }

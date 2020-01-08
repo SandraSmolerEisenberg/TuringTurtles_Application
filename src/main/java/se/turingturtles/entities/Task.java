@@ -97,7 +97,7 @@ public class Task implements Serializable {
     public void setCompletion(boolean status){
         this.completion = status;
             LocalDate localDate = LocalDate.now();
-            localDate = localDate.with(TemporalAdjusters.next(DayOfWeek.MONDAY));
+            localDate = localDate.with(TemporalAdjusters.next(DayOfWeek.SUNDAY));
             setEndWeek(calculateEndWeek());
             setEndDate(localDate);
             setDuration(calculateDuration());

@@ -87,10 +87,15 @@ public class TeamMember implements Serializable {
     public int getWeeksSpent(){
         int currentWeek = assignStartWeek();
         int weeksSpent = 0;
+        int weeksInYear = 52;
         LocalDate currentDate = LocalDate.now();
         for(Task obj : tasks){
             if(currentDate.isBefore(obj.getEndDate()) && currentDate.isAfter(obj.getStartDate())) {
-                weeksSpent += (currentWeek - obj.getStartWeek());
+                if(obj.getStartWeek() > obj.getEndWeek()) {
+                    weeksSpent += ((currentWeek + weeksInYear) - obj.getStartWeek());
+                }else{
+                    weeksSpent += (currentWeek - obj.getStartWeek());
+                }
             }else if(currentDate.isAfter(obj.getEndDate())){
                 weeksSpent += obj.getDuration();
             }
