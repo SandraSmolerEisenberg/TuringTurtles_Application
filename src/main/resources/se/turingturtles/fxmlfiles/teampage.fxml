@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="teamPage" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/" fx:controller="se.turingturtles.controllers.TeamPageController">
+<AnchorPane fx:id="teamPage" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="se.turingturtles.controllers.TeamPageController">
                      <children>
       <BorderPane AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
          <center>
@@ -30,7 +30,9 @@
                                     </AnchorPane>
                                     <AnchorPane fx:id="memberInfoPage" disable="false" prefHeight="448.0" prefWidth="631.0" visible="false">
                                        <children>
-                        <TableView fx:id="taskTable" layoutX="180.0" layoutY="193.0" prefHeight="130.0" prefWidth="424.0">
+                        <Label layoutX="182.0" layoutY="312.0" text="Add hours to task:" />
+                        <TextField fx:id="hoursSpent" layoutX="321.0" layoutY="306.0" prefHeight="27.0" prefWidth="95.0" promptText="select task" />
+                        <TableView fx:id="taskTable" layoutX="180.0" layoutY="163.0" prefHeight="130.0" prefWidth="424.0">
                            <columns>
                               <TableColumn fx:id="memberTaskName" prefWidth="73.0" text="Task Name" />
                               <TableColumn fx:id="memberTaskStartWeek" prefWidth="75.0" text="Start Week" />
@@ -44,13 +46,14 @@
                                           <Button fx:id="returnHome" layoutX="180.0" layoutY="351.0" mnemonicParsing="false" onAction="#returnToTeamPage" text="Back" />
                                           <Button layoutX="242.0" layoutY="351.0" mnemonicParsing="false" onAction="#showEditMemberPage" text="Edit team member" />
                                           <Label layoutX="180.0" layoutY="88.0" text="Name:" />
-                                          <Label layoutX="182.0" layoutY="147.0" text="ID:" />
+                                          <Label layoutX="182.0" layoutY="127.0" text="ID:" />
                                           <Label layoutX="388.0" layoutY="88.0" text="Hourly wage:" />
                                           <Text fx:id="nameText" layoutX="226.0" layoutY="101.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="180.0" />
-                                          <Text fx:id="idText" layoutX="226.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="180.0" />
+                                          <Text fx:id="idText" layoutX="226.0" layoutY="140.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="180.0" />
                                           <Text fx:id="wageText" layoutX="485.0" layoutY="101.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="105.0" />
-                        <Text fx:id="memberTimeSpent" layoutX="485.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="105.0" />
-                        <Label layoutX="387.0" layoutY="147.0" text="Weeks spent:" />
+                        <Text fx:id="memberTimeSpent" layoutX="485.0" layoutY="140.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="105.0" />
+                        <Label layoutX="387.0" layoutY="127.0" text="Hours spent:" />
+                        <Button fx:id="returnHome1" layoutX="429.0" layoutY="307.0" mnemonicParsing="false" text="Add" />
                                        </children>
                                     </AnchorPane>
                                     <AnchorPane fx:id="memberEditPage" disable="false" prefHeight="448.0" prefWidth="631.0" visible="false">
