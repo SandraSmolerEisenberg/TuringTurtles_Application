@@ -184,7 +184,6 @@ public class TaskPageController {
                 newTaskName.setPromptText("Invalid Name!");
             }
             else {
-                taskEnd = taskEnd.plusDays(ONE_WEEK_DAY);
                 projectManagement.createTask(name, taskStart, taskEnd);
                 streamIO.exportToStreamIO();
                 Alert confirmationAlert = new Alert(Alert.AlertType.INFORMATION);

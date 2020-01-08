@@ -15,6 +15,9 @@ import java.util.Locale;
 @JsonIdentityInfo(generator= ObjectIdGenerators.IntSequenceGenerator.class, property="@task")
 public class Task implements Serializable {
 
+    //Used for calculation of task duration
+    private static final int ONE_WEEK_DAY = 1;
+
     private String name;
     private int startWeek;
     private int endWeek;
@@ -141,7 +144,8 @@ public class Task implements Serializable {
         return startDate.get(weekFields.weekOfWeekBasedYear());
     }
     private int calculateDuration(){
-        long weeks = ChronoUnit.WEEKS.between(startDate,endDate);
+
+        long weeks = ChronoUnit.WEEKS.between(startDate,endDate.plusDays(ONE_WEEK_DAY));
         return (int) weeks;
     }
     @Override
