@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="taskPage" prefHeight="406.0" prefWidth="668.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="se.turingturtles.controllers.TaskPageController">
+<AnchorPane fx:id="taskPage" prefHeight="406.0" prefWidth="668.0" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/" fx:controller="se.turingturtles.controllers.TaskPageController">
 <children>
    <!-- Sidebar -->
    <VBox maxWidth="-Infinity" minWidth="-Infinity" prefWidth="200" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="30.0">
