@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
@@ -9,84 +10,104 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="taskPage" prefHeight="406.0" prefWidth="668.0" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/" fx:controller="se.turingturtles.controllers.TaskPageController">
-   <children>
-      <Text fx:id="taskHeaderText" layoutX="31.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="h1-tab" text="Tasks overview" textAlignment="CENTER" AnchorPane.leftAnchor="31.0" AnchorPane.topAnchor="50.0" />
-      <Button fx:id="taskCreateTaskButton" layoutX="28.0" layoutY="100.0" mnemonicParsing="false" onAction="#createNewTask" prefWidth="100.0" text="Create Task" />
-      <Button fx:id="viewTaskButton" layoutX="28.0" layoutY="160.0" mnemonicParsing="false" onAction="#selectTaskRow" prefWidth="100.0" text="View Task" />
-      <AnchorPane fx:id="createTaskAnchorPane" layoutX="119.0" layoutY="15.0" prefHeight="334.0" prefWidth="481.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
-         <children>
-            <Label layoutX="82.0" layoutY="71.0" text="Task Name:" AnchorPane.leftAnchor="82.0" AnchorPane.rightAnchor="339.0" />
-            <TextField fx:id="newTaskName" layoutX="166.0" layoutY="67.0" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="150.0" promptText="Enter Task Name" AnchorPane.leftAnchor="166.0" />
-            <Label layoutX="82.0" layoutY="120.0" text="Start Week:" AnchorPane.leftAnchor="82.0" AnchorPane.rightAnchor="340.0" />
-            <DatePicker fx:id="taskStartDate" layoutX="166.0" layoutY="116.0" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="150.0" AnchorPane.leftAnchor="166.0" />
-            <Label layoutX="82.0" layoutY="167.0" text="End Week:" AnchorPane.leftAnchor="82.0" AnchorPane.rightAnchor="346.0" />
-            <DatePicker fx:id="taskEndDate" layoutX="166.0" layoutY="163.0" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="150.0" AnchorPane.leftAnchor="166.0" />
-            <Button id="big-button" fx:id="newTaskCreateButton" layoutX="215.0" layoutY="222.0" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#makeNewTask" prefWidth="150.0" text="Create" AnchorPane.leftAnchor="166.0" />
-         </children>
-      </AnchorPane>
-      <AnchorPane fx:id="taskDetailsAnchorPane" layoutX="101.0" layoutY="15.0" prefHeight="391.0" prefWidth="527.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
-         <children>
-            <Text fx:id="taskDetailsViewHeaderText" layoutX="125.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*Task Name*" />
-            <Text layoutX="30.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name:" />
-            <Text layoutX="30.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Start Week:" />
-            <Text fx:id="taskDetailsStartWeekText" layoutX="125.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*Start Week Number*" />
-            <Text layoutX="30.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="End Week:" />
-            <Text fx:id="taskDetailsEndWeekText" layoutX="125.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*End Week Number*" />
-            <Text layoutX="30.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Duration:" />
-            <Text fx:id="taskDetailsDurationText" layoutX="125.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*Duration Number*" />
-            <Text layoutX="30.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Team Members:" />
-            <Text fx:id="taskDetailsTeamMembersText" layoutX="125.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*Team Members Number*" />
-            <Text layoutX="30.0" layoutY="140.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Status:" />
-            <Text fx:id="taskDetailsStatusText" layoutX="125.0" layoutY="140.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*Status Value*" />
-            <ListView fx:id="taskDetailsTeamMemberList" layoutX="302.0" layoutY="39.0" prefHeight="113.0" prefWidth="172.0" />
-            <Button fx:id="taskDetailsEditTaskButton" layoutX="25.0" layoutY="340.0" mnemonicParsing="false" onAction="#loadEditTaskPage" prefHeight="25.0" prefWidth="68.0" text="Edit" />
-            <Button id="deleteTask" fx:id="taskDetailsDeleteTaskButton" layoutX="112.0" layoutY="340.0" mnemonicParsing="false" onAction="#deleteTask" prefHeight="25.0" prefWidth="85.0" text="Delete Task" />
-            <Button fx:id="assignTeamMemberButton" layoutX="215.0" layoutY="340.0" mnemonicParsing="false" onAction="#assignTeamMember" prefHeight="25.0" prefWidth="139.0" text="Assign Team Member" />
-            <Label layoutX="294.0" layoutY="19.0" text="Team members working on task:" />
-            <Label layoutX="26.0" layoutY="187.0" text="Choose team member to be added to task:" />
-            <Button fx:id="removeTeamMemberButton" layoutX="325.0" layoutY="160.0" mnemonicParsing="false" onAction="#removeTeamMember" text="Remove Team Member" />
-            <TableView fx:id="teamMembersTable" layoutX="26.0" layoutY="206.0" prefHeight="128.0" prefWidth="446.0">
-              <columns>
-                <TableColumn fx:id="teamMemberNameColumn" prefWidth="75.0" text="Name" />
-                <TableColumn fx:id="teamMemberIdColumn" prefWidth="75.0" text="ID" />
-                  <TableColumn fx:id="teamMemberTotalTasks" prefWidth="111.33331298828125" text="Number of tasks" />
-                  <TableColumn fx:id="teamMemberSalary" prefWidth="107.99996948242188" text="Salary" />
-              </columns>
-            </TableView>
-            <Button fx:id="taskDetailsCompleteButton" layoutX="373.0" layoutY="340.0" mnemonicParsing="false" onAction="#changeStatus" text="Complete Task" />
-         </children>
-      </AnchorPane>
-      <AnchorPane fx:id="taskEditPageAnchorPane" layoutX="119.0" layoutY="15.0" prefHeight="357.0" prefWidth="491.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
-         <children>
-            <Text fx:id="taskEditPageHeaderText" layoutX="140.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Task Name goes here" />
-            <Text layoutX="35.0" layoutY="139.0" strokeType="OUTSIDE" strokeWidth="0.0" text="New Name:" />
-            <TextField fx:id="taskEditPageNewName" layoutX="184.0" layoutY="121.0" prefHeight="25.0" prefWidth="181.0" promptText="Enter New Name" />
-            <Button fx:id="taskEditSaveButton" layoutX="200.0" layoutY="295.0" mnemonicParsing="false" onAction="#taskEditSaveChanges" text="Save" />
-            <Text layoutX="35.0" layoutY="215.0" strokeType="OUTSIDE" strokeWidth="0.0" text="New Start Week:" />
-            <DatePicker fx:id="taskEditPageStartWeek" layoutX="184.0" layoutY="197.0" prefHeight="25.0" prefWidth="181.0" promptText="Select New Start Week" />
-            <Text layoutX="35.0" layoutY="263.0" strokeType="OUTSIDE" strokeWidth="0.0" text="New End Week:" />
-            <DatePicker fx:id="taskEditPageEndWeek" layoutX="184.0" layoutY="245.0" prefHeight="25.0" prefWidth="181.0" promptText="Select New End Week" />
-            <Label layoutX="35.0" layoutY="163.0" text="Update Start and End date" />
-            <RadioButton fx:id="updateDateButton" layoutX="184.0" layoutY="163.0" mnemonicParsing="false" onAction="#enableChangeDate" />
-            <RadioButton fx:id="updateNameButton" layoutX="184.0" layoutY="86.0" mnemonicParsing="false" onAction="#enableChangeName" />
-            <Label layoutX="35.0" layoutY="86.0" text="Change name" />
-         </children>
-      </AnchorPane>
-      <AnchorPane fx:id="tableAnchorPane" layoutX="96.0" layoutY="38.0" prefHeight="368.0" prefWidth="572.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
-         <children>
-            <TableView fx:id="taskTableView" layoutX="6.0" layoutY="23.0" prefHeight="311.0" prefWidth="543.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-              <columns>
-                <TableColumn fx:id="taskName" prefWidth="75.0" text="Task Name" />
-                  <TableColumn fx:id="taskStartWeek" prefWidth="75.0" text="Start Week" />
-                  <TableColumn fx:id="taskEndWeek" prefWidth="75.0" text="End Week" />
-                  <TableColumn fx:id="taskDuration" prefWidth="75.0" text="Duration" />
-                  <TableColumn fx:id="taskTeamMembersAmount" prefWidth="126.6666259765625" text="Team Members" />
-                  <TableColumn fx:id="taskStatus" prefWidth="124.66665649414062" text="Status" />
-              </columns>
-            </TableView>
-         </children></AnchorPane>
-   </children>
+<AnchorPane fx:id="taskPage" prefHeight="406.0" prefWidth="668.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="se.turingturtles.controllers.TaskPageController">
+<children>
+   <!-- Sidebar -->
+   <VBox maxWidth="-Infinity" minWidth="-Infinity" prefWidth="200" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="30.0">
+      <children>
+         <!-- Sidebar header text -->
+         <Text fx:id="taskHeaderText" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="h1-tab" text="Tasks overview" textAlignment="CENTER" />
+         <!-- Button to create task view -->
+         <Button fx:id="taskCreateTaskButton" mnemonicParsing="false" onAction="#createNewTask" prefWidth="150.0" text="Create Task">
+            <VBox.margin>
+               <Insets top="20.0" />
+            </VBox.margin>
+         </Button>
+         <!-- Button to view task -->
+         <Button fx:id="viewTaskButton" mnemonicParsing="false" onAction="#selectTaskRow" prefWidth="150.0" text="View Task">
+            <VBox.margin>
+               <Insets top="10.0" />
+            </VBox.margin>
+         </Button>
+      </children>
+   </VBox>
+   <AnchorPane fx:id="tableAnchorPane" layoutX="96.0" layoutY="38.0" prefHeight="368.0" prefWidth="572.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
+      <children>
+         <TableView fx:id="taskTableView" layoutX="6.0" layoutY="23.0" prefHeight="311.0" prefWidth="543.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <columns>
+               <TableColumn fx:id="taskName" prefWidth="75.0" text="Task Name" />
+               <TableColumn fx:id="taskStartWeek" prefWidth="75.0" text="Start Week" />
+               <TableColumn fx:id="taskEndWeek" prefWidth="75.0" text="End Week" />
+               <TableColumn fx:id="taskDuration" prefWidth="75.0" text="Duration" />
+               <TableColumn fx:id="taskTeamMembersAmount" prefWidth="126.6666259765625" text="Team Members" />
+               <TableColumn fx:id="taskStatus" prefWidth="124.66665649414062" text="Status" />
+            </columns>
+         </TableView>
+      </children>
+   </AnchorPane>
+   <!-- Create new task view -->
+   <AnchorPane fx:id="createTaskAnchorPane" prefHeight="-Infinity" prefWidth="-Infinity" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
+      <children>
+         <Text layoutX="65.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="h1-tab-sub" text="Create a new task" textAlignment="CENTER" />
+         <Label layoutX="65.0" layoutY="98.0" prefHeight="20.0" prefWidth="150.0" text="Task Name:" textAlignment="RIGHT" />
+         <TextField fx:id="newTaskName" layoutX="215.0" layoutY="94.0" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="200.0" promptText="Enter Task Name" />
+         <Label layoutX="65.0" layoutY="147.0" prefHeight="20.0" prefWidth="150.0" text="Start Week:" textAlignment="RIGHT" />
+         <DatePicker fx:id="taskStartDate" layoutX="215.0" layoutY="143.0" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="200.0" />
+         <Label layoutX="65.0" layoutY="194.0" prefHeight="20.0" prefWidth="150.0" text="End Week:" textAlignment="RIGHT" />
+         <DatePicker fx:id="taskEndDate" layoutX="215.0" layoutY="190.0" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="200.0" />
+         <Button id="big-button" fx:id="newTaskCreateButton" layoutX="68.0" layoutY="247.0" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#makeNewTask" prefHeight="27.0" prefWidth="350.0" text="Create" />
+      </children>
+   </AnchorPane>
+   <AnchorPane fx:id="taskEditPageAnchorPane" layoutX="119.0" layoutY="15.0" prefHeight="357.0" prefWidth="491.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
+      <children>
+         <Text fx:id="taskEditPageHeaderText" layoutX="140.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Task Name goes here" />
+         <Text layoutX="35.0" layoutY="139.0" strokeType="OUTSIDE" strokeWidth="0.0" text="New Name:" />
+         <TextField fx:id="taskEditPageNewName" layoutX="184.0" layoutY="121.0" prefHeight="25.0" prefWidth="181.0" promptText="Enter New Name" />
+         <Button fx:id="taskEditSaveButton" layoutX="200.0" layoutY="295.0" mnemonicParsing="false" onAction="#taskEditSaveChanges" text="Save" />
+         <Text layoutX="35.0" layoutY="215.0" strokeType="OUTSIDE" strokeWidth="0.0" text="New Start Week:" />
+         <DatePicker fx:id="taskEditPageStartWeek" layoutX="184.0" layoutY="197.0" prefHeight="25.0" prefWidth="181.0" promptText="Select New Start Week" />
+         <Text layoutX="35.0" layoutY="263.0" strokeType="OUTSIDE" strokeWidth="0.0" text="New End Week:" />
+         <DatePicker fx:id="taskEditPageEndWeek" layoutX="184.0" layoutY="245.0" prefHeight="25.0" prefWidth="181.0" promptText="Select New End Week" />
+         <Label layoutX="35.0" layoutY="163.0" text="Update Start and End date" />
+         <RadioButton fx:id="updateDateButton" layoutX="184.0" layoutY="163.0" mnemonicParsing="false" onAction="#enableChangeDate" />
+         <RadioButton fx:id="updateNameButton" layoutX="184.0" layoutY="86.0" mnemonicParsing="false" onAction="#enableChangeName" />
+         <Label layoutX="35.0" layoutY="86.0" text="Change name" />
+      </children>
+   </AnchorPane>
+   <AnchorPane fx:id="taskDetailsAnchorPane" layoutX="101.0" layoutY="15.0" prefHeight="391.0" prefWidth="527.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
+      <children>
+         <Text fx:id="taskDetailsViewHeaderText" layoutX="125.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*Task Name*" />
+         <Text layoutX="30.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name:" />
+         <Text layoutX="30.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Start Week:" />
+         <Text fx:id="taskDetailsStartWeekText" layoutX="125.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*Start Week Number*" />
+         <Text layoutX="30.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="End Week:" />
+         <Text fx:id="taskDetailsEndWeekText" layoutX="125.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*End Week Number*" />
+         <Text layoutX="30.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Duration:" />
+         <Text fx:id="taskDetailsDurationText" layoutX="125.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*Duration Number*" />
+         <Text layoutX="30.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Team Members:" />
+         <Text fx:id="taskDetailsTeamMembersText" layoutX="125.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*Team Members Number*" />
+         <Text layoutX="30.0" layoutY="140.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Status:" />
+         <Text fx:id="taskDetailsStatusText" layoutX="125.0" layoutY="140.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*Status Value*" />
+         <ListView fx:id="taskDetailsTeamMemberList" layoutX="302.0" layoutY="39.0" prefHeight="113.0" prefWidth="172.0" />
+         <Button fx:id="taskDetailsEditTaskButton" layoutX="25.0" layoutY="340.0" mnemonicParsing="false" onAction="#loadEditTaskPage" prefHeight="25.0" prefWidth="68.0" text="Edit" />
+         <Button fx:id="taskDetailsDeleteTaskButton" layoutX="112.0" layoutY="340.0" mnemonicParsing="false" onAction="#deleteTask" prefHeight="25.0" prefWidth="85.0" styleClass="delete" text="Delete Task" />
+         <Button fx:id="assignTeamMemberButton" layoutX="215.0" layoutY="340.0" mnemonicParsing="false" onAction="#assignTeamMember" prefHeight="25.0" prefWidth="139.0" text="Assign Team Member" />
+         <Label layoutX="320.0" layoutY="19.0" text="Assigned team members" />
+         <Label layoutX="26.0" layoutY="187.0" text="Choose team member to be added to task:" />
+         <Button fx:id="removeTeamMemberButton" layoutX="325.0" layoutY="160.0" mnemonicParsing="false" onAction="#removeTeamMember" text="Remove Team Member" />
+         <TableView fx:id="teamMembersTable" layoutX="26.0" layoutY="206.0" prefHeight="128.0" prefWidth="446.0">
+            <columns>
+               <TableColumn fx:id="teamMemberNameColumn" prefWidth="75.0" text="Name" />
+               <TableColumn fx:id="teamMemberIdColumn" prefWidth="75.0" text="ID" />
+               <TableColumn fx:id="teamMemberTotalTasks" prefWidth="111.33331298828125" text="Number of tasks" />
+               <TableColumn fx:id="teamMemberSalary" prefWidth="107.99996948242188" text="Salary" />
+            </columns>
+         </TableView>
+         <Button fx:id="taskDetailsCompleteButton" layoutX="373.0" layoutY="340.0" mnemonicParsing="false" onAction="#changeStatus" text="Complete Task" />
+      </children>
+   </AnchorPane>
+</children>
 </AnchorPane>

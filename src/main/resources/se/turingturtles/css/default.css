@@ -126,6 +126,7 @@
 
 /* ______________________ chart styling */
 .chart-bar {
+  -fx-margin: 0;
   -fx-background-color: #7BB2D9;
 }
 
