@@ -41,7 +41,7 @@
                               <TableColumn fx:id="memberTaskStatus" prefWidth="138.0" text="Status" />
                            </columns>
                         </TableView>
-                                          <Button fx:id="deleteTeamMember" layoutX="375.0" layoutY="351.0" mnemonicParsing="false" onAction="#deleteAlert" text="Delete team member" />
+                                          <Button styleClass="delete" fx:id="deleteTeamMember" layoutX="375.0" layoutY="351.0" mnemonicParsing="false" onAction="#deleteAlert" text="Delete team member" />
                                           <Button layoutX="522.0" layoutY="351.0" mnemonicParsing="false" onAction="#showMemberAssignTaskPage" text="Assign task" />
                                           <Button fx:id="returnHome" layoutX="180.0" layoutY="351.0" mnemonicParsing="false" onAction="#returnToTeamPage" text="Back" />
                                           <Button layoutX="242.0" layoutY="351.0" mnemonicParsing="false" onAction="#showEditMemberPage" text="Edit team member" />

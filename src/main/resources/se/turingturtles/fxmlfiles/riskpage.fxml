@@ -31,7 +31,7 @@
                         </BarChart>
             <AnchorPane fx:id="riskDetails" prefWidth="600.0" AnchorPane.bottomAnchor="110.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <Button fx:id="deleteRiskButton" layoutX="263.0" layoutY="277.0" mnemonicParsing="false" onAction="#deleteRisk" text="Delete Risk" />
+                  <Button styleClass="delete" fx:id="deleteRiskButton" layoutX="263.0" layoutY="277.0" mnemonicParsing="false" onAction="#deleteRisk" text="Delete Risk" />
                               <TableView fx:id="riskDetailsTable" editable="true" layoutX="19.0" layoutY="36.0" prefHeight="239.0" prefWidth="561.0" tableMenuButtonVisible="true">
                                 <columns>
                                   <TableColumn fx:id="riskName" prefWidth="106.00000250339508" text="Name" />
