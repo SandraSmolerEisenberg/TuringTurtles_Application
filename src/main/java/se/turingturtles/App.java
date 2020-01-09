@@ -22,13 +22,13 @@ public class App extends Application {
     @Override
     public void start(Stage window) throws IOException {
         //Application window size.
-        //Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-        //double width = screenSize.getWidth() * 0.6;
-        //double height = screenSize.getHeight() * 0.8;
+        Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+        //double width = screenSize.getWidth() * 0.5;
+        double height = screenSize.getHeight() * 1;
         window.setResizable(true);
 
         //Scene creation.
-        Scene scene = new Scene(factory.loadFXML("startpage"), 800 , 600);
+        Scene scene = new Scene(factory.loadFXML("startpage"), 800 , height);
         scene.getStylesheets().addAll();
         window.setScene(scene);
         scene.getStylesheets().add(getClass().getResource("/se/turingturtles/css/default.css").toExternalForm());

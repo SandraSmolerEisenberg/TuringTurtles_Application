@@ -10,13 +10,13 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="teamPage" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/" fx:controller="se.turingturtles.controllers.TeamPageController">
+<AnchorPane fx:id="teamPage" cacheShape="false" centerShape="false" pickOnBounds="false" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/1" fx:controller="se.turingturtles.controllers.TeamPageController">
                      <children>
-      <BorderPane AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
+      <BorderPane pickOnBounds="false" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
          <center>
-                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="448.0" prefWidth="631.0" BorderPane.alignment="CENTER">
+                            <AnchorPane BorderPane.alignment="CENTER">
                                  <children>
-                                    <AnchorPane fx:id="newMemberPage" disable="false" prefHeight="448.0" prefWidth="631.0" visible="false">
+                                    <AnchorPane fx:id="newMemberPage" disable="false" visible="false">
                                        <children>
                                           <TextField fx:id="enterName" layoutX="340.0" layoutY="124.0" promptText="Enter name" />
                                           <TextField fx:id="enterID" layoutX="340.0" layoutY="183.0" promptText="Enter ID" />
@@ -28,7 +28,7 @@
                                           <Button fx:id="returnTeamPage" layoutX="231.0" layoutY="353.0" mnemonicParsing="false" onAction="#returnToTeamPage" prefHeight="27.0" prefWidth="105.0" text="Back" />
                                        </children>
                                     </AnchorPane>
-                                    <AnchorPane fx:id="memberInfoPage" disable="false" prefHeight="448.0" prefWidth="631.0" visible="false">
+                                    <AnchorPane fx:id="memberInfoPage" disable="false" visible="false">
                                        <children>
                         <Label layoutX="182.0" layoutY="312.0" text="Add hours to task:" />
                         <TextField fx:id="hoursSpent" layoutX="290.0" layoutY="306.0" prefHeight="27.0" prefWidth="95.0" promptText="hours" />
@@ -70,7 +70,7 @@
                                           <Text fx:id="editMemberInfoText" layoutX="213.0" layoutY="113.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="372.22900390625" />
                                        </children>
                                     </AnchorPane>
-                                    <AnchorPane fx:id="memberAssignTaskPage" disable="false" prefHeight="448.0" prefWidth="631.0" visible="false">
+                                    <AnchorPane fx:id="memberAssignTaskPage" disable="false" visible="false">
                                        <children>
                         <TableView fx:id="assignTaskTable" layoutX="172.0" layoutY="133.0" prefHeight="190.0" prefWidth="424.0">
                            <columns>
@@ -87,7 +87,7 @@
                                           <Label layoutX="172.0" layoutY="116.0" text="Please choose a task from the list below" />
                                        </children>
                                     </AnchorPane>
-                  <AnchorPane fx:id="landingTeamPage" prefHeight="448.0" prefWidth="612.0" visible="false">
+                  <AnchorPane fx:id="landingTeamPage" visible="false">
                      <children>
                         <Text fx:id="teamPageWelcome" layoutX="182.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="h1-tab-sub" text="Welcome to the Team page!" wrappingWidth="449.0" />
                         <Text layoutX="182.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Here you can view, manage and add new team members. By either selecting a team member from the list on the left or searching for a team member by ID, you can see specific information for that team member. You can also edit and assign tasks to the member." wrappingWidth="314.0" />
