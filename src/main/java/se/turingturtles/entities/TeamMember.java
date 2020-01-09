@@ -113,6 +113,8 @@ public class TeamMember implements Serializable {
         for(Task task : timeSpentOnTask.keySet()){
             totalTime = totalTime + timeSpentOnTask.get(task);
         }
+        double round = 100.0;
+        totalTime = Math.round(round*(totalTime)) / round;
         return totalTime;
     }
 

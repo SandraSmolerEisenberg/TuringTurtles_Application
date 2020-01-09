@@ -92,6 +92,8 @@
             taskTable.setOnMouseClicked((MouseEvent event) -> {
                 if(event.getButton().equals(MouseButton.PRIMARY)){
                     double timeSpent = projectManagement.findTeamMember(lastViewedID).getTimeSpentOnTask().get((Task) taskTable.getSelectionModel().getSelectedItem());
+                    double round = 100.0;
+                    timeSpent = Math.round(round*(timeSpent)) / round;
                     hoursSpentOnTask.setText(String.valueOf(timeSpent));
                 }
             });
