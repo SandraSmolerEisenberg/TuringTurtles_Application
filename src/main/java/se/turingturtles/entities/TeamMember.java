@@ -97,6 +97,8 @@ public class TeamMember implements Serializable {
     }
 
     public void addTime(Task task, double time){
+        double round = 100.0;
+        time = Math.round(round*(time)) / round;
         double timeOnTask = timeSpentOnTask.get(task);
         if (timeOnTask==0){
             timeSpentOnTask.put(task, time);
